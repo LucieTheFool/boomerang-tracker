@@ -1,0 +1,28 @@
+# Saves and anything taken from the game must never be committed.
+fixtures/
+*.sav
+*.byml
+*.byml.zs
+*.zs
+*.zsdic
+*.pack
+*.bfres
+*.bntx
+romfs/
+exefs/
+local/
+data/local/
+
+# Build output
+node_modules/
+dist/
+dist-electron/
+release/
+out/
+*.log
+.vite/
+coverage/
+
+# Personal / third-party text: kept on your PC only
+docs/checklist-source.txt
+data/checklist.local.json

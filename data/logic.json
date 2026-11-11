@@ -1,0 +1,1722 @@
+{
+  "version": 1,
+  "notes": "Requirements for 'can get now'. Modelled on the original game plus the checklist's requirement notes; entries marked unsure may differ in the remake. Expressions use and/or/parentheses, child/adult, and Name>=N for numbers. Location keys are '<category>#<checklist number>'. Edit freely: the app re-reads this file at start.",
+  "start": {
+    "child": "Kokiri Forest",
+    "adult": "Temple of Time"
+  },
+  "canBeAdult": "MasterSword",
+  "items": {
+    "KokiriSword": {
+      "name": "IsGet.Weapon_Sword_Kokiri"
+    },
+    "MasterSword": {
+      "name": "IsGet.Weapon_Sword_Master"
+    },
+    "DekuShield": {
+      "name": "IsGet.Weapon_Shield_Deku"
+    },
+    "HylianShield": {
+      "name": "IsGet.Weapon_Shield_Hylian"
+    },
+    "MirrorShield": {
+      "name": "IsGet.Weapon_Shield_Mirror"
+    },
+    "GoronTunic": {
+      "name": "IsGet.Armor_Adult_Goron"
+    },
+    "ZoraTunic": {
+      "name": "IsGet.Armor_Adult_Zora"
+    },
+    "IronBoots": {
+      "name": "IsGet.Armor_Adult_HeavyBoot"
+    },
+    "HoverBoots": {
+      "name": "IsGet.Armor_Adult_HoverBoot"
+    },
+    "Slingshot": {
+      "name": "IsGet.Weapon_Range_SlingShot"
+    },
+    "Bow": {
+      "name": "IsGet.Weapon_Range_Bow"
+    },
+    "FireArrowsItem": {
+      "name": "IsGet.Item_Arrow_Fire"
+    },
+    "IceArrowsItem": {
+      "name": "IsGet.Item_Arrow_Ice"
+    },
+    "LightArrowsItem": {
+      "name": "IsGet.Item_Arrow_Light"
+    },
+    "Boomerang": {
+      "name": "IsGet.Item_Boomerang"
+    },
+    "HookshotItem": {
+      "name": "IsGet.Item_Hookshot"
+    },
+    "Longshot": {
+      "name": "IsGet.Item_Longshot"
+    },
+    "Hammer": {
+      "name": "IsGet.Item_Hammer"
+    },
+    "GoronsBracelet": {
+      "name": "IsGet.Armor_Child_Gauntlet_Goron"
+    },
+    "SilverGauntlets": {
+      "name": "IsGet.Armor_Adult_Gauntlet_Silver"
+    },
+    "GoldenGauntlets": {
+      "name": "IsGet.Armor_Adult_Gauntlet_Gold"
+    },
+    "Bombs": {
+      "name": "IsGet.Item_BombBag_Small"
+    },
+    "Bombchus": {
+      "name": "IsGet.Item_Bombchu"
+    },
+    "Sticks": {
+      "name": "IsGet.Item_DekuStick"
+    },
+    "Nuts": {
+      "name": "IsGet.Item_DekuNut"
+    },
+    "DinsFireItem": {
+      "name": "IsGet.Item_DinFire"
+    },
+    "FaroresWind": {
+      "name": "IsGet.Item_FaroreWind"
+    },
+    "NayrusLove": {
+      "name": "IsGet.Item_NayruLove"
+    },
+    "MagicMeter": {
+      "name": "PlayerStatus.MPMax",
+      "gte": 1
+    },
+    "LensItem": {
+      "name": "IsGet.Armor_GlassTruth"
+    },
+    "SilverScale": {
+      "name": "IsGet.Item_Scale_Silver"
+    },
+    "GoldenScale": {
+      "name": "IsGet.Item_Scale_Gold"
+    },
+    "MagicBean": {
+      "name": "IsGet.Item_MagicBean"
+    },
+    "Bottle": {
+      "sum": [
+        "PouchData.BottleA.StockNum",
+        "PouchData.BottleB.StockNum",
+        "PouchData.BottleC.StockNum",
+        "PouchData.BottleD.StockNum",
+        "PouchData.BottleE.StockNum"
+      ],
+      "gte": 1
+    },
+    "FairyOcarina": {
+      "name": "IsGet.Item_Ocarina_Fairy"
+    },
+    "OcarinaOfTime": {
+      "name": "IsGet.Item_Ocarina_Time"
+    },
+    "WeirdEgg": {
+      "name": "IsGet.Item_WeirdEgg"
+    },
+    "ZeldasLetter": {
+      "name": "IsGet.Item_ZeldaLetter"
+    },
+    "GerudoCard": {
+      "name": "IsGet.Item_Token_Gerudo"
+    },
+    "ClaimCheck": {
+      "name": "IsGet.Item_ClaimCheck"
+    },
+    "KeatonMask": {
+      "name": "IsGet.Armor_Child_Mask_Keaton"
+    },
+    "SkullMask": {
+      "name": "IsGet.Armor_Child_Mask_Skull"
+    },
+    "SpookyMask": {
+      "name": "IsGet.Armor_Child_Mask_Spooky"
+    },
+    "BunnyHood": {
+      "name": "IsGet.Armor_Child_Mask_Bunny"
+    },
+    "MaskOfTruth": {
+      "name": "IsGet.Armor_Child_Mask_Truth"
+    },
+    "Song_ZeldasLullaby": {
+      "name": "IsGet.Item_Melody_ZeldaLullaby"
+    },
+    "Song_EponasSong": {
+      "name": "IsGet.Item_Melody_EponaSong"
+    },
+    "Song_SariasSong": {
+      "name": "IsGet.Item_Melody_SariaSong"
+    },
+    "Song_SunsSong": {
+      "name": "IsGet.Item_Melody_SunSong"
+    },
+    "Song_SongOfTime": {
+      "name": "IsGet.Item_Melody_TimeSong"
+    },
+    "Song_SongOfStorms": {
+      "name": "IsGet.Item_Melody_StormSong"
+    },
+    "Song_Minuet": {
+      "name": "IsGet.Item_Melody_ForestMinuet"
+    },
+    "Song_Bolero": {
+      "name": "IsGet.Item_Melody_FireBolero"
+    },
+    "Song_Serenade": {
+      "name": "IsGet.Item_Melody_WaterSerenade"
+    },
+    "Song_Requiem": {
+      "name": "IsGet.Item_Melody_SpiritRequiem"
+    },
+    "Song_Nocturne": {
+      "name": "IsGet.Item_Melody_ShadowNocturne"
+    },
+    "Song_Prelude": {
+      "name": "IsGet.Item_Melody_LightPrelude"
+    },
+    "Song_Scarecrow": {
+      "name": "IsGet.Item_Melody_ScarecrowSong"
+    },
+    "KokirisEmerald": {
+      "name": "IsGet.Item_Stone_Forest"
+    },
+    "GoronsRuby": {
+      "name": "IsGet.Item_Stone_Fire"
+    },
+    "ZorasSapphire": {
+      "name": "IsGet.Item_Stone_Water"
+    },
+    "ForestMedallion": {
+      "name": "IsGet.Item_Medal_Forest"
+    },
+    "FireMedallion": {
+      "name": "IsGet.Item_Medal_Fire"
+    },
+    "WaterMedallion": {
+      "name": "IsGet.Item_Medal_Water"
+    },
+    "ShadowMedallion": {
+      "name": "IsGet.Item_Medal_Shadow"
+    },
+    "SpiritMedallion": {
+      "name": "IsGet.Item_Medal_Spirit"
+    },
+    "LightMedallion": {
+      "name": "IsGet.Item_Medal_Light"
+    },
+    "DekuTreeCleared": {
+      "name": "HavePlayedEvent.Dm_Deku_BossOut"
+    },
+    "WaterTempleCleared": {
+      "name": "HavePlayedEvent.Dm_WaterTemple_BossOut"
+    },
+    "KingZoraMoved": {
+      "any": [
+        {
+          "name": "IsGet.Item_Stone_Water"
+        },
+        {
+          "name": "HavePlayedEvent.Dm_InsideJabu_Jabu_BossIn"
+        }
+      ]
+    },
+    "EponaOwned": {
+      "name": "Step_Get_Epona",
+      "in": [
+        "AfterWonGambleRace",
+        "Complete"
+      ]
+    },
+    "WellDrained": {
+      "key": "0x7A5B9537",
+      "in": [
+        "step03",
+        "BeforeBossRoom",
+        "step04",
+        "step05",
+        "Complete"
+      ]
+    }
+  },
+  "numbers": {
+    "Tokens": {
+      "name": "PouchData.Item_Token_Gold.StockNum"
+    }
+  },
+  "macros": {
+    "Ocarina": "FairyOcarina or OcarinaOfTime",
+    "Hookshot": "HookshotItem or Longshot",
+    "Explosives": "Bombs or Bombchus",
+    "BlastOrSmash": "Explosives or (adult and Hammer)",
+    "Strength1": "GoronsBracelet or SilverGauntlets or GoldenGauntlets",
+    "Strength2": "SilverGauntlets or GoldenGauntlets",
+    "Strength3": "GoldenGauntlets",
+    "DinsFire": "DinsFireItem and MagicMeter",
+    "FireArrows": "FireArrowsItem and Bow and MagicMeter",
+    "LightArrows": "LightArrowsItem and Bow and MagicMeter",
+    "Lens": "LensItem and MagicMeter",
+    "FireSource": "DinsFire or (adult and FireArrows)",
+    "Sticks_or_Fire": "(child and Sticks) or FireSource",
+    "ChildWeapon": "KokiriSword or Sticks",
+    "Projectile": "(child and (Slingshot or Boomerang)) or (adult and (Bow or Hookshot))",
+    "RangedGrab": "(child and Boomerang) or (adult and Hookshot)",
+    "AnyWeapon": "adult or ChildWeapon or Slingshot or Boomerang",
+    "Bugs": "Bottle",
+    "AllStones": "KokirisEmerald and GoronsRuby and ZorasSapphire",
+    "AllMedallions": "ForestMedallion and FireMedallion and WaterMedallion and ShadowMedallion and SpiritMedallion and LightMedallion",
+    "ZeldasLullaby": "Ocarina and Song_ZeldasLullaby",
+    "EponasSong": "Ocarina and Song_EponasSong",
+    "SariasSong": "Ocarina and Song_SariasSong",
+    "SunsSong": "Ocarina and Song_SunsSong",
+    "SongOfTime": "Ocarina and Song_SongOfTime",
+    "SongOfStorms": "Ocarina and Song_SongOfStorms",
+    "Minuet": "Ocarina and Song_Minuet",
+    "Bolero": "Ocarina and Song_Bolero",
+    "Serenade": "Ocarina and Song_Serenade",
+    "Requiem": "Ocarina and Song_Requiem",
+    "Nocturne": "Ocarina and Song_Nocturne",
+    "Prelude": "Ocarina and Song_Prelude",
+    "ScarecrowSong": "Ocarina and Song_Scarecrow",
+    "Epona": "EponaOwned and EponasSong",
+    "FrogSongs": "ZeldasLullaby and EponasSong and SariasSong and SunsSong and SongOfTime",
+    "BeanRide": "adult and MagicBean",
+    "WaterTempleGear": "IronBoots and ZoraTunic and Hookshot",
+    "FireTempleGear": "GoronTunic",
+    "ShadowTempleGear": "Lens and HoverBoots and Hookshot",
+    "SpiritAdultSide": "Strength2 and Hookshot",
+    "GtgGear": "Hookshot and Explosives and Bow and Lens"
+  },
+  "regionAliases": {
+    "Hyrule Field (near Gerudo Valley)": "Hyrule Field",
+    "Hyrule Castle (outside Ganon's Castle)": "Hyrule Castle",
+    "Lake Hylia (Lakeside Laboratory)": "Lake Hylia",
+    "Haunted Wasteland (Mirage Desert)": "Haunted Wasteland"
+  },
+  "regions": {
+    "Kokiri Forest": {
+      "exits": {
+        "Lost Woods": "true",
+        "Hyrule Field": "adult or DekuTreeCleared",
+        "Great Deku Tree": "child and KokiriSword and DekuShield"
+      }
+    },
+    "Great Deku Tree": {
+      "exits": {
+        "Kokiri Forest": "true"
+      }
+    },
+    "Lost Woods": {
+      "exits": {
+        "Kokiri Forest": "true",
+        "Sacred Forest Meadow": "true",
+        "Hyrule Field": "true",
+        "Goron City": "BlastOrSmash or DinsFire",
+        "Zora's River": "child and SilverScale"
+      }
+    },
+    "Sacred Forest Meadow": {
+      "exits": {
+        "Lost Woods": "true",
+        "Forest Temple": "adult and Hookshot"
+      }
+    },
+    "Forest Temple": {
+      "exits": {
+        "Sacred Forest Meadow": "true"
+      }
+    },
+    "Hyrule Field": {
+      "exits": {
+        "Kokiri Forest": "true",
+        "Lost Woods": "true",
+        "Hyrule Castle Town": "true",
+        "Lon Lon Ranch": "true",
+        "Kakariko Village": "true",
+        "Zora's River": "true",
+        "Lake Hylia": "true",
+        "Gerudo Valley": "true"
+      }
+    },
+    "Lon Lon Ranch": {
+      "exits": {
+        "Hyrule Field": "true"
+      }
+    },
+    "Hyrule Castle Town": {
+      "exits": {
+        "Hyrule Field": "true",
+        "Temple of Time": "true",
+        "Hyrule Castle": "true"
+      }
+    },
+    "Temple of Time": {
+      "exits": {
+        "Hyrule Castle Town": "true"
+      }
+    },
+    "Hyrule Castle": {
+      "exits": {
+        "Hyrule Castle Town": "true",
+        "Ganon's Castle": "adult and AllMedallions"
+      }
+    },
+    "Ganon's Castle": {
+      "exits": {
+        "Hyrule Castle": "true"
+      }
+    },
+    "Kakariko Village": {
+      "exits": {
+        "Hyrule Field": "true",
+        "Graveyard": "true",
+        "Death Mountain Trail": "adult or ZeldasLetter",
+        "Bottom of the Well": "child and (WellDrained or SongOfStorms)"
+      }
+    },
+    "Bottom of the Well": {
+      "exits": {
+        "Kakariko Village": "true"
+      }
+    },
+    "Graveyard": {
+      "exits": {
+        "Kakariko Village": "true",
+        "Shadow Temple": "adult and Nocturne and DinsFire"
+      }
+    },
+    "Shadow Temple": {
+      "exits": {
+        "Graveyard": "true"
+      }
+    },
+    "Death Mountain Trail": {
+      "exits": {
+        "Kakariko Village": "true",
+        "Goron City": "true",
+        "Dodongo's Cavern": "Explosives or GoronsBracelet or (adult and Hammer)",
+        "Death Mountain Crater": "true"
+      }
+    },
+    "Dodongo's Cavern": {
+      "exits": {
+        "Death Mountain Trail": "true"
+      }
+    },
+    "Goron City": {
+      "exits": {
+        "Death Mountain Trail": "true",
+        "Lost Woods": "true",
+        "Death Mountain Crater": "adult or ZeldasLullaby"
+      }
+    },
+    "Death Mountain Crater": {
+      "exits": {
+        "Death Mountain Trail": "true",
+        "Goron City": "true",
+        "Fire Temple": "adult and FireTempleGear"
+      }
+    },
+    "Fire Temple": {
+      "exits": {
+        "Death Mountain Crater": "true"
+      }
+    },
+    "Zora's River": {
+      "exits": {
+        "Hyrule Field": "true",
+        "Lost Woods": "true",
+        "Zora's Domain": "ZeldasLullaby"
+      }
+    },
+    "Zora's Domain": {
+      "exits": {
+        "Zora's River": "true",
+        "Zora's Fountain": "KingZoraMoved",
+        "Lake Hylia": "child and SilverScale"
+      }
+    },
+    "Zora's Fountain": {
+      "exits": {
+        "Zora's Domain": "true",
+        "Lord Jabu-Jabu's Belly": "child and Bottle",
+        "Ice Cavern": "adult"
+      }
+    },
+    "Lord Jabu-Jabu's Belly": {
+      "exits": {
+        "Zora's Fountain": "true"
+      }
+    },
+    "Ice Cavern": {
+      "exits": {
+        "Zora's Fountain": "true"
+      }
+    },
+    "Lake Hylia": {
+      "exits": {
+        "Hyrule Field": "true",
+        "Water Temple": "adult and WaterTempleGear"
+      }
+    },
+    "Water Temple": {
+      "exits": {
+        "Lake Hylia": "true"
+      }
+    },
+    "Gerudo Valley": {
+      "exits": {
+        "Hyrule Field": "true",
+        "Lake Hylia": "true",
+        "Gerudo Fortress": "adult and (Epona or Longshot or GerudoCard)"
+      }
+    },
+    "Gerudo Fortress": {
+      "exits": {
+        "Gerudo Valley": "true",
+        "Gerudo Training Ground": "GerudoCard",
+        "Haunted Wasteland": "GerudoCard and (HoverBoots or Longshot)"
+      }
+    },
+    "Gerudo Training Ground": {
+      "exits": {
+        "Gerudo Fortress": "true"
+      }
+    },
+    "Haunted Wasteland": {
+      "exits": {
+        "Gerudo Fortress": "true",
+        "Desert Colossus": "true"
+      }
+    },
+    "Desert Colossus": {
+      "exits": {
+        "Haunted Wasteland": "true",
+        "Spirit Temple": "true"
+      }
+    },
+    "Spirit Temple": {
+      "exits": {
+        "Desert Colossus": "true"
+      }
+    }
+  },
+  "warps": [
+    {
+      "to": "Sacred Forest Meadow",
+      "needs": "Minuet"
+    },
+    {
+      "to": "Death Mountain Crater",
+      "needs": "Bolero"
+    },
+    {
+      "to": "Lake Hylia",
+      "needs": "Serenade"
+    },
+    {
+      "to": "Desert Colossus",
+      "needs": "Requiem"
+    },
+    {
+      "to": "Graveyard",
+      "needs": "Nocturne"
+    },
+    {
+      "to": "Temple of Time",
+      "needs": "Prelude"
+    }
+  ],
+  "locations": {
+    "heart_pieces#1": {
+      "needs": "child or Hookshot"
+    },
+    "heart_pieces#2": {
+      "age": "child",
+      "night": true
+    },
+    "heart_pieces#3": {
+      "age": "child"
+    },
+    "heart_pieces#4": {
+      "age": "child"
+    },
+    "heart_pieces#5": {
+      "age": "child"
+    },
+    "heart_pieces#6": {
+      "age": "child"
+    },
+    "heart_pieces#7": {
+      "age": "child",
+      "night": true
+    },
+    "heart_pieces#8": {
+      "age": "child",
+      "needs": "Ocarina"
+    },
+    "heart_pieces#9": {
+      "age": "child",
+      "needs": "SariasSong"
+    },
+    "heart_pieces#10": {
+      "age": "child",
+      "needs": "Explosives and Sticks"
+    },
+    "heart_pieces#11": {
+      "age": "adult",
+      "needs": "GoronTunic and Hookshot"
+    },
+    "heart_pieces#12": {
+      "needs": "child or Hookshot"
+    },
+    "heart_pieces#13": {
+      "age": "child",
+      "needs": "Bombs"
+    },
+    "heart_pieces#14": {
+      "age": "child"
+    },
+    "heart_pieces#15": {
+      "age": "child"
+    },
+    "heart_pieces#16": {
+      "age": "child",
+      "needs": "Sticks"
+    },
+    "heart_pieces#17": {
+      "needs": "BeanRide",
+      "unsure": true
+    },
+    "heart_pieces#18": {
+      "age": "adult"
+    },
+    "heart_pieces#19": {
+      "age": "adult"
+    },
+    "heart_pieces#20": {
+      "needs": "Tokens>=50"
+    },
+    "heart_pieces#21": {
+      "age": "adult",
+      "needs": "MagicBean or (ScarecrowSong and Hookshot)",
+      "unsure": true
+    },
+    "heart_pieces#22": {
+      "age": "adult",
+      "needs": "GoldenScale"
+    },
+    "heart_pieces#23": {
+      "needs": "BeanRide",
+      "unsure": true
+    },
+    "heart_pieces#24": {
+      "needs": "BeanRide",
+      "unsure": true
+    },
+    "heart_pieces#25": {
+      "age": "adult"
+    },
+    "heart_pieces#26": {
+      "age": "adult",
+      "needs": "IronBoots and ZoraTunic"
+    },
+    "heart_pieces#27": {
+      "age": "child",
+      "needs": "SongOfStorms"
+    },
+    "heart_pieces#28": {
+      "age": "child",
+      "needs": "FrogSongs"
+    },
+    "heart_pieces#29": {
+      "age": "child",
+      "needs": "Lens",
+      "night": true
+    },
+    "heart_pieces#30": {
+      "age": "adult",
+      "needs": "ScarecrowSong and Longshot"
+    },
+    "heart_pieces#31": {
+      "age": "adult",
+      "needs": "Epona and Bow and GerudoCard"
+    },
+    "heart_pieces#32": {
+      "needs": "BeanRide",
+      "unsure": true
+    },
+    "heart_pieces#33": {
+      "unsure": true
+    },
+    "heart_pieces#34": {
+      "age": "child",
+      "needs": "Explosives",
+      "unsure": true
+    },
+    "heart_pieces#35": {
+      "age": "child",
+      "unsure": true
+    },
+    "heart_pieces#36": {
+      "age": "child"
+    },
+    "heart_containers#1": {
+      "age": "child",
+      "needs": "Slingshot"
+    },
+    "heart_containers#2": {
+      "age": "child",
+      "needs": "Explosives or GoronsBracelet"
+    },
+    "heart_containers#3": {
+      "age": "child",
+      "needs": "Boomerang"
+    },
+    "heart_containers#4": {
+      "age": "adult",
+      "needs": "Bow"
+    },
+    "heart_containers#5": {
+      "age": "adult",
+      "needs": "Hammer"
+    },
+    "heart_containers#6": {
+      "age": "adult",
+      "needs": "Longshot and WaterTempleGear"
+    },
+    "heart_containers#7": {
+      "age": "adult",
+      "needs": "ShadowTempleGear and Bow"
+    },
+    "heart_containers#8": {
+      "age": "adult",
+      "needs": "MirrorShield and SpiritAdultSide and Explosives"
+    },
+    "gold_skulltulas#1": {
+      "age": "child"
+    },
+    "gold_skulltulas#2": {
+      "age": "child"
+    },
+    "gold_skulltulas#3": {
+      "age": "child",
+      "needs": "Sticks_or_Fire"
+    },
+    "gold_skulltulas#4": {
+      "age": "child",
+      "needs": "Slingshot or Boomerang",
+      "unsure": true
+    },
+    "gold_skulltulas#5": {
+      "age": "child"
+    },
+    "gold_skulltulas#6": {
+      "age": "child"
+    },
+    "gold_skulltulas#7": {
+      "age": "child",
+      "night": true
+    },
+    "gold_skulltulas#8": {
+      "age": "child",
+      "night": true
+    },
+    "gold_skulltulas#9": {
+      "age": "child",
+      "night": true
+    },
+    "gold_skulltulas#10": {
+      "age": "child",
+      "night": true,
+      "needs": "Slingshot or Boomerang"
+    },
+    "gold_skulltulas#11": {
+      "age": "child",
+      "needs": "Bugs"
+    },
+    "gold_skulltulas#12": {
+      "age": "child",
+      "night": true
+    },
+    "gold_skulltulas#13": {
+      "age": "child",
+      "night": true
+    },
+    "gold_skulltulas#14": {
+      "age": "child",
+      "needs": "Bugs"
+    },
+    "gold_skulltulas#15": {
+      "age": "child",
+      "needs": "Bugs"
+    },
+    "gold_skulltulas#16": {
+      "age": "child",
+      "night": true
+    },
+    "gold_skulltulas#17": {
+      "age": "child",
+      "needs": "Bugs"
+    },
+    "gold_skulltulas#18": {
+      "age": "child",
+      "needs": "Bugs"
+    },
+    "gold_skulltulas#19": {
+      "age": "child",
+      "needs": "Bugs"
+    },
+    "gold_skulltulas#20": {
+      "age": "child",
+      "needs": "Bugs"
+    },
+    "gold_skulltulas#21": {
+      "age": "child"
+    },
+    "gold_skulltulas#22": {
+      "needs": "Explosives"
+    },
+    "gold_skulltulas#23": {
+      "needs": "RangedGrab"
+    },
+    "gold_skulltulas#24": {
+      "needs": "Explosives"
+    },
+    "gold_skulltulas#25": {
+      "age": "child"
+    },
+    "gold_skulltulas#26": {
+      "needs": "BlastOrSmash"
+    },
+    "gold_skulltulas#27": {
+      "age": "child",
+      "needs": "Explosives",
+      "unsure": true
+    },
+    "gold_skulltulas#28": {
+      "age": "child",
+      "needs": "Bugs"
+    },
+    "gold_skulltulas#29": {
+      "age": "child",
+      "night": true,
+      "needs": "Slingshot or Boomerang"
+    },
+    "gold_skulltulas#30": {
+      "age": "child",
+      "night": true
+    },
+    "gold_skulltulas#31": {
+      "age": "child"
+    },
+    "gold_skulltulas#32": {
+      "age": "child",
+      "needs": "Boomerang"
+    },
+    "gold_skulltulas#33": {
+      "age": "child",
+      "needs": "Boomerang"
+    },
+    "gold_skulltulas#34": {
+      "age": "child"
+    },
+    "gold_skulltulas#35": {
+      "age": "child",
+      "night": true,
+      "needs": "Boomerang",
+      "unsure": true
+    },
+    "gold_skulltulas#36": {
+      "age": "child",
+      "night": true,
+      "needs": "Slingshot or Boomerang"
+    },
+    "gold_skulltulas#37": {
+      "age": "child",
+      "night": true,
+      "needs": "Slingshot or Boomerang"
+    },
+    "gold_skulltulas#38": {
+      "age": "child",
+      "night": true,
+      "needs": "Boomerang"
+    },
+    "gold_skulltulas#39": {
+      "needs": "Explosives",
+      "unsure": true
+    },
+    "gold_skulltulas#40": {
+      "age": "adult",
+      "night": true,
+      "needs": "Hookshot"
+    },
+    "gold_skulltulas#41": {
+      "night": true
+    },
+    "gold_skulltulas#42": {
+      "unsure": true
+    },
+    "gold_skulltulas#43": {
+      "age": "adult"
+    },
+    "gold_skulltulas#44": {
+      "age": "adult",
+      "night": true,
+      "needs": "Hookshot"
+    },
+    "gold_skulltulas#45": {
+      "age": "adult",
+      "night": true,
+      "needs": "MagicBean or Longshot",
+      "unsure": true
+    },
+    "gold_skulltulas#46": {
+      "age": "adult",
+      "night": true,
+      "needs": "Hookshot"
+    },
+    "gold_skulltulas#47": {
+      "age": "adult"
+    },
+    "gold_skulltulas#48": {
+      "age": "adult",
+      "needs": "Hookshot"
+    },
+    "gold_skulltulas#49": {
+      "age": "adult",
+      "needs": "Hookshot"
+    },
+    "gold_skulltulas#50": {
+      "age": "adult",
+      "needs": "Bow"
+    },
+    "gold_skulltulas#51": {
+      "age": "adult",
+      "needs": "Hookshot",
+      "unsure": true
+    },
+    "gold_skulltulas#52": {
+      "age": "adult",
+      "needs": "Hookshot"
+    },
+    "gold_skulltulas#53": {
+      "age": "adult"
+    },
+    "gold_skulltulas#54": {
+      "age": "child",
+      "needs": "Bugs"
+    },
+    "gold_skulltulas#55": {
+      "age": "adult"
+    },
+    "gold_skulltulas#56": {
+      "age": "adult",
+      "needs": "Hammer"
+    },
+    "gold_skulltulas#57": {
+      "age": "adult",
+      "needs": "Hammer",
+      "unsure": true
+    },
+    "gold_skulltulas#58": {
+      "age": "adult",
+      "needs": "Hookshot or Hammer"
+    },
+    "gold_skulltulas#59": {
+      "age": "adult",
+      "needs": "Hammer"
+    },
+    "gold_skulltulas#60": {
+      "age": "adult",
+      "night": true,
+      "needs": "BlastOrSmash"
+    },
+    "gold_skulltulas#61": {
+      "age": "adult",
+      "night": true
+    },
+    "gold_skulltulas#62": {
+      "age": "adult",
+      "night": true,
+      "needs": "Hookshot"
+    },
+    "gold_skulltulas#63": {
+      "age": "adult",
+      "night": true
+    },
+    "gold_skulltulas#64": {
+      "age": "adult",
+      "needs": "Hookshot"
+    },
+    "gold_skulltulas#65": {
+      "age": "adult",
+      "needs": "Hookshot"
+    },
+    "gold_skulltulas#66": {
+      "age": "adult",
+      "needs": "Bottle"
+    },
+    "gold_skulltulas#67": {
+      "age": "adult",
+      "night": true,
+      "needs": "Hookshot"
+    },
+    "gold_skulltulas#68": {
+      "age": "adult",
+      "needs": "IronBoots and Hookshot"
+    },
+    "gold_skulltulas#69": {
+      "age": "adult",
+      "needs": "WaterTempleGear"
+    },
+    "gold_skulltulas#70": {
+      "age": "adult",
+      "needs": "WaterTempleGear"
+    },
+    "gold_skulltulas#71": {
+      "age": "adult",
+      "needs": "WaterTempleGear and Longshot"
+    },
+    "gold_skulltulas#72": {
+      "age": "adult",
+      "needs": "WaterTempleGear"
+    },
+    "gold_skulltulas#73": {
+      "age": "adult",
+      "needs": "WaterTempleGear and Longshot"
+    },
+    "gold_skulltulas#74": {
+      "age": "adult",
+      "night": true,
+      "needs": "Longshot"
+    },
+    "gold_skulltulas#75": {
+      "age": "child",
+      "needs": "Explosives"
+    },
+    "gold_skulltulas#76": {
+      "age": "child",
+      "needs": "Lens and Boomerang"
+    },
+    "gold_skulltulas#77": {
+      "age": "child",
+      "needs": "Lens and Boomerang"
+    },
+    "gold_skulltulas#78": {
+      "age": "child",
+      "needs": "Lens and Boomerang"
+    },
+    "gold_skulltulas#79": {
+      "age": "adult",
+      "needs": "Lens and Hookshot"
+    },
+    "gold_skulltulas#80": {
+      "age": "adult",
+      "needs": "ShadowTempleGear"
+    },
+    "gold_skulltulas#81": {
+      "age": "adult",
+      "needs": "ShadowTempleGear"
+    },
+    "gold_skulltulas#82": {
+      "age": "adult",
+      "needs": "ShadowTempleGear"
+    },
+    "gold_skulltulas#83": {
+      "age": "adult",
+      "needs": "ShadowTempleGear and Longshot"
+    },
+    "gold_skulltulas#84": {
+      "age": "adult",
+      "night": true,
+      "needs": "Hookshot"
+    },
+    "gold_skulltulas#85": {
+      "age": "adult",
+      "night": true,
+      "needs": "Hookshot"
+    },
+    "gold_skulltulas#86": {
+      "age": "adult"
+    },
+    "gold_skulltulas#87": {
+      "age": "adult",
+      "night": true,
+      "needs": "Hookshot"
+    },
+    "gold_skulltulas#88": {
+      "age": "child",
+      "needs": "Bugs"
+    },
+    "gold_skulltulas#89": {
+      "age": "adult",
+      "night": true,
+      "needs": "Hookshot"
+    },
+    "gold_skulltulas#90": {
+      "age": "adult",
+      "night": true,
+      "needs": "Hookshot"
+    },
+    "gold_skulltulas#91": {
+      "age": "child",
+      "needs": "Boomerang"
+    },
+    "gold_skulltulas#92": {
+      "age": "adult",
+      "needs": "SpiritAdultSide"
+    },
+    "gold_skulltulas#93": {
+      "age": "child",
+      "needs": "Boomerang"
+    },
+    "gold_skulltulas#94": {
+      "age": "adult",
+      "needs": "SpiritAdultSide and SongOfTime"
+    },
+    "gold_skulltulas#95": {
+      "age": "adult",
+      "needs": "SpiritAdultSide and Lens"
+    },
+    "gold_skulltulas#96": {
+      "age": "adult",
+      "night": true,
+      "needs": "Hookshot"
+    },
+    "gold_skulltulas#97": {
+      "age": "adult",
+      "night": true,
+      "needs": "Hookshot"
+    },
+    "gold_skulltulas#98": {
+      "unsure": true
+    },
+    "gold_skulltulas#99": {
+      "needs": "Explosives",
+      "unsure": true
+    },
+    "gold_skulltulas#100": {
+      "needs": "Explosives",
+      "unsure": true
+    },
+    "songs#1": {
+      "region": "Hyrule Castle",
+      "age": "child"
+    },
+    "songs#2": {
+      "region": "Graveyard",
+      "age": "child",
+      "needs": "ZeldasLullaby",
+      "night": true
+    },
+    "songs#3": {
+      "region": "Lon Lon Ranch",
+      "age": "child",
+      "needs": "Ocarina"
+    },
+    "songs#4": {
+      "region": "Sacred Forest Meadow",
+      "age": "child",
+      "needs": "ZeldasLullaby"
+    },
+    "songs#5": {
+      "region": "Hyrule Field",
+      "age": "child",
+      "needs": "AllStones"
+    },
+    "songs#6": {
+      "region": "Kakariko Village",
+      "age": "adult",
+      "needs": "Ocarina"
+    },
+    "songs#7": {
+      "region": "Sacred Forest Meadow",
+      "age": "adult"
+    },
+    "songs#8": {
+      "region": "Temple of Time",
+      "age": "adult",
+      "needs": "ForestMedallion"
+    },
+    "songs#9": {
+      "region": "Death Mountain Crater",
+      "age": "adult"
+    },
+    "songs#10": {
+      "region": "Ice Cavern",
+      "age": "adult",
+      "needs": "Bottle"
+    },
+    "songs#11": {
+      "region": "Kakariko Village",
+      "age": "adult",
+      "needs": "ForestMedallion and FireMedallion and WaterMedallion"
+    },
+    "songs#12": {
+      "region": "Desert Colossus",
+      "age": "child"
+    },
+    "songs#13": {
+      "region": "Lake Hylia",
+      "age": "adult",
+      "needs": "Ocarina"
+    },
+    "equipment#1": {
+      "region": "Kokiri Forest",
+      "age": "child"
+    },
+    "equipment#2": {
+      "region": "Temple of Time",
+      "age": "child",
+      "needs": "AllStones and SongOfTime"
+    },
+    "equipment#3": {
+      "region": "Goron City",
+      "age": "adult"
+    },
+    "equipment#4": {
+      "region": "Death Mountain Trail",
+      "age": "adult",
+      "needs": "ClaimCheck"
+    },
+    "equipment#5": {
+      "region": "Kokiri Forest",
+      "age": "child"
+    },
+    "equipment#6": {
+      "region": "Hyrule Castle Town"
+    },
+    "equipment#7": {
+      "region": "Spirit Temple",
+      "age": "adult",
+      "needs": "SpiritAdultSide"
+    },
+    "equipment#8": {
+      "region": "Kokiri Forest"
+    },
+    "equipment#9": {
+      "region": "Goron City",
+      "age": "adult",
+      "needs": "Explosives or Bow or DinsFire"
+    },
+    "equipment#10": {
+      "region": "Zora's Domain",
+      "age": "adult",
+      "needs": "Bottle and KingZoraMoved"
+    },
+    "equipment#11": {
+      "region": "Ice Cavern",
+      "age": "adult",
+      "needs": "Bottle"
+    },
+    "equipment#12": {
+      "region": "Shadow Temple",
+      "age": "adult",
+      "needs": "Lens"
+    },
+    "items#1": {
+      "region": "Great Deku Tree",
+      "age": "child"
+    },
+    "items#2": {
+      "region": "Forest Temple",
+      "age": "adult",
+      "needs": "Hookshot"
+    },
+    "items#3": {
+      "region": "Lake Hylia",
+      "age": "adult",
+      "needs": "Bow and WaterTempleCleared"
+    },
+    "items#4": {
+      "region": "Gerudo Training Ground",
+      "age": "adult",
+      "needs": "GtgGear"
+    },
+    "items#5": {
+      "region": "Temple of Time",
+      "age": "adult",
+      "needs": "ShadowMedallion and SpiritMedallion"
+    },
+    "items#6": {
+      "region": "Lord Jabu-Jabu's Belly",
+      "age": "child"
+    },
+    "items#7": {
+      "region": "Graveyard",
+      "age": "adult"
+    },
+    "items#8": {
+      "region": "Water Temple",
+      "age": "adult",
+      "needs": "WaterTempleGear"
+    },
+    "items#9": {
+      "region": "Fire Temple",
+      "age": "adult"
+    },
+    "items#10": {
+      "region": "Goron City",
+      "age": "child",
+      "needs": "ZeldasLullaby or SariasSong"
+    },
+    "items#11": {
+      "region": "Spirit Temple",
+      "age": "child"
+    },
+    "items#12": {
+      "region": "Ganon's Castle",
+      "age": "adult",
+      "needs": "Lens and FireArrows"
+    },
+    "items#13": {
+      "region": "Dodongo's Cavern",
+      "age": "child"
+    },
+    "items#14": {
+      "region": "Hyrule Castle Town",
+      "age": "child",
+      "needs": "Bombs"
+    },
+    "items#15": {
+      "region": "Kokiri Forest"
+    },
+    "items#16": {
+      "region": "Kokiri Forest"
+    },
+    "items#17": {
+      "region": "Death Mountain Trail",
+      "needs": "ZeldasLullaby and BlastOrSmash"
+    },
+    "items#18": {
+      "region": "Zora's Fountain",
+      "needs": "ZeldasLullaby and Explosives"
+    },
+    "items#19": {
+      "region": "Desert Colossus",
+      "needs": "ZeldasLullaby and Explosives"
+    },
+    "items#20": {
+      "region": "Death Mountain Crater",
+      "age": "adult",
+      "needs": "ZeldasLullaby and Hammer"
+    },
+    "items#21": {
+      "region": "Bottom of the Well",
+      "age": "child",
+      "needs": "ChildWeapon"
+    },
+    "items#22": {
+      "region": "Zora's Domain",
+      "age": "child"
+    },
+    "items#23": {
+      "region": "Lake Hylia",
+      "age": "adult"
+    },
+    "items#24": {
+      "region": "Kakariko Village",
+      "needs": "Tokens>=20"
+    },
+    "items#25": {
+      "region": "Kokiri Forest",
+      "age": "child",
+      "needs": "DekuTreeCleared"
+    },
+    "items#26": {
+      "region": "Hyrule Field",
+      "age": "child",
+      "needs": "AllStones"
+    },
+    "items#27": {
+      "region": "Zora's River",
+      "age": "child"
+    },
+    "key_items#1": {
+      "region": "Gerudo Fortress",
+      "age": "adult"
+    },
+    "masks#1": {
+      "region": "Hyrule Castle Town",
+      "age": "child",
+      "needs": "ZeldasLetter"
+    },
+    "masks#2": {
+      "region": "Lost Woods",
+      "age": "child",
+      "needs": "KeatonMask"
+    },
+    "masks#3": {
+      "region": "Graveyard",
+      "age": "child",
+      "needs": "SkullMask"
+    },
+    "masks#4": {
+      "region": "Hyrule Field",
+      "age": "child",
+      "needs": "SpookyMask"
+    },
+    "masks#5": {
+      "region": "Hyrule Castle Town",
+      "age": "child",
+      "needs": "BunnyHood"
+    },
+    "bottles#1": {
+      "region": "Hyrule Castle Town",
+      "age": "child",
+      "unsure": true
+    },
+    "bottles#2": {
+      "region": "Kakariko Village",
+      "age": "child"
+    },
+    "bottles#3": {
+      "region": "Lon Lon Ranch",
+      "age": "child"
+    },
+    "bottles#4": {
+      "region": "Lake Hylia",
+      "age": "child",
+      "needs": "SilverScale"
+    },
+    "bottles#5": {
+      "region": "Hyrule Castle Town",
+      "age": "adult",
+      "needs": "Bottle and Epona and Bow"
+    },
+    "great_fairies#1": {
+      "region": "Death Mountain Trail",
+      "needs": "ZeldasLullaby and BlastOrSmash"
+    },
+    "great_fairies#2": {
+      "region": "Hyrule Castle",
+      "age": "child",
+      "needs": "ZeldasLullaby and Explosives",
+      "unsure": true
+    },
+    "great_fairies#3": {
+      "region": "Zora's Fountain",
+      "needs": "ZeldasLullaby and Explosives"
+    },
+    "great_fairies#4": {
+      "region": "Death Mountain Crater",
+      "age": "adult",
+      "needs": "ZeldasLullaby and Hammer"
+    },
+    "great_fairies#5": {
+      "region": "Desert Colossus",
+      "needs": "ZeldasLullaby and Explosives"
+    },
+    "great_fairies#6": {
+      "region": "Hyrule Castle",
+      "age": "adult",
+      "needs": "ZeldasLullaby and Strength3"
+    },
+    "capacity#1": {
+      "region": "Kokiri Forest"
+    },
+    "capacity#2": {
+      "region": "Kakariko Village",
+      "needs": "Tokens>=10"
+    },
+    "capacity#3": {
+      "region": "Kakariko Village",
+      "needs": "Tokens>=30"
+    },
+    "capacity#4": {
+      "region": "Dodongo's Cavern",
+      "age": "child"
+    },
+    "capacity#5": {
+      "region": "Goron City",
+      "age": "child",
+      "needs": "Explosives"
+    },
+    "capacity#6": {
+      "region": "Hyrule Castle Town",
+      "age": "child",
+      "needs": "Bombs"
+    },
+    "capacity#7": {
+      "region": "Lost Woods",
+      "age": "child",
+      "needs": "Slingshot"
+    },
+    "capacity#8": {
+      "region": "Hyrule Castle Town",
+      "age": "child",
+      "needs": "Slingshot"
+    },
+    "capacity#9": {
+      "region": "Kakariko Village",
+      "age": "adult",
+      "needs": "Bow"
+    },
+    "capacity#10": {
+      "region": "Gerudo Fortress",
+      "age": "adult",
+      "needs": "GerudoCard and Epona and Bow"
+    },
+    "capacity#11": {
+      "region": "Lost Woods",
+      "age": "child"
+    },
+    "capacity#12": {
+      "region": "Lost Woods",
+      "age": "child",
+      "needs": "SkullMask"
+    },
+    "capacity#13": {
+      "region": "Sacred Forest Meadow",
+      "age": "child"
+    },
+    "capacity#14": {
+      "region": "Lost Woods",
+      "age": "child",
+      "needs": "MaskOfTruth"
+    },
+    "stones_medallions#1": {
+      "region": "Great Deku Tree",
+      "age": "child",
+      "needs": "Slingshot"
+    },
+    "stones_medallions#2": {
+      "region": "Dodongo's Cavern",
+      "age": "child",
+      "needs": "Explosives or GoronsBracelet"
+    },
+    "stones_medallions#3": {
+      "region": "Lord Jabu-Jabu's Belly",
+      "age": "child",
+      "needs": "Boomerang"
+    },
+    "stones_medallions#4": {
+      "region": "Temple of Time",
+      "age": "adult"
+    },
+    "stones_medallions#5": {
+      "region": "Forest Temple",
+      "age": "adult",
+      "needs": "Bow"
+    },
+    "stones_medallions#6": {
+      "region": "Fire Temple",
+      "age": "adult",
+      "needs": "Hammer"
+    },
+    "stones_medallions#7": {
+      "region": "Water Temple",
+      "age": "adult",
+      "needs": "Longshot and WaterTempleGear"
+    },
+    "stones_medallions#8": {
+      "region": "Shadow Temple",
+      "age": "adult",
+      "needs": "ShadowTempleGear and Bow"
+    },
+    "stones_medallions#9": {
+      "region": "Spirit Temple",
+      "age": "adult",
+      "needs": "MirrorShield and SpiritAdultSide and Explosives"
+    },
+    "dungeons#1": {
+      "region": "Great Deku Tree",
+      "age": "child",
+      "needs": "Slingshot"
+    },
+    "dungeons#2": {
+      "region": "Dodongo's Cavern",
+      "age": "child",
+      "needs": "Explosives or GoronsBracelet"
+    },
+    "dungeons#3": {
+      "region": "Lord Jabu-Jabu's Belly",
+      "age": "child",
+      "needs": "Boomerang"
+    },
+    "dungeons#4": {
+      "region": "Forest Temple",
+      "age": "adult",
+      "needs": "Bow"
+    },
+    "dungeons#5": {
+      "region": "Fire Temple",
+      "age": "adult",
+      "needs": "Hammer"
+    },
+    "dungeons#6": {
+      "region": "Ice Cavern",
+      "age": "adult",
+      "needs": "Bottle"
+    },
+    "dungeons#7": {
+      "region": "Water Temple",
+      "age": "adult",
+      "needs": "Longshot and WaterTempleGear"
+    },
+    "dungeons#8": {
+      "region": "Bottom of the Well",
+      "age": "child",
+      "needs": "ChildWeapon"
+    },
+    "dungeons#9": {
+      "region": "Shadow Temple",
+      "age": "adult",
+      "needs": "ShadowTempleGear and Bow"
+    },
+    "dungeons#10": {
+      "region": "Spirit Temple",
+      "age": "adult",
+      "needs": "MirrorShield and SpiritAdultSide and Explosives"
+    },
+    "dungeons#11": {
+      "region": "Gerudo Training Ground",
+      "age": "adult",
+      "needs": "GtgGear"
+    },
+    "dungeons#12": {
+      "region": "Ganon's Castle",
+      "age": "adult",
+      "needs": "LightArrows and Lens and FireArrows"
+    },
+    "bosses#1": {
+      "region": "Great Deku Tree",
+      "age": "child",
+      "needs": "Slingshot"
+    },
+    "bosses#2": {
+      "region": "Dodongo's Cavern",
+      "age": "child",
+      "needs": "Explosives or GoronsBracelet"
+    },
+    "bosses#3": {
+      "region": "Lord Jabu-Jabu's Belly",
+      "age": "child",
+      "needs": "Boomerang"
+    },
+    "bosses#4": {
+      "region": "Forest Temple",
+      "age": "adult",
+      "needs": "Bow"
+    },
+    "bosses#5": {
+      "region": "Fire Temple",
+      "age": "adult",
+      "needs": "Hammer"
+    },
+    "bosses#6": {
+      "region": "Water Temple",
+      "age": "adult",
+      "needs": "Longshot and WaterTempleGear"
+    },
+    "bosses#7": {
+      "region": "Shadow Temple",
+      "age": "adult",
+      "needs": "ShadowTempleGear and Bow"
+    },
+    "bosses#8": {
+      "region": "Spirit Temple",
+      "age": "adult",
+      "needs": "MirrorShield and SpiritAdultSide and Explosives"
+    },
+    "bosses#9": {
+      "region": "Ganon's Castle",
+      "age": "adult",
+      "needs": "LightArrows and Lens and FireArrows"
+    },
+    "bosses#10": {
+      "region": "Ganon's Castle",
+      "age": "adult",
+      "needs": "LightArrows and Lens and FireArrows"
+    },
+    "mini_bosses#1": {
+      "region": "Lord Jabu-Jabu's Belly",
+      "age": "child",
+      "needs": "Boomerang"
+    },
+    "mini_bosses#2": {
+      "region": "Sacred Forest Meadow",
+      "age": "adult"
+    },
+    "mini_bosses#3": {
+      "region": "Forest Temple",
+      "age": "adult",
+      "needs": "Bow"
+    },
+    "mini_bosses#4": {
+      "region": "Fire Temple",
+      "age": "adult",
+      "needs": "Hookshot or Hammer"
+    },
+    "mini_bosses#5": {
+      "region": "Ice Cavern",
+      "age": "adult",
+      "needs": "Bottle"
+    },
+    "mini_bosses#6": {
+      "region": "Water Temple",
+      "age": "adult",
+      "needs": "WaterTempleGear"
+    },
+    "mini_bosses#7": {
+      "region": "Bottom of the Well",
+      "age": "child",
+      "needs": "ChildWeapon"
+    },
+    "mini_bosses#8": {
+      "region": "Gerudo Fortress",
+      "age": "adult"
+    },
+    "mini_bosses#9": {
+      "region": "Spirit Temple",
+      "age": "adult",
+      "needs": "SpiritAdultSide"
+    },
+    "mini_bosses#10": {
+      "region": "Spirit Temple",
+      "age": "adult",
+      "needs": "SpiritAdultSide and MirrorShield"
+    },
+    "side_quests#1": {
+      "region": "Lon Lon Ranch",
+      "age": "adult",
+      "needs": "EponasSong"
+    },
+    "side_quests#2": {
+      "region": "Hyrule Castle Town",
+      "age": "child",
+      "needs": "BunnyHood"
+    },
+    "side_quests#3": {
+      "region": "Death Mountain Trail",
+      "needs": "ZeldasLullaby and BlastOrSmash"
+    },
+    "side_quests#4": {
+      "region": "Lake Hylia",
+      "age": "adult",
+      "needs": "Ocarina"
+    },
+    "side_quests#5": {
+      "region": "Death Mountain Trail",
+      "age": "adult",
+      "needs": "ClaimCheck"
+    },
+    "side_quests#6": {
+      "region": "Kakariko Village",
+      "age": "child",
+      "needs": "SongOfStorms"
+    }
+  }
+}

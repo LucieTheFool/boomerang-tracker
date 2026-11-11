@@ -1,0 +1,2640 @@
+{
+  "generatedAt": "2026-11-11T20:23:39.230Z",
+  "categories": [
+    {
+      "id": "heart_pieces",
+      "label": "Heart Pieces",
+      "part": "A",
+      "countsToward100": true,
+      "kind": "list",
+      "items": [
+        {
+          "id": "heart_pieces.001",
+          "number": 1,
+          "name": "Kakariko Village",
+          "chapter": "Kakariko Village",
+          "iconId": "heart_piece",
+          "detect": null
+        },
+        {
+          "id": "heart_pieces.002",
+          "number": 2,
+          "name": "Graveyard",
+          "chapter": "Graveyard",
+          "iconId": "heart_piece",
+          "detect": null
+        },
+        {
+          "id": "heart_pieces.003",
+          "number": 3,
+          "name": "Lon Lon Ranch",
+          "chapter": "Lon Lon Ranch",
+          "iconId": "heart_piece",
+          "detect": null
+        },
+        {
+          "id": "heart_pieces.004",
+          "number": 4,
+          "name": "Gerudo Valley",
+          "chapter": "Gerudo Valley",
+          "iconId": "heart_piece",
+          "detect": null
+        },
+        {
+          "id": "heart_pieces.005",
+          "number": 5,
+          "name": "Gerudo Valley",
+          "chapter": "Gerudo Valley",
+          "iconId": "heart_piece",
+          "detect": null
+        },
+        {
+          "id": "heart_pieces.006",
+          "number": 6,
+          "name": "Lake Hylia",
+          "chapter": "Lake Hylia",
+          "iconId": "heart_piece",
+          "detect": null
+        },
+        {
+          "id": "heart_pieces.007",
+          "number": 7,
+          "name": "Hyrule Castle Town",
+          "chapter": "Hyrule Castle Town",
+          "iconId": "heart_piece",
+          "detect": null
+        },
+        {
+          "id": "heart_pieces.008",
+          "number": 8,
+          "name": "Lost Woods",
+          "chapter": "Lost Woods",
+          "iconId": "heart_piece",
+          "detect": null
+        },
+        {
+          "id": "heart_pieces.009",
+          "number": 9,
+          "name": "Lost Woods",
+          "chapter": "Lost Woods",
+          "iconId": "heart_piece",
+          "detect": null
+        },
+        {
+          "id": "heart_pieces.010",
+          "number": 10,
+          "name": "Goron City",
+          "chapter": "Goron City",
+          "iconId": "heart_piece",
+          "detect": null
+        },
+        {
+          "id": "heart_pieces.011",
+          "number": 11,
+          "name": "Death Mountain Crater",
+          "chapter": "Death Mountain Crater",
+          "iconId": "heart_piece",
+          "detect": null
+        },
+        {
+          "id": "heart_pieces.012",
+          "number": 12,
+          "name": "Kakariko Village",
+          "chapter": "Kakariko Village",
+          "iconId": "heart_piece",
+          "detect": null
+        },
+        {
+          "id": "heart_pieces.013",
+          "number": 13,
+          "name": "Hyrule Castle Town",
+          "chapter": "Hyrule Castle Town",
+          "iconId": "heart_piece",
+          "detect": null
+        },
+        {
+          "id": "heart_pieces.014",
+          "number": 14,
+          "name": "Zora's River",
+          "chapter": "Zora's River",
+          "iconId": "heart_piece",
+          "detect": null
+        },
+        {
+          "id": "heart_pieces.015",
+          "number": 15,
+          "name": "Zora's River",
+          "chapter": "Zora's River",
+          "iconId": "heart_piece",
+          "detect": null
+        },
+        {
+          "id": "heart_pieces.016",
+          "number": 16,
+          "name": "Zora's Domain",
+          "chapter": "Zora's Domain",
+          "iconId": "heart_piece",
+          "detect": null
+        },
+        {
+          "id": "heart_pieces.017",
+          "number": 17,
+          "name": "Graveyard",
+          "chapter": "Graveyard",
+          "iconId": "heart_piece",
+          "detect": null
+        },
+        {
+          "id": "heart_pieces.018",
+          "number": 18,
+          "name": "Kakariko Village",
+          "chapter": "Kakariko Village",
+          "iconId": "heart_piece",
+          "detect": null
+        },
+        {
+          "id": "heart_pieces.019",
+          "number": 19,
+          "name": "Graveyard",
+          "chapter": "Graveyard",
+          "iconId": "heart_piece",
+          "detect": null
+        },
+        {
+          "id": "heart_pieces.020",
+          "number": 20,
+          "name": "Kakariko Village",
+          "chapter": "Kakariko Village",
+          "iconId": "heart_piece",
+          "detect": null
+        },
+        {
+          "id": "heart_pieces.021",
+          "number": 21,
+          "name": "Lake Hylia",
+          "chapter": "Lake Hylia",
+          "iconId": "heart_piece",
+          "detect": null
+        },
+        {
+          "id": "heart_pieces.022",
+          "number": 22,
+          "name": "Lake Hylia",
+          "chapter": "Lake Hylia",
+          "iconId": "heart_piece",
+          "detect": null
+        },
+        {
+          "id": "heart_pieces.023",
+          "number": 23,
+          "name": "Death Mountain Trail",
+          "chapter": "Death Mountain Trail",
+          "iconId": "heart_piece",
+          "detect": null
+        },
+        {
+          "id": "heart_pieces.024",
+          "number": 24,
+          "name": "Death Mountain Crater",
+          "chapter": "Death Mountain Crater",
+          "iconId": "heart_piece",
+          "detect": null
+        },
+        {
+          "id": "heart_pieces.025",
+          "number": 25,
+          "name": "Zora's Fountain",
+          "chapter": "Zora's Fountain",
+          "iconId": "heart_piece",
+          "detect": null
+        },
+        {
+          "id": "heart_pieces.026",
+          "number": 26,
+          "name": "Zora's Fountain",
+          "chapter": "Zora's Fountain",
+          "iconId": "heart_piece",
+          "detect": null
+        },
+        {
+          "id": "heart_pieces.027",
+          "number": 27,
+          "name": "Zora's River",
+          "chapter": "Zora's River",
+          "iconId": "heart_piece",
+          "detect": null
+        },
+        {
+          "id": "heart_pieces.028",
+          "number": 28,
+          "name": "Zora's River",
+          "chapter": "Zora's River",
+          "iconId": "heart_piece",
+          "detect": null
+        },
+        {
+          "id": "heart_pieces.029",
+          "number": 29,
+          "name": "Hyrule Castle Town",
+          "chapter": "Hyrule Castle Town",
+          "iconId": "heart_piece",
+          "detect": null
+        },
+        {
+          "id": "heart_pieces.030",
+          "number": 30,
+          "name": "Gerudo Fortress",
+          "chapter": "Gerudo Fortress",
+          "iconId": "heart_piece",
+          "detect": null
+        },
+        {
+          "id": "heart_pieces.031",
+          "number": 31,
+          "name": "Gerudo Fortress",
+          "chapter": "Gerudo Fortress",
+          "iconId": "heart_piece",
+          "detect": null
+        },
+        {
+          "id": "heart_pieces.032",
+          "number": 32,
+          "name": "Desert Colossus",
+          "chapter": "Desert Colossus",
+          "iconId": "heart_piece",
+          "detect": null
+        },
+        {
+          "id": "heart_pieces.033",
+          "number": 33,
+          "name": "Graveyard",
+          "chapter": "Graveyard",
+          "iconId": "heart_piece",
+          "detect": null
+        },
+        {
+          "id": "heart_pieces.034",
+          "number": 34,
+          "name": "Hyrule Field",
+          "chapter": "Hyrule Field",
+          "newInRemake": true,
+          "iconId": "heart_piece",
+          "detect": null
+        },
+        {
+          "id": "heart_pieces.035",
+          "number": 35,
+          "name": "Hyrule Field (near Gerudo Valley)",
+          "chapter": "Hyrule Field (near Gerudo Valley)",
+          "newInRemake": true,
+          "iconId": "heart_piece",
+          "detect": null
+        },
+        {
+          "id": "heart_pieces.036",
+          "number": 36,
+          "name": "Death Mountain Crater",
+          "chapter": "Death Mountain Crater",
+          "newInRemake": true,
+          "iconId": "heart_piece",
+          "detect": null
+        }
+      ]
+    },
+    {
+      "id": "heart_containers",
+      "label": "Heart Containers",
+      "part": "A",
+      "countsToward100": true,
+      "kind": "list",
+      "items": [
+        {
+          "id": "heart_containers.heart_container_gohma",
+          "number": 1,
+          "name": "Heart Container (Gohma)",
+          "chapter": "Great Deku Tree",
+          "iconId": "heart_container",
+          "detect": null
+        },
+        {
+          "id": "heart_containers.heart_container_king_dodongo",
+          "number": 2,
+          "name": "Heart Container (King Dodongo)",
+          "chapter": "Dodongo's Cavern",
+          "iconId": "heart_container",
+          "detect": null
+        },
+        {
+          "id": "heart_containers.heart_container_barinade",
+          "number": 3,
+          "name": "Heart Container (Barinade)",
+          "chapter": "Lord Jabu-Jabu's Belly",
+          "iconId": "heart_container",
+          "detect": null
+        },
+        {
+          "id": "heart_containers.heart_container_phantom_ganon",
+          "number": 4,
+          "name": "Heart Container (Phantom Ganon)",
+          "chapter": "Forest Temple",
+          "iconId": "heart_container",
+          "detect": null
+        },
+        {
+          "id": "heart_containers.heart_container_volvagia",
+          "number": 5,
+          "name": "Heart Container (Volvagia)",
+          "chapter": "Fire Temple",
+          "iconId": "heart_container",
+          "detect": null
+        },
+        {
+          "id": "heart_containers.heart_container_morpha",
+          "number": 6,
+          "name": "Heart Container (Morpha)",
+          "chapter": "Water Temple",
+          "iconId": "heart_container",
+          "detect": null
+        },
+        {
+          "id": "heart_containers.heart_container_bongo",
+          "number": 7,
+          "name": "Heart Container (Bongo)",
+          "chapter": "Shadow Temple",
+          "iconId": "heart_container",
+          "detect": null
+        },
+        {
+          "id": "heart_containers.heart_container_twinrova",
+          "number": 8,
+          "name": "Heart Container (Twinrova)",
+          "chapter": "Spirit Temple",
+          "iconId": "heart_container",
+          "detect": null
+        }
+      ]
+    },
+    {
+      "id": "gold_skulltulas",
+      "label": "Gold Skulltulas",
+      "part": "A",
+      "countsToward100": true,
+      "kind": "list",
+      "items": [
+        {
+          "id": "gold_skulltulas.001",
+          "number": 1,
+          "name": "Great Deku Tree",
+          "chapter": "Great Deku Tree",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.002",
+          "number": 2,
+          "name": "Great Deku Tree",
+          "chapter": "Great Deku Tree",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.003",
+          "number": 3,
+          "name": "Great Deku Tree",
+          "chapter": "Great Deku Tree",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.004",
+          "number": 4,
+          "name": "Great Deku Tree",
+          "chapter": "Great Deku Tree",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.005",
+          "number": 5,
+          "name": "Hyrule Castle Town",
+          "chapter": "Hyrule Castle Town",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.006",
+          "number": 6,
+          "name": "Hyrule Castle",
+          "chapter": "Hyrule Castle",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.007",
+          "number": 7,
+          "name": "Kakariko Village",
+          "chapter": "Kakariko Village",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.008",
+          "number": 8,
+          "name": "Kakariko Village",
+          "chapter": "Kakariko Village",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.009",
+          "number": 9,
+          "name": "Kakariko Village",
+          "chapter": "Kakariko Village",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.010",
+          "number": 10,
+          "name": "Kakariko Village",
+          "chapter": "Kakariko Village",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.011",
+          "number": 11,
+          "name": "Graveyard",
+          "chapter": "Graveyard",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.012",
+          "number": 12,
+          "name": "Kakariko Village",
+          "chapter": "Kakariko Village",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.013",
+          "number": 13,
+          "name": "Lon Lon Ranch",
+          "chapter": "Lon Lon Ranch",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.014",
+          "number": 14,
+          "name": "Lake Hylia",
+          "chapter": "Lake Hylia",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.015",
+          "number": 15,
+          "name": "Gerudo Valley",
+          "chapter": "Gerudo Valley",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.016",
+          "number": 16,
+          "name": "Kokiri Forest",
+          "chapter": "Kokiri Forest",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.017",
+          "number": 17,
+          "name": "Lost Woods",
+          "chapter": "Lost Woods",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.018",
+          "number": 18,
+          "name": "Lost Woods",
+          "chapter": "Lost Woods",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.019",
+          "number": 19,
+          "name": "Kokiri Forest",
+          "chapter": "Kokiri Forest",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.020",
+          "number": 20,
+          "name": "Death Mountain Trail",
+          "chapter": "Death Mountain Trail",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.021",
+          "number": 21,
+          "name": "Dodongo's Cavern",
+          "chapter": "Dodongo's Cavern",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.022",
+          "number": 22,
+          "name": "Dodongo's Cavern",
+          "chapter": "Dodongo's Cavern",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.023",
+          "number": 23,
+          "name": "Dodongo's Cavern",
+          "chapter": "Dodongo's Cavern",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.024",
+          "number": 24,
+          "name": "Dodongo's Cavern",
+          "chapter": "Dodongo's Cavern",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.025",
+          "number": 25,
+          "name": "Death Mountain Crater",
+          "chapter": "Death Mountain Crater",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.026",
+          "number": 26,
+          "name": "Death Mountain Trail",
+          "chapter": "Death Mountain Trail",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.027",
+          "number": 27,
+          "name": "Goron City",
+          "chapter": "Goron City",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.028",
+          "number": 28,
+          "name": "Zora's River",
+          "chapter": "Zora's River",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.029",
+          "number": 29,
+          "name": "Zora's River",
+          "chapter": "Zora's River",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.030",
+          "number": 30,
+          "name": "Zora's Fountain",
+          "chapter": "Zora's Fountain",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.031",
+          "number": 31,
+          "name": "Lord Jabu-Jabu's Belly",
+          "chapter": "Lord Jabu-Jabu's Belly",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.032",
+          "number": 32,
+          "name": "Lord Jabu-Jabu's Belly",
+          "chapter": "Lord Jabu-Jabu's Belly",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.033",
+          "number": 33,
+          "name": "Lord Jabu-Jabu's Belly",
+          "chapter": "Lord Jabu-Jabu's Belly",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.034",
+          "number": 34,
+          "name": "Lord Jabu-Jabu's Belly",
+          "chapter": "Lord Jabu-Jabu's Belly",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.035",
+          "number": 35,
+          "name": "Zora's Fountain",
+          "chapter": "Zora's Fountain",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.036",
+          "number": 36,
+          "name": "Lake Hylia",
+          "chapter": "Lake Hylia",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.037",
+          "number": 37,
+          "name": "Lon Lon Ranch",
+          "chapter": "Lon Lon Ranch",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.038",
+          "number": 38,
+          "name": "Lon Lon Ranch",
+          "chapter": "Lon Lon Ranch",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.039",
+          "number": 39,
+          "name": "Hyrule Field",
+          "chapter": "Hyrule Field",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.040",
+          "number": 40,
+          "name": "Gerudo Valley",
+          "chapter": "Gerudo Valley",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.041",
+          "number": 41,
+          "name": "Graveyard",
+          "chapter": "Graveyard",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.042",
+          "number": 42,
+          "name": "Hyrule Field",
+          "chapter": "Hyrule Field",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.043",
+          "number": 43,
+          "name": "Hyrule Castle (outside Ganon's Castle)",
+          "chapter": "Hyrule Castle (outside Ganon's Castle)",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.044",
+          "number": 44,
+          "name": "Kokiri Forest",
+          "chapter": "Kokiri Forest",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.045",
+          "number": 45,
+          "name": "Lost Woods",
+          "chapter": "Lost Woods",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.046",
+          "number": 46,
+          "name": "Sacred Forest Meadow",
+          "chapter": "Sacred Forest Meadow",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.047",
+          "number": 47,
+          "name": "Forest Temple",
+          "chapter": "Forest Temple",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.048",
+          "number": 48,
+          "name": "Forest Temple",
+          "chapter": "Forest Temple",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.049",
+          "number": 49,
+          "name": "Forest Temple",
+          "chapter": "Forest Temple",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.050",
+          "number": 50,
+          "name": "Forest Temple",
+          "chapter": "Forest Temple",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.051",
+          "number": 51,
+          "name": "Forest Temple",
+          "chapter": "Forest Temple",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.052",
+          "number": 52,
+          "name": "Dodongo's Cavern",
+          "chapter": "Dodongo's Cavern",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.053",
+          "number": 53,
+          "name": "Goron City",
+          "chapter": "Goron City",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.054",
+          "number": 54,
+          "name": "Death Mountain Crater",
+          "chapter": "Death Mountain Crater",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.055",
+          "number": 55,
+          "name": "Fire Temple",
+          "chapter": "Fire Temple",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.056",
+          "number": 56,
+          "name": "Fire Temple",
+          "chapter": "Fire Temple",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.057",
+          "number": 57,
+          "name": "Fire Temple",
+          "chapter": "Fire Temple",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.058",
+          "number": 58,
+          "name": "Fire Temple",
+          "chapter": "Fire Temple",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.059",
+          "number": 59,
+          "name": "Fire Temple",
+          "chapter": "Fire Temple",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.060",
+          "number": 60,
+          "name": "Death Mountain Trail",
+          "chapter": "Death Mountain Trail",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.061",
+          "number": 61,
+          "name": "Death Mountain Trail",
+          "chapter": "Death Mountain Trail",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.062",
+          "number": 62,
+          "name": "Zora's River",
+          "chapter": "Zora's River",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.063",
+          "number": 63,
+          "name": "Zora's Domain",
+          "chapter": "Zora's Domain",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.064",
+          "number": 64,
+          "name": "Ice Cavern",
+          "chapter": "Ice Cavern",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.065",
+          "number": 65,
+          "name": "Ice Cavern",
+          "chapter": "Ice Cavern",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.066",
+          "number": 66,
+          "name": "Ice Cavern",
+          "chapter": "Ice Cavern",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.067",
+          "number": 67,
+          "name": "Gerudo Valley",
+          "chapter": "Gerudo Valley",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.068",
+          "number": 68,
+          "name": "Lake Hylia (Lakeside Laboratory)",
+          "chapter": "Lake Hylia (Lakeside Laboratory)",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.069",
+          "number": 69,
+          "name": "Water Temple",
+          "chapter": "Water Temple",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.070",
+          "number": 70,
+          "name": "Water Temple",
+          "chapter": "Water Temple",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.071",
+          "number": 71,
+          "name": "Water Temple",
+          "chapter": "Water Temple",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.072",
+          "number": 72,
+          "name": "Water Temple",
+          "chapter": "Water Temple",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.073",
+          "number": 73,
+          "name": "Water Temple",
+          "chapter": "Water Temple",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.074",
+          "number": 74,
+          "name": "Lake Hylia",
+          "chapter": "Lake Hylia",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.075",
+          "number": 75,
+          "name": "Hyrule Castle",
+          "chapter": "Hyrule Castle",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.076",
+          "number": 76,
+          "name": "Bottom of the Well",
+          "chapter": "Bottom of the Well",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.077",
+          "number": 77,
+          "name": "Bottom of the Well",
+          "chapter": "Bottom of the Well",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.078",
+          "number": 78,
+          "name": "Bottom of the Well",
+          "chapter": "Bottom of the Well",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.079",
+          "number": 79,
+          "name": "Shadow Temple",
+          "chapter": "Shadow Temple",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.080",
+          "number": 80,
+          "name": "Shadow Temple",
+          "chapter": "Shadow Temple",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.081",
+          "number": 81,
+          "name": "Shadow Temple",
+          "chapter": "Shadow Temple",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.082",
+          "number": 82,
+          "name": "Shadow Temple",
+          "chapter": "Shadow Temple",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.083",
+          "number": 83,
+          "name": "Shadow Temple",
+          "chapter": "Shadow Temple",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.084",
+          "number": 84,
+          "name": "Gerudo Valley",
+          "chapter": "Gerudo Valley",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.085",
+          "number": 85,
+          "name": "Gerudo Fortress",
+          "chapter": "Gerudo Fortress",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.086",
+          "number": 86,
+          "name": "Haunted Wasteland (Mirage Desert)",
+          "chapter": "Haunted Wasteland (Mirage Desert)",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.087",
+          "number": 87,
+          "name": "Desert Colossus",
+          "chapter": "Desert Colossus",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.088",
+          "number": 88,
+          "name": "Desert Colossus",
+          "chapter": "Desert Colossus",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.089",
+          "number": 89,
+          "name": "Gerudo Fortress",
+          "chapter": "Gerudo Fortress",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.090",
+          "number": 90,
+          "name": "Desert Colossus",
+          "chapter": "Desert Colossus",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.091",
+          "number": 91,
+          "name": "Spirit Temple",
+          "chapter": "Spirit Temple",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.092",
+          "number": 92,
+          "name": "Spirit Temple",
+          "chapter": "Spirit Temple",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.093",
+          "number": 93,
+          "name": "Spirit Temple",
+          "chapter": "Spirit Temple",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.094",
+          "number": 94,
+          "name": "Spirit Temple",
+          "chapter": "Spirit Temple",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.095",
+          "number": 95,
+          "name": "Spirit Temple",
+          "chapter": "Spirit Temple",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.096",
+          "number": 96,
+          "name": "Kakariko Village",
+          "chapter": "Kakariko Village",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.097",
+          "number": 97,
+          "name": "Zora's River",
+          "chapter": "Zora's River",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.098",
+          "number": 98,
+          "name": "Lake Hylia",
+          "chapter": "Lake Hylia",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.099",
+          "number": 99,
+          "name": "Hyrule Field",
+          "chapter": "Hyrule Field",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "gold_skulltulas.100",
+          "number": 100,
+          "name": "Zora's Fountain",
+          "chapter": "Zora's Fountain",
+          "iconId": "gold_skulltula",
+          "detect": null
+        }
+      ]
+    },
+    {
+      "id": "songs",
+      "label": "Songs",
+      "part": "A",
+      "countsToward100": true,
+      "kind": "list",
+      "items": [
+        {
+          "id": "songs.zeldas_lullaby",
+          "number": 1,
+          "name": "Zelda's Lullaby",
+          "iconId": "zeldas_lullaby",
+          "detect": null
+        },
+        {
+          "id": "songs.suns_song",
+          "number": 2,
+          "name": "Sun's Song",
+          "iconId": "suns_song",
+          "detect": null
+        },
+        {
+          "id": "songs.eponas_song",
+          "number": 3,
+          "name": "Epona's Song",
+          "iconId": "eponas_song",
+          "detect": null
+        },
+        {
+          "id": "songs.sarias_song",
+          "number": 4,
+          "name": "Saria's Song",
+          "iconId": "sarias_song",
+          "detect": null
+        },
+        {
+          "id": "songs.song_of_time",
+          "number": 5,
+          "name": "Song of Time",
+          "iconId": "song_of_time",
+          "detect": null
+        },
+        {
+          "id": "songs.song_of_storms",
+          "number": 6,
+          "name": "Song of Storms",
+          "iconId": "song_of_storms",
+          "detect": null
+        },
+        {
+          "id": "songs.minuet_of_forest",
+          "number": 7,
+          "name": "Minuet of Forest",
+          "iconId": "minuet_of_forest",
+          "detect": null
+        },
+        {
+          "id": "songs.prelude_of_light",
+          "number": 8,
+          "name": "Prelude of Light",
+          "iconId": "prelude_of_light",
+          "detect": null
+        },
+        {
+          "id": "songs.bolero_of_fire",
+          "number": 9,
+          "name": "Bolero of Fire",
+          "iconId": "bolero_of_fire",
+          "detect": null
+        },
+        {
+          "id": "songs.serenade_of_water",
+          "number": 10,
+          "name": "Serenade of Water",
+          "iconId": "serenade_of_water",
+          "detect": null
+        },
+        {
+          "id": "songs.nocturne_of_shadow",
+          "number": 11,
+          "name": "Nocturne of Shadow",
+          "iconId": "nocturne_of_shadow",
+          "detect": null
+        },
+        {
+          "id": "songs.requiem_of_spirit",
+          "number": 12,
+          "name": "Requiem of Spirit",
+          "iconId": "requiem_of_spirit",
+          "detect": null
+        },
+        {
+          "id": "songs.scarecrows_song",
+          "number": 13,
+          "name": "Scarecrow's Song",
+          "iconId": "scarecrows_song",
+          "detect": null
+        }
+      ]
+    },
+    {
+      "id": "equipment",
+      "label": "Equipment",
+      "part": "A",
+      "countsToward100": true,
+      "kind": "list",
+      "items": [
+        {
+          "id": "equipment.kokiri_sword",
+          "number": 1,
+          "name": "Kokiri Sword",
+          "iconId": "kokiri_sword",
+          "detect": null
+        },
+        {
+          "id": "equipment.master_sword",
+          "number": 2,
+          "name": "Master Sword",
+          "iconId": "master_sword",
+          "detect": null
+        },
+        {
+          "id": "equipment.giants_knife",
+          "number": 3,
+          "name": "Giant's Knife",
+          "iconId": "giants_knife",
+          "detect": null
+        },
+        {
+          "id": "equipment.biggorons_sword",
+          "number": 4,
+          "name": "Biggoron's Sword",
+          "iconId": "biggorons_sword",
+          "detect": null
+        },
+        {
+          "id": "equipment.deku_shield",
+          "number": 5,
+          "name": "Deku Shield",
+          "iconId": "deku_shield",
+          "detect": null
+        },
+        {
+          "id": "equipment.hylian_shield",
+          "number": 6,
+          "name": "Hylian Shield",
+          "iconId": "hylian_shield",
+          "detect": null
+        },
+        {
+          "id": "equipment.mirror_shield",
+          "number": 7,
+          "name": "Mirror Shield",
+          "iconId": "mirror_shield",
+          "detect": null
+        },
+        {
+          "id": "equipment.kokiri_tunic_heros_clothes",
+          "number": 8,
+          "name": "Kokiri Tunic (Hero's Clothes)",
+          "iconId": "kokiri_tunic_heros_clothes",
+          "detect": null
+        },
+        {
+          "id": "equipment.goron_tunic",
+          "number": 9,
+          "name": "Goron Tunic",
+          "iconId": "goron_tunic",
+          "detect": null
+        },
+        {
+          "id": "equipment.zora_tunic",
+          "number": 10,
+          "name": "Zora Tunic",
+          "iconId": "zora_tunic",
+          "detect": null
+        },
+        {
+          "id": "equipment.iron_boots",
+          "number": 11,
+          "name": "Iron Boots",
+          "iconId": "iron_boots",
+          "detect": null
+        },
+        {
+          "id": "equipment.hover_boots",
+          "number": 12,
+          "name": "Hover Boots",
+          "iconId": "hover_boots",
+          "detect": null
+        }
+      ]
+    },
+    {
+      "id": "items",
+      "label": "Items",
+      "part": "A",
+      "countsToward100": true,
+      "kind": "list",
+      "items": [
+        {
+          "id": "items.fairy_slingshot",
+          "number": 1,
+          "name": "Fairy Slingshot",
+          "iconId": "fairy_slingshot",
+          "detect": null
+        },
+        {
+          "id": "items.fairy_bow",
+          "number": 2,
+          "name": "Fairy Bow",
+          "iconId": "fairy_bow",
+          "detect": null
+        },
+        {
+          "id": "items.fire_arrow",
+          "number": 3,
+          "name": "Fire Arrow",
+          "iconId": "fire_arrow",
+          "detect": null
+        },
+        {
+          "id": "items.ice_arrow",
+          "number": 4,
+          "name": "Ice Arrow",
+          "iconId": "ice_arrow",
+          "detect": null
+        },
+        {
+          "id": "items.light_arrow",
+          "number": 5,
+          "name": "Light Arrow",
+          "iconId": "light_arrow",
+          "detect": null
+        },
+        {
+          "id": "items.boomerang",
+          "number": 6,
+          "name": "Boomerang",
+          "iconId": "boomerang",
+          "detect": null
+        },
+        {
+          "id": "items.hookshot",
+          "number": 7,
+          "name": "Hookshot",
+          "iconId": "hookshot",
+          "detect": null
+        },
+        {
+          "id": "items.longshot",
+          "number": 8,
+          "name": "Longshot",
+          "iconId": "longshot",
+          "detect": null
+        },
+        {
+          "id": "items.megaton_hammer",
+          "number": 9,
+          "name": "Megaton Hammer",
+          "iconId": "megaton_hammer",
+          "detect": null
+        },
+        {
+          "id": "items.gorons_bracelet",
+          "number": 10,
+          "name": "Goron's Bracelet",
+          "iconId": "gorons_bracelet",
+          "detect": null
+        },
+        {
+          "id": "items.silver_gauntlets",
+          "number": 11,
+          "name": "Silver Gauntlets",
+          "iconId": "silver_gauntlets",
+          "detect": null
+        },
+        {
+          "id": "items.golden_gauntlets",
+          "number": 12,
+          "name": "Golden Gauntlets",
+          "iconId": "golden_gauntlets",
+          "detect": null
+        },
+        {
+          "id": "items.bomb_bag",
+          "number": 13,
+          "name": "Bomb Bag",
+          "iconId": "bomb_bag",
+          "detect": null
+        },
+        {
+          "id": "items.bombchus",
+          "number": 14,
+          "name": "Bombchus",
+          "iconId": "bombchus",
+          "detect": null
+        },
+        {
+          "id": "items.deku_sticks",
+          "number": 15,
+          "name": "Deku Sticks",
+          "iconId": "deku_sticks",
+          "detect": null
+        },
+        {
+          "id": "items.deku_nuts",
+          "number": 16,
+          "name": "Deku Nuts",
+          "iconId": "deku_nuts",
+          "detect": null
+        },
+        {
+          "id": "items.dins_fire",
+          "number": 17,
+          "name": "Din's Fire",
+          "iconId": "dins_fire",
+          "detect": null
+        },
+        {
+          "id": "items.farores_wind",
+          "number": 18,
+          "name": "Farore's Wind",
+          "iconId": "farores_wind",
+          "detect": null
+        },
+        {
+          "id": "items.nayrus_love",
+          "number": 19,
+          "name": "Nayru's Love",
+          "iconId": "nayrus_love",
+          "detect": null
+        },
+        {
+          "id": "items.double_magic",
+          "number": 20,
+          "name": "Double Magic",
+          "iconId": "double_magic",
+          "detect": null
+        },
+        {
+          "id": "items.lenses_of_truth",
+          "number": 21,
+          "name": "Lenses of Truth",
+          "iconId": "lenses_of_truth",
+          "detect": null
+        },
+        {
+          "id": "items.silver_scale",
+          "number": 22,
+          "name": "Silver Scale",
+          "iconId": "silver_scale",
+          "detect": null
+        },
+        {
+          "id": "items.golden_scale",
+          "number": 23,
+          "name": "Golden Scale",
+          "iconId": "golden_scale",
+          "detect": null
+        },
+        {
+          "id": "items.echo_gem",
+          "number": 24,
+          "name": "Echo Gem",
+          "iconId": "echo_gem",
+          "detect": null
+        },
+        {
+          "id": "items.fairy_ocarina",
+          "number": 25,
+          "name": "Fairy Ocarina",
+          "iconId": "fairy_ocarina",
+          "detect": null
+        },
+        {
+          "id": "items.ocarina_of_time",
+          "number": 26,
+          "name": "Ocarina of Time",
+          "iconId": "ocarina_of_time",
+          "detect": null
+        },
+        {
+          "id": "items.magic_bean",
+          "number": 27,
+          "name": "Magic Bean",
+          "iconId": "magic_bean",
+          "detect": null
+        }
+      ]
+    },
+    {
+      "id": "key_items",
+      "label": "Key Items",
+      "part": "A",
+      "countsToward100": true,
+      "kind": "list",
+      "items": [
+        {
+          "id": "key_items.gerudo_membership_card",
+          "number": 1,
+          "name": "Gerudo Membership Card",
+          "iconId": "gerudo_membership_card",
+          "detect": null
+        }
+      ]
+    },
+    {
+      "id": "masks",
+      "label": "Masks",
+      "part": "A",
+      "countsToward100": true,
+      "kind": "list",
+      "items": [
+        {
+          "id": "masks.keaton_mask",
+          "number": 1,
+          "name": "Keaton Mask",
+          "iconId": "keaton_mask",
+          "detect": null
+        },
+        {
+          "id": "masks.skull_mask",
+          "number": 2,
+          "name": "Skull Mask",
+          "iconId": "skull_mask",
+          "detect": null
+        },
+        {
+          "id": "masks.spooky_mask",
+          "number": 3,
+          "name": "Spooky Mask",
+          "iconId": "spooky_mask",
+          "detect": null
+        },
+        {
+          "id": "masks.bunny_hood",
+          "number": 4,
+          "name": "Bunny Hood",
+          "iconId": "bunny_hood",
+          "detect": null
+        },
+        {
+          "id": "masks.mask_of_truth",
+          "number": 5,
+          "name": "Mask of Truth",
+          "iconId": "mask_of_truth",
+          "detect": null
+        }
+      ]
+    },
+    {
+      "id": "bottles",
+      "label": "Bottles",
+      "part": "A",
+      "countsToward100": true,
+      "kind": "list",
+      "items": [
+        {
+          "id": "bottles.potion_shop_bottle",
+          "number": 1,
+          "name": "Potion Shop bottle",
+          "newInRemake": true,
+          "iconId": "bottle",
+          "detect": null
+        },
+        {
+          "id": "bottles.cucco_lady_bottle",
+          "number": 2,
+          "name": "Cucco Lady bottle",
+          "iconId": "bottle",
+          "detect": null
+        },
+        {
+          "id": "bottles.lon_lon_milk_bottle_talon",
+          "number": 3,
+          "name": "Lon Lon Milk bottle (Talon)",
+          "iconId": "bottle",
+          "detect": null
+        },
+        {
+          "id": "bottles.rutos_letter_bottle",
+          "number": 4,
+          "name": "Ruto's Letter bottle",
+          "iconId": "bottle",
+          "detect": null
+        },
+        {
+          "id": "bottles.poe_collector_bottle",
+          "number": 5,
+          "name": "Poe Collector bottle",
+          "iconId": "bottle",
+          "detect": null
+        }
+      ]
+    },
+    {
+      "id": "great_fairies",
+      "label": "Great Fairies",
+      "part": "A",
+      "countsToward100": true,
+      "kind": "list",
+      "items": [
+        {
+          "id": "great_fairies.death_mountain_summit_magic_meter_dins_fire",
+          "number": 1,
+          "name": "Death Mountain summit: Magic Meter + Din's Fire",
+          "iconId": "great_fairy",
+          "detect": null
+        },
+        {
+          "id": "great_fairies.hyrule_castle_grounds_child_enhanced_charged_spin_attack",
+          "number": 2,
+          "name": "Hyrule Castle grounds (child): Enhanced (charged) Spin Attack",
+          "iconId": "great_fairy",
+          "detect": null
+        },
+        {
+          "id": "great_fairies.zoras_fountain_farores_wind",
+          "number": 3,
+          "name": "Zora's Fountain: Farore's Wind",
+          "iconId": "great_fairy",
+          "detect": null
+        },
+        {
+          "id": "great_fairies.death_mountain_crater_double_magic",
+          "number": 4,
+          "name": "Death Mountain Crater: Double Magic",
+          "iconId": "great_fairy",
+          "detect": null
+        },
+        {
+          "id": "great_fairies.desert_colossus_nayrus_love",
+          "number": 5,
+          "name": "Desert Colossus: Nayru's Love",
+          "iconId": "great_fairy",
+          "detect": null
+        },
+        {
+          "id": "great_fairies.outside_ganons_castle_adult_double_defense_halved_damage",
+          "number": 6,
+          "name": "Outside Ganon's Castle (adult): Double Defense (halved damage)",
+          "iconId": "great_fairy",
+          "detect": null
+        }
+      ]
+    },
+    {
+      "id": "capacity",
+      "label": "Capacity Upgrades",
+      "part": "A",
+      "countsToward100": true,
+      "kind": "list",
+      "items": [
+        {
+          "id": "capacity.kokiri_wallet",
+          "number": 1,
+          "name": "Kokiri Wallet",
+          "iconId": "kokiri_wallet",
+          "detect": null
+        },
+        {
+          "id": "capacity.adults_wallet",
+          "number": 2,
+          "name": "Adult's Wallet",
+          "iconId": "adults_wallet",
+          "detect": null
+        },
+        {
+          "id": "capacity.giants_wallet",
+          "number": 3,
+          "name": "Giant's Wallet",
+          "iconId": "giants_wallet",
+          "detect": null
+        },
+        {
+          "id": "capacity.bomb_bag",
+          "number": 4,
+          "name": "Bomb Bag",
+          "iconId": "bomb_bag",
+          "detect": null
+        },
+        {
+          "id": "capacity.bigger_bomb_bag",
+          "number": 5,
+          "name": "Bigger Bomb Bag",
+          "iconId": "bigger_bomb_bag",
+          "detect": null
+        },
+        {
+          "id": "capacity.biggest_bomb_bag",
+          "number": 6,
+          "name": "Biggest Bomb Bag",
+          "iconId": "biggest_bomb_bag",
+          "detect": null
+        },
+        {
+          "id": "capacity.bigger_deku_seed_bag",
+          "number": 7,
+          "name": "Bigger Deku Seed Bag",
+          "iconId": "bigger_deku_seed_bag",
+          "detect": null
+        },
+        {
+          "id": "capacity.biggest_deku_seed_bag",
+          "number": 8,
+          "name": "Biggest Deku Seed Bag",
+          "iconId": "biggest_deku_seed_bag",
+          "detect": null
+        },
+        {
+          "id": "capacity.bigger_quiver",
+          "number": 9,
+          "name": "Bigger Quiver",
+          "iconId": "bigger_quiver",
+          "detect": null
+        },
+        {
+          "id": "capacity.biggest_quiver",
+          "number": 10,
+          "name": "Biggest Quiver",
+          "iconId": "biggest_quiver",
+          "detect": null
+        },
+        {
+          "id": "capacity.deku_stick_capacity_20",
+          "number": 11,
+          "name": "Deku Stick capacity 20",
+          "iconId": "deku_stick_capacity_20",
+          "detect": null
+        },
+        {
+          "id": "capacity.deku_stick_capacity_30",
+          "number": 12,
+          "name": "Deku Stick capacity 30",
+          "iconId": "deku_stick_capacity_30",
+          "detect": null
+        },
+        {
+          "id": "capacity.deku_nut_capacity_30",
+          "number": 13,
+          "name": "Deku Nut capacity 30",
+          "iconId": "deku_nut_capacity_30",
+          "detect": null
+        },
+        {
+          "id": "capacity.deku_nut_capacity_40",
+          "number": 14,
+          "name": "Deku Nut capacity 40",
+          "iconId": "deku_nut_capacity_40",
+          "detect": null
+        }
+      ]
+    },
+    {
+      "id": "stones_medallions",
+      "label": "Stones & Medallions",
+      "part": "A",
+      "countsToward100": true,
+      "kind": "list",
+      "items": [
+        {
+          "id": "stones_medallions.kokiris_emerald",
+          "number": 1,
+          "name": "Kokiri's Emerald",
+          "iconId": "kokiris_emerald",
+          "detect": null
+        },
+        {
+          "id": "stones_medallions.gorons_ruby",
+          "number": 2,
+          "name": "Goron's Ruby",
+          "iconId": "gorons_ruby",
+          "detect": null
+        },
+        {
+          "id": "stones_medallions.zoras_sapphire",
+          "number": 3,
+          "name": "Zora's Sapphire",
+          "iconId": "zoras_sapphire",
+          "detect": null
+        },
+        {
+          "id": "stones_medallions.light_medallion",
+          "number": 4,
+          "name": "Light Medallion",
+          "iconId": "light_medallion",
+          "detect": null
+        },
+        {
+          "id": "stones_medallions.forest_medallion",
+          "number": 5,
+          "name": "Forest Medallion",
+          "iconId": "forest_medallion",
+          "detect": null
+        },
+        {
+          "id": "stones_medallions.fire_medallion",
+          "number": 6,
+          "name": "Fire Medallion",
+          "iconId": "fire_medallion",
+          "detect": null
+        },
+        {
+          "id": "stones_medallions.water_medallion",
+          "number": 7,
+          "name": "Water Medallion",
+          "iconId": "water_medallion",
+          "detect": null
+        },
+        {
+          "id": "stones_medallions.shadow_medallion",
+          "number": 8,
+          "name": "Shadow Medallion",
+          "iconId": "shadow_medallion",
+          "detect": null
+        },
+        {
+          "id": "stones_medallions.spirit_medallion",
+          "number": 9,
+          "name": "Spirit Medallion",
+          "iconId": "spirit_medallion",
+          "detect": null
+        }
+      ]
+    },
+    {
+      "id": "dungeons",
+      "label": "Dungeons Cleared",
+      "part": "A",
+      "countsToward100": true,
+      "kind": "list",
+      "items": [
+        {
+          "id": "dungeons.great_deku_tree",
+          "number": 1,
+          "name": "Great Deku Tree",
+          "iconId": "dungeon",
+          "detect": null
+        },
+        {
+          "id": "dungeons.dodongos_cavern",
+          "number": 2,
+          "name": "Dodongo's Cavern",
+          "iconId": "dungeon",
+          "detect": null
+        },
+        {
+          "id": "dungeons.lord_jabu_jabus_belly",
+          "number": 3,
+          "name": "Lord Jabu-Jabu's Belly",
+          "iconId": "dungeon",
+          "detect": null
+        },
+        {
+          "id": "dungeons.forest_temple",
+          "number": 4,
+          "name": "Forest Temple",
+          "iconId": "dungeon",
+          "detect": null
+        },
+        {
+          "id": "dungeons.fire_temple",
+          "number": 5,
+          "name": "Fire Temple",
+          "iconId": "dungeon",
+          "detect": null
+        },
+        {
+          "id": "dungeons.ice_cavern",
+          "number": 6,
+          "name": "Ice Cavern",
+          "iconId": "dungeon",
+          "detect": null
+        },
+        {
+          "id": "dungeons.water_temple",
+          "number": 7,
+          "name": "Water Temple",
+          "iconId": "dungeon",
+          "detect": null
+        },
+        {
+          "id": "dungeons.bottom_of_the_well",
+          "number": 8,
+          "name": "Bottom of the Well",
+          "iconId": "dungeon",
+          "detect": null
+        },
+        {
+          "id": "dungeons.shadow_temple",
+          "number": 9,
+          "name": "Shadow Temple",
+          "iconId": "dungeon",
+          "detect": null
+        },
+        {
+          "id": "dungeons.spirit_temple",
+          "number": 10,
+          "name": "Spirit Temple",
+          "iconId": "dungeon",
+          "detect": null
+        },
+        {
+          "id": "dungeons.gerudo_training_ground",
+          "number": 11,
+          "name": "Gerudo Training Ground",
+          "iconId": "dungeon",
+          "detect": null
+        },
+        {
+          "id": "dungeons.ganons_castle",
+          "number": 12,
+          "name": "Ganon's Castle",
+          "iconId": "dungeon",
+          "detect": null
+        }
+      ]
+    },
+    {
+      "id": "bosses",
+      "label": "Bosses",
+      "part": "A",
+      "countsToward100": true,
+      "kind": "list",
+      "items": [
+        {
+          "id": "bosses.gohma",
+          "number": 1,
+          "name": "Gohma",
+          "iconId": "boss",
+          "detect": null
+        },
+        {
+          "id": "bosses.king_dodongo",
+          "number": 2,
+          "name": "King Dodongo",
+          "iconId": "boss",
+          "detect": null
+        },
+        {
+          "id": "bosses.barinade",
+          "number": 3,
+          "name": "Barinade",
+          "iconId": "boss",
+          "detect": null
+        },
+        {
+          "id": "bosses.phantom_ganon",
+          "number": 4,
+          "name": "Phantom Ganon",
+          "iconId": "boss",
+          "detect": null
+        },
+        {
+          "id": "bosses.volvagia",
+          "number": 5,
+          "name": "Volvagia",
+          "iconId": "boss",
+          "detect": null
+        },
+        {
+          "id": "bosses.morpha",
+          "number": 6,
+          "name": "Morpha",
+          "iconId": "boss",
+          "detect": null
+        },
+        {
+          "id": "bosses.bongo",
+          "number": 7,
+          "name": "Bongo",
+          "iconId": "boss",
+          "detect": null
+        },
+        {
+          "id": "bosses.twinrova",
+          "number": 8,
+          "name": "Twinrova",
+          "iconId": "boss",
+          "detect": null
+        },
+        {
+          "id": "bosses.ganondorf",
+          "number": 9,
+          "name": "Ganondorf",
+          "iconId": "boss",
+          "detect": null
+        },
+        {
+          "id": "bosses.ganon",
+          "number": 10,
+          "name": "Ganon",
+          "iconId": "boss",
+          "detect": null
+        }
+      ]
+    },
+    {
+      "id": "mini_bosses",
+      "label": "Mini-bosses",
+      "part": "A",
+      "countsToward100": true,
+      "kind": "list",
+      "items": [
+        {
+          "id": "mini_bosses.big_octo",
+          "number": 1,
+          "name": "Big Octo",
+          "iconId": "mini_boss",
+          "detect": null
+        },
+        {
+          "id": "mini_bosses.great_moblin",
+          "number": 2,
+          "name": "Great Moblin",
+          "iconId": "mini_boss",
+          "detect": null
+        },
+        {
+          "id": "mini_bosses.poe_sisters",
+          "number": 3,
+          "name": "Poe Sisters",
+          "iconId": "mini_boss",
+          "detect": null
+        },
+        {
+          "id": "mini_bosses.flare_dancer",
+          "number": 4,
+          "name": "Flare Dancer",
+          "iconId": "mini_boss",
+          "detect": null
+        },
+        {
+          "id": "mini_bosses.white_wolfos",
+          "number": 5,
+          "name": "White Wolfos",
+          "iconId": "mini_boss",
+          "detect": null
+        },
+        {
+          "id": "mini_bosses.dark_link",
+          "number": 6,
+          "name": "Dark Link",
+          "iconId": "mini_boss",
+          "detect": null
+        },
+        {
+          "id": "mini_bosses.dead_hand",
+          "number": 7,
+          "name": "Dead Hand",
+          "iconId": "mini_boss",
+          "detect": null
+        },
+        {
+          "id": "mini_bosses.gerudo_guards_carpenter_cells",
+          "number": 8,
+          "name": "Gerudo guards (carpenter cells)",
+          "iconId": "mini_boss",
+          "detect": null
+        },
+        {
+          "id": "mini_bosses.iron_knuckle",
+          "number": 9,
+          "name": "Iron Knuckle",
+          "iconId": "mini_boss",
+          "detect": null
+        },
+        {
+          "id": "mini_bosses.iron_knuckle_nabooru",
+          "number": 10,
+          "name": "Iron Knuckle (Nabooru)",
+          "iconId": "mini_boss",
+          "detect": null
+        }
+      ]
+    },
+    {
+      "id": "side_quests",
+      "label": "Side Quests",
+      "part": "A",
+      "countsToward100": true,
+      "kind": "list",
+      "items": [
+        {
+          "id": "side_quests.malons_friend",
+          "number": 1,
+          "name": "Malon's Friend",
+          "iconId": "side_quest",
+          "detect": null
+        },
+        {
+          "id": "side_quests.happy_mask_shopkeeper",
+          "number": 2,
+          "name": "Happy Mask Shopkeeper",
+          "iconId": "side_quest",
+          "detect": null
+        },
+        {
+          "id": "side_quests.to_the_great_fairy",
+          "number": 3,
+          "name": "To the Great Fairy",
+          "iconId": "side_quest",
+          "detect": null
+        },
+        {
+          "id": "side_quests.stir_the_scarecrows_soul",
+          "number": 4,
+          "name": "Stir the Scarecrow's Soul!",
+          "iconId": "side_quest",
+          "detect": null
+        },
+        {
+          "id": "side_quests.from_a_pocket_egg_comes",
+          "number": 5,
+          "name": "From a Pocket Egg Comes…",
+          "iconId": "side_quest",
+          "detect": null
+        },
+        {
+          "id": "side_quests.broken_windmill_dry_well",
+          "number": 6,
+          "name": "Broken Windmill, Dry Well",
+          "iconId": "side_quest",
+          "detect": null
+        }
+      ]
+    },
+    {
+      "id": "big_poes",
+      "label": "Big Poes Sold",
+      "part": "A",
+      "countsToward100": true,
+      "kind": "counter",
+      "max": 10,
+      "items": []
+    },
+    {
+      "id": "skulltula_rewards",
+      "label": "House of Skulltula Rewards",
+      "part": "B",
+      "countsToward100": false,
+      "kind": "list",
+      "items": [
+        {
+          "id": "skulltula_rewards.10_tokens_adults_wallet",
+          "number": 1,
+          "name": "10 tokens: Adult's Wallet",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "skulltula_rewards.20_tokens_echo_gem",
+          "number": 2,
+          "name": "20 tokens: Echo Gem",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "skulltula_rewards.30_tokens_giants_wallet",
+          "number": 3,
+          "name": "30 tokens: Giant's Wallet",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "skulltula_rewards.40_tokens_bombchus_20",
+          "number": 4,
+          "name": "40 tokens: Bombchus (20)",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "skulltula_rewards.50_tokens_piece_of_heart",
+          "number": 5,
+          "name": "50 tokens: Piece of Heart",
+          "iconId": "gold_skulltula",
+          "detect": null
+        },
+        {
+          "id": "skulltula_rewards.100_tokens_gold_rupee_200_rupees_repeatable",
+          "number": 6,
+          "name": "100 tokens: Gold Rupee (200 Rupees, repeatable)",
+          "iconId": "gold_skulltula",
+          "detect": null
+        }
+      ]
+    },
+    {
+      "id": "child_trade",
+      "label": "Child Trading Sequence",
+      "part": "B",
+      "countsToward100": false,
+      "kind": "list",
+      "items": [
+        {
+          "id": "child_trade.weird_egg",
+          "number": 1,
+          "name": "Weird Egg",
+          "iconId": "weird_egg",
+          "detect": null
+        },
+        {
+          "id": "child_trade.wake_up_cucco",
+          "number": 2,
+          "name": "Wake-up Cucco",
+          "iconId": "wake_up_cucco",
+          "detect": null
+        },
+        {
+          "id": "child_trade.zeldas_letter",
+          "number": 3,
+          "name": "Zelda's Letter",
+          "iconId": "zeldas_letter",
+          "detect": null
+        }
+      ]
+    },
+    {
+      "id": "adult_trade",
+      "label": "Adult Trading Sequence",
+      "part": "B",
+      "countsToward100": false,
+      "kind": "list",
+      "items": [
+        {
+          "id": "adult_trade.pocket_egg",
+          "number": 1,
+          "name": "Pocket Egg",
+          "iconId": "pocket_egg",
+          "detect": null
+        },
+        {
+          "id": "adult_trade.pocket_cucco",
+          "number": 2,
+          "name": "Pocket Cucco",
+          "iconId": "pocket_cucco",
+          "detect": null
+        },
+        {
+          "id": "adult_trade.cojiro",
+          "number": 3,
+          "name": "Cojiro",
+          "iconId": "cojiro",
+          "detect": null
+        },
+        {
+          "id": "adult_trade.odd_mushroom",
+          "number": 4,
+          "name": "Odd Mushroom",
+          "iconId": "odd_mushroom",
+          "detect": null
+        },
+        {
+          "id": "adult_trade.odd_potion",
+          "number": 5,
+          "name": "Odd Potion",
+          "iconId": "odd_potion",
+          "detect": null
+        },
+        {
+          "id": "adult_trade.poachers_saw",
+          "number": 6,
+          "name": "Poacher's Saw",
+          "iconId": "poachers_saw",
+          "detect": null
+        },
+        {
+          "id": "adult_trade.broken_gorons_sword",
+          "number": 7,
+          "name": "Broken Goron's Sword",
+          "iconId": "broken_gorons_sword",
+          "detect": null
+        },
+        {
+          "id": "adult_trade.prescription",
+          "number": 8,
+          "name": "Prescription",
+          "iconId": "prescription",
+          "detect": null
+        },
+        {
+          "id": "adult_trade.eyeball_frog",
+          "number": 9,
+          "name": "Eyeball Frog",
+          "iconId": "eyeball_frog",
+          "detect": null
+        },
+        {
+          "id": "adult_trade.worlds_finest_eye_drops",
+          "number": 10,
+          "name": "World's Finest Eye Drops",
+          "iconId": "worlds_finest_eye_drops",
+          "detect": null
+        },
+        {
+          "id": "adult_trade.claim_check",
+          "number": 11,
+          "name": "Claim Check",
+          "iconId": "claim_check",
+          "detect": null
+        }
+      ]
+    },
+    {
+      "id": "magic_beans_planted",
+      "label": "Magic Bean Spots Planted",
+      "part": "B",
+      "countsToward100": false,
+      "kind": "counter",
+      "max": 10,
+      "items": []
+    },
+    {
+      "id": "dungeon_items",
+      "label": "Maps, Compasses & Boss Keys",
+      "part": "C",
+      "countsToward100": false,
+      "kind": "list",
+      "items": [
+        {
+          "id": "dungeon_items.great_deku_tree_map",
+          "number": 1,
+          "name": "Great Deku Tree Map",
+          "chapter": "Great Deku Tree",
+          "iconId": "dungeon_map",
+          "detect": null
+        },
+        {
+          "id": "dungeon_items.great_deku_tree_compass",
+          "number": 2,
+          "name": "Great Deku Tree Compass",
+          "chapter": "Great Deku Tree",
+          "iconId": "compass",
+          "detect": null
+        },
+        {
+          "id": "dungeon_items.dodongos_cavern_map",
+          "number": 3,
+          "name": "Dodongo's Cavern Map",
+          "chapter": "Dodongo's Cavern",
+          "iconId": "dungeon_map",
+          "detect": null
+        },
+        {
+          "id": "dungeon_items.dodongos_cavern_compass",
+          "number": 4,
+          "name": "Dodongo's Cavern Compass",
+          "chapter": "Dodongo's Cavern",
+          "iconId": "compass",
+          "detect": null
+        },
+        {
+          "id": "dungeon_items.lord_jabu_jabus_belly_map",
+          "number": 5,
+          "name": "Lord Jabu-Jabu's Belly Map",
+          "chapter": "Lord Jabu-Jabu's Belly",
+          "iconId": "dungeon_map",
+          "detect": null
+        },
+        {
+          "id": "dungeon_items.lord_jabu_jabus_belly_compass",
+          "number": 6,
+          "name": "Lord Jabu-Jabu's Belly Compass",
+          "chapter": "Lord Jabu-Jabu's Belly",
+          "iconId": "compass",
+          "detect": null
+        },
+        {
+          "id": "dungeon_items.forest_temple_map",
+          "number": 7,
+          "name": "Forest Temple Map",
+          "chapter": "Forest Temple",
+          "iconId": "dungeon_map",
+          "detect": null
+        },
+        {
+          "id": "dungeon_items.forest_temple_compass",
+          "number": 8,
+          "name": "Forest Temple Compass",
+          "chapter": "Forest Temple",
+          "iconId": "compass",
+          "detect": null
+        },
+        {
+          "id": "dungeon_items.fire_temple_map",
+          "number": 9,
+          "name": "Fire Temple Map",
+          "chapter": "Fire Temple",
+          "iconId": "dungeon_map",
+          "detect": null
+        },
+        {
+          "id": "dungeon_items.fire_temple_compass",
+          "number": 10,
+          "name": "Fire Temple Compass",
+          "chapter": "Fire Temple",
+          "iconId": "compass",
+          "detect": null
+        },
+        {
+          "id": "dungeon_items.water_temple_map",
+          "number": 11,
+          "name": "Water Temple Map",
+          "chapter": "Water Temple",
+          "iconId": "dungeon_map",
+          "detect": null
+        },
+        {
+          "id": "dungeon_items.water_temple_compass",
+          "number": 12,
+          "name": "Water Temple Compass",
+          "chapter": "Water Temple",
+          "iconId": "compass",
+          "detect": null
+        },
+        {
+          "id": "dungeon_items.shadow_temple_map",
+          "number": 13,
+          "name": "Shadow Temple Map",
+          "chapter": "Shadow Temple",
+          "iconId": "dungeon_map",
+          "detect": null
+        },
+        {
+          "id": "dungeon_items.shadow_temple_compass",
+          "number": 14,
+          "name": "Shadow Temple Compass",
+          "chapter": "Shadow Temple",
+          "iconId": "compass",
+          "detect": null
+        },
+        {
+          "id": "dungeon_items.spirit_temple_map",
+          "number": 15,
+          "name": "Spirit Temple Map",
+          "chapter": "Spirit Temple",
+          "iconId": "dungeon_map",
+          "detect": null
+        },
+        {
+          "id": "dungeon_items.spirit_temple_compass",
+          "number": 16,
+          "name": "Spirit Temple Compass",
+          "chapter": "Spirit Temple",
+          "iconId": "compass",
+          "detect": null
+        },
+        {
+          "id": "dungeon_items.ice_cavern_map",
+          "number": 17,
+          "name": "Ice Cavern Map",
+          "chapter": "Ice Cavern",
+          "iconId": "dungeon_map",
+          "detect": null
+        },
+        {
+          "id": "dungeon_items.ice_cavern_compass",
+          "number": 18,
+          "name": "Ice Cavern Compass",
+          "chapter": "Ice Cavern",
+          "iconId": "compass",
+          "detect": null
+        },
+        {
+          "id": "dungeon_items.bottom_of_the_well_map",
+          "number": 19,
+          "name": "Bottom of the Well Map",
+          "chapter": "Bottom of the Well",
+          "iconId": "dungeon_map",
+          "detect": null
+        },
+        {
+          "id": "dungeon_items.bottom_of_the_well_compass",
+          "number": 20,
+          "name": "Bottom of the Well Compass",
+          "chapter": "Bottom of the Well",
+          "iconId": "compass",
+          "detect": null
+        },
+        {
+          "id": "dungeon_items.forest_temple_boss_key",
+          "number": 21,
+          "name": "Forest Temple Boss Key",
+          "chapter": "Forest Temple",
+          "iconId": "boss_key",
+          "detect": null
+        },
+        {
+          "id": "dungeon_items.fire_temple_boss_key",
+          "number": 22,
+          "name": "Fire Temple Boss Key",
+          "chapter": "Fire Temple",
+          "iconId": "boss_key",
+          "detect": null
+        },
+        {
+          "id": "dungeon_items.water_temple_boss_key",
+          "number": 23,
+          "name": "Water Temple Boss Key",
+          "chapter": "Water Temple",
+          "iconId": "boss_key",
+          "detect": null
+        },
+        {
+          "id": "dungeon_items.shadow_temple_boss_key",
+          "number": 24,
+          "name": "Shadow Temple Boss Key",
+          "chapter": "Shadow Temple",
+          "iconId": "boss_key",
+          "detect": null
+        },
+        {
+          "id": "dungeon_items.spirit_temple_boss_key",
+          "number": 25,
+          "name": "Spirit Temple Boss Key",
+          "chapter": "Spirit Temple",
+          "iconId": "boss_key",
+          "detect": null
+        },
+        {
+          "id": "dungeon_items.ganons_castle_boss_key",
+          "number": 26,
+          "name": "Ganon's Castle Boss Key",
+          "chapter": "Ganon's Castle",
+          "iconId": "boss_key",
+          "detect": null
+        }
+      ]
+    },
+    {
+      "id": "amiibo_masks",
+      "label": "amiibo Retro Masks",
+      "part": "C",
+      "countsToward100": false,
+      "kind": "list",
+      "items": [
+        {
+          "id": "amiibo_masks.young_link",
+          "number": 1,
+          "name": "Young Link amiibo mask",
+          "iconId": "mask",
+          "detect": null
+        },
+        {
+          "id": "amiibo_masks.young_zelda",
+          "number": 2,
+          "name": "Young Zelda amiibo mask",
+          "iconId": "mask",
+          "detect": null
+        }
+      ]
+    }
+  ]
+}

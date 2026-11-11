@@ -1,0 +1,4187 @@
+{
+  "version": 2,
+  "notes": "Keyed by data/checklist.json ids. confidence: confirmed = seen changing in a diff at the right moment; likely = the flag name says what it is (or an MIT editor maps it the same way) and all six slots agree; guess = indirect inference, needs a diff.",
+  "entries": {
+    "heart_pieces.001": {
+      "label": "Kakariko Village",
+      "detect": {
+        "name": "Npc_Hylia_001_IsGetHeartPiece"
+      },
+      "confidence": "likely",
+      "evidence": "The game's own heart-piece map marker (HeartPieceAnchor in KakarikoVillage) names this flag: Npc_Hylia_001_IsGetHeartPiece"
+    },
+    "heart_pieces.002": {
+      "label": "Graveyard",
+      "detect": {
+        "name": "GraveYard_DiggingHoleTour_Drop_HeartPiece"
+      },
+      "confidence": "likely",
+      "evidence": "The game's own heart-piece map marker (HeartPieceAnchor in Graveyard) names this flag: GraveYard_DiggingHoleTour_Drop_HeartPiece"
+    },
+    "heart_pieces.006": {
+      "label": "Lake Hylia",
+      "detect": {
+        "name": "MiniGame_Fishing_GetHeartPiece"
+      },
+      "confidence": "likely",
+      "evidence": "The game's own heart-piece map marker (HeartPieceAnchor in HyruleField) names this flag: MiniGame_Fishing_GetHeartPiece"
+    },
+    "heart_pieces.007": {
+      "label": "Hyrule Castle Town",
+      "detect": {
+        "name": "SubEvent_FindRichard_GetHeartPiece"
+      },
+      "confidence": "likely",
+      "evidence": "The game's own heart-piece map marker (HeartPieceAnchor in Market) names this flag: SubEvent_FindRichard_GetHeartPiece"
+    },
+    "heart_pieces.008": {
+      "label": "Lost Woods",
+      "detect": {
+        "name": "Minigame_SkullKidSession_IsGetHeartPiece"
+      },
+      "confidence": "likely",
+      "evidence": "The game's own heart-piece map marker (HeartPieceAnchor in LostWood) names this flag: Minigame_SkullKidSession_IsGetHeartPiece"
+    },
+    "heart_pieces.009": {
+      "label": "Lost Woods",
+      "detect": {
+        "name": "Npc_SkullKid_Child_IsGetHeartPiece"
+      },
+      "confidence": "likely",
+      "evidence": "The game's own heart-piece map marker (HeartPieceAnchor in LostWood) names this flag: Npc_SkullKid_Child_IsGetHeartPiece"
+    },
+    "heart_pieces.010": {
+      "label": "Goron City",
+      "detect": {
+        "name": "GoronLargePot_IsGetHeartPiece"
+      },
+      "confidence": "likely",
+      "evidence": "The game's own heart-piece map marker (HeartPieceAnchor in GoronCity) names this flag: GoronLargePot_IsGetHeartPiece"
+    },
+    "heart_pieces.019": {
+      "label": "Graveyard",
+      "detect": {
+        "name": "UnderTheGrave_DampeRace_HeartGeted"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: UnderTheGrave_DampeRace_HeartGeted"
+    },
+    "heart_pieces.020": {
+      "label": "Kakariko Village",
+      "detect": {
+        "any": [
+          {
+            "name": "KakarikoVillage_IsAfterSave_Npc_Hylia_025"
+          },
+          {
+            "name": "KakarikoVillage_GatheringTokenGold_GetReward50"
+          }
+        ]
+      },
+      "confidence": "likely",
+      "evidence": "The game's own heart-piece map marker (HeartPieceAnchor in KakarikoVillage) names this flag: KakarikoVillage_IsAfterSave_Npc_Hylia_025; also accepts the 50-token reward flag"
+    },
+    "heart_pieces.028": {
+      "label": "Zora's River",
+      "detect": {
+        "name": "MiniGame_FrogTenors_InsectRepellent"
+      },
+      "confidence": "likely",
+      "evidence": "The game's own heart-piece map marker (HeartPieceAnchor in ZoraRiver) names this flag: MiniGame_FrogTenors_InsectRepellent"
+    },
+    "heart_pieces.029": {
+      "label": "Hyrule Castle Town",
+      "detect": {
+        "name": "MiniGame_ChoiceTreasure_IsClear"
+      },
+      "confidence": "likely",
+      "evidence": "The game's own heart-piece map marker (HeartPieceAnchor in Market) names this flag: MiniGame_ChoiceTreasure_IsClear"
+    },
+    "heart_pieces.031": {
+      "label": "Gerudo Fortress",
+      "detect": {
+        "name": "MiniGame_HorsebackArchery_GotaHeart"
+      },
+      "confidence": "likely",
+      "evidence": "The game's own heart-piece map marker (HeartPieceAnchor in GerudoFortress) names this flag: MiniGame_HorsebackArchery_GotaHeart"
+    },
+    "heart_pieces.034": {
+      "label": "Hyrule Field",
+      "detect": {
+        "name": "HyruleField_Enemy_Scrub_Business_HeartPiece_01"
+      },
+      "confidence": "likely",
+      "evidence": "The game's own heart-piece map marker (HeartPieceAnchor in HyruleField) names this flag: HyruleField_Enemy_Scrub_Business_HeartPiece_01"
+    },
+    "heart_pieces.036": {
+      "label": "Death Mountain Crater",
+      "detect": {
+        "name": "DeathMountain_Enemy_Scrub_Business_HeartPiece_01"
+      },
+      "confidence": "likely",
+      "evidence": "The game's own heart-piece map marker (HeartPieceAnchor in DeathMountainCrater) names this flag: DeathMountain_Enemy_Scrub_Business_HeartPiece_01"
+    },
+    "heart_containers.heart_container_gohma": {
+      "label": "Heart Container (Gohma)",
+      "detect": {
+        "name": "InsideTheDekuTree_Heart_Container_Obtained"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: InsideTheDekuTree_Heart_Container_Obtained"
+    },
+    "heart_containers.heart_container_king_dodongo": {
+      "label": "Heart Container (King Dodongo)",
+      "detect": {
+        "name": "DefeatedEnemyNum.Enemy_DungeonBoss_Dodongo",
+        "gte": 1
+      },
+      "confidence": "guess",
+      "evidence": "Assumes the container was picked up once the boss is beaten. Slot_05 agrees (4 bosses beaten, max hearts 3 + 4). Only the Deku Tree has its own flag. Needs a diff."
+    },
+    "heart_containers.heart_container_barinade": {
+      "label": "Heart Container (Barinade)",
+      "detect": {
+        "name": "DefeatedEnemyNum.Enemy_DungeonBoss_Barinade",
+        "gte": 1
+      },
+      "confidence": "guess",
+      "evidence": "Assumes the container was picked up once the boss is beaten. Slot_05 agrees (4 bosses beaten, max hearts 3 + 4). Only the Deku Tree has its own flag. Needs a diff."
+    },
+    "heart_containers.heart_container_phantom_ganon": {
+      "label": "Heart Container (Phantom Ganon)",
+      "detect": {
+        "name": "DefeatedEnemyNum.Enemy_DungeonBoss_PhantomGanon",
+        "gte": 1
+      },
+      "confidence": "guess",
+      "evidence": "Assumes the container was picked up once the boss is beaten. Slot_05 agrees (4 bosses beaten, max hearts 3 + 4). Only the Deku Tree has its own flag. Needs a diff."
+    },
+    "heart_containers.heart_container_volvagia": {
+      "label": "Heart Container (Volvagia)",
+      "detect": {
+        "name": "DefeatedEnemyNum.Enemy_DungeonBoss_Volvagia",
+        "gte": 1
+      },
+      "confidence": "guess",
+      "evidence": "Assumes the container was picked up once the boss is beaten. Slot_05 agrees (4 bosses beaten, max hearts 3 + 4). Only the Deku Tree has its own flag. Needs a diff."
+    },
+    "heart_containers.heart_container_morpha": {
+      "label": "Heart Container (Morpha)",
+      "detect": {
+        "name": "DefeatedEnemyNum.Enemy_DungeonBoss_Morpha",
+        "gte": 1
+      },
+      "confidence": "guess",
+      "evidence": "Assumes the container was picked up once the boss is beaten. Slot_05 agrees (4 bosses beaten, max hearts 3 + 4). Only the Deku Tree has its own flag. Needs a diff."
+    },
+    "heart_containers.heart_container_bongo": {
+      "label": "Heart Container (Bongo)",
+      "detect": {
+        "name": "DefeatedEnemyNum.Enemy_DungeonBoss_BongoBongo",
+        "gte": 1
+      },
+      "confidence": "guess",
+      "evidence": "Assumes the container was picked up once the boss is beaten. Slot_05 agrees (4 bosses beaten, max hearts 3 + 4). Only the Deku Tree has its own flag. Needs a diff."
+    },
+    "heart_containers.heart_container_twinrova": {
+      "label": "Heart Container (Twinrova)",
+      "detect": {
+        "name": "DefeatedEnemyNum.Enemy_DungeonBoss_Twinrova",
+        "gte": 1
+      },
+      "confidence": "guess",
+      "evidence": "Assumes the container was picked up once the boss is beaten. Slot_05 agrees (4 bosses beaten, max hearts 3 + 4). Only the Deku Tree has its own flag. Needs a diff."
+    },
+    "songs.zeldas_lullaby": {
+      "label": "Zelda's Lullaby",
+      "detect": {
+        "name": "IsGet.Item_Melody_ZeldaLullaby"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_Melody_ZeldaLullaby"
+    },
+    "songs.suns_song": {
+      "label": "Sun's Song",
+      "detect": {
+        "name": "IsGet.Item_Melody_SunSong"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_Melody_SunSong"
+    },
+    "songs.eponas_song": {
+      "label": "Epona's Song",
+      "detect": {
+        "name": "IsGet.Item_Melody_EponaSong"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_Melody_EponaSong"
+    },
+    "songs.sarias_song": {
+      "label": "Saria's Song",
+      "detect": {
+        "name": "IsGet.Item_Melody_SariaSong"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_Melody_SariaSong"
+    },
+    "songs.song_of_time": {
+      "label": "Song of Time",
+      "detect": {
+        "name": "IsGet.Item_Melody_TimeSong"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_Melody_TimeSong"
+    },
+    "songs.song_of_storms": {
+      "label": "Song of Storms",
+      "detect": {
+        "name": "IsGet.Item_Melody_StormSong"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_Melody_StormSong"
+    },
+    "songs.minuet_of_forest": {
+      "label": "Minuet of Forest",
+      "detect": {
+        "name": "IsGet.Item_Melody_ForestMinuet"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_Melody_ForestMinuet"
+    },
+    "songs.prelude_of_light": {
+      "label": "Prelude of Light",
+      "detect": {
+        "name": "IsGet.Item_Melody_LightPrelude"
+      },
+      "confidence": "confirmed",
+      "evidence": "slot_02 → slot_03 diff: set together with Market_Adult_GetLightPrelude and AllSage_MeetSheikCount 1→2"
+    },
+    "songs.bolero_of_fire": {
+      "label": "Bolero of Fire",
+      "detect": {
+        "name": "IsGet.Item_Melody_FireBolero"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_Melody_FireBolero"
+    },
+    "songs.serenade_of_water": {
+      "label": "Serenade of Water",
+      "detect": {
+        "name": "IsGet.Item_Melody_WaterSerenade"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_Melody_WaterSerenade"
+    },
+    "songs.nocturne_of_shadow": {
+      "label": "Nocturne of Shadow",
+      "detect": {
+        "name": "IsGet.Item_Melody_ShadowNocturne"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_Melody_ShadowNocturne"
+    },
+    "songs.requiem_of_spirit": {
+      "label": "Requiem of Spirit",
+      "detect": {
+        "name": "IsGet.Item_Melody_SpiritRequiem"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_Melody_SpiritRequiem"
+    },
+    "songs.scarecrows_song": {
+      "label": "Scarecrow's Song",
+      "detect": {
+        "name": "IsGet.Item_Melody_ScarecrowSong"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_Melody_ScarecrowSong"
+    },
+    "equipment.kokiri_sword": {
+      "label": "Kokiri Sword",
+      "detect": {
+        "name": "IsGet.Weapon_Sword_Kokiri"
+      },
+      "confidence": "confirmed",
+      "evidence": "Snapshots 2026-11-10 (fresh save): became true in the \"After-Kokiri-Sword\" snapshot and nowhere else. Flag name from game files: IsGet.Weapon_Sword_Kokiri"
+    },
+    "equipment.master_sword": {
+      "label": "Master Sword",
+      "detect": {
+        "name": "IsGet.Weapon_Sword_Master"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Weapon_Sword_Master"
+    },
+    "equipment.giants_knife": {
+      "label": "Giant's Knife",
+      "detect": {
+        "name": "IsGet.Weapon_Sword_Giant"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Weapon_Sword_Giant"
+    },
+    "equipment.biggorons_sword": {
+      "label": "Biggoron's Sword",
+      "detect": {
+        "name": "IsGet.Weapon_Sword_Biggoron"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Weapon_Sword_Biggoron"
+    },
+    "equipment.deku_shield": {
+      "label": "Deku Shield",
+      "detect": {
+        "name": "IsGet.Weapon_Shield_Deku"
+      },
+      "confidence": "confirmed",
+      "evidence": "Snapshots 2026-11-10 (fresh save): became true in the \"After-Deku-Shield\" snapshot and nowhere else. Flag name from game files: IsGet.Weapon_Shield_Deku"
+    },
+    "equipment.hylian_shield": {
+      "label": "Hylian Shield",
+      "detect": {
+        "name": "IsGet.Weapon_Shield_Hylian"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Weapon_Shield_Hylian"
+    },
+    "equipment.mirror_shield": {
+      "label": "Mirror Shield",
+      "detect": {
+        "name": "IsGet.Weapon_Shield_Mirror"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Weapon_Shield_Mirror"
+    },
+    "equipment.kokiri_tunic_heros_clothes": {
+      "label": "Kokiri Tunic (Hero's Clothes)",
+      "detect": {
+        "always": true
+      },
+      "confidence": "likely",
+      "evidence": "Starting gear (IsGet.Obj_Armor_Child_Normal is true in every slot)"
+    },
+    "equipment.goron_tunic": {
+      "label": "Goron Tunic",
+      "detect": {
+        "name": "IsGet.Armor_Adult_Goron"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Armor_Adult_Goron"
+    },
+    "equipment.zora_tunic": {
+      "label": "Zora Tunic",
+      "detect": {
+        "name": "IsGet.Armor_Adult_Zora"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Armor_Adult_Zora"
+    },
+    "equipment.iron_boots": {
+      "label": "Iron Boots",
+      "detect": {
+        "name": "IsGet.Armor_Adult_HeavyBoot"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Armor_Adult_HeavyBoot"
+    },
+    "equipment.hover_boots": {
+      "label": "Hover Boots",
+      "detect": {
+        "name": "IsGet.Armor_Adult_HoverBoot"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Armor_Adult_HoverBoot"
+    },
+    "items.fairy_slingshot": {
+      "label": "Fairy Slingshot",
+      "detect": {
+        "name": "IsGet.Weapon_Range_SlingShot"
+      },
+      "confidence": "confirmed",
+      "evidence": "Snapshots 2026-11-10 (fresh save): became true in the \"After-Slingshot\" snapshot and nowhere else. Flag name from game files: IsGet.Weapon_Range_SlingShot"
+    },
+    "items.fairy_bow": {
+      "label": "Fairy Bow",
+      "detect": {
+        "name": "IsGet.Weapon_Range_Bow"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Weapon_Range_Bow"
+    },
+    "items.fire_arrow": {
+      "label": "Fire Arrow",
+      "detect": {
+        "name": "IsGet.Item_Arrow_Fire"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_Arrow_Fire"
+    },
+    "items.ice_arrow": {
+      "label": "Ice Arrow",
+      "detect": {
+        "name": "IsGet.Item_Arrow_Ice"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_Arrow_Ice"
+    },
+    "items.light_arrow": {
+      "label": "Light Arrow",
+      "detect": {
+        "name": "IsGet.Item_Arrow_Light"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_Arrow_Light"
+    },
+    "items.boomerang": {
+      "label": "Boomerang",
+      "detect": {
+        "name": "IsGet.Item_Boomerang"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_Boomerang"
+    },
+    "items.hookshot": {
+      "label": "Hookshot",
+      "detect": {
+        "name": "IsGet.Item_Hookshot"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_Hookshot"
+    },
+    "items.longshot": {
+      "label": "Longshot",
+      "detect": {
+        "name": "IsGet.Item_Longshot"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_Longshot"
+    },
+    "items.megaton_hammer": {
+      "label": "Megaton Hammer",
+      "detect": {
+        "name": "IsGet.Item_Hammer"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_Hammer"
+    },
+    "items.gorons_bracelet": {
+      "label": "Goron's Bracelet",
+      "detect": {
+        "name": "IsGet.Armor_Child_Gauntlet_Goron"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Armor_Child_Gauntlet_Goron"
+    },
+    "items.silver_gauntlets": {
+      "label": "Silver Gauntlets",
+      "detect": {
+        "name": "IsGet.Armor_Adult_Gauntlet_Silver"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Armor_Adult_Gauntlet_Silver"
+    },
+    "items.golden_gauntlets": {
+      "label": "Golden Gauntlets",
+      "detect": {
+        "name": "IsGet.Armor_Adult_Gauntlet_Gold"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Armor_Adult_Gauntlet_Gold"
+    },
+    "items.bomb_bag": {
+      "label": "Bomb Bag",
+      "detect": {
+        "name": "IsGet.Item_BombBag_Small"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_BombBag_Small"
+    },
+    "items.bombchus": {
+      "label": "Bombchus",
+      "detect": {
+        "name": "IsGet.Item_Bombchu"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_Bombchu"
+    },
+    "items.deku_sticks": {
+      "label": "Deku Sticks",
+      "detect": {
+        "name": "IsGet.Item_DekuStick"
+      },
+      "confidence": "confirmed",
+      "evidence": "Snapshots 2026-11-10 (fresh save): became true in the \"After-deku-stick\" snapshot and nowhere else. Flag name from game files: IsGet.Item_DekuStick"
+    },
+    "items.deku_nuts": {
+      "label": "Deku Nuts",
+      "detect": {
+        "name": "IsGet.Item_DekuNut"
+      },
+      "confidence": "confirmed",
+      "evidence": "Snapshots 2026-11-10 (fresh save): became true in the \"After-Deku-Nuts\" snapshot and nowhere else. Flag name from game files: IsGet.Item_DekuNut"
+    },
+    "items.dins_fire": {
+      "label": "Din's Fire",
+      "detect": {
+        "name": "IsGet.Item_DinFire"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_DinFire"
+    },
+    "items.farores_wind": {
+      "label": "Farore's Wind",
+      "detect": {
+        "name": "IsGet.Item_FaroreWind"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_FaroreWind"
+    },
+    "items.nayrus_love": {
+      "label": "Nayru's Love",
+      "detect": {
+        "name": "IsGet.Item_NayruLove"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_NayruLove"
+    },
+    "items.double_magic": {
+      "label": "Double Magic",
+      "detect": {
+        "any": [
+          {
+            "name": "IsGet.Item_FairyBless_MPDouble"
+          },
+          {
+            "name": "PlayerStatus.MPMax",
+            "gte": 480
+          }
+        ]
+      },
+      "confidence": "guess",
+      "evidence": "IsGet.Item_FairyBless_MPDouble, or the magic meter doubled (PlayerStatus.MPMax is 240 with single magic). IsGet.Item_FairyBless_MP stays false even with magic, so the IsGet flag alone may not be set. Needs a diff."
+    },
+    "items.lenses_of_truth": {
+      "label": "Lenses of Truth",
+      "detect": {
+        "name": "IsGet.Armor_GlassTruth"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Armor_GlassTruth (\"glass of truth\"); Step_SageOfShadow has GetGlassTruth / GotGlassTruth steps"
+    },
+    "items.silver_scale": {
+      "label": "Silver Scale",
+      "detect": {
+        "name": "IsGet.Item_Scale_Silver"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_Scale_Silver"
+    },
+    "items.golden_scale": {
+      "label": "Golden Scale",
+      "detect": {
+        "name": "IsGet.Item_Scale_Gold"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_Scale_Gold"
+    },
+    "items.echo_gem": {
+      "label": "Echo Gem",
+      "detect": {
+        "name": "IsGet.Item_AgonyStone"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_AgonyStone. The checklist says the Echo Gem replaces the Stone of Agony, and the game also has KakarikoVillage_GatheringTokenGold_ActionGuide_AgonyStone_True"
+    },
+    "items.fairy_ocarina": {
+      "label": "Fairy Ocarina",
+      "detect": {
+        "name": "IsGet.Item_Ocarina_Fairy"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_Ocarina_Fairy"
+    },
+    "items.ocarina_of_time": {
+      "label": "Ocarina of Time",
+      "detect": {
+        "name": "IsGet.Item_Ocarina_Time"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_Ocarina_Time"
+    },
+    "items.magic_bean": {
+      "label": "Magic Bean",
+      "detect": {
+        "name": "IsGet.Item_MagicBean"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_MagicBean"
+    },
+    "key_items.gerudo_membership_card": {
+      "label": "Gerudo Membership Card",
+      "detect": {
+        "name": "IsGet.Item_Token_Gerudo"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_Token_Gerudo"
+    },
+    "masks.keaton_mask": {
+      "label": "Keaton Mask",
+      "detect": {
+        "name": "IsGet.Armor_Child_Mask_Keaton"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Armor_Child_Mask_Keaton"
+    },
+    "masks.skull_mask": {
+      "label": "Skull Mask",
+      "detect": {
+        "name": "IsGet.Armor_Child_Mask_Skull"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Armor_Child_Mask_Skull"
+    },
+    "masks.spooky_mask": {
+      "label": "Spooky Mask",
+      "detect": {
+        "name": "IsGet.Armor_Child_Mask_Spooky"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Armor_Child_Mask_Spooky"
+    },
+    "masks.bunny_hood": {
+      "label": "Bunny Hood",
+      "detect": {
+        "name": "IsGet.Armor_Child_Mask_Bunny"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Armor_Child_Mask_Bunny"
+    },
+    "masks.mask_of_truth": {
+      "label": "Mask of Truth",
+      "detect": {
+        "name": "IsGet.Armor_Child_Mask_Truth"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Armor_Child_Mask_Truth"
+    },
+    "bottles.potion_shop_bottle": {
+      "label": "Potion Shop bottle",
+      "detect": {
+        "name": "Market_Item_Bottle_TutorialEvent_Cleared"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: the Market bottle \"tutorial\" event (catch the escaped bug) cleared"
+    },
+    "bottles.cucco_lady_bottle": {
+      "label": "Cucco Lady bottle",
+      "detect": {
+        "name": "MiniGame_CatchCucco_IsCompleted"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: MiniGame_CatchCucco_IsCompleted (the Kakariko Cucco-pen game; MiniGame_CatchCucco_PutsInFence tracks the 7 Cuccos). Fixed 2026-11-11: this row used IsClear_Minigame_FindOutCucco, which is Talon's game at Lon Lon Ranch."
+    },
+    "bottles.lon_lon_milk_bottle_talon": {
+      "label": "Lon Lon Milk bottle (Talon)",
+      "detect": {
+        "name": "IsClear_Minigame_FindOutCucco"
+      },
+      "confidence": "confirmed",
+      "evidence": "Confirmed in play 2026-11-11: became true when the Lon Lon bottle was won from Talon (its dialogue flags are Minigame_FindOutCucco_Ready_Npc_Hylia_Talon_*). Replaces IsGet.Item_Bottle_Milk, which a cow could also set."
+    },
+    "bottles.rutos_letter_bottle": {
+      "label": "Ruto's Letter bottle",
+      "detect": {
+        "name": "IsGet.Item_Bottle_Letter"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_Bottle_Letter. Slot_05 has it and one bottle slot in use"
+    },
+    "bottles.poe_collector_bottle": {
+      "label": "Poe Collector bottle",
+      "detect": {
+        "name": "GhostShop_CouponNum",
+        "gte": 5
+      },
+      "confidence": "guess",
+      "evidence": "GhostShop_CouponNum (Poe buyer) ≥ 5. Assumes the number counts Big Poes sold. 0 in every slot so far. Needs a diff."
+    },
+    "great_fairies.death_mountain_summit_magic_meter_dins_fire": {
+      "label": "Death Mountain summit: Magic Meter + Din's Fire",
+      "detect": {
+        "any": [
+          {
+            "name": "HavePlayedEvent.Dm_FairyFountain_Din"
+          },
+          {
+            "name": "IsGet.Item_DinFire"
+          }
+        ]
+      },
+      "confidence": "likely",
+      "evidence": "HavePlayedEvent.Dm_FairyFountain_Din or Din's Fire owned. Slot_05: the only fountain event played is Din's, and it has Din's Fire + a magic meter (MPMax 240), matching the checklist"
+    },
+    "great_fairies.hyrule_castle_grounds_child_enhanced_charged_spin_attack": {
+      "label": "Hyrule Castle grounds (child): Enhanced (charged) Spin Attack",
+      "detect": null,
+      "confidence": "guess",
+      "evidence": "Unmapped: one of HavePlayedEvent.Dm_FairyFountain_{Power,Wisdom,Courage}, but which one is unknown. One diff after this fairy settles it."
+    },
+    "great_fairies.zoras_fountain_farores_wind": {
+      "label": "Zora's Fountain: Farore's Wind",
+      "detect": {
+        "any": [
+          {
+            "name": "HavePlayedEvent.Dm_FairyFountain_Frore"
+          },
+          {
+            "name": "IsGet.Item_FaroreWind"
+          }
+        ]
+      },
+      "confidence": "likely",
+      "evidence": "Fountain event Dm_FairyFountain_Frore (Farore) or Farore's Wind owned"
+    },
+    "great_fairies.death_mountain_crater_double_magic": {
+      "label": "Death Mountain Crater: Double Magic",
+      "detect": {
+        "any": [
+          {
+            "name": "IsGet.Item_FairyBless_MPDouble"
+          },
+          {
+            "name": "PlayerStatus.MPMax",
+            "gte": 480
+          }
+        ]
+      },
+      "confidence": "guess",
+      "evidence": "Same rule as Items: Double Magic"
+    },
+    "great_fairies.desert_colossus_nayrus_love": {
+      "label": "Desert Colossus: Nayru's Love",
+      "detect": {
+        "any": [
+          {
+            "name": "HavePlayedEvent.Dm_FairyFountain_Nayru"
+          },
+          {
+            "name": "IsGet.Item_NayruLove"
+          }
+        ]
+      },
+      "confidence": "likely",
+      "evidence": "Fountain event Dm_FairyFountain_Nayru or Nayru's Love owned"
+    },
+    "great_fairies.outside_ganons_castle_adult_double_defense_halved_damage": {
+      "label": "Outside Ganon's Castle (adult): Double Defense (halved damage)",
+      "detect": {
+        "name": "IsGet.Item_FairyBless_DefenseDouble"
+      },
+      "confidence": "guess",
+      "evidence": "IsGet.Item_FairyBless_DefenseDouble. Its Magic counterpart (FairyBless_MP) never gets set, so this one may not either. Needs a diff."
+    },
+    "capacity.kokiri_wallet": {
+      "label": "Kokiri Wallet",
+      "detect": {
+        "always": true
+      },
+      "confidence": "likely",
+      "evidence": "Starting wallet"
+    },
+    "capacity.adults_wallet": {
+      "label": "Adult's Wallet",
+      "detect": {
+        "name": "IsGet.Item_Wallet_Medium"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_Wallet_Medium (detected by capacity level, as the checklist asks)"
+    },
+    "capacity.giants_wallet": {
+      "label": "Giant's Wallet",
+      "detect": {
+        "name": "IsGet.Item_Wallet_Large"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_Wallet_Large (detected by capacity level, as the checklist asks)"
+    },
+    "capacity.bomb_bag": {
+      "label": "Bomb Bag",
+      "detect": {
+        "name": "IsGet.Item_BombBag_Small"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_BombBag_Small (detected by capacity level, as the checklist asks)"
+    },
+    "capacity.bigger_bomb_bag": {
+      "label": "Bigger Bomb Bag",
+      "detect": {
+        "name": "IsGet.Item_BombBag_Medium"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_BombBag_Medium (detected by capacity level, as the checklist asks)"
+    },
+    "capacity.biggest_bomb_bag": {
+      "label": "Biggest Bomb Bag",
+      "detect": {
+        "name": "IsGet.Item_BombBag_Large"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_BombBag_Large (detected by capacity level, as the checklist asks)"
+    },
+    "capacity.bigger_deku_seed_bag": {
+      "label": "Bigger Deku Seed Bag",
+      "detect": {
+        "name": "IsGet.Item_BulletBag_Medium"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_BulletBag_Medium (detected by capacity level, as the checklist asks)"
+    },
+    "capacity.biggest_deku_seed_bag": {
+      "label": "Biggest Deku Seed Bag",
+      "detect": {
+        "name": "IsGet.Item_BulletBag_Large"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_BulletBag_Large (detected by capacity level, as the checklist asks)"
+    },
+    "capacity.bigger_quiver": {
+      "label": "Bigger Quiver",
+      "detect": {
+        "name": "IsGet.Item_Quiver_Medium"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_Quiver_Medium (detected by capacity level, as the checklist asks)"
+    },
+    "capacity.biggest_quiver": {
+      "label": "Biggest Quiver",
+      "detect": {
+        "name": "IsGet.Item_Quiver_Large"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_Quiver_Large (detected by capacity level, as the checklist asks)"
+    },
+    "capacity.deku_stick_capacity_20": {
+      "label": "Deku Stick capacity 20",
+      "detect": {
+        "name": "IsGet.Item_StickBag_Medium"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_StickBag_Medium (detected by capacity level, as the checklist asks)"
+    },
+    "capacity.deku_stick_capacity_30": {
+      "label": "Deku Stick capacity 30",
+      "detect": {
+        "name": "IsGet.Item_StickBag_Large"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_StickBag_Large (detected by capacity level, as the checklist asks)"
+    },
+    "capacity.deku_nut_capacity_30": {
+      "label": "Deku Nut capacity 30",
+      "detect": {
+        "name": "IsGet.Item_NutBag_Medium"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_NutBag_Medium (detected by capacity level, as the checklist asks)"
+    },
+    "capacity.deku_nut_capacity_40": {
+      "label": "Deku Nut capacity 40",
+      "detect": {
+        "name": "IsGet.Item_NutBag_Large"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_NutBag_Large (detected by capacity level, as the checklist asks)"
+    },
+    "stones_medallions.kokiris_emerald": {
+      "label": "Kokiri's Emerald",
+      "detect": {
+        "name": "IsGet.Item_Stone_Forest"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_Stone_Forest"
+    },
+    "stones_medallions.gorons_ruby": {
+      "label": "Goron's Ruby",
+      "detect": {
+        "name": "IsGet.Item_Stone_Fire"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_Stone_Fire"
+    },
+    "stones_medallions.zoras_sapphire": {
+      "label": "Zora's Sapphire",
+      "detect": {
+        "name": "IsGet.Item_Stone_Water"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_Stone_Water"
+    },
+    "stones_medallions.light_medallion": {
+      "label": "Light Medallion",
+      "detect": {
+        "name": "IsGet.Item_Medal_Light"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_Medal_Light"
+    },
+    "stones_medallions.forest_medallion": {
+      "label": "Forest Medallion",
+      "detect": {
+        "name": "IsGet.Item_Medal_Forest"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_Medal_Forest"
+    },
+    "stones_medallions.fire_medallion": {
+      "label": "Fire Medallion",
+      "detect": {
+        "name": "IsGet.Item_Medal_Fire"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_Medal_Fire"
+    },
+    "stones_medallions.water_medallion": {
+      "label": "Water Medallion",
+      "detect": {
+        "name": "IsGet.Item_Medal_Water"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_Medal_Water"
+    },
+    "stones_medallions.shadow_medallion": {
+      "label": "Shadow Medallion",
+      "detect": {
+        "name": "IsGet.Item_Medal_Shadow"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_Medal_Shadow"
+    },
+    "stones_medallions.spirit_medallion": {
+      "label": "Spirit Medallion",
+      "detect": {
+        "name": "IsGet.Item_Medal_Spirit"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_Medal_Spirit"
+    },
+    "dungeons.great_deku_tree": {
+      "label": "Great Deku Tree",
+      "detect": {
+        "name": "HavePlayedEvent.Dm_Deku_BossOut"
+      },
+      "confidence": "likely",
+      "evidence": "Boss-exit cutscene flag. In slot_05 it is true exactly for the dungeons whose bosses the kill counters show beaten"
+    },
+    "dungeons.dodongos_cavern": {
+      "label": "Dodongo's Cavern",
+      "detect": {
+        "name": "HavePlayedEvent.Dm_DodongoCave_BossOut"
+      },
+      "confidence": "likely",
+      "evidence": "Boss-exit cutscene flag. In slot_05 it is true exactly for the dungeons whose bosses the kill counters show beaten"
+    },
+    "dungeons.lord_jabu_jabus_belly": {
+      "label": "Lord Jabu-Jabu's Belly",
+      "detect": {
+        "name": "HavePlayedEvent.Dm_InsideJabu_Jabu_BossOut"
+      },
+      "confidence": "likely",
+      "evidence": "Boss-exit cutscene flag. In slot_05 it is true exactly for the dungeons whose bosses the kill counters show beaten"
+    },
+    "dungeons.forest_temple": {
+      "label": "Forest Temple",
+      "detect": {
+        "name": "HavePlayedEvent.Dm_ForestTemple_BossOut"
+      },
+      "confidence": "likely",
+      "evidence": "Boss-exit cutscene flag. In slot_05 it is true exactly for the dungeons whose bosses the kill counters show beaten"
+    },
+    "dungeons.fire_temple": {
+      "label": "Fire Temple",
+      "detect": {
+        "name": "HavePlayedEvent.Dm_FireTemple_BossOut"
+      },
+      "confidence": "likely",
+      "evidence": "Boss-exit cutscene flag. In slot_05 it is true exactly for the dungeons whose bosses the kill counters show beaten"
+    },
+    "dungeons.ice_cavern": {
+      "label": "Ice Cavern",
+      "detect": {
+        "name": "IsGet.Armor_Adult_HeavyBoot"
+      },
+      "confidence": "likely",
+      "evidence": "No boss: done once you have its prize, the Iron Boots"
+    },
+    "dungeons.water_temple": {
+      "label": "Water Temple",
+      "detect": {
+        "name": "HavePlayedEvent.Dm_WaterTemple_BossOut"
+      },
+      "confidence": "likely",
+      "evidence": "Boss-exit cutscene flag. In slot_05 it is true exactly for the dungeons whose bosses the kill counters show beaten"
+    },
+    "dungeons.bottom_of_the_well": {
+      "label": "Bottom of the Well",
+      "detect": {
+        "name": "IsGet.Armor_GlassTruth"
+      },
+      "confidence": "likely",
+      "evidence": "No boss: done once you have its prize, the Lenses of Truth"
+    },
+    "dungeons.shadow_temple": {
+      "label": "Shadow Temple",
+      "detect": {
+        "name": "HavePlayedEvent.Dm_ShadowTemple_BossOut"
+      },
+      "confidence": "likely",
+      "evidence": "Boss-exit cutscene flag. In slot_05 it is true exactly for the dungeons whose bosses the kill counters show beaten"
+    },
+    "dungeons.spirit_temple": {
+      "label": "Spirit Temple",
+      "detect": {
+        "name": "HavePlayedEvent.Dm_SpiritTemple_BossOut"
+      },
+      "confidence": "likely",
+      "evidence": "Boss-exit cutscene flag. In slot_05 it is true exactly for the dungeons whose bosses the kill counters show beaten"
+    },
+    "dungeons.gerudo_training_ground": {
+      "label": "Gerudo Training Ground",
+      "detect": {
+        "name": "IsGet.Item_Arrow_Ice"
+      },
+      "confidence": "likely",
+      "evidence": "No boss: done once you have its prize, the Ice Arrows"
+    },
+    "dungeons.ganons_castle": {
+      "label": "Ganon's Castle",
+      "detect": {
+        "name": "DefeatedEnemyNum.Enemy_DungeonBoss_Ganon",
+        "gte": 1
+      },
+      "confidence": "likely",
+      "evidence": "Ganon beaten (kill counter). Dm_FinalBattle_BossOut probably means the same"
+    },
+    "bosses.gohma": {
+      "label": "Gohma",
+      "detect": {
+        "name": "DefeatedEnemyNum.Enemy_DungeonBoss_Gohma",
+        "gte": 1
+      },
+      "confidence": "likely",
+      "evidence": "Kill counter DefeatedEnemyNum.Enemy_DungeonBoss_Gohma ≥ 1 (the HaveDefeatedEnemy_* bools stay false after a kill)"
+    },
+    "bosses.king_dodongo": {
+      "label": "King Dodongo",
+      "detect": {
+        "name": "DefeatedEnemyNum.Enemy_DungeonBoss_Dodongo",
+        "gte": 1
+      },
+      "confidence": "likely",
+      "evidence": "Kill counter DefeatedEnemyNum.Enemy_DungeonBoss_Dodongo ≥ 1 (the HaveDefeatedEnemy_* bools stay false after a kill)"
+    },
+    "bosses.barinade": {
+      "label": "Barinade",
+      "detect": {
+        "name": "DefeatedEnemyNum.Enemy_DungeonBoss_Barinade",
+        "gte": 1
+      },
+      "confidence": "likely",
+      "evidence": "Kill counter DefeatedEnemyNum.Enemy_DungeonBoss_Barinade ≥ 1 (the HaveDefeatedEnemy_* bools stay false after a kill)"
+    },
+    "bosses.phantom_ganon": {
+      "label": "Phantom Ganon",
+      "detect": {
+        "name": "DefeatedEnemyNum.Enemy_DungeonBoss_PhantomGanon",
+        "gte": 1
+      },
+      "confidence": "likely",
+      "evidence": "Kill counter DefeatedEnemyNum.Enemy_DungeonBoss_PhantomGanon ≥ 1 (the HaveDefeatedEnemy_* bools stay false after a kill)"
+    },
+    "bosses.volvagia": {
+      "label": "Volvagia",
+      "detect": {
+        "name": "DefeatedEnemyNum.Enemy_DungeonBoss_Volvagia",
+        "gte": 1
+      },
+      "confidence": "likely",
+      "evidence": "Kill counter DefeatedEnemyNum.Enemy_DungeonBoss_Volvagia ≥ 1 (the HaveDefeatedEnemy_* bools stay false after a kill)"
+    },
+    "bosses.morpha": {
+      "label": "Morpha",
+      "detect": {
+        "name": "DefeatedEnemyNum.Enemy_DungeonBoss_Morpha",
+        "gte": 1
+      },
+      "confidence": "likely",
+      "evidence": "Kill counter DefeatedEnemyNum.Enemy_DungeonBoss_Morpha ≥ 1 (the HaveDefeatedEnemy_* bools stay false after a kill)"
+    },
+    "bosses.bongo": {
+      "label": "Bongo",
+      "detect": {
+        "name": "DefeatedEnemyNum.Enemy_DungeonBoss_BongoBongo",
+        "gte": 1
+      },
+      "confidence": "likely",
+      "evidence": "Kill counter DefeatedEnemyNum.Enemy_DungeonBoss_BongoBongo ≥ 1 (the HaveDefeatedEnemy_* bools stay false after a kill)"
+    },
+    "bosses.twinrova": {
+      "label": "Twinrova",
+      "detect": {
+        "name": "DefeatedEnemyNum.Enemy_DungeonBoss_Twinrova",
+        "gte": 1
+      },
+      "confidence": "likely",
+      "evidence": "Kill counter DefeatedEnemyNum.Enemy_DungeonBoss_Twinrova ≥ 1 (the HaveDefeatedEnemy_* bools stay false after a kill)"
+    },
+    "bosses.ganondorf": {
+      "label": "Ganondorf",
+      "detect": {
+        "name": "DefeatedEnemyNum.Enemy_DungeonBoss_Ganondorf",
+        "gte": 1
+      },
+      "confidence": "likely",
+      "evidence": "Kill counter DefeatedEnemyNum.Enemy_DungeonBoss_Ganondorf ≥ 1 (the HaveDefeatedEnemy_* bools stay false after a kill)"
+    },
+    "bosses.ganon": {
+      "label": "Ganon",
+      "detect": {
+        "name": "DefeatedEnemyNum.Enemy_DungeonBoss_Ganon",
+        "gte": 1
+      },
+      "confidence": "likely",
+      "evidence": "Kill counter DefeatedEnemyNum.Enemy_DungeonBoss_Ganon ≥ 1 (the HaveDefeatedEnemy_* bools stay false after a kill)"
+    },
+    "mini_bosses.big_octo": {
+      "label": "Big Octo",
+      "detect": {
+        "name": "DefeatedEnemyNum.Enemy_MiddleBoss_BigOcto",
+        "gte": 1
+      },
+      "confidence": "likely",
+      "evidence": "Kill counter"
+    },
+    "mini_bosses.great_moblin": {
+      "label": "Great Moblin",
+      "detect": {
+        "name": "DefeatedEnemyNum.Enemy_Moblin_Club",
+        "gte": 1
+      },
+      "confidence": "likely",
+      "evidence": "Kill counter for the club-wielding Moblin (the Sacred Forest Meadow giant)"
+    },
+    "mini_bosses.poe_sisters": {
+      "label": "Poe Sisters",
+      "detect": {
+        "name": "DefeatedEnemyNum.Enemy_MiddleBoss_Poe_Meg",
+        "gte": 1
+      },
+      "confidence": "likely",
+      "evidence": "Kill counter for Meg, the last Poe Sister"
+    },
+    "mini_bosses.flare_dancer": {
+      "label": "Flare Dancer",
+      "detect": {
+        "name": "DefeatedEnemyNum.Enemy_MiddleBoss_FlareDancer",
+        "gte": 1
+      },
+      "confidence": "likely",
+      "evidence": "Kill counter"
+    },
+    "mini_bosses.white_wolfos": {
+      "label": "White Wolfos",
+      "detect": {
+        "name": "DefeatedEnemyNum.Enemy_Wolfos_White",
+        "gte": 1
+      },
+      "confidence": "likely",
+      "evidence": "Kill counter (IceCavern_Room04_WhiteWolfos_Appear also exists)"
+    },
+    "mini_bosses.dark_link": {
+      "label": "Dark Link",
+      "detect": {
+        "name": "DefeatedEnemyNum.Enemy_MiddleBoss_DarkLink",
+        "gte": 1
+      },
+      "confidence": "likely",
+      "evidence": "Kill counter"
+    },
+    "mini_bosses.dead_hand": {
+      "label": "Dead Hand",
+      "detect": {
+        "name": "DefeatedEnemyNum.Enemy_DeadHand",
+        "gte": 1
+      },
+      "confidence": "likely",
+      "evidence": "Kill counter"
+    },
+    "mini_bosses.gerudo_guards_carpenter_cells": {
+      "label": "Gerudo guards (carpenter cells)",
+      "detect": {
+        "all": [
+          {
+            "name": "DefeatedEnemyNum.Enemy_MiddleBoss_GerudoThief",
+            "gte": 1
+          },
+          {
+            "name": "DefeatedEnemyNum.Enemy_MiddleBoss_GerudoThief_02",
+            "gte": 1
+          },
+          {
+            "name": "DefeatedEnemyNum.Enemy_MiddleBoss_GerudoThief_03",
+            "gte": 1
+          },
+          {
+            "name": "DefeatedEnemyNum.Enemy_MiddleBoss_GerudoThief_04",
+            "gte": 1
+          }
+        ]
+      },
+      "confidence": "likely",
+      "evidence": "All four carpenter-cell guard counters"
+    },
+    "mini_bosses.iron_knuckle": {
+      "label": "Iron Knuckle",
+      "detect": {
+        "any": [
+          {
+            "name": "DefeatedEnemyNum.Enemy_IronKnuckle_Silver",
+            "gte": 1
+          },
+          {
+            "name": "DefeatedEnemyNum.Enemy_IronKnuckle_Black",
+            "gte": 1
+          },
+          {
+            "name": "DefeatedEnemyNum.Enemy_IronKnuckle_White",
+            "gte": 1
+          }
+        ]
+      },
+      "confidence": "guess",
+      "evidence": "Any of the three plain Iron Knuckle counters. Which colour the Spirit Temple one is needs a diff."
+    },
+    "mini_bosses.iron_knuckle_nabooru": {
+      "label": "Iron Knuckle (Nabooru)",
+      "detect": {
+        "name": "DefeatedEnemyNum.Enemy_MiddleBoss_IronKnuckle_Nabooru",
+        "gte": 1
+      },
+      "confidence": "likely",
+      "evidence": "Kill counter"
+    },
+    "side_quests.malons_friend": {
+      "label": "Malon's Friend",
+      "detect": {
+        "name": "Step_Get_Epona",
+        "eq": "Complete"
+      },
+      "confidence": "likely",
+      "evidence": "Quest step enum Step_Get_Epona = Complete (the game's own Get_Epona_IsCompleted_Exp expression is exactly this test)"
+    },
+    "side_quests.happy_mask_shopkeeper": {
+      "label": "Happy Mask Shopkeeper",
+      "detect": {
+        "name": "Step_SubEvent_MaskSalesman",
+        "eq": "Complete"
+      },
+      "confidence": "likely",
+      "evidence": "Quest step enum Step_SubEvent_MaskSalesman = Complete (the game's own SubEvent_MaskSalesman_IsCompleted_Exp expression is exactly this test)"
+    },
+    "side_quests.to_the_great_fairy": {
+      "label": "To the Great Fairy",
+      "detect": {
+        "name": "Step_Meet_GreatFairy",
+        "eq": "Complete"
+      },
+      "confidence": "likely",
+      "evidence": "Quest step enum Step_Meet_GreatFairy = Complete (steps: GoToTopOfMountain → GoToFountain → GetFairyBreath → GoToHyruleCastle)"
+    },
+    "side_quests.stir_the_scarecrows_soul": {
+      "label": "Stir the Scarecrow's Soul!",
+      "detect": {
+        "name": "Step_SubEvent_GetScarecrow",
+        "eq": "Complete"
+      },
+      "confidence": "likely",
+      "evidence": "Quest step enum Step_SubEvent_GetScarecrow = Complete (the game's own SubEvent_GetScarecrow_IsCompleted_Exp expression is exactly this test)"
+    },
+    "side_quests.from_a_pocket_egg_comes": {
+      "label": "From a Pocket Egg Comes…",
+      "detect": {
+        "name": "Step_SubEvent_GetSwordBigGoron",
+        "eq": "Complete"
+      },
+      "confidence": "likely",
+      "evidence": "Quest step enum Step_SubEvent_GetSwordBigGoron = Complete (the game's own SubEvent_GetSwordBigGoron_IsCompleted_Exp expression is exactly this test)"
+    },
+    "side_quests.broken_windmill_dry_well": {
+      "label": "Broken Windmill, Dry Well",
+      "detect": {
+        "key": "0x7A5B9537",
+        "eq": "Complete"
+      },
+      "confidence": "guess",
+      "evidence": "Unnamed quest enum whose first step is ReadyForGetStormSong; slot_05 (has Song of Storms) is at step02. Needs a diff."
+    },
+    "skulltula_rewards.10_tokens_adults_wallet": {
+      "label": "10 tokens: Adult's Wallet",
+      "detect": {
+        "name": "KakarikoVillage_GatheringTokenGold_GetReward10"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: KakarikoVillage_GatheringTokenGold_GetReward10 (reward claimed)"
+    },
+    "skulltula_rewards.20_tokens_echo_gem": {
+      "label": "20 tokens: Echo Gem",
+      "detect": {
+        "name": "KakarikoVillage_GatheringTokenGold_GetReward20"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: KakarikoVillage_GatheringTokenGold_GetReward20 (reward claimed)"
+    },
+    "skulltula_rewards.30_tokens_giants_wallet": {
+      "label": "30 tokens: Giant's Wallet",
+      "detect": {
+        "name": "KakarikoVillage_GatheringTokenGold_GetReward30"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: KakarikoVillage_GatheringTokenGold_GetReward30 (reward claimed)"
+    },
+    "skulltula_rewards.40_tokens_bombchus_20": {
+      "label": "40 tokens: Bombchus (20)",
+      "detect": {
+        "name": "KakarikoVillage_GatheringTokenGold_GetReward40"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: KakarikoVillage_GatheringTokenGold_GetReward40 (reward claimed)"
+    },
+    "skulltula_rewards.50_tokens_piece_of_heart": {
+      "label": "50 tokens: Piece of Heart",
+      "detect": {
+        "name": "KakarikoVillage_GatheringTokenGold_GetReward50"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: KakarikoVillage_GatheringTokenGold_GetReward50 (reward claimed)"
+    },
+    "skulltula_rewards.100_tokens_gold_rupee_200_rupees_repeatable": {
+      "label": "100 tokens: Gold Rupee (200 Rupees, repeatable)",
+      "detect": {
+        "name": "Step_GatheringTokenGold",
+        "eq": "Complete"
+      },
+      "confidence": "likely",
+      "evidence": "Quest step Step_GatheringTokenGold = Complete (steps: CollectToken → Finish → Complete); no separate 100-token flag in the save"
+    },
+    "child_trade.weird_egg": {
+      "label": "Weird Egg",
+      "detect": {
+        "name": "IsGet.Item_WeirdEgg"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_WeirdEgg (\"AlarmCucco\" = the Wake-up Cucco)"
+    },
+    "child_trade.wake_up_cucco": {
+      "label": "Wake-up Cucco",
+      "detect": {
+        "name": "IsGet.Item_AlarmCucco"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_AlarmCucco (\"AlarmCucco\" = the Wake-up Cucco)"
+    },
+    "child_trade.zeldas_letter": {
+      "label": "Zelda's Letter",
+      "detect": {
+        "name": "IsGet.Item_ZeldaLetter"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_ZeldaLetter (\"AlarmCucco\" = the Wake-up Cucco)"
+    },
+    "adult_trade.pocket_egg": {
+      "label": "Pocket Egg",
+      "detect": {
+        "name": "IsGet.Item_PocketEgg"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_PocketEgg"
+    },
+    "adult_trade.pocket_cucco": {
+      "label": "Pocket Cucco",
+      "detect": {
+        "name": "IsGet.Item_PocketCucco"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_PocketCucco"
+    },
+    "adult_trade.cojiro": {
+      "label": "Cojiro",
+      "detect": {
+        "name": "IsGet.Item_CojiroCucco"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_CojiroCucco"
+    },
+    "adult_trade.odd_mushroom": {
+      "label": "Odd Mushroom",
+      "detect": {
+        "name": "IsGet.Item_OddMushroom"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_OddMushroom"
+    },
+    "adult_trade.odd_potion": {
+      "label": "Odd Potion",
+      "detect": {
+        "name": "IsGet.Item_OddPowder"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_OddPowder"
+    },
+    "adult_trade.poachers_saw": {
+      "label": "Poacher's Saw",
+      "detect": {
+        "name": "IsGet.Item_PoacherSaw"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_PoacherSaw"
+    },
+    "adult_trade.broken_gorons_sword": {
+      "label": "Broken Goron's Sword",
+      "detect": {
+        "name": "IsGet.Item_BrokenSword"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_BrokenSword"
+    },
+    "adult_trade.prescription": {
+      "label": "Prescription",
+      "detect": {
+        "name": "IsGet.Item_Prescription"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_Prescription"
+    },
+    "adult_trade.eyeball_frog": {
+      "label": "Eyeball Frog",
+      "detect": {
+        "name": "IsGet.Item_EyeballFrog"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_EyeballFrog"
+    },
+    "adult_trade.worlds_finest_eye_drops": {
+      "label": "World's Finest Eye Drops",
+      "detect": {
+        "name": "IsGet.Item_EyeDrop"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_EyeDrop"
+    },
+    "adult_trade.claim_check": {
+      "label": "Claim Check",
+      "detect": {
+        "name": "IsGet.Item_ClaimCheck"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: IsGet.Item_ClaimCheck"
+    },
+    "dungeon_items.great_deku_tree_map": {
+      "label": "Great Deku Tree Map",
+      "detect": {
+        "name": "DungeonInfo.InsideTheDekuTree.IsGetMap"
+      },
+      "confidence": "confirmed",
+      "evidence": "Snapshots 2026-11-10 (fresh save): became true in the \"After-Deku-Tree-Dungeon-map\" snapshot and nowhere else. Flag name from game files: DungeonInfo.InsideTheDekuTree.IsGetMap"
+    },
+    "dungeon_items.great_deku_tree_compass": {
+      "label": "Great Deku Tree Compass",
+      "detect": {
+        "name": "DungeonInfo.InsideTheDekuTree.IsGetCompass"
+      },
+      "confidence": "confirmed",
+      "evidence": "Snapshots 2026-11-10 (fresh save): became true in the \"After-Deku-Tree-Compass\" snapshot and nowhere else. Flag name from game files: DungeonInfo.InsideTheDekuTree.IsGetCompass"
+    },
+    "dungeon_items.dodongos_cavern_map": {
+      "label": "Dodongo's Cavern Map",
+      "detect": {
+        "name": "DungeonInfo.DodongoCavern.IsGetMap"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: DungeonInfo.DodongoCavern.IsGetMap"
+    },
+    "dungeon_items.dodongos_cavern_compass": {
+      "label": "Dodongo's Cavern Compass",
+      "detect": {
+        "name": "DungeonInfo.DodongoCavern.IsGetCompass"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: DungeonInfo.DodongoCavern.IsGetCompass"
+    },
+    "dungeon_items.lord_jabu_jabus_belly_map": {
+      "label": "Lord Jabu-Jabu's Belly Map",
+      "detect": {
+        "name": "DungeonInfo.InsideJabuJabuBelly.IsGetMap"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: DungeonInfo.InsideJabuJabuBelly.IsGetMap"
+    },
+    "dungeon_items.lord_jabu_jabus_belly_compass": {
+      "label": "Lord Jabu-Jabu's Belly Compass",
+      "detect": {
+        "name": "DungeonInfo.InsideJabuJabuBelly.IsGetCompass"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: DungeonInfo.InsideJabuJabuBelly.IsGetCompass"
+    },
+    "dungeon_items.forest_temple_map": {
+      "label": "Forest Temple Map",
+      "detect": {
+        "name": "DungeonInfo.ForestTemple.IsGetMap"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: DungeonInfo.ForestTemple.IsGetMap"
+    },
+    "dungeon_items.forest_temple_compass": {
+      "label": "Forest Temple Compass",
+      "detect": {
+        "name": "DungeonInfo.ForestTemple.IsGetCompass"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: DungeonInfo.ForestTemple.IsGetCompass"
+    },
+    "dungeon_items.fire_temple_map": {
+      "label": "Fire Temple Map",
+      "detect": {
+        "name": "DungeonInfo.FireTemple.IsGetMap"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: DungeonInfo.FireTemple.IsGetMap"
+    },
+    "dungeon_items.fire_temple_compass": {
+      "label": "Fire Temple Compass",
+      "detect": {
+        "name": "DungeonInfo.FireTemple.IsGetCompass"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: DungeonInfo.FireTemple.IsGetCompass"
+    },
+    "dungeon_items.water_temple_map": {
+      "label": "Water Temple Map",
+      "detect": {
+        "name": "DungeonInfo.WaterTemple.IsGetMap"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: DungeonInfo.WaterTemple.IsGetMap"
+    },
+    "dungeon_items.water_temple_compass": {
+      "label": "Water Temple Compass",
+      "detect": {
+        "name": "DungeonInfo.WaterTemple.IsGetCompass"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: DungeonInfo.WaterTemple.IsGetCompass"
+    },
+    "dungeon_items.shadow_temple_map": {
+      "label": "Shadow Temple Map",
+      "detect": {
+        "name": "DungeonInfo.ShadowTemple.IsGetMap"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: DungeonInfo.ShadowTemple.IsGetMap"
+    },
+    "dungeon_items.shadow_temple_compass": {
+      "label": "Shadow Temple Compass",
+      "detect": {
+        "name": "DungeonInfo.ShadowTemple.IsGetCompass"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: DungeonInfo.ShadowTemple.IsGetCompass"
+    },
+    "dungeon_items.spirit_temple_map": {
+      "label": "Spirit Temple Map",
+      "detect": {
+        "name": "DungeonInfo.SpiritTemple.IsGetMap"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: DungeonInfo.SpiritTemple.IsGetMap"
+    },
+    "dungeon_items.spirit_temple_compass": {
+      "label": "Spirit Temple Compass",
+      "detect": {
+        "name": "DungeonInfo.SpiritTemple.IsGetCompass"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: DungeonInfo.SpiritTemple.IsGetCompass"
+    },
+    "dungeon_items.ice_cavern_map": {
+      "label": "Ice Cavern Map",
+      "detect": {
+        "name": "DungeonInfo.IceCavern.IsGetMap"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: DungeonInfo.IceCavern.IsGetMap"
+    },
+    "dungeon_items.ice_cavern_compass": {
+      "label": "Ice Cavern Compass",
+      "detect": {
+        "name": "DungeonInfo.IceCavern.IsGetCompass"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: DungeonInfo.IceCavern.IsGetCompass"
+    },
+    "dungeon_items.bottom_of_the_well_map": {
+      "label": "Bottom of the Well Map",
+      "detect": {
+        "name": "DungeonInfo.BottomOfTheWell.IsGetMap"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: DungeonInfo.BottomOfTheWell.IsGetMap"
+    },
+    "dungeon_items.bottom_of_the_well_compass": {
+      "label": "Bottom of the Well Compass",
+      "detect": {
+        "name": "DungeonInfo.BottomOfTheWell.IsGetCompass"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: DungeonInfo.BottomOfTheWell.IsGetCompass"
+    },
+    "dungeon_items.forest_temple_boss_key": {
+      "label": "Forest Temple Boss Key",
+      "detect": {
+        "name": "DungeonInfo.ForestTemple.IsGetBossKey"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: DungeonInfo.ForestTemple.IsGetBossKey"
+    },
+    "dungeon_items.fire_temple_boss_key": {
+      "label": "Fire Temple Boss Key",
+      "detect": {
+        "name": "DungeonInfo.FireTemple.IsGetBossKey"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: DungeonInfo.FireTemple.IsGetBossKey"
+    },
+    "dungeon_items.water_temple_boss_key": {
+      "label": "Water Temple Boss Key",
+      "detect": {
+        "name": "DungeonInfo.WaterTemple.IsGetBossKey"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: DungeonInfo.WaterTemple.IsGetBossKey"
+    },
+    "dungeon_items.shadow_temple_boss_key": {
+      "label": "Shadow Temple Boss Key",
+      "detect": {
+        "name": "DungeonInfo.ShadowTemple.IsGetBossKey"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: DungeonInfo.ShadowTemple.IsGetBossKey"
+    },
+    "dungeon_items.spirit_temple_boss_key": {
+      "label": "Spirit Temple Boss Key",
+      "detect": {
+        "name": "DungeonInfo.SpiritTemple.IsGetBossKey"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: DungeonInfo.SpiritTemple.IsGetBossKey"
+    },
+    "dungeon_items.ganons_castle_boss_key": {
+      "label": "Ganon's Castle Boss Key",
+      "detect": {
+        "name": "DungeonInfo.InsideGanonCastle.IsGetBossKey"
+      },
+      "confidence": "likely",
+      "evidence": "Flag name from game files: DungeonInfo.InsideGanonCastle.IsGetBossKey"
+    },
+    "amiibo_masks.young_link": {
+      "label": "Young Link amiibo mask",
+      "detect": {
+        "name": "IsGet.Armor_Child_Mask_Amiibo0"
+      },
+      "confidence": "guess",
+      "evidence": "IsGet.Armor_Child_Mask_Amiibo0; which figure is 0 vs 1 is unknown"
+    },
+    "amiibo_masks.young_zelda": {
+      "label": "Young Zelda amiibo mask",
+      "detect": {
+        "name": "IsGet.Armor_Child_Mask_Amiibo1"
+      },
+      "confidence": "guess",
+      "evidence": "IsGet.Armor_Child_Mask_Amiibo1; which figure is 0 vs 1 is unknown"
+    },
+    "gold_skulltulas.001": {
+      "label": "Great Deku Tree",
+      "detect": {
+        "b64": "0xBCE05898CE61F1C0"
+      },
+      "confidence": "confirmed",
+      "evidence": "Diff on 2026-11-10: collecting it set 64-bit flag 0xBCE05898CE61F1C0 (its placement id in InsideTheDekuTree)"
+    },
+    "gold_skulltulas.002": {
+      "label": "Great Deku Tree",
+      "detect": {
+        "count": [
+          {
+            "b64": "0xDF73F3739CEF466B"
+          },
+          {
+            "b64": "0xF2E27D6A27026ACF"
+          },
+          {
+            "b64": "0xFAD8931A0011E1D4"
+          }
+        ],
+        "gte": 1
+      },
+      "confidence": "guess",
+      "evidence": "3 Gold Skulltulas in Great Deku Tree. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.003": {
+      "label": "Great Deku Tree",
+      "detect": {
+        "count": [
+          {
+            "b64": "0xDF73F3739CEF466B"
+          },
+          {
+            "b64": "0xF2E27D6A27026ACF"
+          },
+          {
+            "b64": "0xFAD8931A0011E1D4"
+          }
+        ],
+        "gte": 2
+      },
+      "confidence": "guess",
+      "evidence": "3 Gold Skulltulas in Great Deku Tree. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.004": {
+      "label": "Great Deku Tree",
+      "detect": {
+        "count": [
+          {
+            "b64": "0xDF73F3739CEF466B"
+          },
+          {
+            "b64": "0xF2E27D6A27026ACF"
+          },
+          {
+            "b64": "0xFAD8931A0011E1D4"
+          }
+        ],
+        "gte": 3
+      },
+      "confidence": "guess",
+      "evidence": "3 Gold Skulltulas in Great Deku Tree. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.005": {
+      "label": "Hyrule Castle Town",
+      "detect": {
+        "b64": "0x7C1A05315F83C34D"
+      },
+      "confidence": "likely",
+      "evidence": "The only Gold Skulltula left in Hyrule Castle Town after the matches above (placement 0x7C1A05315F83C34D)"
+    },
+    "gold_skulltulas.006": {
+      "label": "Hyrule Castle",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x22C0F7DFF5EBB86D"
+          },
+          {
+            "b64": "0x7F28485FA5D3688F"
+          }
+        ],
+        "gte": 1
+      },
+      "confidence": "guess",
+      "evidence": "2 Gold Skulltulas in Hyrule Castle. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.075": {
+      "label": "Hyrule Castle",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x22C0F7DFF5EBB86D"
+          },
+          {
+            "b64": "0x7F28485FA5D3688F"
+          }
+        ],
+        "gte": 2
+      },
+      "confidence": "guess",
+      "evidence": "2 Gold Skulltulas in Hyrule Castle. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.043": {
+      "label": "Hyrule Castle (outside Ganon's Castle)",
+      "detect": {
+        "b64": "0x4E13CC311CD04DF4"
+      },
+      "confidence": "likely",
+      "evidence": "The only Gold Skulltula left in Hyrule Castle (outside Ganon's Castle) after the matches above (placement 0x4E13CC311CD04DF4)"
+    },
+    "gold_skulltulas.007": {
+      "label": "Kakariko Village",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x2DF265292516BDF0"
+          },
+          {
+            "b64": "0x6A8D9B2373D08FCB"
+          },
+          {
+            "b64": "0xA1632E322C612B97"
+          },
+          {
+            "b64": "0xC3C68D0AC4B85831"
+          },
+          {
+            "b64": "0xD1CEF51CF294FB86"
+          },
+          {
+            "b64": "0xD4883A16973B1D06"
+          }
+        ],
+        "gte": 1
+      },
+      "confidence": "guess",
+      "evidence": "6 Gold Skulltulas in Kakariko Village. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.008": {
+      "label": "Kakariko Village",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x2DF265292516BDF0"
+          },
+          {
+            "b64": "0x6A8D9B2373D08FCB"
+          },
+          {
+            "b64": "0xA1632E322C612B97"
+          },
+          {
+            "b64": "0xC3C68D0AC4B85831"
+          },
+          {
+            "b64": "0xD1CEF51CF294FB86"
+          },
+          {
+            "b64": "0xD4883A16973B1D06"
+          }
+        ],
+        "gte": 2
+      },
+      "confidence": "guess",
+      "evidence": "6 Gold Skulltulas in Kakariko Village. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.009": {
+      "label": "Kakariko Village",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x2DF265292516BDF0"
+          },
+          {
+            "b64": "0x6A8D9B2373D08FCB"
+          },
+          {
+            "b64": "0xA1632E322C612B97"
+          },
+          {
+            "b64": "0xC3C68D0AC4B85831"
+          },
+          {
+            "b64": "0xD1CEF51CF294FB86"
+          },
+          {
+            "b64": "0xD4883A16973B1D06"
+          }
+        ],
+        "gte": 3
+      },
+      "confidence": "guess",
+      "evidence": "6 Gold Skulltulas in Kakariko Village. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.010": {
+      "label": "Kakariko Village",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x2DF265292516BDF0"
+          },
+          {
+            "b64": "0x6A8D9B2373D08FCB"
+          },
+          {
+            "b64": "0xA1632E322C612B97"
+          },
+          {
+            "b64": "0xC3C68D0AC4B85831"
+          },
+          {
+            "b64": "0xD1CEF51CF294FB86"
+          },
+          {
+            "b64": "0xD4883A16973B1D06"
+          }
+        ],
+        "gte": 4
+      },
+      "confidence": "guess",
+      "evidence": "6 Gold Skulltulas in Kakariko Village. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.012": {
+      "label": "Kakariko Village",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x2DF265292516BDF0"
+          },
+          {
+            "b64": "0x6A8D9B2373D08FCB"
+          },
+          {
+            "b64": "0xA1632E322C612B97"
+          },
+          {
+            "b64": "0xC3C68D0AC4B85831"
+          },
+          {
+            "b64": "0xD1CEF51CF294FB86"
+          },
+          {
+            "b64": "0xD4883A16973B1D06"
+          }
+        ],
+        "gte": 5
+      },
+      "confidence": "guess",
+      "evidence": "6 Gold Skulltulas in Kakariko Village. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.096": {
+      "label": "Kakariko Village",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x2DF265292516BDF0"
+          },
+          {
+            "b64": "0x6A8D9B2373D08FCB"
+          },
+          {
+            "b64": "0xA1632E322C612B97"
+          },
+          {
+            "b64": "0xC3C68D0AC4B85831"
+          },
+          {
+            "b64": "0xD1CEF51CF294FB86"
+          },
+          {
+            "b64": "0xD4883A16973B1D06"
+          }
+        ],
+        "gte": 6
+      },
+      "confidence": "guess",
+      "evidence": "6 Gold Skulltulas in Kakariko Village. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.011": {
+      "label": "Graveyard",
+      "detect": {
+        "b64": "0xE91F6BE796358FFC"
+      },
+      "confidence": "likely",
+      "evidence": "Soft-soil Skulltula (placement has IsMagicBeanSoil): the only one in Graveyard (placement 0xE91F6BE796358FFC)"
+    },
+    "gold_skulltulas.041": {
+      "label": "Graveyard",
+      "detect": {
+        "b64": "0x032F42F523BE6425"
+      },
+      "confidence": "likely",
+      "evidence": "The only Gold Skulltula left in Graveyard after the matches above (placement 0x032F42F523BE6425)"
+    },
+    "gold_skulltulas.014": {
+      "label": "Lake Hylia",
+      "detect": {
+        "b64": "0x61576BEFD16C499A"
+      },
+      "confidence": "likely",
+      "evidence": "Soft-soil Skulltula (placement has IsMagicBeanSoil): the only one in Hyrule Field / Hyrule Field (near Gerudo Valley) / Lon Lon Ranch / Lake Hylia / Lake Hylia (Lakeside Laboratory) (placement 0x61576BEFD16C499A)"
+    },
+    "gold_skulltulas.013": {
+      "label": "Lon Lon Ranch",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x04BE4A8FF29F2099"
+          },
+          {
+            "b64": "0x0AF4D6F063D3AE9F"
+          },
+          {
+            "b64": "0x1E38E8D23596EECF"
+          },
+          {
+            "b64": "0x25E6072D4DF023B3"
+          },
+          {
+            "b64": "0x6689BDEBC95368EB"
+          },
+          {
+            "b64": "0x781E0DE8EED42373"
+          },
+          {
+            "b64": "0x7D8EC14BDD1F6341"
+          },
+          {
+            "b64": "0xA6A4E87DA18FA678"
+          },
+          {
+            "b64": "0xC1858A4FCD84A28E"
+          },
+          {
+            "b64": "0xDC8113831C56B194"
+          }
+        ],
+        "gte": 1
+      },
+      "confidence": "guess",
+      "evidence": "10 Gold Skulltulas in Hyrule Field / Hyrule Field (near Gerudo Valley) / Lon Lon Ranch / Lake Hylia / Lake Hylia (Lakeside Laboratory). The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.036": {
+      "label": "Lake Hylia",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x04BE4A8FF29F2099"
+          },
+          {
+            "b64": "0x0AF4D6F063D3AE9F"
+          },
+          {
+            "b64": "0x1E38E8D23596EECF"
+          },
+          {
+            "b64": "0x25E6072D4DF023B3"
+          },
+          {
+            "b64": "0x6689BDEBC95368EB"
+          },
+          {
+            "b64": "0x781E0DE8EED42373"
+          },
+          {
+            "b64": "0x7D8EC14BDD1F6341"
+          },
+          {
+            "b64": "0xA6A4E87DA18FA678"
+          },
+          {
+            "b64": "0xC1858A4FCD84A28E"
+          },
+          {
+            "b64": "0xDC8113831C56B194"
+          }
+        ],
+        "gte": 2
+      },
+      "confidence": "guess",
+      "evidence": "10 Gold Skulltulas in Hyrule Field / Hyrule Field (near Gerudo Valley) / Lon Lon Ranch / Lake Hylia / Lake Hylia (Lakeside Laboratory). The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.037": {
+      "label": "Lon Lon Ranch",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x04BE4A8FF29F2099"
+          },
+          {
+            "b64": "0x0AF4D6F063D3AE9F"
+          },
+          {
+            "b64": "0x1E38E8D23596EECF"
+          },
+          {
+            "b64": "0x25E6072D4DF023B3"
+          },
+          {
+            "b64": "0x6689BDEBC95368EB"
+          },
+          {
+            "b64": "0x781E0DE8EED42373"
+          },
+          {
+            "b64": "0x7D8EC14BDD1F6341"
+          },
+          {
+            "b64": "0xA6A4E87DA18FA678"
+          },
+          {
+            "b64": "0xC1858A4FCD84A28E"
+          },
+          {
+            "b64": "0xDC8113831C56B194"
+          }
+        ],
+        "gte": 3
+      },
+      "confidence": "guess",
+      "evidence": "10 Gold Skulltulas in Hyrule Field / Hyrule Field (near Gerudo Valley) / Lon Lon Ranch / Lake Hylia / Lake Hylia (Lakeside Laboratory). The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.038": {
+      "label": "Lon Lon Ranch",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x04BE4A8FF29F2099"
+          },
+          {
+            "b64": "0x0AF4D6F063D3AE9F"
+          },
+          {
+            "b64": "0x1E38E8D23596EECF"
+          },
+          {
+            "b64": "0x25E6072D4DF023B3"
+          },
+          {
+            "b64": "0x6689BDEBC95368EB"
+          },
+          {
+            "b64": "0x781E0DE8EED42373"
+          },
+          {
+            "b64": "0x7D8EC14BDD1F6341"
+          },
+          {
+            "b64": "0xA6A4E87DA18FA678"
+          },
+          {
+            "b64": "0xC1858A4FCD84A28E"
+          },
+          {
+            "b64": "0xDC8113831C56B194"
+          }
+        ],
+        "gte": 4
+      },
+      "confidence": "guess",
+      "evidence": "10 Gold Skulltulas in Hyrule Field / Hyrule Field (near Gerudo Valley) / Lon Lon Ranch / Lake Hylia / Lake Hylia (Lakeside Laboratory). The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.039": {
+      "label": "Hyrule Field",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x04BE4A8FF29F2099"
+          },
+          {
+            "b64": "0x0AF4D6F063D3AE9F"
+          },
+          {
+            "b64": "0x1E38E8D23596EECF"
+          },
+          {
+            "b64": "0x25E6072D4DF023B3"
+          },
+          {
+            "b64": "0x6689BDEBC95368EB"
+          },
+          {
+            "b64": "0x781E0DE8EED42373"
+          },
+          {
+            "b64": "0x7D8EC14BDD1F6341"
+          },
+          {
+            "b64": "0xA6A4E87DA18FA678"
+          },
+          {
+            "b64": "0xC1858A4FCD84A28E"
+          },
+          {
+            "b64": "0xDC8113831C56B194"
+          }
+        ],
+        "gte": 5
+      },
+      "confidence": "guess",
+      "evidence": "10 Gold Skulltulas in Hyrule Field / Hyrule Field (near Gerudo Valley) / Lon Lon Ranch / Lake Hylia / Lake Hylia (Lakeside Laboratory). The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.042": {
+      "label": "Hyrule Field",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x04BE4A8FF29F2099"
+          },
+          {
+            "b64": "0x0AF4D6F063D3AE9F"
+          },
+          {
+            "b64": "0x1E38E8D23596EECF"
+          },
+          {
+            "b64": "0x25E6072D4DF023B3"
+          },
+          {
+            "b64": "0x6689BDEBC95368EB"
+          },
+          {
+            "b64": "0x781E0DE8EED42373"
+          },
+          {
+            "b64": "0x7D8EC14BDD1F6341"
+          },
+          {
+            "b64": "0xA6A4E87DA18FA678"
+          },
+          {
+            "b64": "0xC1858A4FCD84A28E"
+          },
+          {
+            "b64": "0xDC8113831C56B194"
+          }
+        ],
+        "gte": 6
+      },
+      "confidence": "guess",
+      "evidence": "10 Gold Skulltulas in Hyrule Field / Hyrule Field (near Gerudo Valley) / Lon Lon Ranch / Lake Hylia / Lake Hylia (Lakeside Laboratory). The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.068": {
+      "label": "Lake Hylia (Lakeside Laboratory)",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x04BE4A8FF29F2099"
+          },
+          {
+            "b64": "0x0AF4D6F063D3AE9F"
+          },
+          {
+            "b64": "0x1E38E8D23596EECF"
+          },
+          {
+            "b64": "0x25E6072D4DF023B3"
+          },
+          {
+            "b64": "0x6689BDEBC95368EB"
+          },
+          {
+            "b64": "0x781E0DE8EED42373"
+          },
+          {
+            "b64": "0x7D8EC14BDD1F6341"
+          },
+          {
+            "b64": "0xA6A4E87DA18FA678"
+          },
+          {
+            "b64": "0xC1858A4FCD84A28E"
+          },
+          {
+            "b64": "0xDC8113831C56B194"
+          }
+        ],
+        "gte": 7
+      },
+      "confidence": "guess",
+      "evidence": "10 Gold Skulltulas in Hyrule Field / Hyrule Field (near Gerudo Valley) / Lon Lon Ranch / Lake Hylia / Lake Hylia (Lakeside Laboratory). The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.074": {
+      "label": "Lake Hylia",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x04BE4A8FF29F2099"
+          },
+          {
+            "b64": "0x0AF4D6F063D3AE9F"
+          },
+          {
+            "b64": "0x1E38E8D23596EECF"
+          },
+          {
+            "b64": "0x25E6072D4DF023B3"
+          },
+          {
+            "b64": "0x6689BDEBC95368EB"
+          },
+          {
+            "b64": "0x781E0DE8EED42373"
+          },
+          {
+            "b64": "0x7D8EC14BDD1F6341"
+          },
+          {
+            "b64": "0xA6A4E87DA18FA678"
+          },
+          {
+            "b64": "0xC1858A4FCD84A28E"
+          },
+          {
+            "b64": "0xDC8113831C56B194"
+          }
+        ],
+        "gte": 8
+      },
+      "confidence": "guess",
+      "evidence": "10 Gold Skulltulas in Hyrule Field / Hyrule Field (near Gerudo Valley) / Lon Lon Ranch / Lake Hylia / Lake Hylia (Lakeside Laboratory). The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.098": {
+      "label": "Lake Hylia",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x04BE4A8FF29F2099"
+          },
+          {
+            "b64": "0x0AF4D6F063D3AE9F"
+          },
+          {
+            "b64": "0x1E38E8D23596EECF"
+          },
+          {
+            "b64": "0x25E6072D4DF023B3"
+          },
+          {
+            "b64": "0x6689BDEBC95368EB"
+          },
+          {
+            "b64": "0x781E0DE8EED42373"
+          },
+          {
+            "b64": "0x7D8EC14BDD1F6341"
+          },
+          {
+            "b64": "0xA6A4E87DA18FA678"
+          },
+          {
+            "b64": "0xC1858A4FCD84A28E"
+          },
+          {
+            "b64": "0xDC8113831C56B194"
+          }
+        ],
+        "gte": 9
+      },
+      "confidence": "guess",
+      "evidence": "10 Gold Skulltulas in Hyrule Field / Hyrule Field (near Gerudo Valley) / Lon Lon Ranch / Lake Hylia / Lake Hylia (Lakeside Laboratory). The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.099": {
+      "label": "Hyrule Field",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x04BE4A8FF29F2099"
+          },
+          {
+            "b64": "0x0AF4D6F063D3AE9F"
+          },
+          {
+            "b64": "0x1E38E8D23596EECF"
+          },
+          {
+            "b64": "0x25E6072D4DF023B3"
+          },
+          {
+            "b64": "0x6689BDEBC95368EB"
+          },
+          {
+            "b64": "0x781E0DE8EED42373"
+          },
+          {
+            "b64": "0x7D8EC14BDD1F6341"
+          },
+          {
+            "b64": "0xA6A4E87DA18FA678"
+          },
+          {
+            "b64": "0xC1858A4FCD84A28E"
+          },
+          {
+            "b64": "0xDC8113831C56B194"
+          }
+        ],
+        "gte": 10
+      },
+      "confidence": "guess",
+      "evidence": "10 Gold Skulltulas in Hyrule Field / Hyrule Field (near Gerudo Valley) / Lon Lon Ranch / Lake Hylia / Lake Hylia (Lakeside Laboratory). The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.015": {
+      "label": "Gerudo Valley",
+      "detect": {
+        "b64": "0x738F5746CC517702"
+      },
+      "confidence": "likely",
+      "evidence": "Soft-soil Skulltula (placement has IsMagicBeanSoil): the only one in Gerudo Valley (placement 0x738F5746CC517702)"
+    },
+    "gold_skulltulas.040": {
+      "label": "Gerudo Valley",
+      "detect": {
+        "count": [
+          {
+            "b64": "0xA017CE09904C2DCE"
+          },
+          {
+            "b64": "0xBC85EFCA2B222CD9"
+          },
+          {
+            "b64": "0xD3D86D3D6988ED8C"
+          }
+        ],
+        "gte": 1
+      },
+      "confidence": "guess",
+      "evidence": "3 Gold Skulltulas in Gerudo Valley. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.067": {
+      "label": "Gerudo Valley",
+      "detect": {
+        "count": [
+          {
+            "b64": "0xA017CE09904C2DCE"
+          },
+          {
+            "b64": "0xBC85EFCA2B222CD9"
+          },
+          {
+            "b64": "0xD3D86D3D6988ED8C"
+          }
+        ],
+        "gte": 2
+      },
+      "confidence": "guess",
+      "evidence": "3 Gold Skulltulas in Gerudo Valley. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.084": {
+      "label": "Gerudo Valley",
+      "detect": {
+        "count": [
+          {
+            "b64": "0xA017CE09904C2DCE"
+          },
+          {
+            "b64": "0xBC85EFCA2B222CD9"
+          },
+          {
+            "b64": "0xD3D86D3D6988ED8C"
+          }
+        ],
+        "gte": 3
+      },
+      "confidence": "guess",
+      "evidence": "3 Gold Skulltulas in Gerudo Valley. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.019": {
+      "label": "Kokiri Forest",
+      "detect": {
+        "b64": "0x858F5000AD57B2CC"
+      },
+      "confidence": "likely",
+      "evidence": "Soft-soil Skulltula (placement has IsMagicBeanSoil): the only one in Kokiri Forest (placement 0x858F5000AD57B2CC)"
+    },
+    "gold_skulltulas.016": {
+      "label": "Kokiri Forest",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x62C340F0B876C195"
+          },
+          {
+            "b64": "0xECDC46B409ED7D38"
+          }
+        ],
+        "gte": 1
+      },
+      "confidence": "guess",
+      "evidence": "2 Gold Skulltulas in Kokiri Forest. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.044": {
+      "label": "Kokiri Forest",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x62C340F0B876C195"
+          },
+          {
+            "b64": "0xECDC46B409ED7D38"
+          }
+        ],
+        "gte": 2
+      },
+      "confidence": "guess",
+      "evidence": "2 Gold Skulltulas in Kokiri Forest. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.017": {
+      "label": "Lost Woods",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x8186BCB07D6C2CF9"
+          },
+          {
+            "b64": "0xF6FA6EF0CA152948"
+          }
+        ],
+        "gte": 1
+      },
+      "confidence": "guess",
+      "evidence": "Soft-soil Skulltula (placement has IsMagicBeanSoil) (2 in Lost Woods). The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.018": {
+      "label": "Lost Woods",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x8186BCB07D6C2CF9"
+          },
+          {
+            "b64": "0xF6FA6EF0CA152948"
+          }
+        ],
+        "gte": 2
+      },
+      "confidence": "guess",
+      "evidence": "Soft-soil Skulltula (placement has IsMagicBeanSoil) (2 in Lost Woods). The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.045": {
+      "label": "Lost Woods",
+      "detect": {
+        "b64": "0x3C2B585AC5C0443E"
+      },
+      "confidence": "likely",
+      "evidence": "The only Gold Skulltula left in Lost Woods after the matches above (placement 0x3C2B585AC5C0443E)"
+    },
+    "gold_skulltulas.020": {
+      "label": "Death Mountain Trail",
+      "detect": {
+        "b64": "0xF1D32C06612DA232"
+      },
+      "confidence": "likely",
+      "evidence": "Soft-soil Skulltula (placement has IsMagicBeanSoil): the only one in Death Mountain Trail (placement 0xF1D32C06612DA232)"
+    },
+    "gold_skulltulas.026": {
+      "label": "Death Mountain Trail",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x04E03AC27985E328"
+          },
+          {
+            "b64": "0x0B8E43ABFA0B5F86"
+          },
+          {
+            "b64": "0xF5359B24FC86AC22"
+          }
+        ],
+        "gte": 1
+      },
+      "confidence": "guess",
+      "evidence": "3 Gold Skulltulas in Death Mountain Trail. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.060": {
+      "label": "Death Mountain Trail",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x04E03AC27985E328"
+          },
+          {
+            "b64": "0x0B8E43ABFA0B5F86"
+          },
+          {
+            "b64": "0xF5359B24FC86AC22"
+          }
+        ],
+        "gte": 2
+      },
+      "confidence": "guess",
+      "evidence": "3 Gold Skulltulas in Death Mountain Trail. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.061": {
+      "label": "Death Mountain Trail",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x04E03AC27985E328"
+          },
+          {
+            "b64": "0x0B8E43ABFA0B5F86"
+          },
+          {
+            "b64": "0xF5359B24FC86AC22"
+          }
+        ],
+        "gte": 3
+      },
+      "confidence": "guess",
+      "evidence": "3 Gold Skulltulas in Death Mountain Trail. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.021": {
+      "label": "Dodongo's Cavern",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x0D53E429A1EF383D"
+          },
+          {
+            "b64": "0x10434342A3917EBD"
+          },
+          {
+            "b64": "0x3F5B150F16D84603"
+          },
+          {
+            "b64": "0x758CE7B4868447FB"
+          },
+          {
+            "b64": "0xBDFE13C37F356829"
+          }
+        ],
+        "gte": 1
+      },
+      "confidence": "guess",
+      "evidence": "5 Gold Skulltulas in Dodongo's Cavern. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.022": {
+      "label": "Dodongo's Cavern",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x0D53E429A1EF383D"
+          },
+          {
+            "b64": "0x10434342A3917EBD"
+          },
+          {
+            "b64": "0x3F5B150F16D84603"
+          },
+          {
+            "b64": "0x758CE7B4868447FB"
+          },
+          {
+            "b64": "0xBDFE13C37F356829"
+          }
+        ],
+        "gte": 2
+      },
+      "confidence": "guess",
+      "evidence": "5 Gold Skulltulas in Dodongo's Cavern. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.023": {
+      "label": "Dodongo's Cavern",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x0D53E429A1EF383D"
+          },
+          {
+            "b64": "0x10434342A3917EBD"
+          },
+          {
+            "b64": "0x3F5B150F16D84603"
+          },
+          {
+            "b64": "0x758CE7B4868447FB"
+          },
+          {
+            "b64": "0xBDFE13C37F356829"
+          }
+        ],
+        "gte": 3
+      },
+      "confidence": "guess",
+      "evidence": "5 Gold Skulltulas in Dodongo's Cavern. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.024": {
+      "label": "Dodongo's Cavern",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x0D53E429A1EF383D"
+          },
+          {
+            "b64": "0x10434342A3917EBD"
+          },
+          {
+            "b64": "0x3F5B150F16D84603"
+          },
+          {
+            "b64": "0x758CE7B4868447FB"
+          },
+          {
+            "b64": "0xBDFE13C37F356829"
+          }
+        ],
+        "gte": 4
+      },
+      "confidence": "guess",
+      "evidence": "5 Gold Skulltulas in Dodongo's Cavern. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.052": {
+      "label": "Dodongo's Cavern",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x0D53E429A1EF383D"
+          },
+          {
+            "b64": "0x10434342A3917EBD"
+          },
+          {
+            "b64": "0x3F5B150F16D84603"
+          },
+          {
+            "b64": "0x758CE7B4868447FB"
+          },
+          {
+            "b64": "0xBDFE13C37F356829"
+          }
+        ],
+        "gte": 5
+      },
+      "confidence": "guess",
+      "evidence": "5 Gold Skulltulas in Dodongo's Cavern. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.054": {
+      "label": "Death Mountain Crater",
+      "detect": {
+        "b64": "0x58C75BADF059CA54"
+      },
+      "confidence": "likely",
+      "evidence": "Soft-soil Skulltula (placement has IsMagicBeanSoil): the only one in Death Mountain Crater (placement 0x58C75BADF059CA54)"
+    },
+    "gold_skulltulas.025": {
+      "label": "Death Mountain Crater",
+      "detect": {
+        "b64": "0xFCD7F04DCF755E8E"
+      },
+      "confidence": "likely",
+      "evidence": "The only Gold Skulltula left in Death Mountain Crater after the matches above (placement 0xFCD7F04DCF755E8E)"
+    },
+    "gold_skulltulas.027": {
+      "label": "Goron City",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x07E6E21142CC54DB"
+          },
+          {
+            "b64": "0xFBBC2D490276C68E"
+          }
+        ],
+        "gte": 1
+      },
+      "confidence": "guess",
+      "evidence": "2 Gold Skulltulas in Goron City. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.053": {
+      "label": "Goron City",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x07E6E21142CC54DB"
+          },
+          {
+            "b64": "0xFBBC2D490276C68E"
+          }
+        ],
+        "gte": 2
+      },
+      "confidence": "guess",
+      "evidence": "2 Gold Skulltulas in Goron City. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.028": {
+      "label": "Zora's River",
+      "detect": {
+        "b64": "0xABAD0E9F0D471156"
+      },
+      "confidence": "likely",
+      "evidence": "Soft-soil Skulltula (placement has IsMagicBeanSoil): the only one in Zora's River (placement 0xABAD0E9F0D471156)"
+    },
+    "gold_skulltulas.029": {
+      "label": "Zora's River",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x78AE4FD90B3CFAAA"
+          },
+          {
+            "b64": "0x8325FEA55EDFBE97"
+          },
+          {
+            "b64": "0x97824C2FFEAA877C"
+          }
+        ],
+        "gte": 1
+      },
+      "confidence": "guess",
+      "evidence": "3 Gold Skulltulas in Zora's River. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.062": {
+      "label": "Zora's River",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x78AE4FD90B3CFAAA"
+          },
+          {
+            "b64": "0x8325FEA55EDFBE97"
+          },
+          {
+            "b64": "0x97824C2FFEAA877C"
+          }
+        ],
+        "gte": 2
+      },
+      "confidence": "guess",
+      "evidence": "3 Gold Skulltulas in Zora's River. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.097": {
+      "label": "Zora's River",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x78AE4FD90B3CFAAA"
+          },
+          {
+            "b64": "0x8325FEA55EDFBE97"
+          },
+          {
+            "b64": "0x97824C2FFEAA877C"
+          }
+        ],
+        "gte": 3
+      },
+      "confidence": "guess",
+      "evidence": "3 Gold Skulltulas in Zora's River. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.030": {
+      "label": "Zora's Fountain",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x63446D12663DAA83"
+          },
+          {
+            "b64": "0x845BA51DC18C855E"
+          },
+          {
+            "b64": "0xF0DAC245E2FC448E"
+          }
+        ],
+        "gte": 1
+      },
+      "confidence": "guess",
+      "evidence": "3 Gold Skulltulas in Zora's Fountain. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.035": {
+      "label": "Zora's Fountain",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x63446D12663DAA83"
+          },
+          {
+            "b64": "0x845BA51DC18C855E"
+          },
+          {
+            "b64": "0xF0DAC245E2FC448E"
+          }
+        ],
+        "gte": 2
+      },
+      "confidence": "guess",
+      "evidence": "3 Gold Skulltulas in Zora's Fountain. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.100": {
+      "label": "Zora's Fountain",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x63446D12663DAA83"
+          },
+          {
+            "b64": "0x845BA51DC18C855E"
+          },
+          {
+            "b64": "0xF0DAC245E2FC448E"
+          }
+        ],
+        "gte": 3
+      },
+      "confidence": "guess",
+      "evidence": "3 Gold Skulltulas in Zora's Fountain. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.031": {
+      "label": "Lord Jabu-Jabu's Belly",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x9C95FD41B89C058A"
+          },
+          {
+            "b64": "0x9FC92497F014DBD5"
+          },
+          {
+            "b64": "0xC03F282FF60942B6"
+          },
+          {
+            "b64": "0xDDD260AFB6F2989A"
+          }
+        ],
+        "gte": 1
+      },
+      "confidence": "guess",
+      "evidence": "4 Gold Skulltulas in Lord Jabu-Jabu's Belly. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.032": {
+      "label": "Lord Jabu-Jabu's Belly",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x9C95FD41B89C058A"
+          },
+          {
+            "b64": "0x9FC92497F014DBD5"
+          },
+          {
+            "b64": "0xC03F282FF60942B6"
+          },
+          {
+            "b64": "0xDDD260AFB6F2989A"
+          }
+        ],
+        "gte": 2
+      },
+      "confidence": "guess",
+      "evidence": "4 Gold Skulltulas in Lord Jabu-Jabu's Belly. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.033": {
+      "label": "Lord Jabu-Jabu's Belly",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x9C95FD41B89C058A"
+          },
+          {
+            "b64": "0x9FC92497F014DBD5"
+          },
+          {
+            "b64": "0xC03F282FF60942B6"
+          },
+          {
+            "b64": "0xDDD260AFB6F2989A"
+          }
+        ],
+        "gte": 3
+      },
+      "confidence": "guess",
+      "evidence": "4 Gold Skulltulas in Lord Jabu-Jabu's Belly. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.034": {
+      "label": "Lord Jabu-Jabu's Belly",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x9C95FD41B89C058A"
+          },
+          {
+            "b64": "0x9FC92497F014DBD5"
+          },
+          {
+            "b64": "0xC03F282FF60942B6"
+          },
+          {
+            "b64": "0xDDD260AFB6F2989A"
+          }
+        ],
+        "gte": 4
+      },
+      "confidence": "guess",
+      "evidence": "4 Gold Skulltulas in Lord Jabu-Jabu's Belly. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.046": {
+      "label": "Sacred Forest Meadow",
+      "detect": {
+        "b64": "0xC8DB3346F78EA31B"
+      },
+      "confidence": "likely",
+      "evidence": "The only Gold Skulltula left in Sacred Forest Meadow after the matches above (placement 0xC8DB3346F78EA31B)"
+    },
+    "gold_skulltulas.047": {
+      "label": "Forest Temple",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x1BF5F0176EF03BDA"
+          },
+          {
+            "b64": "0x2AA39F00AAA2D331"
+          },
+          {
+            "b64": "0x984021BC20419EBE"
+          },
+          {
+            "b64": "0x99CA89963485DF11"
+          },
+          {
+            "b64": "0xF46B1710ED0620D1"
+          }
+        ],
+        "gte": 1
+      },
+      "confidence": "guess",
+      "evidence": "5 Gold Skulltulas in Forest Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.048": {
+      "label": "Forest Temple",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x1BF5F0176EF03BDA"
+          },
+          {
+            "b64": "0x2AA39F00AAA2D331"
+          },
+          {
+            "b64": "0x984021BC20419EBE"
+          },
+          {
+            "b64": "0x99CA89963485DF11"
+          },
+          {
+            "b64": "0xF46B1710ED0620D1"
+          }
+        ],
+        "gte": 2
+      },
+      "confidence": "guess",
+      "evidence": "5 Gold Skulltulas in Forest Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.049": {
+      "label": "Forest Temple",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x1BF5F0176EF03BDA"
+          },
+          {
+            "b64": "0x2AA39F00AAA2D331"
+          },
+          {
+            "b64": "0x984021BC20419EBE"
+          },
+          {
+            "b64": "0x99CA89963485DF11"
+          },
+          {
+            "b64": "0xF46B1710ED0620D1"
+          }
+        ],
+        "gte": 3
+      },
+      "confidence": "guess",
+      "evidence": "5 Gold Skulltulas in Forest Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.050": {
+      "label": "Forest Temple",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x1BF5F0176EF03BDA"
+          },
+          {
+            "b64": "0x2AA39F00AAA2D331"
+          },
+          {
+            "b64": "0x984021BC20419EBE"
+          },
+          {
+            "b64": "0x99CA89963485DF11"
+          },
+          {
+            "b64": "0xF46B1710ED0620D1"
+          }
+        ],
+        "gte": 4
+      },
+      "confidence": "guess",
+      "evidence": "5 Gold Skulltulas in Forest Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.051": {
+      "label": "Forest Temple",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x1BF5F0176EF03BDA"
+          },
+          {
+            "b64": "0x2AA39F00AAA2D331"
+          },
+          {
+            "b64": "0x984021BC20419EBE"
+          },
+          {
+            "b64": "0x99CA89963485DF11"
+          },
+          {
+            "b64": "0xF46B1710ED0620D1"
+          }
+        ],
+        "gte": 5
+      },
+      "confidence": "guess",
+      "evidence": "5 Gold Skulltulas in Forest Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.055": {
+      "label": "Fire Temple",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x4D1B7E35CA0C6484"
+          },
+          {
+            "b64": "0x5E3AE6A7CF3AC292"
+          },
+          {
+            "b64": "0x7F498ADA1C2E9C7A"
+          },
+          {
+            "b64": "0xB0F77B17CFB37458"
+          },
+          {
+            "b64": "0xCC175A90E0014905"
+          }
+        ],
+        "gte": 1
+      },
+      "confidence": "guess",
+      "evidence": "5 Gold Skulltulas in Fire Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.056": {
+      "label": "Fire Temple",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x4D1B7E35CA0C6484"
+          },
+          {
+            "b64": "0x5E3AE6A7CF3AC292"
+          },
+          {
+            "b64": "0x7F498ADA1C2E9C7A"
+          },
+          {
+            "b64": "0xB0F77B17CFB37458"
+          },
+          {
+            "b64": "0xCC175A90E0014905"
+          }
+        ],
+        "gte": 2
+      },
+      "confidence": "guess",
+      "evidence": "5 Gold Skulltulas in Fire Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.057": {
+      "label": "Fire Temple",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x4D1B7E35CA0C6484"
+          },
+          {
+            "b64": "0x5E3AE6A7CF3AC292"
+          },
+          {
+            "b64": "0x7F498ADA1C2E9C7A"
+          },
+          {
+            "b64": "0xB0F77B17CFB37458"
+          },
+          {
+            "b64": "0xCC175A90E0014905"
+          }
+        ],
+        "gte": 3
+      },
+      "confidence": "guess",
+      "evidence": "5 Gold Skulltulas in Fire Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.058": {
+      "label": "Fire Temple",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x4D1B7E35CA0C6484"
+          },
+          {
+            "b64": "0x5E3AE6A7CF3AC292"
+          },
+          {
+            "b64": "0x7F498ADA1C2E9C7A"
+          },
+          {
+            "b64": "0xB0F77B17CFB37458"
+          },
+          {
+            "b64": "0xCC175A90E0014905"
+          }
+        ],
+        "gte": 4
+      },
+      "confidence": "guess",
+      "evidence": "5 Gold Skulltulas in Fire Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.059": {
+      "label": "Fire Temple",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x4D1B7E35CA0C6484"
+          },
+          {
+            "b64": "0x5E3AE6A7CF3AC292"
+          },
+          {
+            "b64": "0x7F498ADA1C2E9C7A"
+          },
+          {
+            "b64": "0xB0F77B17CFB37458"
+          },
+          {
+            "b64": "0xCC175A90E0014905"
+          }
+        ],
+        "gte": 5
+      },
+      "confidence": "guess",
+      "evidence": "5 Gold Skulltulas in Fire Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.063": {
+      "label": "Zora's Domain",
+      "detect": {
+        "b64": "0x853B892663C0215D"
+      },
+      "confidence": "likely",
+      "evidence": "The only Gold Skulltula left in Zora's Domain after the matches above (placement 0x853B892663C0215D)"
+    },
+    "gold_skulltulas.064": {
+      "label": "Ice Cavern",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x165FC0BC0ACA1F6C"
+          },
+          {
+            "b64": "0x63701A2CF70B201C"
+          },
+          {
+            "b64": "0xCDB49F5D0A67FCF6"
+          }
+        ],
+        "gte": 1
+      },
+      "confidence": "guess",
+      "evidence": "3 Gold Skulltulas in Ice Cavern. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.065": {
+      "label": "Ice Cavern",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x165FC0BC0ACA1F6C"
+          },
+          {
+            "b64": "0x63701A2CF70B201C"
+          },
+          {
+            "b64": "0xCDB49F5D0A67FCF6"
+          }
+        ],
+        "gte": 2
+      },
+      "confidence": "guess",
+      "evidence": "3 Gold Skulltulas in Ice Cavern. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.066": {
+      "label": "Ice Cavern",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x165FC0BC0ACA1F6C"
+          },
+          {
+            "b64": "0x63701A2CF70B201C"
+          },
+          {
+            "b64": "0xCDB49F5D0A67FCF6"
+          }
+        ],
+        "gte": 3
+      },
+      "confidence": "guess",
+      "evidence": "3 Gold Skulltulas in Ice Cavern. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.069": {
+      "label": "Water Temple",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x02974596F92CF377"
+          },
+          {
+            "b64": "0x3D0DE5ADAEB73CC9"
+          },
+          {
+            "b64": "0xA0973706F6415ECD"
+          },
+          {
+            "b64": "0xD731EA6A04D0FD01"
+          },
+          {
+            "b64": "0xE03A2965DF9F7B30"
+          }
+        ],
+        "gte": 1
+      },
+      "confidence": "guess",
+      "evidence": "5 Gold Skulltulas in Water Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.070": {
+      "label": "Water Temple",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x02974596F92CF377"
+          },
+          {
+            "b64": "0x3D0DE5ADAEB73CC9"
+          },
+          {
+            "b64": "0xA0973706F6415ECD"
+          },
+          {
+            "b64": "0xD731EA6A04D0FD01"
+          },
+          {
+            "b64": "0xE03A2965DF9F7B30"
+          }
+        ],
+        "gte": 2
+      },
+      "confidence": "guess",
+      "evidence": "5 Gold Skulltulas in Water Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.071": {
+      "label": "Water Temple",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x02974596F92CF377"
+          },
+          {
+            "b64": "0x3D0DE5ADAEB73CC9"
+          },
+          {
+            "b64": "0xA0973706F6415ECD"
+          },
+          {
+            "b64": "0xD731EA6A04D0FD01"
+          },
+          {
+            "b64": "0xE03A2965DF9F7B30"
+          }
+        ],
+        "gte": 3
+      },
+      "confidence": "guess",
+      "evidence": "5 Gold Skulltulas in Water Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.072": {
+      "label": "Water Temple",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x02974596F92CF377"
+          },
+          {
+            "b64": "0x3D0DE5ADAEB73CC9"
+          },
+          {
+            "b64": "0xA0973706F6415ECD"
+          },
+          {
+            "b64": "0xD731EA6A04D0FD01"
+          },
+          {
+            "b64": "0xE03A2965DF9F7B30"
+          }
+        ],
+        "gte": 4
+      },
+      "confidence": "guess",
+      "evidence": "5 Gold Skulltulas in Water Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.073": {
+      "label": "Water Temple",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x02974596F92CF377"
+          },
+          {
+            "b64": "0x3D0DE5ADAEB73CC9"
+          },
+          {
+            "b64": "0xA0973706F6415ECD"
+          },
+          {
+            "b64": "0xD731EA6A04D0FD01"
+          },
+          {
+            "b64": "0xE03A2965DF9F7B30"
+          }
+        ],
+        "gte": 5
+      },
+      "confidence": "guess",
+      "evidence": "5 Gold Skulltulas in Water Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.076": {
+      "label": "Bottom of the Well",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x35FB354FAC262D36"
+          },
+          {
+            "b64": "0x6789388E9FB9C92C"
+          },
+          {
+            "b64": "0xA8D6182A5C956E16"
+          }
+        ],
+        "gte": 1
+      },
+      "confidence": "guess",
+      "evidence": "3 Gold Skulltulas in Bottom of the Well. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.077": {
+      "label": "Bottom of the Well",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x35FB354FAC262D36"
+          },
+          {
+            "b64": "0x6789388E9FB9C92C"
+          },
+          {
+            "b64": "0xA8D6182A5C956E16"
+          }
+        ],
+        "gte": 2
+      },
+      "confidence": "guess",
+      "evidence": "3 Gold Skulltulas in Bottom of the Well. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.078": {
+      "label": "Bottom of the Well",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x35FB354FAC262D36"
+          },
+          {
+            "b64": "0x6789388E9FB9C92C"
+          },
+          {
+            "b64": "0xA8D6182A5C956E16"
+          }
+        ],
+        "gte": 3
+      },
+      "confidence": "guess",
+      "evidence": "3 Gold Skulltulas in Bottom of the Well. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.079": {
+      "label": "Shadow Temple",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x7A74BC651F9FE024"
+          },
+          {
+            "b64": "0x8E87908CB035E950"
+          },
+          {
+            "b64": "0xD23A7A2C9ECED9CE"
+          },
+          {
+            "b64": "0xD7FFBE169189E50D"
+          },
+          {
+            "b64": "0xEAFE60E592E9A3FB"
+          }
+        ],
+        "gte": 1
+      },
+      "confidence": "guess",
+      "evidence": "5 Gold Skulltulas in Shadow Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.080": {
+      "label": "Shadow Temple",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x7A74BC651F9FE024"
+          },
+          {
+            "b64": "0x8E87908CB035E950"
+          },
+          {
+            "b64": "0xD23A7A2C9ECED9CE"
+          },
+          {
+            "b64": "0xD7FFBE169189E50D"
+          },
+          {
+            "b64": "0xEAFE60E592E9A3FB"
+          }
+        ],
+        "gte": 2
+      },
+      "confidence": "guess",
+      "evidence": "5 Gold Skulltulas in Shadow Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.081": {
+      "label": "Shadow Temple",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x7A74BC651F9FE024"
+          },
+          {
+            "b64": "0x8E87908CB035E950"
+          },
+          {
+            "b64": "0xD23A7A2C9ECED9CE"
+          },
+          {
+            "b64": "0xD7FFBE169189E50D"
+          },
+          {
+            "b64": "0xEAFE60E592E9A3FB"
+          }
+        ],
+        "gte": 3
+      },
+      "confidence": "guess",
+      "evidence": "5 Gold Skulltulas in Shadow Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.082": {
+      "label": "Shadow Temple",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x7A74BC651F9FE024"
+          },
+          {
+            "b64": "0x8E87908CB035E950"
+          },
+          {
+            "b64": "0xD23A7A2C9ECED9CE"
+          },
+          {
+            "b64": "0xD7FFBE169189E50D"
+          },
+          {
+            "b64": "0xEAFE60E592E9A3FB"
+          }
+        ],
+        "gte": 4
+      },
+      "confidence": "guess",
+      "evidence": "5 Gold Skulltulas in Shadow Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.083": {
+      "label": "Shadow Temple",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x7A74BC651F9FE024"
+          },
+          {
+            "b64": "0x8E87908CB035E950"
+          },
+          {
+            "b64": "0xD23A7A2C9ECED9CE"
+          },
+          {
+            "b64": "0xD7FFBE169189E50D"
+          },
+          {
+            "b64": "0xEAFE60E592E9A3FB"
+          }
+        ],
+        "gte": 5
+      },
+      "confidence": "guess",
+      "evidence": "5 Gold Skulltulas in Shadow Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.085": {
+      "label": "Gerudo Fortress",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x81ED4ED76699E3D8"
+          },
+          {
+            "b64": "0xB4ECE769E6F3A206"
+          }
+        ],
+        "gte": 1
+      },
+      "confidence": "guess",
+      "evidence": "2 Gold Skulltulas in Gerudo Fortress. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.089": {
+      "label": "Gerudo Fortress",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x81ED4ED76699E3D8"
+          },
+          {
+            "b64": "0xB4ECE769E6F3A206"
+          }
+        ],
+        "gte": 2
+      },
+      "confidence": "guess",
+      "evidence": "2 Gold Skulltulas in Gerudo Fortress. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.086": {
+      "label": "Haunted Wasteland (Mirage Desert)",
+      "detect": {
+        "b64": "0xCEED596F17934971"
+      },
+      "confidence": "likely",
+      "evidence": "The only Gold Skulltula left in Haunted Wasteland (Mirage Desert) after the matches above (placement 0xCEED596F17934971)"
+    },
+    "gold_skulltulas.088": {
+      "label": "Desert Colossus",
+      "detect": {
+        "b64": "0x0341F2C03598C861"
+      },
+      "confidence": "likely",
+      "evidence": "Soft-soil Skulltula (placement has IsMagicBeanSoil): the only one in Desert Colossus (placement 0x0341F2C03598C861)"
+    },
+    "gold_skulltulas.087": {
+      "label": "Desert Colossus",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x9AE3D0AC392E6CDA"
+          },
+          {
+            "b64": "0xD0F7E5FFA76BA288"
+          }
+        ],
+        "gte": 1
+      },
+      "confidence": "guess",
+      "evidence": "2 Gold Skulltulas in Desert Colossus. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.090": {
+      "label": "Desert Colossus",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x9AE3D0AC392E6CDA"
+          },
+          {
+            "b64": "0xD0F7E5FFA76BA288"
+          }
+        ],
+        "gte": 2
+      },
+      "confidence": "guess",
+      "evidence": "2 Gold Skulltulas in Desert Colossus. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.091": {
+      "label": "Spirit Temple",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x4696B2730DE0516C"
+          },
+          {
+            "b64": "0x70B0FCA66CA4808A"
+          },
+          {
+            "b64": "0x8C8BB95471D20D02"
+          },
+          {
+            "b64": "0x9222E742B73D3D2C"
+          },
+          {
+            "b64": "0xB3D9F353599EEA53"
+          }
+        ],
+        "gte": 1
+      },
+      "confidence": "guess",
+      "evidence": "5 Gold Skulltulas in Spirit Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.092": {
+      "label": "Spirit Temple",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x4696B2730DE0516C"
+          },
+          {
+            "b64": "0x70B0FCA66CA4808A"
+          },
+          {
+            "b64": "0x8C8BB95471D20D02"
+          },
+          {
+            "b64": "0x9222E742B73D3D2C"
+          },
+          {
+            "b64": "0xB3D9F353599EEA53"
+          }
+        ],
+        "gte": 2
+      },
+      "confidence": "guess",
+      "evidence": "5 Gold Skulltulas in Spirit Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.093": {
+      "label": "Spirit Temple",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x4696B2730DE0516C"
+          },
+          {
+            "b64": "0x70B0FCA66CA4808A"
+          },
+          {
+            "b64": "0x8C8BB95471D20D02"
+          },
+          {
+            "b64": "0x9222E742B73D3D2C"
+          },
+          {
+            "b64": "0xB3D9F353599EEA53"
+          }
+        ],
+        "gte": 3
+      },
+      "confidence": "guess",
+      "evidence": "5 Gold Skulltulas in Spirit Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.094": {
+      "label": "Spirit Temple",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x4696B2730DE0516C"
+          },
+          {
+            "b64": "0x70B0FCA66CA4808A"
+          },
+          {
+            "b64": "0x8C8BB95471D20D02"
+          },
+          {
+            "b64": "0x9222E742B73D3D2C"
+          },
+          {
+            "b64": "0xB3D9F353599EEA53"
+          }
+        ],
+        "gte": 4
+      },
+      "confidence": "guess",
+      "evidence": "5 Gold Skulltulas in Spirit Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "gold_skulltulas.095": {
+      "label": "Spirit Temple",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x4696B2730DE0516C"
+          },
+          {
+            "b64": "0x70B0FCA66CA4808A"
+          },
+          {
+            "b64": "0x8C8BB95471D20D02"
+          },
+          {
+            "b64": "0x9222E742B73D3D2C"
+          },
+          {
+            "b64": "0xB3D9F353599EEA53"
+          }
+        ],
+        "gte": 5
+      },
+      "confidence": "guess",
+      "evidence": "5 Gold Skulltulas in Spirit Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "heart_pieces.022": {
+      "label": "Lake Hylia",
+      "detect": {
+        "name": "Npc_Hylia_045_HasDived"
+      },
+      "confidence": "likely",
+      "evidence": "The game's own heart-piece map marker (HeartPieceAnchor in HyruleField) names this flag: Npc_Hylia_045_HasDived"
+    },
+    "heart_pieces.013": {
+      "label": "Hyrule Castle Town",
+      "detect": {
+        "name": "MiniGame_BombchuBowling_ClearThirdTime"
+      },
+      "confidence": "likely",
+      "evidence": "The game's own heart-piece map marker (HeartPieceAnchor in Market) names this flag: MiniGame_BombchuBowling_ClearThirdTime"
+    },
+    "heart_pieces.027": {
+      "label": "Zora's River",
+      "detect": {
+        "name": "MiniGame_FrogTenors_StormSong"
+      },
+      "confidence": "likely",
+      "evidence": "The game's own heart-piece map marker (HeartPieceAnchor in ZoraRiver) names this flag: MiniGame_FrogTenors_StormSong"
+    },
+    "heart_pieces.011": {
+      "label": "Death Mountain Crater",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x0A564328FAF93C71"
+          },
+          {
+            "b64": "0x8F5F3D3321AEB7CD"
+          }
+        ],
+        "gte": 1
+      },
+      "confidence": "guess",
+      "evidence": "2 world heart pieces in DeathMountainCrater. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "heart_pieces.024": {
+      "label": "Death Mountain Crater",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x0A564328FAF93C71"
+          },
+          {
+            "b64": "0x8F5F3D3321AEB7CD"
+          }
+        ],
+        "gte": 2
+      },
+      "confidence": "guess",
+      "evidence": "2 world heart pieces in DeathMountainCrater. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "heart_pieces.023": {
+      "label": "Death Mountain Trail",
+      "detect": {
+        "b64": "0x09ECB6A0150FEE97"
+      },
+      "confidence": "likely",
+      "evidence": "The only world heart piece left in DeathMountainTrail after the matches above (placement 0x09ECB6A0150FEE97)"
+    },
+    "heart_pieces.032": {
+      "label": "Desert Colossus",
+      "detect": {
+        "b64": "0x92FEAB9A9810C619"
+      },
+      "confidence": "likely",
+      "evidence": "The only world heart piece left in DesertColossus after the matches above (placement 0x92FEAB9A9810C619)"
+    },
+    "heart_pieces.005": {
+      "label": "Gerudo Valley",
+      "detect": {
+        "b64": "0xDFD66C63357CDEA7"
+      },
+      "confidence": "likely",
+      "evidence": "The only world heart piece left in GerudoValley after the matches above (placement 0xDFD66C63357CDEA7)"
+    },
+    "heart_pieces.017": {
+      "label": "Graveyard",
+      "detect": {
+        "b64": "0x1DF0DBF50C1732B7"
+      },
+      "confidence": "likely",
+      "evidence": "The only world heart piece left in Graveyard after the matches above (placement 0x1DF0DBF50C1732B7)"
+    },
+    "heart_pieces.003": {
+      "label": "Lon Lon Ranch",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x88358AF5B5300AA9"
+          },
+          {
+            "b64": "0xBAEC91D6ED8DD96B"
+          }
+        ],
+        "gte": 1
+      },
+      "confidence": "guess",
+      "evidence": "2 world heart pieces in HyruleField. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "heart_pieces.021": {
+      "label": "Lake Hylia",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x88358AF5B5300AA9"
+          },
+          {
+            "b64": "0xBAEC91D6ED8DD96B"
+          }
+        ],
+        "gte": 2
+      },
+      "confidence": "guess",
+      "evidence": "2 world heart pieces in HyruleField. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "heart_pieces.012": {
+      "label": "Kakariko Village",
+      "detect": {
+        "count": [
+          {
+            "b64": "0xB9D0070B468F26D2"
+          },
+          {
+            "b64": "0xF8C7601DA7DD887E"
+          }
+        ],
+        "gte": 1
+      },
+      "confidence": "guess",
+      "evidence": "2 world heart pieces in KakarikoVillage. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "heart_pieces.018": {
+      "label": "Kakariko Village",
+      "detect": {
+        "count": [
+          {
+            "b64": "0xB9D0070B468F26D2"
+          },
+          {
+            "b64": "0xF8C7601DA7DD887E"
+          }
+        ],
+        "gte": 2
+      },
+      "confidence": "guess",
+      "evidence": "2 world heart pieces in KakarikoVillage. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "heart_pieces.026": {
+      "label": "Zora's Fountain",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x6F736FC80F7B0ACA"
+          },
+          {
+            "b64": "0xAC2E26B5EC7DA3A2"
+          }
+        ],
+        "gte": 2
+      },
+      "confidence": "guess",
+      "evidence": "2 world heart pieces in ZoraFountain. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "heart_pieces.025": {
+      "label": "Zora's Fountain",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x6F736FC80F7B0ACA"
+          },
+          {
+            "b64": "0xAC2E26B5EC7DA3A2"
+          }
+        ],
+        "gte": 1
+      },
+      "confidence": "guess",
+      "evidence": "2 world heart pieces in ZoraFountain. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "heart_pieces.014": {
+      "label": "Zora's River",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x3A23B59EAEDC0510"
+          },
+          {
+            "b64": "0x9EFABD5B0516C341"
+          }
+        ],
+        "gte": 1
+      },
+      "confidence": "guess",
+      "evidence": "2 world heart pieces in ZoraRiver. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "heart_pieces.015": {
+      "label": "Zora's River",
+      "detect": {
+        "count": [
+          {
+            "b64": "0x3A23B59EAEDC0510"
+          },
+          {
+            "b64": "0x9EFABD5B0516C341"
+          }
+        ],
+        "gte": 2
+      },
+      "confidence": "guess",
+      "evidence": "2 world heart pieces in ZoraRiver. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+    },
+    "heart_pieces.004": {
+      "label": "Gerudo Valley",
+      "detect": null,
+      "confidence": "guess",
+      "evidence": "Chest heart piece. The game marks it (HeartPieceAnchor type 1 next to a chest), but chests store their \"opened\" flag under a different key than their placement id. Needs one before/after snapshot."
+    },
+    "heart_pieces.016": {
+      "label": "Zora's Domain",
+      "detect": null,
+      "confidence": "guess",
+      "evidence": "Chest heart piece. The game marks it (HeartPieceAnchor type 1 next to a chest), but chests store their \"opened\" flag under a different key than their placement id. Needs one before/after snapshot."
+    },
+    "heart_pieces.030": {
+      "label": "Gerudo Fortress",
+      "detect": null,
+      "confidence": "guess",
+      "evidence": "Chest heart piece. The game marks it (HeartPieceAnchor type 1 next to a chest), but chests store their \"opened\" flag under a different key than their placement id. Needs one before/after snapshot."
+    },
+    "heart_pieces.033": {
+      "label": "Graveyard",
+      "detect": null,
+      "confidence": "guess",
+      "evidence": "Chest heart piece. The game marks it (HeartPieceAnchor type 1 next to a chest), but chests store their \"opened\" flag under a different key than their placement id. Needs one before/after snapshot."
+    },
+    "heart_pieces.035": {
+      "label": "Hyrule Field (near Gerudo Valley)",
+      "detect": null,
+      "confidence": "guess",
+      "evidence": "Chest heart piece. The game marks it (HeartPieceAnchor type 1 next to a chest), but chests store their \"opened\" flag under a different key than their placement id. Needs one before/after snapshot."
+    }
+  },
+  "counters": {
+    "big_poes": {
+      "value": {
+        "name": "GhostShop_CouponNum"
+      },
+      "confidence": "guess",
+      "evidence": "GhostShop_CouponNum, the Poe buyer's count. 0 in every slot so far; its unit (Poes or points) needs a diff. HyruleField_Defeat_BigPoe_01–10 track Poes defeated, not sold."
+    },
+    "magic_beans_planted": {
+      "countOf": [
+        {
+          "name": "Gimmick_MagicBeanSoil_KokiriForest"
+        },
+        {
+          "name": "Gimmick_MagicBeanSoil_KokiriForest_LostWood"
+        },
+        {
+          "name": "Gimmick_MagicBeanSoil_LostWood01"
+        },
+        {
+          "name": "Gimmick_MagicBeanSoil_LostWood02"
+        },
+        {
+          "name": "Gimmick_MagicBeanSoil_Graveyard"
+        },
+        {
+          "name": "Gimmick_MagicBeanSoil_ZoraRiver"
+        },
+        {
+          "name": "Gimmick_MagicBeanSoil_ZoraRiver02"
+        },
+        {
+          "name": "Gimmick_MagicBeanSoil_LakeHylia"
+        },
+        {
+          "name": "Gimmick_MagicBeanSoil_DeathMountainTrail"
+        },
+        {
+          "name": "Gimmick_MagicBeanSoil_DeathMountainCrater"
+        },
+        {
+          "name": "Gimmick_MagicBeanSoil_GerudoValley"
+        },
+        {
+          "name": "Gimmick_MagicBeanSoil_DesertColossus"
+        }
+      ],
+      "cap": 10,
+      "confidence": "guess",
+      "evidence": "Count of Gimmick_MagicBeanSoil_* flags (12 exist for 10 beans; some may be Skulltula soil only). All false so far. Needs a diff after planting."
+    }
+  },
+  "derived": {
+    "maxHearts": {
+      "name": "PlayerStatus.MaxLife",
+      "scale": 0.25,
+      "evidence": "Quarter hearts; same key as the MIT editor. slot_05 = 28 = 7 hearts"
+    },
+    "heartPiecesHeld": {
+      "name": "PouchData.Obj_Heart_Piece.StockNum",
+      "evidence": "Loose pieces toward the next heart (0–3)"
+    },
+    "goldSkulltulaTokens": {
+      "name": "PouchData.Item_Token_Gold.StockNum",
+      "evidence": "Same hash (0x04735978) as the MIT editor"
+    },
+    "skulltulaRewards": {
+      "evidence": "From the checklist (House of Skulltula rewards)",
+      "list": [
+        [
+          10,
+          "Adult's Wallet"
+        ],
+        [
+          20,
+          "Echo Gem"
+        ],
+        [
+          30,
+          "Giant's Wallet"
+        ],
+        [
+          40,
+          "Bombchus (20)"
+        ],
+        [
+          50,
+          "Piece of Heart"
+        ],
+        [
+          100,
+          "Gold Rupee"
+        ]
+      ]
+    }
+  }
+}

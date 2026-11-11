@@ -1,0 +1,12 @@
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import path from 'node:path';
+
+// Renderer (UI) build. The Electron main/preload are bundled by scripts/build-electron.mjs.
+export default defineConfig({
+  root: path.resolve(__dirname, 'src/renderer'),
+  base: './',
+  plugins: [react()],
+  build: { outDir: path.resolve(__dirname, 'dist'), emptyOutDir: true },
+  server: { port: 5183, strictPort: true },
+});
