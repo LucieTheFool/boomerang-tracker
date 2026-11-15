@@ -10,6 +10,10 @@ import { regionsForArea } from '../core/areas.js';
 import { evaluateLogic, Logic, LogicFile } from '../core/logic.js';
 import type { AvailableEntry } from '../shared/types.js';
 import { SaveWatcher } from './watcher.js';
+import { LiveSource } from './live.js';
+import { ChangeLog } from './changelog.js';
+import { STAGE_KEY, LOCATION_KEY, areaFrom } from '../gamedata/live.js';
+import { keyOf } from '../gamedata/detect.js';
 import { SettingsStore } from './settings.js';
 import type { AppState, Toast, SlotSummary } from '../shared/types.js';
 
@@ -30,6 +34,7 @@ export class Controller {
   private lastParsed = new Map<string, { mtimeMs: number; data: GameDataFile; buf: Buffer }>();
   /** the save shown last (any slot) */
   private lastShown?: { mtimeMs: number; data: GameDataFile; buf: Buffer };
+  private log!: ChangeLog;
   private toastId = 1;
   private toasts: Toast[] = [];
   state: AppState;
@@ -57,7 +62,11 @@ export class Controller {
       learnedCount: settings.data.learned.length,
       overlay: { visible: false, locked: o.locked, opacity: o.opacity, mode: o.mode },
       hotkeys: { ...settings.data.hotkeys, errors: [] },
+      live: { status: 'off', enabled: settings.data.live.enabled, using: false },
+      changeLog: { enabled: settings.data.changeLog, dir: path.join(paths.userData, 'logs') },
     };
+    this.log = new ChangeLog(path.join(paths.userData, 'logs'));
+    this.log.enabled = settings.data.changeLog;
     this.allRegions = [...new Set(this.tracker.checklist.categories.flatMap(c => c.items.map(i => i.chapter).filter((x): x is string => !!x)))];
   }
   private allRegions: string[];
@@ -96,12 +105,59 @@ export class Controller {
       if (found) { dir = found; this.settings.update(s => (s.saveDir = found)); }
     }
     await this.useFolder(dir);
+    if (this.settings.data.live.enabled) await this.startLive();
   }
+
+  // ---- live (read-only) progress from the running game
+  private live?: LiveSource;
+
+  private async startLive() {
+    if (this.live) return;
+    this.live = new LiveSource({
+      hint: this.settings.data.live.hint,
+      onHint: h => this.settings.update(s => (s.live.hint = h)),
+      onChange: () => void this.refresh(true),
+      onStatus: () => {
+        const i = this.live?.info;
+        if (i && (i.status === 'live') !== this.state.live.using) this.log.write({ kind: 'source', status: i.status, detail: i.detail });
+        void this.refresh(false);
+      },
+    });
+    this.live.watchInts = this.watchedInts();
+    if (this.lastShownSave) this.live.setReference(this.lastShownSave);
+    await this.live.start();
+  }
+
+  async setLiveEnabled(on: boolean) {
+    this.settings.update(s => (s.live.enabled = on));
+    if (on) await this.startLive();
+    else { this.live?.stop(); this.live = undefined; }
+    await this.refresh(false);
+  }
+
+  /** Ints the mapping or logic reads (other Ints, like play time, change all the time). */
+  private watchedInts(): Set<number> {
+    const out = new Set<number>();
+    for (const k of this.tracker.keyToEntries.keys()) if (typeof k === 'number') out.add(k >>> 0);
+    const walk = (x: unknown) => {
+      if (Array.isArray(x)) return x.forEach(walk);
+      if (x && typeof x === 'object') {
+        const o = x as Record<string, unknown>;
+        if (typeof o.name === 'string' || typeof o.key === 'string') { try { out.add(keyOf(o as { name?: string; key?: string }) >>> 0); } catch { /* not a rule */ } }
+        Object.values(o).forEach(walk);
+      }
+    };
+    walk(this.logic);
+    return out;
+  }
+  /** Newest save read (the live source's reference). */
+  private lastShownSave?: GameDataFile;
 
   async useFolder(dir: string | undefined) {
     this.watcher?.stop();
     this.watcher = undefined;
     this.lastParsed.clear();
+    this.lastShownBySlot.clear();
     this.lastShown = undefined;
     this.userDir = undefined;
     if (!dir) return this.fail('no-folder', 'No save folder found. Choose your Hookshot folder (or its user\\save\\<id> folder).');
@@ -129,9 +185,11 @@ export class Controller {
     const pinned = this.settings.data.pinnedSlot;
     const slot: SlotInfo = (pinned && slots.find(s => s.name === pinned)) || mostRecentSlot(slots);
 
-    let read;
+    let read: { mtimeMs: number; data: GameDataFile; buf: Buffer };
     try {
-      read = await readSaveStable(slot.progress);
+      // Live updates refresh often; don't re-read a save that hasn't changed.
+      const cached = this.lastParsed.get(slot.name);
+      read = cached && cached.mtimeMs === slot.mtimeMs ? cached : await readSaveStable(slot.progress);
     } catch (e) {
       // Keep showing the last good state; just report the problem.
       const msg = e instanceof GameDataError ? `This save doesn't look like an Ocarina of Time save: ${e.message}` : `Couldn't read ${slot.name}/progress.sav: ${(e as Error).message}`;
@@ -139,31 +197,57 @@ export class Controller {
       this.emit();
       return;
     }
-    // Compare with the previous save we showed. Autosaves rotate across slots, so when
+    const saved = { mtimeMs: read.mtimeMs, data: read.data, buf: read.buf };
+    this.lastParsed.set(slot.name, saved);
+    // Live data is used only when following the most recent save (it is the game's
+    // current state, which a pinned older slot isn't), and only while it matches it.
+    if (!pinned) { this.lastShownSave = read.data; this.live?.setReference(read.data); }
+    const liveSnap = pinned ? undefined : this.live?.current();
+    const cur = liveSnap ? { mtimeMs: liveSnap.atMs, data: liveSnap.data, buf: read.buf } : saved;
+
+    // Compare with the previous state we showed. Autosaves rotate across slots, so when
     // following "most recent" the previous save is usually in a different slot.
-    const prev = pinned ? this.lastParsed.get(slot.name) : this.lastShown;
-    const isNewSave = !!prev && read.mtimeMs > prev.mtimeMs;
+    const prev = pinned ? this.lastShownBySlot.get(slot.name) : this.lastShown;
+    const isNewSave = !!prev && cur.mtimeMs > prev.mtimeMs;
     // A save from another playthrough loses flags; don't toast, glow or ask about it.
-    const lost = prev ? [...prev.data.bool64].filter(k => !read.data.bool64.has(k)).length : 0;
+    // (Respawning objects clear their flags again by design; they don't count.)
+    const resettable = liveSnap?.resettable;
+    const lost = prev ? [...prev.data.bool64].filter(k => !cur.data.bool64.has(k) && !resettable?.has(k)).length : 0;
     const samePlaythrough = isNewSave && lost <= 3;
 
-    if (samePlaythrough && fromWatcher) this.collectIdentifications(prev!.data, read.data);
-    const manual = this.manualFor(slot.name);
-    const { categories, summary } = this.tracker.evaluate(read.data, manual, samePlaythrough ? prev!.data : undefined);
-    const rawArea = this.readRawArea(slot);
-    summary.area = rawArea ? prettyArea(rawArea.split('/').pop()!) : undefined;
+    // Live: the current stage straight from the game; otherwise the save's caption.
+    const liveStage = liveSnap?.data.entries.get(STAGE_KEY)?.value;
+    const stageIsLive = typeof liveStage === 'string' && !!liveStage;
+    const stage = stageIsLive ? liveStage : this.readRawArea(slot);
+    // Lake Hylia and Lon Lon Ranch are inside the Hyrule Field stage; the location list says which.
+    const rawArea = stage ? areaFrom(stage, cur.data.entries.get(LOCATION_KEY)?.value) : undefined;
     const areaRegions = regionsForArea(rawArea, this.allRegions);
-    const { available, canBeAdult } = this.applyLogic(categories, read.data, areaRegions);
+    // For "which one was it?", also allow the surrounding stage: the place boundaries
+    // needn't match the checklist's areas exactly.
+    const nearRegions = rawArea !== stage ? [...new Set([...areaRegions, ...regionsForArea(stage, this.allRegions)])] : areaRegions;
+
+    // Where you are only says which spot you just collected when it's read live.
+    if (samePlaythrough && fromWatcher) this.collectIdentifications(prev!.data, cur.data, stageIsLive ? nearRegions : undefined);
+    const manual = this.manualFor(slot.name);
+    const { categories, summary } = this.tracker.evaluate(cur.data, manual, samePlaythrough ? prev!.data : undefined);
+    // A place inside the stage has no age of its own: take the stage's (_Child/_Adult).
+    const age = rawArea !== stage ? stage?.match(/_(Adult|Child)$/)?.[0] ?? '' : '';
+    summary.area = rawArea ? prettyArea(rawArea.split('/').pop()! + age) : undefined;
+    const { available, canBeAdult } = this.applyLogic(categories, cur.data, areaRegions);
     summary.lastSavedMs = read.mtimeMs;
 
     let lastChanges = this.state.lastChanges;
     if (isNewSave) {
-      lastChanges = this.tracker.describeChanges(prev!.data, read.data, slot.name, this.names, this.enumNames);
-      if (fromWatcher && samePlaythrough) this.makeToasts(categories, prev!.data, read.data);
+      const rep = this.tracker.describeChanges(prev!.data, cur.data, slot.name, this.names, this.enumNames);
+      // Live refreshes often; keep the last report that actually had changes.
+      if (rep.known.length || rep.unknown.length || !liveSnap) lastChanges = rep;
+      if (samePlaythrough && (rep.known.length || rep.unknown.length)) {
+        this.log.write({ kind: 'change', source: liveSnap ? 'live' : 'save', slot: slot.name, area: rawArea, known: rep.known, unknown: rep.unknown, unknownTotal: rep.unknown.length });
+      }
+      if (fromWatcher && samePlaythrough) this.makeToasts(categories, prev!.data, cur.data);
     }
-    const parsed = { mtimeMs: read.mtimeMs, data: read.data, buf: read.buf };
-    this.lastParsed.set(slot.name, parsed);
-    if (!prev || read.mtimeMs >= prev.mtimeMs) this.lastShown = parsed;
+    this.lastShownBySlot.set(slot.name, cur);
+    if (!prev || cur.mtimeMs >= prev.mtimeMs || !liveSnap) this.lastShown = cur;
 
     const warn = read.data.warnings.length ? `Save format warning: ${read.data.warnings[0]}` : undefined;
     this.state = {
@@ -180,9 +264,11 @@ export class Controller {
       snapshots: this.listSnapshots(),
       toasts: this.toasts,
       devPanel: this.settings.data.devPanel,
+      live: { ...(this.live?.info ?? { status: 'off' }), enabled: this.settings.data.live.enabled, using: !!liveSnap },
     };
     this.emit();
   }
+  private lastShownBySlot = new Map<string, { mtimeMs: number; data: GameDataFile; buf: Buffer }>();
 
   private makeToasts(categories: AppState['categories'], before: GameDataFile, after: GameDataFile) {
     const add = (text: string) => {
@@ -216,8 +302,8 @@ export class Controller {
 
   // ---- "which one was this?"
   /** New pool flags in this save: learn the obvious ones, queue questions for the rest. */
-  private collectIdentifications(before: GameDataFile, after: GameDataFile) {
-    const { ask, auto } = this.tracker.identifications(before, after);
+  private collectIdentifications(before: GameDataFile, after: GameDataFile, here?: string[]) {
+    const { ask, auto } = this.tracker.identifications(before, after, here);
     if (!ask.length && !auto.length) return;
     const at = new Date().toISOString();
     this.settings.update(s => {
@@ -225,6 +311,12 @@ export class Controller {
       for (const q of ask) if (!s.pendingIdentify.some(p => p.id === q.id)) s.pendingIdentify.push({ ...q, at });
     });
     if (auto.length) this.tracker.setLearned(this.settings.data.learned);
+    for (const g of auto) this.log.write({ kind: 'identify', how: g.area ? 'auto-area' : 'auto-group', items: g.items, flags: g.flags, area: g.area });
+    for (const g of auto) {
+      if (!g.area || g.items.length !== 1) continue;
+      const d = this.tracker.describe(g.items[0]);
+      this.toast(`Recognised ${singular(d.category)} #${d.number} from where you are (${g.area}). Wrong? Undo it in its details.`, 8000);
+    }
     for (const q of ask) this.toast(`+${q.pick} ${singular(q.categoryLabel)} in ${q.area}: which one? Answer in the tracker.`, 10000);
   }
 
@@ -235,19 +327,26 @@ export class Controller {
       s.learned.push({ flags: q.flags, items: itemIds, at: new Date().toISOString() });
       s.pendingIdentify = s.pendingIdentify.filter(p => p.id !== reqId);
       // Other open questions about the same group may now have fewer candidates.
-      for (const p of s.pendingIdentify) p.candidates = p.candidates.filter(c => !itemIds.includes(c.id));
+      for (const p of s.pendingIdentify) {
+        p.candidates = p.candidates.filter(c => !itemIds.includes(c.id));
+        if (p.others) p.others = p.others.filter(c => !itemIds.includes(c.id));
+      }
     });
     this.tracker.setLearned(this.settings.data.learned);
+    this.log.write({ kind: 'identify', how: 'answer', items: itemIds, flags: q.flags, area: q.area });
     await this.refresh(false);
   }
 
   async skipIdentify(reqId: string) {
+    const q = this.settings.data.pendingIdentify.find(p => p.id === reqId);
+    if (q) this.log.write({ kind: 'identify', how: 'skip', items: [], flags: q.flags, area: q.area });
     this.settings.update(s => (s.pendingIdentify = s.pendingIdentify.filter(p => p.id !== reqId)));
     await this.refresh(false);
   }
 
   /** Undo an answer that included this row (its flags go back into the group). */
   async forgetIdentification(itemId: string) {
+    for (const g of this.settings.data.learned) if (g.items.includes(itemId)) this.log.write({ kind: 'identify', how: 'undo', items: g.items, flags: g.flags, area: g.area });
     this.settings.update(s => (s.learned = s.learned.filter(g => !g.items.includes(itemId))));
     this.tracker.setLearned(this.settings.data.learned);
     await this.refresh(false);
@@ -261,7 +360,9 @@ export class Controller {
     for (const g of this.settings.data.learned) {
       if (g.items.length !== 1) continue; // only exact answers
       const id = g.items[0];
-      m.entries[id] = { label: m.entries[id]?.label ?? id, detect: { b64: g.flags[0] }, confidence: 'confirmed', evidence: `Identified in the tracker${g.at ? ` on ${g.at.slice(0, 10)}` : ''}: collecting it set 64-bit flag ${g.flags[0]}` };
+      m.entries[id] = g.area
+        ? { label: m.entries[id]?.label ?? id, detect: { b64: g.flags[0] }, confidence: 'likely', evidence: `Recognised in the tracker from the area (${g.area})${g.at ? ` on ${g.at.slice(0, 10)}` : ''}: collecting it set 64-bit flag ${g.flags[0]}` }
+        : { label: m.entries[id]?.label ?? id, detect: { b64: g.flags[0] }, confidence: 'confirmed', evidence: `Identified in the tracker${g.at ? ` on ${g.at.slice(0, 10)}` : ''}: collecting it set 64-bit flag ${g.flags[0]}` };
       n++;
     }
     fs.writeFileSync(file, JSON.stringify(m, null, 2) + '\n');
@@ -291,8 +392,19 @@ export class Controller {
       const m = (s.manual[k] ??= {});
       if (m[itemId]) delete m[itemId]; else m[itemId] = true;
     });
+    this.log.write({ kind: 'manual', item: itemId, ticked: !!this.manualFor(slot)[itemId], slot });
     await this.refresh(false);
   }
+
+  setChangeLog(on: boolean) {
+    this.settings.update(s => (s.changeLog = on));
+    this.log.enabled = on;
+    this.state = { ...this.state, changeLog: { ...this.state.changeLog, enabled: on } };
+    this.emit();
+  }
+
+  /** Folder holding the change logs (created if missing). */
+  logDir() { fs.mkdirSync(this.log.dir, { recursive: true }); return this.log.dir; }
 
   setDevPanel(on: boolean) {
     this.settings.update(s => (s.devPanel = on));
@@ -333,7 +445,7 @@ export class Controller {
     this.emit();
   }
 
-  stop() { this.watcher?.stop(); }
+  stop() { this.watcher?.stop(); this.live?.stop(); }
 }
 
 function singular(label: string) {

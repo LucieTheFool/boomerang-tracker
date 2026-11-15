@@ -134,7 +134,9 @@ function SummaryBar({ state }: { state: AppState }) {
       </div>
       <div className="stat slotinfo">
         <div className="stat-mid">{state.activeSlot?.replace('slot_', 'Slot ')}{s.area ? ` · ${s.area}` : ''}</div>
-        <div className="stat-sub">saved {timeAgo(s.lastSavedMs)}</div>
+        <div className="stat-sub">
+          <LiveBadge state={state} /> saved {timeAgo(s.lastSavedMs)}
+        </div>
       </div>
     </header>
   );
@@ -240,6 +242,19 @@ function AvailablePanel({ state, open, selected, onSelect, onToggle, height, onR
   );
 }
 
+/** Where the numbers come from right now: the running game, or the save files. */
+function LiveBadge({ state }: { state: AppState }) {
+  const l = state.live;
+  if (!l.enabled || l.status === 'off' || l.status === 'unavailable') return null;
+  if (l.using) return <span className="live-badge on" title="Reading progress live from the game (read-only)">● Live</span>;
+  const text: Record<string, string> = {
+    'no-game': 'Game not running: using saves',
+    searching: 'Looking for the game\'s progress…',
+    waiting: l.detail ?? 'Waiting for the game',
+  };
+  return <span className="live-badge" title={text[l.status] ?? ''}>{l.status === 'searching' ? '◌ Live…' : '○ Saves'}</span>;
+}
+
 function SettingsButton({ state }: { state: AppState }) {
   const [open, setOpen] = useState(false);
   const [hk, setHk] = useState({ toggleOverlay: state.hotkeys.toggleOverlay, lockOverlay: state.hotkeys.lockOverlay });
@@ -250,6 +265,16 @@ function SettingsButton({ state }: { state: AppState }) {
       <button onClick={() => setOpen(x => !x)}>Settings ▾</button>
       {open && (
         <div className="settings-pop">
+          <b>Live tracking</b>
+          <label className="check">
+            <input type="checkbox" checked={state.live.enabled} onChange={e => void api.setLive(e.target.checked)} /> Read progress live from the running game
+          </label>
+          <span className="muted small">Read-only: the tracker only looks at Hookshot's memory, it never changes anything. Uses your saves whenever the game isn't running.</span>
+          <label className="check">
+            <input type="checkbox" checked={state.changeLog.enabled} onChange={e => void api.setChangeLog(e.target.checked)} /> Keep a change log
+          </label>
+          <span className="muted small">Notes every change the tracker sees, with the time and area, in a file on this PC. Helps pin down what an item sets in the save.</span>
+          <button onClick={() => void api.openLogFolder()}>Open log folder</button>
           <b>Overlay</b>
           <label>Opacity: {Math.round(o.opacity * 100)}%
             <input type="range" min={0.2} max={1} step={0.05} value={o.opacity} onChange={e => void api.setOverlay({ opacity: Number(e.target.value) })} />
@@ -430,7 +455,7 @@ function Details({ cat, item, onClose }: { cat: TrackedCategory; item: TrackedIt
       {item.confidence && (
         <p className="muted small">Detection: <b>{item.confidence}</b>{item.evidence ? `: ${item.evidence}` : ''}</p>
       )}
-      {(item.evidence?.startsWith('Identified by you') || item.evidence?.startsWith('You identified')) && (
+      {(item.evidence?.startsWith('Identified by you') || item.evidence?.startsWith('You identified') || item.evidence?.startsWith('Recognised automatically')) && (
         <button className="link" onClick={() => void api.forgetIdentification(item.id)}>That was wrong: undo this identification</button>
       )}
       {!item.confidence && item.evidence && <p className="muted small">{item.evidence}</p>}
@@ -440,8 +465,10 @@ function Details({ cat, item, onClose }: { cat: TrackedCategory; item: TrackedIt
 
 function IdentifyCard({ q, more, onShow }: { q: AppState['identify'][number]; more: number; onShow: (id: string) => void }) {
   const [picked, setPicked] = useState<string[]>([]);
-  useEffect(() => setPicked([]), [q.id]);
+  const [showOthers, setShowOthers] = useState(false);
+  useEffect(() => { setPicked([]); setShowOthers(false); }, [q.id]);
   const one = q.pick === 1;
+  const shown = showOthers && q.others ? [...q.candidates, ...q.others] : q.candidates;
   const toggle = (id: string) => setPicked(p => (p.includes(id) ? p.filter(x => x !== id) : p.length < q.pick ? [...p, id] : p));
   return (
     <div className="panel identify">
@@ -451,7 +478,7 @@ function IdentifyCard({ q, more, onShow }: { q: AppState['identify'][number]; mo
         {one ? ' Which one?' : ` Pick the ${q.pick} you got.`}
       </p>
       <div className="cands">
-        {q.candidates.map(c => (
+        {shown.map(c => (
           <button key={c.id} className={picked.includes(c.id) ? 'on' : ''}
             onClick={() => (one ? void api.answerIdentify(q.id, [c.id]) : toggle(c.id))}
             onMouseEnter={() => onShow(c.id)}>
@@ -461,6 +488,9 @@ function IdentifyCard({ q, more, onShow }: { q: AppState['identify'][number]; mo
       </div>
       <div className="row">
         {!one && <button className="primary" disabled={picked.length !== q.pick} onClick={() => void api.answerIdentify(q.id, picked)}>Save ({picked.length}/{q.pick})</button>}
+        {q.others?.length && !showOthers ? (
+          <button className="link" onClick={() => setShowOthers(true)}>Not here? Show the {q.others.length} in other areas</button>
+        ) : null}
         <button className="link" onClick={() => void api.skipIdentify(q.id)}>Not sure, skip</button>
       </div>
       <p className="muted small">Skipping is fine: it still counts, just not on a specific tile.</p>

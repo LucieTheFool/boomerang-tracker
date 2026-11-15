@@ -45,6 +45,33 @@ describe('pools', () => {
     expect(ask).toEqual([]);
     expect(auto).toEqual([{ flags: [F[1], F[2]], items: ['b', 'c'] }]);
   });
+
+  // A group spread over areas (like Lon Lon Ranch / Lake Hylia / Hyrule Field Skulltulas).
+  const spread = (id: string) => ({ ...describeRow(id), chapter: id === 'a' ? 'Lon Lon Ranch' : 'Lake Hylia' });
+
+  it('answers by itself when only one spot of the group is where you are', () => {
+    const { ask, auto } = findIdentifications(findPools(entries, order), new Set([F[1]]), spread, ['Lon Lon Ranch']);
+    expect(ask).toEqual([]);
+    expect(auto).toEqual([{ flags: [F[1]], items: ['a'], area: 'Lon Lon Ranch' }]);
+    const { entries: e } = applyLearned(entries, order, auto);
+    expect(e.a.detect).toEqual({ b64: F[1] });
+    expect(e.a.evidence).toMatch(/^Recognised automatically/);
+  });
+
+  it('narrows the question to where you are, keeping the rest available', () => {
+    const { ask, auto } = findIdentifications(findPools(entries, order), new Set([F[0]]), spread, ['Lake Hylia']);
+    expect(auto).toEqual([]);
+    expect(ask[0].candidates.map(c => c.id)).toEqual(['b', 'c']);
+    expect(ask[0].others?.map(c => c.id)).toEqual(['a']);
+    expect(ask[0].area).toBe('Lake Hylia');
+  });
+
+  it('asks about the whole group when the area matches none of it (e.g. a grotto)', () => {
+    const { ask, auto } = findIdentifications(findPools(entries, order), new Set([F[0]]), spread, ['Kokiri Forest']);
+    expect(auto).toEqual([]);
+    expect(ask[0].candidates).toHaveLength(3);
+    expect(ask[0].others).toBeUndefined();
+  });
 });
 
 // End to end on a real save: pretend a Fire Temple Skulltula was just collected.

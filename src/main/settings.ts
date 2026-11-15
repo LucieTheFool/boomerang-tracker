@@ -26,6 +26,10 @@ export interface Settings {
   learned: LearnedGroup[];
   /** Questions not answered yet (kept across restarts) */
   pendingIdentify: IdentifyRequest[];
+  /** Read progress live from a running Hookshot (read-only). hint = last table address. */
+  live: { enabled: boolean; hint?: string };
+  /** Keep a local log of every tracked change (logs/changes-YYYY-MM.jsonl). */
+  changeLog: boolean;
 }
 
 export const DEFAULTS: Settings = {
@@ -37,6 +41,8 @@ export const DEFAULTS: Settings = {
   hotkeys: { toggleOverlay: 'Control+Shift+O', lockOverlay: 'Control+Shift+L' },
   learned: [],
   pendingIdentify: [],
+  live: { enabled: true },
+  changeLog: true,
 };
 
 /**
@@ -64,7 +70,7 @@ export class SettingsStore {
     this.data = structuredClone(DEFAULTS);
     try {
       const raw = JSON.parse(fs.readFileSync(file, 'utf8'));
-      this.data = { ...this.data, ...raw, ui: { ...DEFAULTS.ui, ...raw.ui }, overlay: { ...DEFAULTS.overlay, ...raw.overlay }, hotkeys: { ...DEFAULTS.hotkeys, ...raw.hotkeys } };
+      this.data = { ...this.data, ...raw, ui: { ...DEFAULTS.ui, ...raw.ui }, overlay: { ...DEFAULTS.overlay, ...raw.overlay }, hotkeys: { ...DEFAULTS.hotkeys, ...raw.hotkeys }, live: { ...DEFAULTS.live, ...raw.live } };
       if (migrateIds(this.data)) this.save();
     } catch { /* first run or unreadable: use defaults */ }
   }

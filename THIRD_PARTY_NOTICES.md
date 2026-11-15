@@ -1,5 +1,13 @@
 # Third-party notices
 
+## Bundled libraries
+
+- **koffi** by Niels Martignène, MIT License (https://github.com/Koromix/koffi). Used to
+  read the running game's memory through Windows' `ReadProcessMemory` (read-only).
+- Electron, React and the build tools listed in `package.json`, under their own licenses.
+
+## References
+
 No code from the projects below is included in this repository at this time. They were
 used as references, and their mapping facts (which key hash means what) may be reused
 in `data/save-mapping.json`, with credit there per entry.

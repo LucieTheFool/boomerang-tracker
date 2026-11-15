@@ -134,6 +134,8 @@ body.overlay-body { background: transparent; overflow: hidden; }
 .ov-row { display: flex; gap: 8px; align-items: center; padding: 2px 0; text-shadow: 0 1px 2px #000; }
 .ov-row.full { opacity: .5; }
 .ov-row.unmapped .ov-label { color: #aab; font-style: italic; }
+.ov-row.later { opacity: .55; }
+.ov-why { font-size: 10px; color: #c9cbe0; white-space: nowrap; }
 .ov-label { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .ov-num { font-variant-numeric: tabular-nums; font-weight: 700; }
 .ov-area { color: #9fb6d9; font-size: 13px; margin-bottom: 4px; }
@@ -219,3 +221,21 @@ button.card-head .card-count { margin-left: auto; }
 .masonry-item { animation: card-in .25s ease-out; }
 @keyframes card-in { from { opacity: .4; transform: translateY(4px); } }
 .masonry .card { width: 100%; }
+
+/* live badge */
+.live-badge { display: inline-block; margin-right: 6px; padding: 0 6px; border-radius: 8px; font-size: 11px; color: var(--muted, #9aa); border: 1px solid #3a4250; }
+.live-badge.on { color: #4ade80; border-color: #2f6b45; }
+
+
+/* overlay polish */
+.ov-head { display: flex; align-items: center; gap: 8px; padding: 6px 12px 0; font-size: 12px; color: #9fb6d9; text-shadow: 0 1px 2px #000; }
+.ov-here { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ov-src { font-size: 11px; color: #8a93a3; }
+.ov-src.on { color: #4ade80; }
+@keyframes ov-bump { 0% { background: rgba(74, 222, 128, .45); transform: scale(1.06); } 100% { background: transparent; transform: none; } }
+.ov-summary > span { border-radius: 6px; padding: 0 4px; }
+.ov-summary > .bump, .ov-row.bump { animation: ov-bump 1.6s ease-out 2; }
+.ov-row.bump { border-radius: 4px; }
+.ov-row.bump .ov-num { color: #4ade80; }
+@keyframes ov-toast-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.ov-toast { animation: ov-toast-in .25s ease-out; }

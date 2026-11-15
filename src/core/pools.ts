@@ -7,8 +7,11 @@ import type { IdentifyRequest } from '../shared/types.js';
 
 export interface MapEntry { label: string; detect: Rule | null; confidence: 'confirmed' | 'likely' | 'guess'; evidence: string }
 
-/** A user answer: these flags belong to these rows (same length; order unknown if > 1). */
-export interface LearnedGroup { flags: string[]; items: string[]; at?: string }
+/**
+ * A user answer: these flags belong to these rows (same length; order unknown if > 1).
+ * `area` is set when the tracker answered by itself from where the player was.
+ */
+export interface LearnedGroup { flags: string[]; items: string[]; at?: string; area?: string }
 
 export interface Pool { key: string; flags: string[]; rows: string[] }
 
@@ -51,7 +54,9 @@ export function applyLearned(entries: Record<string, MapEntry>, order: string[],
     const items = g.items.filter(i => entries[i]);
     items.forEach((id, i) => {
       out[id] = items.length === 1
-        ? { label: entries[id].label, detect: { b64: flags[0] }, confidence: 'confirmed', evidence: `Identified by you in the tracker${g.at ? ` (${g.at.slice(0, 10)})` : ''}: flag ${flags[0]}` }
+        ? g.area
+          ? { label: entries[id].label, detect: { b64: flags[0] }, confidence: 'likely', evidence: `Recognised automatically: collected while you were in ${g.area}, the only spot of its group there${g.at ? ` (${g.at.slice(0, 10)})` : ''}. Flag ${flags[0]}` }
+          : { label: entries[id].label, detect: { b64: flags[0] }, confidence: 'confirmed', evidence: `Identified by you in the tracker${g.at ? ` (${g.at.slice(0, 10)})` : ''}: flag ${flags[0]}` }
         : { label: entries[id].label, detect: { count: flags.map(f => ({ b64: f })), gte: i + 1 }, confidence: 'likely', evidence: `You identified these ${items.length} together; which flag is which is unknown, but all are collected` };
     });
   }
@@ -75,10 +80,18 @@ export function applyLearned(entries: Record<string, MapEntry>, order: string[],
 
 export type { IdentifyRequest };
 
-/** New flags that belong to a pool -> questions to ask (auto-answers when there's no choice). */
+/**
+ * New flags that belong to a pool -> questions to ask (auto-answers when there's no choice).
+ *
+ * `here`: checklist regions the player was in when the flags appeared (only pass this when
+ * it is known at that moment, i.e. from live data). A group spread over several areas is
+ * then narrowed to the rows in that area; if that leaves no choice, it is answered
+ * automatically. Rows elsewhere stay available in the question as `others`.
+ */
 export function findIdentifications(
   pools: Pool[], newFlags: Set<string>,
   describe: (itemId: string) => { number: number; name: string; category: string; chapter?: string },
+  here?: string[],
 ): { ask: IdentifyRequest[]; auto: LearnedGroup[] } {
   const ask: IdentifyRequest[] = [];
   const auto: LearnedGroup[] = [];
@@ -86,15 +99,31 @@ export function findIdentifications(
     const fresh = p.flags.filter(f => newFlags.has(f));
     if (!fresh.length) continue;
     if (fresh.length >= p.rows.length) { auto.push({ flags: fresh.slice(0, p.rows.length), items: [...p.rows] }); continue; }
-    const cands = p.rows.map(id => ({ id, ...describe(id) }));
+    let cands = p.rows.map(id => ({ id, ...describe(id) }));
+    let others: typeof cands = [];
+    let narrowedTo: string | undefined;
+    if (here?.length) {
+      const local = cands.filter(c => c.chapter && here.includes(c.chapter));
+      if (local.length >= fresh.length && local.length < cands.length) {
+        others = cands.filter(c => !local.includes(c));
+        cands = local;
+        narrowedTo = [...new Set(local.map(c => c.chapter!))].join(' / ');
+      }
+    }
+    if (narrowedTo && fresh.length >= cands.length) {
+      auto.push({ flags: fresh.slice(0, cands.length), items: cands.map(c => c.id), area: narrowedTo });
+      continue;
+    }
     const areas = [...new Set(cands.map(c => c.chapter).filter(Boolean))];
+    const pick = ({ id, number, name }: { id: string; number: number; name: string }) => ({ id, number, name });
     ask.push({
       id: [...fresh].sort().join(','),
       categoryLabel: cands[0].category,
       area: areas.join(' / '),
       flags: fresh,
       pick: fresh.length,
-      candidates: cands.map(({ id, number, name }) => ({ id, number, name })),
+      candidates: cands.map(pick),
+      ...(others.length ? { others: others.map(pick) } : {}),
     });
   }
   return { ask, auto };

@@ -1,10 +1,12 @@
 # Boomerang Tracker
 
 A 100% completion tracker for **The Legend of Zelda: Ocarina of Time** (the Nintendo Switch 2
-remake) when played through **Hookshot** or a compatible Switch 2 emulator. It reads your save
-files, shows what you've collected, and updates on its own a moment after the game autosaves.
+remake) when played through **Hookshot** or a compatible Switch 2 emulator. It reads your
+progress from the running game (or from your save files), shows what you've collected and what
+you can get next, and updates as you play.
 
-- **Read-only.** Saves are only ever read, never written. No game memory is touched.
+- **Read-only.** Saves are only ever read, never written. Live tracking reads Hookshot's memory
+  but never writes to it, and can be turned off in Settings.
 - **Nothing from the game is included.** No game files, art, keys or saves are part of this
   project. You need your own copy of the game.
 - Not affiliated with or endorsed by Nintendo. *The Legend of Zelda* and *Ocarina of Time* are
@@ -17,11 +19,27 @@ files, shows what you've collected, and updates on its own a moment after the ga
 - **Categories:** Hearts, Gold Skulltulas, Songs, Equipment, Items (with upgrades shown as levels),
   Great Fairies, Dungeons, Bosses, Side Quests, Big Poes, plus optional quest-progress and extras.
 - **Can get now:** which 100% entries you can reach with what you have, as child or adult, with
-  your current area first. Resizable; also available as an overlay mode.
+  your current area first. Each entry knows what it still needs (an item, a song, being adult,
+  night time, an area you can't reach yet). Tiered upgrades (seed bag, bomb bag, quiver, stick
+  and nut capacity) are offered one tier at a time, since whichever place you do first gives the
+  next tier. Resizable; also available as an overlay mode.
+- **Live tracking:** while Hookshot is running, progress is read straight from the game
+  (read-only) and updates within half a second, not just at autosaves. Your current area is live
+  too, including places inside a bigger stage such as Lake Hylia and Lon Lon Ranch. At the title
+  screen or in another save file it falls back to the save files on its own; the summary shows
+  which source it's using. Details in [docs/live-memory.md](docs/live-memory.md).
 - **Overlay:** a compact, always-on-top, see-through window for one-screen play
-  (`Ctrl+Shift+O` to show/hide, `Ctrl+Shift+L` to lock/unlock; both changeable).
+  (`Ctrl+Shift+O` to show/hide, `Ctrl+Shift+L` to lock/unlock; both changeable). It shows your
+  area and the live/saves source, and numbers pulse when they go up. Modes:
+  - **Counters:** category totals.
+  - **Remaining here:** what's left in your current area. What you can get now comes first;
+    the rest is dimmed with a short reason (`adult`, `needs Boomerang`, `can't reach yet`).
+  - **Can get now:** the list above.
 - **"Which one was it?"** For Gold Skulltulas and heart pieces the save doesn't say which checklist
-  spot is which, so the tracker asks after you collect one and remembers your answer.
+  spot is which. With live tracking, the tracker usually recognises the spot from where you are
+  (with an undo link); otherwise it asks after you collect one and remembers your answer.
+- **Change log:** every tracked change, with time, save slot and area, plus your answers and hand
+  ticks, kept as monthly files on your PC. Useful for checking what the tracker saw.
 - **Hand ticks** for anything not detected from the save yet.
 
 ## Install
@@ -49,10 +67,18 @@ the Hookshot folder, its `user\save` folder, or the profile folder that contains
 The game rotates its autosaves across all six slots, so the default **Most recent** setting follows
 whichever slot was written last. You can pin a slot instead.
 
+Live tracking starts on its own once the game is running and you're in your save file. The summary
+shows **● Live** when progress comes from the game and **○ Saves** when it comes from the save files.
+It's used only with **Most recent**, and only while the game's state matches your latest save.
+It was worked out on Hookshot v2.1.0; if an update changes how the game is laid out in memory, the
+tracker keeps working from the save files.
+
 ## Settings and data
 
 Everything the app writes goes to `%APPDATA%\Boomerang Tracker\`: `settings.json` (folder, slot,
-hand ticks, answers, layout, overlay, hotkeys), `snapshots\` (developer panel), and `error.log`.
+hand ticks, answers, layout, overlay, hotkeys), `logs\changes-YYYY-MM.jsonl` (the change log: every
+tracked change with time and area; can be turned off in Settings), `snapshots\` (developer panel),
+and `error.log`.
 
 ## How detection works
 
@@ -60,7 +86,8 @@ Saves use Nintendo's GameData container: hashed keys (Murmur3) with typed values
 documented in [docs/save-format.md](docs/save-format.md); how each checklist entry is detected,
 with a confidence level and evidence, is in [docs/save-mapping.md](docs/save-mapping.md) and
 `data/save-mapping.json`. Gold Skulltulas and world heart pieces are matched through the 64-bit
-flags the game stores for placed objects.
+flags the game stores for placed objects. Live tracking reads the same data from the running
+game, where it's kept in the same form.
 
 The data files are meant to be edited:
 

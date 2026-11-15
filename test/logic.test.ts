@@ -1,7 +1,8 @@
 import fs from 'node:fs';
 import { describe, it, expect } from 'vitest';
 import { lintLogic, evaluateLogic, parseExpr, Logic, LogicFile } from '../src/core/logic.js';
-import { parseGameData } from '../src/gamedata/parser.js';
+import { parseGameData, GameDataFile, Entry } from '../src/gamedata/parser.js';
+import { murmur3 } from '../src/gamedata/murmur3.js';
 import { evaluate } from '../src/gamedata/detect.js';
 
 const logic = JSON.parse(fs.readFileSync('data/logic.json', 'utf8')) as LogicFile;
@@ -25,9 +26,90 @@ describe('logic.json', () => {
   });
 });
 
+// A made-up save holding only the flags given (everything else unset).
+function fakeSave(flags: string[] = []): GameDataFile {
+  const entries = new Map<number, Entry>();
+  for (const n of flags) { const h = murmur3(n); entries.set(h, { hash: h, type: 'Bool', value: true, recordOffset: 0 }); }
+  return { version: 0, dataStart: 0, size: 0, entries, bool64: new Set(), warnings: [] };
+}
+const statusOf = (g: GameDataFile) => {
+  const st = evaluateLogic(logic, g, rows);
+  return (k: string) => st.get(rows.find((r: { key: string }) => r.key === k)!.id)!;
+};
+
+describe('logic on a brand-new file', () => {
+  it("can't leave the forest before the Deku Tree, by any route", () => {
+    const reach = new Logic(logic, fakeSave()).reachable('child');
+    for (const r of ['Hyrule Field', 'Goron City', "Zora's River", 'Kakariko Village', 'Lake Hylia', 'Hyrule Castle Town']) expect(reach.has(r)).toBe(false);
+    expect(reach.has('Kokiri Forest')).toBe(true);
+  });
+  it('can after clearing it', () => {
+    expect(new Logic(logic, fakeSave(['HavePlayedEvent.Dm_Deku_BossOut'])).reachable('child').has('Hyrule Field')).toBe(true);
+  });
+  it('needs something to kill a Gold Skulltula with', () => {
+    expect(statusOf(fakeSave())('gold_skulltulas#16').ages).toEqual([]);
+    expect(statusOf(fakeSave(['IsGet.Weapon_Sword_Kokiri']))('gold_skulltulas#16').ages).toEqual(['child']);
+  });
+  it("needs Talon back at the ranch for Epona's Song and the milk bottle", () => {
+    const out = ['HavePlayedEvent.Dm_Deku_BossOut', 'IsGet.Item_Ocarina_Fairy'];
+    expect(statusOf(fakeSave(out))('songs#3').ages).toEqual([]);
+    expect(statusOf(fakeSave(out))('bottles#3').ages).toEqual([]);
+    expect(statusOf(fakeSave([...out, 'Talon_AfterWakeUp']))('songs#3').ages).toEqual(['child']);
+    expect(statusOf(fakeSave([...out, 'Talon_AfterWakeUp']))('bottles#3').ages).toEqual(['child']);
+  });
+  describe('tiered upgrades: whichever place you do first gives the next tier', () => {
+    const base = ['HavePlayedEvent.Dm_Deku_BossOut', 'IsGet.Weapon_Range_SlingShot'];
+    it('offers the bigger seed bag first, not the biggest', () => {
+      const s = statusOf(fakeSave(base));
+      expect(s('capacity#7').ages).toEqual(['child']);
+      expect(s('capacity#8').ages).toEqual([]);
+      expect(s('capacity#8').missing).toEqual(['the first upgrade first']);
+    });
+    it('after the Market gallery, the Lost Woods game gives the biggest', () => {
+      const s = statusOf(fakeSave([...base, 'IsGet.Item_BulletBag_Medium']));
+      expect(s('capacity#8').ages).toEqual(['child']);
+      expect(s('capacity#8').region).toBe('Lost Woods');
+    });
+    it('after the Lost Woods game, the Market gallery gives the biggest', () => {
+      const s = statusOf(fakeSave([...base, 'IsGet.Item_BulletBag_Medium', 'LostWood_HitTargetOfDekuScrub_FirstClear']));
+      expect(s('capacity#8').ages).toEqual(['child']);
+      expect(s('capacity#8').region).toBe('Hyrule Castle Town');
+    });
+    it('without a flag per place, only offers the next tier when an unused place must be open', () => {
+      const mini: LogicFile = {
+        start: { child: 'Home', adult: 'Home' }, canBeAdult: 'false', numbers: {}, macros: {}, regionAliases: {}, warps: [], locations: {},
+        items: { Mid: { name: 'Have.Mid' }, Big: { name: 'Have.Big' }, Key: { name: 'Have.Key' } },
+        regions: { Home: { exits: { Far: 'Key' } }, Far: { exits: {} } },
+        progressive: { bag: { rows: ['capacity#7', 'capacity#8'], have: ['Mid', 'Big'], sources: [
+          { name: 'home game', region: 'Home' }, { name: 'far game', region: 'Far' }] } },
+      };
+      const st = (flags: string[]) => { const m = evaluateLogic(mini, fakeSave(flags), rows); return (k: string) => m.get(rows.find((r: { key: string }) => r.key === k)!.id)!; };
+      expect(st([])('capacity#7').ages).toEqual(['child']); // either place
+      expect(st(['Have.Mid'])('capacity#8').ages).toEqual([]); // the open one may be the one used
+      expect(st(['Have.Mid', 'Have.Key'])('capacity#8').ages).toEqual(['child']); // both open: one is unused
+    });
+  });
+  it('with the letter and Zelda\'s Lullaby but no explosives: no crater, no river, no bracelet', () => {
+    const flags = ['HavePlayedEvent.Dm_Deku_BossOut', 'IsGet.Item_Ocarina_Fairy', 'IsGet.Item_ZeldaLetter', 'IsGet.Item_Melody_ZeldaLullaby'];
+    const g = fakeSave(flags);
+    const L = new Logic(logic, g);
+    const reach = L.reachable('child');
+    expect(L.test('ZeldasLullaby', 'child')).toBe(true);
+    expect(reach.has('Goron City')).toBe(true);
+    for (const r of ['Death Mountain Crater', "Zora's River", "Zora's Domain"]) expect(reach.has(r)).toBe(false);
+    expect(statusOf(g)('items#10').ages).toEqual([]); // Goron's Bracelet also needs Saria's Song
+    expect(new Logic(logic, fakeSave([...flags, 'IsGet.Item_BombBag_Small'])).reachable('child').has("Zora's Domain")).toBe(true);
+  });
+  it('needs a way to stun the Lost Woods scrub before buying its upgrade', () => {
+    expect(statusOf(fakeSave())('capacity#11').ages).toEqual([]);
+    expect(statusOf(fakeSave(['IsGet.Weapon_Shield_Deku']))('capacity#11').ages).toEqual(['child']);
+  });
+});
+
 const save = 'fixtures/regression/2026-11-11-after-lonlon-bottle.sav';
 describe.skipIf(!fs.existsSync(save))('logic on a real save', () => {
-  const g = parseGameData(fs.readFileSync(save));
+  // The describe body still runs when skipped, so only read the save when it's there.
+  const g = fs.existsSync(save) ? parseGameData(fs.readFileSync(save)) : ({} as GameDataFile);
   it('every item rule reads keys that exist in the save', () => {
     const bad = Object.entries(logic.items).filter(([, r]) => evaluate(r, g) === 'unknown').map(([k]) => k);
     expect(bad).toEqual([]);

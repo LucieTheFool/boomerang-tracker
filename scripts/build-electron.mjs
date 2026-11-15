@@ -3,7 +3,7 @@
 //   node scripts/build-electron.mjs --watch  rebuild on change (used by `npm run dev`)
 import * as esbuild from 'esbuild';
 
-const common = { bundle: true, platform: 'node', format: 'cjs', target: 'node22', external: ['electron'], sourcemap: true, logLevel: 'info' };
+const common = { bundle: true, platform: 'node', format: 'cjs', target: 'node22', external: ['electron', 'koffi'], sourcemap: true, logLevel: 'info' };
 const builds = [
   { ...common, entryPoints: ['src/main/main.ts'], outfile: 'dist-electron/main.cjs' },
   { ...common, entryPoints: ['src/preload/preload.ts'], outfile: 'dist-electron/preload.cjs' },

@@ -22,6 +22,40 @@ export interface LogicFile {
   regions: Record<string, { exits: Record<string, string> }>;
   warps: { to: string; needs: string }[];
   locations: Record<string, LogicLocation>;
+  /** Requirement added to every location of a category, e.g. something to kill Skulltulas with. */
+  categoryNeeds?: Record<string, string>;
+  /**
+   * Upgrades that come in tiers from several places: whichever place you do first gives
+   * the next tier (e.g. either seed-bag game gives the bigger bag, the other the biggest).
+   * Their rows' own location entries are replaced by this.
+   */
+  progressive?: Record<string, ProgressiveFamily>;
+}
+
+export interface ProgressiveFamily {
+  /** Checklist rows, lowest tier first ("capacity#7"). */
+  rows: string[];
+  /** For each row, the logic name saying that tier is owned. */
+  have: string[];
+  sources: ProgressiveSource[];
+}
+export interface ProgressiveSource {
+  name: string;
+  region: string;
+  age?: Age;
+  needs?: string;
+  night?: boolean;
+  unsure?: boolean;
+  /** Logic name saying this place has been used, when the game keeps one. */
+  done?: string;
+}
+
+/** A location's full requirement: its category's (if any) and its own. */
+export function locationNeeds(data: LogicFile, key: string): string | undefined {
+  const cat = data.categoryNeeds?.[key.split('#')[0]];
+  const own = data.locations[key]?.needs;
+  if (cat && own) return `(${cat}) and (${own})`;
+  return cat ?? own;
 }
 
 export interface LogicLocation {
@@ -179,23 +213,79 @@ export function evaluateLogic(data: LogicFile, save: GameDataFile, rows: RowRef[
   const reach: Record<Age, Set<string>> = { child: L.reachable('child'), adult: L.reachable('adult') };
   const adultOk = L.canBeAdult();
   const out = new Map<string, LocationStatus>();
+  const families = progressiveStatus(data, L, reach, adultOk);
   for (const r of rows) {
+    const fam = families.get(r.key);
+    if (fam) { out.set(r.id, fam); continue; }
     const loc = data.locations[r.key];
     if (!loc) continue;
     const region = L.resolveRegion(loc.region ?? r.chapter) ?? loc.region ?? r.chapter ?? '?';
     const ages: Age[] = [];
     const missing = new Set<string>();
+    const needs = locationNeeds(data, r.key);
     for (const age of ['child', 'adult'] as Age[]) {
       if (loc.age && loc.age !== age) continue;
       if (age === 'adult' && !adultOk) { missing.add('Master Sword (to travel to adult)'); continue; }
       if (!reach[age].has(region)) { missing.add(`reach ${region} as ${age}`); continue; }
       const m = new Set<string>();
-      if (L.test(loc.needs, age, m)) ages.push(age);
+      if (L.test(needs, age, m)) ages.push(age);
       else m.forEach(x => missing.add(x));
     }
-    out.set(r.id, { ages, region, needs: loc.needs, night: loc.night, unsure: loc.unsure, note: loc.note, missing: ages.length ? [] : [...missing] });
+    out.set(r.id, { ages, region, needs, night: loc.night, unsure: loc.unsure, note: loc.note, missing: ages.length ? [] : [...missing] });
   }
   return out;
+}
+
+/**
+ * Status of tiered upgrades. A tier can be got when the tier below it is owned and some
+ * place you haven't used yet is open. Places with a `done` flag are known; for the rest
+ * only the count is known (tiers owned beyond the known places), so a tier is only offered
+ * when more of them are open than can have been used.
+ */
+function progressiveStatus(data: LogicFile, L: Logic, reach: Record<Age, Set<string>>, adultOk: boolean): Map<string, LocationStatus> {
+  const out = new Map<string, LocationStatus>();
+  for (const fam of Object.values(data.progressive ?? {})) {
+    const owned = fam.have.filter(h => L.test(h, 'child')).length;
+    const unknownSources = fam.sources.filter(s => !(s.done && L.test(s.done, 'child')));
+    const usedUnknown = Math.max(0, owned - (fam.sources.length - unknownSources.length));
+    const places = fam.sources.map(s => s.name).join(' or ');
+    fam.rows.forEach((key, tier) => {
+      const ages: Age[] = [];
+      const missing = new Set<string>();
+      const open: ProgressiveSource[] = [];
+      if (tier > owned) missing.add(`the ${ordinal(tier)} upgrade first`);
+      else if (tier === owned) {
+        for (const age of ['child', 'adult'] as Age[]) {
+          if (age === 'adult' && !adultOk) { missing.add('Master Sword (to travel to adult)'); continue; }
+          const here = unknownSources.filter(s => {
+            if (s.age && s.age !== age) return false;
+            const region = L.resolveRegion(s.region) ?? s.region;
+            if (!reach[age].has(region)) { missing.add(`reach ${region} as ${age}`); return false; }
+            const m = new Set<string>();
+            if (L.test(locationNeedsOf(data, key, s.needs), age, m)) return true;
+            m.forEach(x => missing.add(x));
+            return false;
+          });
+          // Places without a flag may be the ones already used.
+          if (here.filter(s => !s.done).length > usedUnknown || here.some(s => s.done)) { ages.push(age); open.push(...here); }
+        }
+      }
+      const first = open[0] ?? fam.sources[0];
+      out.set(key, {
+        ages, region: L.resolveRegion(first.region) ?? first.region, needs: first.needs, night: first.night,
+        unsure: fam.sources.some(s => s.unsure) || undefined,
+        note: `Comes from ${places}, whichever you do first; the other gives the next one.`,
+        missing: ages.length ? [] : [...missing],
+      });
+    });
+  }
+  return out;
+}
+const ordinal = (n: number) => ['first', 'second', 'third', 'fourth'][n - 1] ?? `#${n}`;
+function locationNeedsOf(data: LogicFile, key: string, own?: string): string | undefined {
+  const cat = data.categoryNeeds?.[key.split('#')[0]];
+  if (cat && own) return `(${cat}) and (${own})`;
+  return cat ?? own;
 }
 
 /** Problems in a logic file: unknown names, unknown regions, bad expressions. */
@@ -225,6 +315,16 @@ export function lintLogic(data: LogicFile, rowKeys: Set<string>): string[] {
     if (!rowKeys.has(k)) errs.push(`location ${k}: no such checklist row`);
     if (l.region && !data.regions[l.region] && !data.regionAliases[l.region]) errs.push(`location ${k}: unknown region "${l.region}"`);
     check(l.needs, `location ${k}`);
+  }
+  for (const [c, n] of Object.entries(data.categoryNeeds ?? {})) check(n, `categoryNeeds ${c}`);
+  for (const [f, fam] of Object.entries(data.progressive ?? {})) {
+    if (fam.rows.length !== fam.have.length) errs.push(`progressive ${f}: rows and have differ in length`);
+    for (const k of fam.rows) if (!rowKeys.has(k)) errs.push(`progressive ${f}: no such checklist row ${k}`);
+    fam.have.forEach(h => check(h, `progressive ${f} have`));
+    for (const s of fam.sources) {
+      if (!data.regions[s.region] && !data.regionAliases[s.region]) errs.push(`progressive ${f}: unknown region "${s.region}"`);
+      check(s.needs, `progressive ${f} ${s.name}`); check(s.done, `progressive ${f} ${s.name} done`);
+    }
   }
   for (const [a, r] of Object.entries(data.regionAliases)) if (!data.regions[r]) errs.push(`alias ${a} -> unknown region "${r}"`);
   return errs;

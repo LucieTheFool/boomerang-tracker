@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { AppState, TrackedCategory, OverlayMode } from '../shared/types';
 import { api } from './api';
 import { categoryColor } from './icons';
@@ -12,9 +12,12 @@ export function Overlay() {
     void api.getState().then(setState);
     return api.onState(setState);
   }, []);
+  const s = state?.summary;
+  // Numbers that just went up pulse for a few seconds.
+  const bumped = useBumps(s ? { hearts: (s.hearts ?? 0) * 4 + (s.heartPiecesHeld ?? 0), tokens: s.tokens ?? 0, pct: s.doneA } : {});
   if (!state) return null;
-  const s = state.summary;
   const o = state.overlay;
+  const live = state.live;
 
   return (
     <div className={`ov ${o.locked ? 'locked' : 'unlocked'}`}>
@@ -35,10 +38,16 @@ export function Overlay() {
         <div className="ov-msg">{state.message ?? 'Waiting for a save…'}</div>
       ) : (
         <>
+          <div className="ov-head">
+            <span className="ov-here">{s.area ?? 'Unknown area'}</span>
+            {live.enabled && live.status !== 'off' && live.status !== 'unavailable' && (
+              <span className={`ov-src ${live.using ? 'on' : ''}`} title={live.using ? 'Live from the game' : (live.detail ?? 'Using saves')}>{live.using ? '● live' : '○ saves'}</span>
+            )}
+          </div>
           <div className="ov-summary">
-            <span><b style={{ color: '#ff3d5a' }}>♥</b> {s.hearts ?? '?'}{s.heartPiecesHeld ? <small> +{s.heartPiecesHeld}/4</small> : null}</span>
-            <span><b style={{ color: '#e8b931' }}>✦</b> {s.tokens ?? '?'}</span>
-            <span className="ov-pct">{s.percent.toFixed(1)}%</span>
+            <span className={bumped.has('hearts') ? 'bump' : ''}><b style={{ color: '#ff3d5a' }}>♥</b> {s.hearts ?? '?'}{s.heartPiecesHeld ? <small> +{s.heartPiecesHeld}/4</small> : null}</span>
+            <span className={bumped.has('tokens') ? 'bump' : ''}><b style={{ color: '#e8b931' }}>✦</b> {s.tokens ?? '?'}</span>
+            <span className={`ov-pct ${bumped.has('pct') ? 'bump' : ''}`}>{s.percent.toFixed(1)}%</span>
           </div>
           {s.claimable.length > 0 && <div className="ov-claim">Claim: {s.claimable.map(c => c.reward).join(', ')}</div>}
           {state.identify.length > 0 && <div className="ov-claim">? {state.identify.length} to identify: open the tracker</div>}
@@ -50,12 +59,34 @@ export function Overlay() {
   );
 }
 
+/** Keys whose value went up recently (cleared after `ms`). Ignores the first render. */
+function useBumps(values: Record<string, number>, ms = 4000): Set<string> {
+  const prev = useRef<Record<string, number> | null>(null);
+  const [bumped, setBumped] = useState<Set<string>>(new Set());
+  const sig = JSON.stringify(values);
+  useEffect(() => {
+    const before = prev.current;
+    prev.current = values;
+    if (!before) return;
+    const up = Object.keys(values).filter(k => before[k] !== undefined && values[k] > before[k]);
+    if (!up.length) return;
+    setBumped(b => new Set([...b, ...up]));
+    // Each change clears only its own keys; no cleanup, so a quick second change
+    // doesn't leave the first one pulsing.
+    setTimeout(() => setBumped(b => new Set([...b].filter(k => !up.includes(k)))), ms);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sig]);
+  return bumped;
+}
+
 function Counters({ cats }: { cats: TrackedCategory[] }) {
   // Same merged cards as the main window (Hearts, Items, Equipment, Bosses...).
+  const cards = buildCards(cats).filter(c => c.part === 'A');
+  const bumped = useBumps(Object.fromEntries(cards.map(c => [c.id, c.done])));
   return (
     <div className="ov-list">
-      {buildCards(cats).filter(c => c.part === 'A').map(c => (
-        <div key={c.id} className={`ov-row ${c.total && c.done === c.total ? 'full' : ''}`}>
+      {cards.map(c => (
+        <div key={c.id} className={`ov-row ${c.total && c.done === c.total ? 'full' : ''} ${bumped.has(c.id) ? 'bump' : ''}`}>
           <span className="dot" style={{ background: categoryColor(c.colorCat) }} />
           <span className="ov-label">{c.label}</span>
           <span className="ov-num">{c.kind === 'counter' && c.value === null ? '?' : c.done}/{c.total}</span>
@@ -85,19 +116,38 @@ function Available({ state }: { state: AppState }) {
   );
 }
 
+/** Why a row can't be got yet, in a couple of words (from its logic status). */
+export function laterReason(logic: { ages: string[]; missing: string[] } | undefined): string | undefined {
+  if (!logic || logic.ages.length) return undefined;
+  const m = logic.missing;
+  if (m.some(x => x.startsWith('Master Sword'))) return 'adult';
+  const item = m.find(x => !x.startsWith('reach ') && x !== 'adult' && x !== 'child');
+  if (item) return `needs ${item.replace(/([a-z])([A-Z])/g, '$1 $2')}`;
+  if (m.includes('adult')) return 'adult';
+  if (m.includes('child')) return 'child';
+  return m.length ? "can't reach yet" : undefined;
+}
+
 function Remaining({ state }: { state: AppState }) {
   const regions = new Set(state.areaRegions);
   const rows = state.categories
     .filter(c => c.part !== 'C')
-    .flatMap(c => c.items.filter(i => !i.done && i.chapter && regions.has(i.chapter)).map(i => ({ c, i })));
+    .flatMap(c => c.items.filter(i => !i.done && i.chapter && regions.has(i.chapter)).map(i => ({ c, i, later: laterReason(i.logic) })))
+    // What you can get now first, then the rest.
+    .sort((a, b) => Number(!!a.later) - Number(!!b.later));
+  const later = rows.filter(r => r.later).length;
+  const now = rows.length - later;
   return (
     <div className="ov-list">
-      <div className="ov-area">{state.summary?.area ?? 'Unknown area'}{regions.size ? '' : ' · no checklist regions matched'}</div>
+      <div className="ov-area">
+        {!regions.size ? 'No checklist entries for this area' : rows.length ? (later ? `${now} to get · ${later} later` : `${rows.length} left here`) : ''}
+      </div>
       {rows.length === 0 && regions.size > 0 && <div className="ov-row muted">Nothing left here 🎉</div>}
-      {rows.slice(0, 40).map(({ c, i }) => (
-        <div key={i.id} className={`ov-row ${i.state === 'unmapped' ? 'unmapped' : ''}`}>
+      {rows.slice(0, 40).map(({ c, i, later }) => (
+        <div key={i.id} className={`ov-row ${i.state === 'unmapped' ? 'unmapped' : ''} ${later ? 'later' : ''}`}>
           <span className="dot" style={{ background: categoryColor(c.id) }} />
           <span className="ov-label">{c.id === 'gold_skulltulas' ? `GS ${i.number}: ${i.name.replace(/^[^:]+: /, '')}` : i.name}</span>
+          {later ? <span className="ov-why">{later}</span> : i.logic?.night && <span className="age night">☾</span>}
         </div>
       ))}
     </div>

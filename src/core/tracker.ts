@@ -59,10 +59,13 @@ export class Tracker {
     return { number: 0, name: itemId, category: '?' };
   }
 
-  /** Questions to ask about flags that became set between two saves. */
-  identifications(before: GameDataFile, after: GameDataFile) {
+  /**
+   * Questions to ask about flags that became set between two states. `here` = checklist
+   * regions the player is in right now (only when known live, at the moment of pickup).
+   */
+  identifications(before: GameDataFile, after: GameDataFile, here?: string[]) {
     const fresh = new Set([...after.bool64].filter(k => !before.bool64.has(k)).map(k => '0x' + k.toString(16).toUpperCase().padStart(16, '0')));
-    return findIdentifications(this.pools, fresh, id => this.describe(id));
+    return findIdentifications(this.pools, fresh, id => this.describe(id), here);
   }
 
   private rebuildKeys() {

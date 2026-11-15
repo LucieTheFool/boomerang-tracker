@@ -135,6 +135,20 @@ export interface AppState {
   learnedCount: number;
   overlay: OverlayState;
   hotkeys: { toggleOverlay: string; lockOverlay: string; errors: string[] };
+  /** Reading progress straight from the running game (read-only) */
+  live: LiveInfo & { enabled: boolean; using: boolean };
+  /** Local log of tracked changes */
+  changeLog: { enabled: boolean; dir: string };
+}
+
+/**
+ * off: turned off · unavailable: can't read memory on this system · no-game: Hookshot isn't
+ * running · searching: looking for the progress tables · waiting: found the game, but it
+ * doesn't match the latest save (title screen, other file) · live: in use
+ */
+export interface LiveInfo {
+  status: 'off' | 'unavailable' | 'no-game' | 'searching' | 'waiting' | 'live';
+  detail?: string;
 }
 
 /** "Which one was this?" question shown after collecting an unplaced Skulltula/heart piece. */
@@ -145,6 +159,8 @@ export interface IdentifyRequest {
   flags: string[]; // newly set, unidentified
   pick: number; // how many rows to choose
   candidates: { id: string; number: number; name: string }[];
+  /** Rows of the same group in other areas (the question was narrowed to where you were) */
+  others?: { id: string; number: number; name: string }[];
   at?: string;
 }
 

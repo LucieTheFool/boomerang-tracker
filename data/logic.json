@@ -248,6 +248,55 @@
         "step05",
         "Complete"
       ]
+    },
+    "TalonAwake": {
+      "name": "Talon_AfterWakeUp"
+    },
+    "BulletBagMedium": {
+      "name": "IsGet.Item_BulletBag_Medium"
+    },
+    "BulletBagLarge": {
+      "name": "IsGet.Item_BulletBag_Large"
+    },
+    "BombBagMedium": {
+      "name": "IsGet.Item_BombBag_Medium"
+    },
+    "BombBagLarge": {
+      "name": "IsGet.Item_BombBag_Large"
+    },
+    "QuiverMedium": {
+      "name": "IsGet.Item_Quiver_Medium"
+    },
+    "QuiverLarge": {
+      "name": "IsGet.Item_Quiver_Large"
+    },
+    "StickBagMedium": {
+      "name": "IsGet.Item_StickBag_Medium"
+    },
+    "StickBagLarge": {
+      "name": "IsGet.Item_StickBag_Large"
+    },
+    "NutBagMedium": {
+      "name": "IsGet.Item_NutBag_Medium"
+    },
+    "NutBagLarge": {
+      "name": "IsGet.Item_NutBag_Large"
+    },
+    "LostWoodsTargetDone": {
+      "name": "LostWood_HitTargetOfDekuScrub_FirstClear"
+    },
+    "RutosLetter": {
+      "name": "IsGet.Item_Bottle_Letter"
+    },
+    "AdultWallet": {
+      "any": [
+        {
+          "name": "IsGet.Item_Wallet_Medium"
+        },
+        {
+          "name": "IsGet.Item_Wallet_Large"
+        }
+      ]
     }
   },
   "numbers": {
@@ -296,7 +345,10 @@
     "FireTempleGear": "GoronTunic",
     "ShadowTempleGear": "Lens and HoverBoots and Hookshot",
     "SpiritAdultSide": "Strength2 and Hookshot",
-    "GtgGear": "Hookshot and Explosives and Bow and Lens"
+    "GtgGear": "Hookshot and Explosives and Bow and Lens",
+    "LeaveForest": "adult or DekuTreeCleared",
+    "KillSkulltula": "adult or KokiriSword or Sticks or Slingshot or Boomerang or Explosives or DinsFire",
+    "StunScrub": "adult or KokiriSword or Sticks or Nuts or Slingshot or Boomerang or Explosives or DekuShield"
   },
   "regionAliases": {
     "Hyrule Field (near Gerudo Valley)": "Hyrule Field",
@@ -321,9 +373,9 @@
       "exits": {
         "Kokiri Forest": "true",
         "Sacred Forest Meadow": "true",
-        "Hyrule Field": "true",
-        "Goron City": "BlastOrSmash or DinsFire",
-        "Zora's River": "child and SilverScale"
+        "Hyrule Field": "LeaveForest",
+        "Goron City": "LeaveForest and (BlastOrSmash or DinsFire)",
+        "Zora's River": "LeaveForest and SilverScale"
       }
     },
     "Sacred Forest Meadow": {
@@ -344,7 +396,7 @@
         "Hyrule Castle Town": "true",
         "Lon Lon Ranch": "true",
         "Kakariko Village": "true",
-        "Zora's River": "true",
+        "Zora's River": "adult or Explosives",
         "Lake Hylia": "true",
         "Gerudo Valley": "true"
       }
@@ -369,7 +421,7 @@
     "Hyrule Castle": {
       "exits": {
         "Hyrule Castle Town": "true",
-        "Ganon's Castle": "adult and AllMedallions"
+        "Ganon's Castle": "adult and ShadowMedallion and SpiritMedallion"
       }
     },
     "Ganon's Castle": {
@@ -406,7 +458,7 @@
         "Kakariko Village": "true",
         "Goron City": "true",
         "Dodongo's Cavern": "Explosives or GoronsBracelet or (adult and Hammer)",
-        "Death Mountain Crater": "true"
+        "Death Mountain Crater": "BlastOrSmash"
       }
     },
     "Dodongo's Cavern": {
@@ -417,8 +469,8 @@
     "Goron City": {
       "exits": {
         "Death Mountain Trail": "true",
-        "Lost Woods": "true",
-        "Death Mountain Crater": "adult or ZeldasLullaby"
+        "Lost Woods": "BlastOrSmash or DinsFire",
+        "Death Mountain Crater": "adult and (Explosives or Bow or Strength1)"
       }
     },
     "Death Mountain Crater": {
@@ -443,7 +495,7 @@
     "Zora's Domain": {
       "exits": {
         "Zora's River": "true",
-        "Zora's Fountain": "KingZoraMoved",
+        "Zora's Fountain": "KingZoraMoved or (child and RutosLetter)",
         "Lake Hylia": "child and SilverScale"
       }
     },
@@ -572,7 +624,7 @@
     },
     "heart_pieces#10": {
       "age": "child",
-      "needs": "Explosives and Sticks"
+      "needs": "(Explosives or Strength1) and (Sticks or DinsFire)"
     },
     "heart_pieces#11": {
       "age": "adult",
@@ -593,14 +645,14 @@
     },
     "heart_pieces#16": {
       "age": "child",
-      "needs": "Sticks"
+      "needs": "Sticks or DinsFire"
     },
     "heart_pieces#17": {
-      "needs": "BeanRide",
+      "needs": "BeanRide or (adult and Longshot)",
       "unsure": true
     },
     "heart_pieces#18": {
-      "age": "adult"
+      "needs": "adult or Boomerang"
     },
     "heart_pieces#19": {
       "age": "adult"
@@ -614,7 +666,6 @@
       "unsure": true
     },
     "heart_pieces#22": {
-      "age": "adult",
       "needs": "GoldenScale"
     },
     "heart_pieces#23": {
@@ -622,7 +673,7 @@
       "unsure": true
     },
     "heart_pieces#24": {
-      "needs": "BeanRide",
+      "needs": "BeanRide or (adult and HoverBoots)",
       "unsure": true
     },
     "heart_pieces#25": {
@@ -630,7 +681,7 @@
     },
     "heart_pieces#26": {
       "age": "adult",
-      "needs": "IronBoots and ZoraTunic"
+      "needs": "IronBoots"
     },
     "heart_pieces#27": {
       "age": "child",
@@ -647,7 +698,7 @@
     },
     "heart_pieces#30": {
       "age": "adult",
-      "needs": "ScarecrowSong and Longshot"
+      "needs": "HoverBoots or (ScarecrowSong and Hookshot) or Longshot"
     },
     "heart_pieces#31": {
       "age": "adult",
@@ -658,7 +709,8 @@
       "unsure": true
     },
     "heart_pieces#33": {
-      "unsure": true
+      "unsure": true,
+      "needs": "SunsSong"
     },
     "heart_pieces#34": {
       "age": "child",
@@ -670,7 +722,8 @@
       "unsure": true
     },
     "heart_pieces#36": {
-      "age": "child"
+      "age": "child",
+      "needs": "StunScrub"
     },
     "heart_containers#1": {
       "age": "child",
@@ -780,11 +833,10 @@
     },
     "gold_skulltulas#20": {
       "age": "child",
-      "needs": "Bugs"
+      "needs": "Bugs and (Explosives or GoronsBracelet)",
+      "note": "The soil is behind a rock: blow it up or lift it with the bracelet."
     },
-    "gold_skulltulas#21": {
-      "age": "child"
-    },
+    "gold_skulltulas#21": {},
     "gold_skulltulas#22": {
       "needs": "Explosives"
     },
@@ -841,12 +893,13 @@
     "gold_skulltulas#36": {
       "age": "child",
       "night": true,
-      "needs": "Slingshot or Boomerang"
+      "needs": "Boomerang"
     },
     "gold_skulltulas#37": {
       "age": "child",
       "night": true,
-      "needs": "Slingshot or Boomerang"
+      "needs": "Boomerang",
+      "note": "Out of reach on the house wall: the Boomerang brings the token back."
     },
     "gold_skulltulas#38": {
       "age": "child",
@@ -863,7 +916,8 @@
       "needs": "Hookshot"
     },
     "gold_skulltulas#41": {
-      "night": true
+      "night": true,
+      "needs": "Boomerang"
     },
     "gold_skulltulas#42": {
       "unsure": true
@@ -945,7 +999,8 @@
     },
     "gold_skulltulas#61": {
       "age": "adult",
-      "night": true
+      "night": true,
+      "needs": "Hammer"
     },
     "gold_skulltulas#62": {
       "age": "adult",
@@ -954,7 +1009,8 @@
     },
     "gold_skulltulas#63": {
       "age": "adult",
-      "night": true
+      "night": true,
+      "needs": "Hookshot or Bow or MagicMeter"
     },
     "gold_skulltulas#64": {
       "age": "adult",
@@ -1004,7 +1060,7 @@
     },
     "gold_skulltulas#75": {
       "age": "child",
-      "needs": "Explosives"
+      "needs": "SongOfStorms and Explosives and Boomerang"
     },
     "gold_skulltulas#76": {
       "age": "child",
@@ -1049,7 +1105,8 @@
       "needs": "Hookshot"
     },
     "gold_skulltulas#86": {
-      "age": "adult"
+      "age": "adult",
+      "needs": "Hookshot"
     },
     "gold_skulltulas#87": {
       "age": "adult",
@@ -1063,7 +1120,7 @@
     "gold_skulltulas#89": {
       "age": "adult",
       "night": true,
-      "needs": "Hookshot"
+      "needs": "Hookshot and GerudoCard"
     },
     "gold_skulltulas#90": {
       "age": "adult",
@@ -1113,7 +1170,8 @@
     },
     "songs#1": {
       "region": "Hyrule Castle",
-      "age": "child"
+      "age": "child",
+      "needs": "WeirdEgg"
     },
     "songs#2": {
       "region": "Graveyard",
@@ -1124,7 +1182,8 @@
     "songs#3": {
       "region": "Lon Lon Ranch",
       "age": "child",
-      "needs": "Ocarina"
+      "needs": "Ocarina and TalonAwake",
+      "note": "Talon has to be back at the ranch first: get the Weird Egg from Malon at Hyrule Castle, let it hatch, and wake Talon there with the Cucco."
     },
     "songs#4": {
       "region": "Sacred Forest Meadow",
@@ -1166,7 +1225,7 @@
     },
     "songs#12": {
       "region": "Desert Colossus",
-      "age": "child"
+      "age": "adult"
     },
     "songs#13": {
       "region": "Lake Hylia",
@@ -1184,7 +1243,8 @@
     },
     "equipment#3": {
       "region": "Goron City",
-      "age": "adult"
+      "age": "adult",
+      "needs": "AdultWallet"
     },
     "equipment#4": {
       "region": "Death Mountain Trail",
@@ -1209,7 +1269,7 @@
     "equipment#9": {
       "region": "Goron City",
       "age": "adult",
-      "needs": "Explosives or Bow or DinsFire"
+      "needs": "Explosives or Bow or DinsFire or Strength1"
     },
     "equipment#10": {
       "region": "Zora's Domain",
@@ -1270,7 +1330,8 @@
     "items#10": {
       "region": "Goron City",
       "age": "child",
-      "needs": "ZeldasLullaby or SariasSong"
+      "needs": "ZeldasLullaby and SariasSong",
+      "note": "Zelda's Lullaby opens Darunia's door; he gives the bracelet after you play Saria's Song."
     },
     "items#11": {
       "region": "Spirit Temple",
@@ -1376,7 +1437,7 @@
     "bottles#1": {
       "region": "Hyrule Castle Town",
       "age": "child",
-      "unsure": true
+      "note": "Available as soon as you reach Castle Town; no other requirement."
     },
     "bottles#2": {
       "region": "Kakariko Village",
@@ -1384,7 +1445,9 @@
     },
     "bottles#3": {
       "region": "Lon Lon Ranch",
-      "age": "child"
+      "age": "child",
+      "needs": "TalonAwake",
+      "note": "Talon has to be back at the ranch first: get the Weird Egg from Malon at Hyrule Castle, let it hatch, and wake Talon there with the Cucco."
     },
     "bottles#4": {
       "region": "Lake Hylia",
@@ -1471,7 +1534,8 @@
     },
     "capacity#11": {
       "region": "Lost Woods",
-      "age": "child"
+      "age": "child",
+      "needs": "StunScrub"
     },
     "capacity#12": {
       "region": "Lost Woods",
@@ -1480,7 +1544,9 @@
     },
     "capacity#13": {
       "region": "Sacred Forest Meadow",
-      "age": "child"
+      "age": "child",
+      "needs": "BlastOrSmash and StunScrub",
+      "unsure": true
     },
     "capacity#14": {
       "region": "Lost Woods",
@@ -1717,6 +1783,133 @@
       "region": "Kakariko Village",
       "age": "child",
       "needs": "SongOfStorms"
+    }
+  },
+  "categoryNeeds": {
+    "gold_skulltulas": "KillSkulltula"
+  },
+  "progressive": {
+    "seed_bag": {
+      "rows": [
+        "capacity#7",
+        "capacity#8"
+      ],
+      "have": [
+        "BulletBagMedium",
+        "BulletBagLarge"
+      ],
+      "sources": [
+        {
+          "name": "the Lost Woods target game",
+          "region": "Lost Woods",
+          "age": "child",
+          "needs": "Slingshot",
+          "done": "LostWoodsTargetDone"
+        },
+        {
+          "name": "the Market shooting gallery",
+          "region": "Hyrule Castle Town",
+          "age": "child",
+          "needs": "Slingshot"
+        }
+      ]
+    },
+    "bomb_bag": {
+      "rows": [
+        "capacity#5",
+        "capacity#6"
+      ],
+      "have": [
+        "BombBagMedium",
+        "BombBagLarge"
+      ],
+      "sources": [
+        {
+          "name": "the rolling Goron in Goron City",
+          "region": "Goron City",
+          "age": "child",
+          "needs": "Explosives"
+        },
+        {
+          "name": "Bombchu Bowling",
+          "region": "Hyrule Castle Town",
+          "age": "child",
+          "needs": "Bombs"
+        }
+      ]
+    },
+    "quiver": {
+      "rows": [
+        "capacity#9",
+        "capacity#10"
+      ],
+      "have": [
+        "QuiverMedium",
+        "QuiverLarge"
+      ],
+      "sources": [
+        {
+          "name": "the Kakariko shooting gallery",
+          "region": "Kakariko Village",
+          "age": "adult",
+          "needs": "Bow"
+        },
+        {
+          "name": "horseback archery at Gerudo Fortress",
+          "region": "Gerudo Fortress",
+          "age": "adult",
+          "needs": "GerudoCard and Epona and Bow"
+        }
+      ]
+    },
+    "sticks": {
+      "rows": [
+        "capacity#11",
+        "capacity#12"
+      ],
+      "have": [
+        "StickBagMedium",
+        "StickBagLarge"
+      ],
+      "sources": [
+        {
+          "name": "the Lost Woods scrub",
+          "region": "Lost Woods",
+          "age": "child",
+          "needs": "StunScrub"
+        },
+        {
+          "name": "the Deku Theater (Skull Mask)",
+          "region": "Lost Woods",
+          "age": "child",
+          "needs": "SkullMask"
+        }
+      ]
+    },
+    "nuts": {
+      "rows": [
+        "capacity#13",
+        "capacity#14"
+      ],
+      "have": [
+        "NutBagMedium",
+        "NutBagLarge"
+      ],
+      "sources": [
+        {
+          "name": "the Sacred Forest Meadow grotto scrub",
+          "region": "Sacred Forest Meadow",
+          "age": "child",
+          "needs": "BlastOrSmash and StunScrub",
+          "unsure": true
+        },
+        {
+          "name": "the Deku Theater (Mask of Truth)",
+          "region": "Lost Woods",
+          "age": "child",
+          "needs": "MaskOfTruth"
+        }
+      ]
     }
   }
 }

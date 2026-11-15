@@ -1719,59 +1719,26 @@
     "gold_skulltulas.002": {
       "label": "Great Deku Tree",
       "detect": {
-        "count": [
-          {
-            "b64": "0xDF73F3739CEF466B"
-          },
-          {
-            "b64": "0xF2E27D6A27026ACF"
-          },
-          {
-            "b64": "0xFAD8931A0011E1D4"
-          }
-        ],
-        "gte": 1
+        "b64": "0xDF73F3739CEF466B"
       },
-      "confidence": "guess",
-      "evidence": "3 Gold Skulltulas in Great Deku Tree. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "confirmed",
+      "evidence": "Identified in the tracker on 2026-11-12 (live, Great Deku Tree): collecting it set 64-bit flag 0xDF73F3739CEF466B"
     },
     "gold_skulltulas.003": {
       "label": "Great Deku Tree",
       "detect": {
-        "count": [
-          {
-            "b64": "0xDF73F3739CEF466B"
-          },
-          {
-            "b64": "0xF2E27D6A27026ACF"
-          },
-          {
-            "b64": "0xFAD8931A0011E1D4"
-          }
-        ],
-        "gte": 2
+        "b64": "0xFAD8931A0011E1D4"
       },
-      "confidence": "guess",
-      "evidence": "3 Gold Skulltulas in Great Deku Tree. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "confirmed",
+      "evidence": "Identified in the tracker on 2026-11-12 (live, Great Deku Tree): collecting it set 64-bit flag 0xFAD8931A0011E1D4"
     },
     "gold_skulltulas.004": {
       "label": "Great Deku Tree",
       "detect": {
-        "count": [
-          {
-            "b64": "0xDF73F3739CEF466B"
-          },
-          {
-            "b64": "0xF2E27D6A27026ACF"
-          },
-          {
-            "b64": "0xFAD8931A0011E1D4"
-          }
-        ],
-        "gte": 3
+        "b64": "0xF2E27D6A27026ACF"
       },
-      "confidence": "guess",
-      "evidence": "3 Gold Skulltulas in Great Deku Tree. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "confirmed",
+      "evidence": "Last of the three Great Deku Tree spots after #2 and #3 were identified; collecting it on 2026-11-12 (live) set 64-bit flag 0xF2E27D6A27026ACF"
     },
     "gold_skulltulas.005": {
       "label": "Hyrule Castle Town",
@@ -1784,34 +1751,18 @@
     "gold_skulltulas.006": {
       "label": "Hyrule Castle",
       "detect": {
-        "count": [
-          {
-            "b64": "0x22C0F7DFF5EBB86D"
-          },
-          {
-            "b64": "0x7F28485FA5D3688F"
-          }
-        ],
-        "gte": 1
+        "b64": "0x22C0F7DFF5EBB86D"
       },
-      "confidence": "guess",
-      "evidence": "2 Gold Skulltulas in Hyrule Castle. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "confirmed",
+      "evidence": "Identified in the tracker on 2026-11-12 (live): collecting it set 64-bit flag 0x22C0F7DFF5EBB86D"
     },
     "gold_skulltulas.075": {
       "label": "Hyrule Castle",
       "detect": {
-        "count": [
-          {
-            "b64": "0x22C0F7DFF5EBB86D"
-          },
-          {
-            "b64": "0x7F28485FA5D3688F"
-          }
-        ],
-        "gte": 2
+        "b64": "0x7F28485FA5D3688F"
       },
-      "confidence": "guess",
-      "evidence": "2 Gold Skulltulas in Hyrule Castle. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "confirmed",
+      "evidence": "The last spot of its group after the others were identified in the tracker: 64-bit flag 0x7F28485FA5D3688F"
     },
     "gold_skulltulas.043": {
       "label": "Hyrule Castle (outside Ganon's Castle)",
@@ -1824,114 +1775,34 @@
     "gold_skulltulas.007": {
       "label": "Kakariko Village",
       "detect": {
-        "count": [
-          {
-            "b64": "0x2DF265292516BDF0"
-          },
-          {
-            "b64": "0x6A8D9B2373D08FCB"
-          },
-          {
-            "b64": "0xA1632E322C612B97"
-          },
-          {
-            "b64": "0xC3C68D0AC4B85831"
-          },
-          {
-            "b64": "0xD1CEF51CF294FB86"
-          },
-          {
-            "b64": "0xD4883A16973B1D06"
-          }
-        ],
-        "gte": 1
+        "b64": "0xC3C68D0AC4B85831"
       },
-      "confidence": "guess",
-      "evidence": "6 Gold Skulltulas in Kakariko Village. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "confirmed",
+      "evidence": "Identified in the tracker on 2026-11-12 (live): collecting it set 64-bit flag 0xC3C68D0AC4B85831"
     },
     "gold_skulltulas.008": {
       "label": "Kakariko Village",
       "detect": {
-        "count": [
-          {
-            "b64": "0x2DF265292516BDF0"
-          },
-          {
-            "b64": "0x6A8D9B2373D08FCB"
-          },
-          {
-            "b64": "0xA1632E322C612B97"
-          },
-          {
-            "b64": "0xC3C68D0AC4B85831"
-          },
-          {
-            "b64": "0xD1CEF51CF294FB86"
-          },
-          {
-            "b64": "0xD4883A16973B1D06"
-          }
-        ],
-        "gte": 2
+        "b64": "0xD4883A16973B1D06"
       },
-      "confidence": "guess",
-      "evidence": "6 Gold Skulltulas in Kakariko Village. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "confirmed",
+      "evidence": "Identified in the tracker on 2026-11-12 (live): collecting it set 64-bit flag 0xD4883A16973B1D06"
     },
     "gold_skulltulas.009": {
       "label": "Kakariko Village",
       "detect": {
-        "count": [
-          {
-            "b64": "0x2DF265292516BDF0"
-          },
-          {
-            "b64": "0x6A8D9B2373D08FCB"
-          },
-          {
-            "b64": "0xA1632E322C612B97"
-          },
-          {
-            "b64": "0xC3C68D0AC4B85831"
-          },
-          {
-            "b64": "0xD1CEF51CF294FB86"
-          },
-          {
-            "b64": "0xD4883A16973B1D06"
-          }
-        ],
-        "gte": 3
+        "b64": "0x6A8D9B2373D08FCB"
       },
-      "confidence": "guess",
-      "evidence": "6 Gold Skulltulas in Kakariko Village. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "confirmed",
+      "evidence": "Identified in the tracker on 2026-11-12 (live): collecting it set 64-bit flag 0x6A8D9B2373D08FCB"
     },
     "gold_skulltulas.010": {
       "label": "Kakariko Village",
       "detect": {
-        "count": [
-          {
-            "b64": "0x2DF265292516BDF0"
-          },
-          {
-            "b64": "0x6A8D9B2373D08FCB"
-          },
-          {
-            "b64": "0xA1632E322C612B97"
-          },
-          {
-            "b64": "0xC3C68D0AC4B85831"
-          },
-          {
-            "b64": "0xD1CEF51CF294FB86"
-          },
-          {
-            "b64": "0xD4883A16973B1D06"
-          }
-        ],
-        "gte": 4
+        "b64": "0xD1CEF51CF294FB86"
       },
-      "confidence": "guess",
-      "evidence": "6 Gold Skulltulas in Kakariko Village. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "confirmed",
+      "evidence": "Identified in the tracker on 2026-11-12 (live): collecting it set 64-bit flag 0xD1CEF51CF294FB86"
     },
     "gold_skulltulas.012": {
       "label": "Kakariko Village",
@@ -1941,22 +1812,10 @@
             "b64": "0x2DF265292516BDF0"
           },
           {
-            "b64": "0x6A8D9B2373D08FCB"
-          },
-          {
             "b64": "0xA1632E322C612B97"
-          },
-          {
-            "b64": "0xC3C68D0AC4B85831"
-          },
-          {
-            "b64": "0xD1CEF51CF294FB86"
-          },
-          {
-            "b64": "0xD4883A16973B1D06"
           }
         ],
-        "gte": 5
+        "gte": 1
       },
       "confidence": "guess",
       "evidence": "6 Gold Skulltulas in Kakariko Village. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
@@ -1969,22 +1828,10 @@
             "b64": "0x2DF265292516BDF0"
           },
           {
-            "b64": "0x6A8D9B2373D08FCB"
-          },
-          {
             "b64": "0xA1632E322C612B97"
-          },
-          {
-            "b64": "0xC3C68D0AC4B85831"
-          },
-          {
-            "b64": "0xD1CEF51CF294FB86"
-          },
-          {
-            "b64": "0xD4883A16973B1D06"
           }
         ],
-        "gte": 6
+        "gte": 2
       },
       "confidence": "guess",
       "evidence": "6 Gold Skulltulas in Kakariko Village. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
@@ -2016,10 +1863,15 @@
     "gold_skulltulas.013": {
       "label": "Lon Lon Ranch",
       "detect": {
+        "b64": "0x04BE4A8FF29F2099"
+      },
+      "confidence": "confirmed",
+      "evidence": "Identified in the tracker on 2026-11-12 (live): collecting it set 64-bit flag 0x04BE4A8FF29F2099"
+    },
+    "gold_skulltulas.036": {
+      "label": "Lake Hylia",
+      "detect": {
         "count": [
-          {
-            "b64": "0x04BE4A8FF29F2099"
-          },
           {
             "b64": "0x0AF4D6F063D3AE9F"
           },
@@ -2053,13 +1905,10 @@
       "confidence": "guess",
       "evidence": "10 Gold Skulltulas in Hyrule Field / Hyrule Field (near Gerudo Valley) / Lon Lon Ranch / Lake Hylia / Lake Hylia (Lakeside Laboratory). The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
     },
-    "gold_skulltulas.036": {
-      "label": "Lake Hylia",
+    "gold_skulltulas.037": {
+      "label": "Lon Lon Ranch",
       "detect": {
         "count": [
-          {
-            "b64": "0x04BE4A8FF29F2099"
-          },
           {
             "b64": "0x0AF4D6F063D3AE9F"
           },
@@ -2093,13 +1942,10 @@
       "confidence": "guess",
       "evidence": "10 Gold Skulltulas in Hyrule Field / Hyrule Field (near Gerudo Valley) / Lon Lon Ranch / Lake Hylia / Lake Hylia (Lakeside Laboratory). The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
     },
-    "gold_skulltulas.037": {
+    "gold_skulltulas.038": {
       "label": "Lon Lon Ranch",
       "detect": {
         "count": [
-          {
-            "b64": "0x04BE4A8FF29F2099"
-          },
           {
             "b64": "0x0AF4D6F063D3AE9F"
           },
@@ -2133,13 +1979,10 @@
       "confidence": "guess",
       "evidence": "10 Gold Skulltulas in Hyrule Field / Hyrule Field (near Gerudo Valley) / Lon Lon Ranch / Lake Hylia / Lake Hylia (Lakeside Laboratory). The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
     },
-    "gold_skulltulas.038": {
-      "label": "Lon Lon Ranch",
+    "gold_skulltulas.039": {
+      "label": "Hyrule Field",
       "detect": {
         "count": [
-          {
-            "b64": "0x04BE4A8FF29F2099"
-          },
           {
             "b64": "0x0AF4D6F063D3AE9F"
           },
@@ -2173,13 +2016,10 @@
       "confidence": "guess",
       "evidence": "10 Gold Skulltulas in Hyrule Field / Hyrule Field (near Gerudo Valley) / Lon Lon Ranch / Lake Hylia / Lake Hylia (Lakeside Laboratory). The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
     },
-    "gold_skulltulas.039": {
+    "gold_skulltulas.042": {
       "label": "Hyrule Field",
       "detect": {
         "count": [
-          {
-            "b64": "0x04BE4A8FF29F2099"
-          },
           {
             "b64": "0x0AF4D6F063D3AE9F"
           },
@@ -2213,13 +2053,10 @@
       "confidence": "guess",
       "evidence": "10 Gold Skulltulas in Hyrule Field / Hyrule Field (near Gerudo Valley) / Lon Lon Ranch / Lake Hylia / Lake Hylia (Lakeside Laboratory). The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
     },
-    "gold_skulltulas.042": {
-      "label": "Hyrule Field",
+    "gold_skulltulas.068": {
+      "label": "Lake Hylia (Lakeside Laboratory)",
       "detect": {
         "count": [
-          {
-            "b64": "0x04BE4A8FF29F2099"
-          },
           {
             "b64": "0x0AF4D6F063D3AE9F"
           },
@@ -2253,13 +2090,10 @@
       "confidence": "guess",
       "evidence": "10 Gold Skulltulas in Hyrule Field / Hyrule Field (near Gerudo Valley) / Lon Lon Ranch / Lake Hylia / Lake Hylia (Lakeside Laboratory). The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
     },
-    "gold_skulltulas.068": {
-      "label": "Lake Hylia (Lakeside Laboratory)",
+    "gold_skulltulas.074": {
+      "label": "Lake Hylia",
       "detect": {
         "count": [
-          {
-            "b64": "0x04BE4A8FF29F2099"
-          },
           {
             "b64": "0x0AF4D6F063D3AE9F"
           },
@@ -2293,13 +2127,10 @@
       "confidence": "guess",
       "evidence": "10 Gold Skulltulas in Hyrule Field / Hyrule Field (near Gerudo Valley) / Lon Lon Ranch / Lake Hylia / Lake Hylia (Lakeside Laboratory). The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
     },
-    "gold_skulltulas.074": {
+    "gold_skulltulas.098": {
       "label": "Lake Hylia",
       "detect": {
         "count": [
-          {
-            "b64": "0x04BE4A8FF29F2099"
-          },
           {
             "b64": "0x0AF4D6F063D3AE9F"
           },
@@ -2333,13 +2164,10 @@
       "confidence": "guess",
       "evidence": "10 Gold Skulltulas in Hyrule Field / Hyrule Field (near Gerudo Valley) / Lon Lon Ranch / Lake Hylia / Lake Hylia (Lakeside Laboratory). The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
     },
-    "gold_skulltulas.098": {
-      "label": "Lake Hylia",
+    "gold_skulltulas.099": {
+      "label": "Hyrule Field",
       "detect": {
         "count": [
-          {
-            "b64": "0x04BE4A8FF29F2099"
-          },
           {
             "b64": "0x0AF4D6F063D3AE9F"
           },
@@ -2369,46 +2197,6 @@
           }
         ],
         "gte": 9
-      },
-      "confidence": "guess",
-      "evidence": "10 Gold Skulltulas in Hyrule Field / Hyrule Field (near Gerudo Valley) / Lon Lon Ranch / Lake Hylia / Lake Hylia (Lakeside Laboratory). The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
-    },
-    "gold_skulltulas.099": {
-      "label": "Hyrule Field",
-      "detect": {
-        "count": [
-          {
-            "b64": "0x04BE4A8FF29F2099"
-          },
-          {
-            "b64": "0x0AF4D6F063D3AE9F"
-          },
-          {
-            "b64": "0x1E38E8D23596EECF"
-          },
-          {
-            "b64": "0x25E6072D4DF023B3"
-          },
-          {
-            "b64": "0x6689BDEBC95368EB"
-          },
-          {
-            "b64": "0x781E0DE8EED42373"
-          },
-          {
-            "b64": "0x7D8EC14BDD1F6341"
-          },
-          {
-            "b64": "0xA6A4E87DA18FA678"
-          },
-          {
-            "b64": "0xC1858A4FCD84A28E"
-          },
-          {
-            "b64": "0xDC8113831C56B194"
-          }
-        ],
-        "gte": 10
       },
       "confidence": "guess",
       "evidence": "10 Gold Skulltulas in Hyrule Field / Hyrule Field (near Gerudo Valley) / Lon Lon Ranch / Lake Hylia / Lake Hylia (Lakeside Laboratory). The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
@@ -2489,66 +2277,34 @@
     "gold_skulltulas.016": {
       "label": "Kokiri Forest",
       "detect": {
-        "count": [
-          {
-            "b64": "0x62C340F0B876C195"
-          },
-          {
-            "b64": "0xECDC46B409ED7D38"
-          }
-        ],
-        "gte": 1
+        "b64": "0xECDC46B409ED7D38"
       },
-      "confidence": "guess",
-      "evidence": "2 Gold Skulltulas in Kokiri Forest. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "confirmed",
+      "evidence": "Identified in game on 2026-11-12 (live, Kokiri Forest at night): collecting it set 64-bit flag 0xECDC46B409ED7D38"
     },
     "gold_skulltulas.044": {
       "label": "Kokiri Forest",
       "detect": {
-        "count": [
-          {
-            "b64": "0x62C340F0B876C195"
-          },
-          {
-            "b64": "0xECDC46B409ED7D38"
-          }
-        ],
-        "gte": 2
+        "b64": "0x62C340F0B876C195"
       },
-      "confidence": "guess",
-      "evidence": "2 Gold Skulltulas in Kokiri Forest. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "confirmed",
+      "evidence": "The other Kokiri Forest spot once #16 was identified: 64-bit flag 0x62C340F0B876C195"
     },
     "gold_skulltulas.017": {
       "label": "Lost Woods",
       "detect": {
-        "count": [
-          {
-            "b64": "0x8186BCB07D6C2CF9"
-          },
-          {
-            "b64": "0xF6FA6EF0CA152948"
-          }
-        ],
-        "gte": 1
+        "b64": "0x8186BCB07D6C2CF9"
       },
-      "confidence": "guess",
-      "evidence": "Soft-soil Skulltula (placement has IsMagicBeanSoil) (2 in Lost Woods). The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "confirmed",
+      "evidence": "Identified in the tracker on 2026-11-12 (live): collecting it set 64-bit flag 0x8186BCB07D6C2CF9"
     },
     "gold_skulltulas.018": {
       "label": "Lost Woods",
       "detect": {
-        "count": [
-          {
-            "b64": "0x8186BCB07D6C2CF9"
-          },
-          {
-            "b64": "0xF6FA6EF0CA152948"
-          }
-        ],
-        "gte": 2
+        "b64": "0xF6FA6EF0CA152948"
       },
-      "confidence": "guess",
-      "evidence": "Soft-soil Skulltula (placement has IsMagicBeanSoil) (2 in Lost Woods). The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "confirmed",
+      "evidence": "The last spot of its group after the others were identified in the tracker: 64-bit flag 0xF6FA6EF0CA152948"
     },
     "gold_skulltulas.045": {
       "label": "Lost Woods",
@@ -3932,34 +3688,18 @@
     "heart_pieces.003": {
       "label": "Lon Lon Ranch",
       "detect": {
-        "count": [
-          {
-            "b64": "0x88358AF5B5300AA9"
-          },
-          {
-            "b64": "0xBAEC91D6ED8DD96B"
-          }
-        ],
-        "gte": 1
+        "b64": "0x88358AF5B5300AA9"
       },
-      "confidence": "guess",
-      "evidence": "2 world heart pieces in HyruleField. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Recognised in the tracker from the area (Lon Lon Ranch) on 2026-11-12: collecting it set 64-bit flag 0x88358AF5B5300AA9"
     },
     "heart_pieces.021": {
       "label": "Lake Hylia",
       "detect": {
-        "count": [
-          {
-            "b64": "0x88358AF5B5300AA9"
-          },
-          {
-            "b64": "0xBAEC91D6ED8DD96B"
-          }
-        ],
-        "gte": 2
+        "b64": "0xBAEC91D6ED8DD96B"
       },
-      "confidence": "guess",
-      "evidence": "2 world heart pieces in HyruleField. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "The other heart piece of its group (Lon Lon Ranch storage room crates) was recognised from the area on 2026-11-12, which leaves this flag: 0xBAEC91D6ED8DD96B"
     },
     "heart_pieces.012": {
       "label": "Kakariko Village",
@@ -4059,9 +3799,12 @@
     },
     "heart_pieces.004": {
       "label": "Gerudo Valley",
-      "detect": null,
-      "confidence": "guess",
-      "evidence": "Chest heart piece. The game marks it (HeartPieceAnchor type 1 next to a chest), but chests store their \"opened\" flag under a different key than their placement id. Needs one before/after snapshot."
+      "detect": {
+        "key": "0x7001F17C",
+        "eq": true
+      },
+      "confidence": "likely",
+      "evidence": "Chest heart piece. Snapshot 2026-11-11: Bool 0x7001F17C turned true the moment the chest was opened in Gerudo Valley (with IsGet.Obj_Heart_Piece and the heart-piece count 0->1); false in every earlier save, including a file that already had another heart piece."
     },
     "heart_pieces.016": {
       "label": "Zora's Domain",
