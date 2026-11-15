@@ -8,7 +8,7 @@ const PROCESS_VM_READ = 0x0010;
 const PROCESS_QUERY_LIMITED_INFORMATION = 0x1000;
 
 type Fn = (...args: unknown[]) => unknown;
-let api: { OpenProcess: Fn; CloseHandle: Fn; ReadProcessMemory: Fn; GetExitCodeProcess: Fn } | null | undefined;
+let api: { OpenProcess: Fn; CloseHandle: Fn; ReadProcessMemory: Fn; GetExitCodeProcess: Fn; QueryFullProcessImageNameW: Fn } | null | undefined;
 
 /** Load koffi and the kernel32 functions once. Call before using ProcessMemory. */
 export async function initMemoryAccess(): Promise<boolean> {
@@ -36,6 +36,7 @@ function bind(koffi: any) {
       CloseHandle: k32.func('int __stdcall CloseHandle(void *h)'),
       ReadProcessMemory: k32.func('int __stdcall ReadProcessMemory(void *h, uint64_t addr, _Out_ uint8_t *buf, size_t size, void *read)'),
       GetExitCodeProcess: k32.func('int __stdcall GetExitCodeProcess(void *h, _Out_ uint32_t *code)'),
+      QueryFullProcessImageNameW: k32.func('int __stdcall QueryFullProcessImageNameW(void *h, uint32_t flags, _Out_ uint16_t *name, _Inout_ uint32_t *size)'),
     };
   }
 }
@@ -53,6 +54,13 @@ export class ProcessMemory implements Mem {
     const buf = Buffer.alloc(len);
     const ok = api!.ReadProcessMemory(this.handle, addr, buf, len, null);
     return ok ? buf : null;
+  }
+  /** Full path of the program (e.g. D:\Games\Longshot\hookshot.exe), if Windows will say. */
+  imagePath(): string | undefined {
+    if (!this.handle) return undefined;
+    const name = new Uint16Array(1024), size = [name.length];
+    if (!api!.QueryFullProcessImageNameW(this.handle, 0, name, size)) return undefined;
+    return String.fromCharCode(...name.subarray(0, size[0]));
   }
   alive(): boolean {
     if (!this.handle) return false;

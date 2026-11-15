@@ -6,18 +6,22 @@ import { locate, readTables, buildLive, fingerprint, matchesReference, LiveTable
 import { ProcessMemory, findProcesses, initMemoryAccess } from './procmem.js';
 import type { LiveInfo } from '../shared/types.js';
 
+/** Hookshot and its fork Longshot both run the game as hookshot.exe. */
 const IMAGE = 'hookshot.exe';
 const TICK_MS = 500;
 const FIND_EVERY_MS = 3000;
-/** Where the tables were in Hookshot v2.1.0 (host address). Only a starting point. */
-const DEFAULT_HINT = 0x1010_99f4_f418n;
+/** Where the tables were in Hookshot v2.1.0 and Longshot v1.0.0 (host addresses). Only starting points. */
+const DEFAULT_HINTS = [0x1010_99f4_f418n, 0x1010_7eea_f418n];
 /** The game's heap: guest 0x10_0000_0000, ~7 GB, mapped at host base 0x1000_0000_0000. */
 const HEAP_LO = 0x1010_0000_0000n, HEAP_HI = 0x1011_c000_0000n;
 const SWEEP_WINDOW = 64 << 20; // locate() reads twice this per step
 
 export interface LiveOptions {
-  hint?: string;
+  /** Table addresses found before (hex), newest first. */
+  hints: string[];
   onHint(hex: string): void;
+  /** A game was attached to: the full path of its exe, if Windows gave it. */
+  onGame?(exe: string | undefined): void;
   onChange(): void;
   onStatus(): void;
 }
@@ -87,6 +91,7 @@ export class LiveSource {
       const [pid] = await findProcesses(IMAGE);
       if (!pid) return this.set({ status: 'no-game' });
       this.mem = new ProcessMemory(pid);
+      this.opts.onGame?.(this.mem.imagePath());
     }
     if (!this.ref) return this.set({ status: 'searching', detail: 'Waiting for a save to compare with.' });
     if (!this.tables && !this.find()) return;
@@ -110,14 +115,16 @@ export class LiveSource {
     }
   }
 
-  /** Try the saved hint, then the default, then sweep the heap one window per tick. */
+  /** Try the saved hints, then the defaults, then sweep the heap one window per tick. */
   private find(): boolean {
     const mem = this.mem!, ref = this.ref!;
     if (this.sweep === undefined) {
       this.set({ status: 'searching' });
-      for (const h of [this.opts.hint ? BigInt('0x' + this.opts.hint) : undefined, DEFAULT_HINT]) {
-        if (h === undefined) continue;
-        const t = locate(mem, ref, h, 4 << 20) ?? locate(mem, ref, h, SWEEP_WINDOW);
+      const hints = [...new Set([...this.opts.hints.map(h => BigInt('0x' + h)), ...DEFAULT_HINTS])];
+      // Exact spots first (cheap), then a wider window around each.
+      for (const h of hints) { const t = locate(mem, ref, h, 4 << 20); if (t) return this.found(t); }
+      for (const h of hints.slice(0, 2)) {
+        const t = locate(mem, ref, h, SWEEP_WINDOW);
         if (t) return this.found(t);
       }
       this.sweep = HEAP_LO + BigInt(SWEEP_WINDOW);
@@ -139,7 +146,7 @@ export class LiveSource {
     this.tables = t;
     this.sweep = undefined;
     const hint = t.records[0].start.toString(16);
-    if (hint !== this.opts.hint) { this.opts.hint = hint; this.opts.onHint(hint); }
+    if (hint !== this.opts.hints[0]) { this.opts.hints = [hint, ...this.opts.hints.filter(h => h !== hint)].slice(0, 4); this.opts.onHint(hint); }
     return true;
   }
 }

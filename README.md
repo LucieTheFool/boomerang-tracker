@@ -1,11 +1,11 @@
 # Boomerang Tracker
 
 A 100% completion tracker for **The Legend of Zelda: Ocarina of Time** (the Nintendo Switch 2
-remake) when played through **Hookshot** or a compatible Switch 2 emulator. It reads your
+remake) when played through **Hookshot**, its fork **Longshot**, or a compatible Switch 2 emulator. It reads your
 progress from the running game (or from your save files), shows what you've collected and what
 you can get next, and updates as you play.
 
-- **Read-only.** Saves are only ever read, never written. Live tracking reads Hookshot's memory
+- **Read-only.** Saves are only ever read, never written. Live tracking reads the game's memory
   but never writes to it, and can be turned off in Settings.
 - **Nothing from the game is included.** No game files, art, keys or saves are part of this
   project. You need your own copy of the game.
@@ -23,7 +23,7 @@ you can get next, and updates as you play.
   night time, an area you can't reach yet). Tiered upgrades (seed bag, bomb bag, quiver, stick
   and nut capacity) are offered one tier at a time, since whichever place you do first gives the
   next tier. Resizable; also available as an overlay mode.
-- **Live tracking:** while Hookshot is running, progress is read straight from the game
+- **Live tracking:** while Hookshot or Longshot is running, progress is read straight from the game
   (read-only) and updates within half a second, not just at autosaves. Your current area is live
   too, including places inside a bigger stage such as Lake Hylia and Lon Lon Ranch. At the title
   screen or in another save file it falls back to the save files on its own; the summary shows
@@ -59,18 +59,24 @@ npm test
 
 ## First run
 
-The tracker looks for Hookshot saves in the usual places (`%USERPROFILE%\Games\Hookshot`, and
-launcher folders named `Apps\*Hookshot*`). If it can't find them it asks you to choose a folder:
-the Hookshot folder, its `user\save` folder, or the profile folder that contains `slot_00`,
+The tracker looks for Hookshot and Longshot saves in the usual places (`%USERPROFILE%\Games\Hookshot`
+or `Longshot`, `Games\Hookshot` or `Games\Longshot` on a drive, and launcher folders named
+`Apps\*Hookshot*`). If it finds several, it uses the one you played most recently; you can change it in
+Settings. If it can't find any it asks you to choose a folder: the game folder, its `user\save` folder,
+or the profile folder that contains `slot_00`,
 `slot_01`, …
 
 The game rotates its autosaves across all six slots, so the default **Most recent** setting follows
 whichever slot was written last. You can pin a slot instead.
 
+Hookshot and Longshot installs each keep their own saves. When one of them is running, the tracker
+switches to that install's saves on its own (unless you've pinned a slot) and shows a note saying so.
+
 Live tracking starts on its own once the game is running and you're in your save file. The summary
 shows **● Live** when progress comes from the game and **○ Saves** when it comes from the save files.
 It's used only with **Most recent**, and only while the game's state matches your latest save.
-It was worked out on Hookshot v2.1.0; if an update changes how the game is laid out in memory, the
+It was worked out on Hookshot v2.1.0 and checked on Longshot v1.0.0; if an update changes how the
+game is laid out in memory, the
 tracker keeps working from the save files.
 
 ## Settings and data

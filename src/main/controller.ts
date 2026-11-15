@@ -3,7 +3,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { parseGameData, GameDataFile, GameDataError } from '../gamedata/parser.js';
-import { autoDetectUserFolder, resolveUserFolders, listSlots, mostRecentSlot, readSaveStable, SlotInfo } from '../gamedata/saves.js';
+import { autoDetectUserFolder, resolveUserFolders, listSlots, mostRecentSlot, readSaveStable, userFolderForExe, SlotInfo } from '../gamedata/saves.js';
 import { loadNames } from '../gamedata/names.js';
 import { Tracker, ChecklistFile, MappingFile } from '../core/tracker.js';
 import { regionsForArea } from '../core/areas.js';
@@ -114,8 +114,15 @@ export class Controller {
   private async startLive() {
     if (this.live) return;
     this.live = new LiveSource({
-      hint: this.settings.data.live.hint,
-      onHint: h => this.settings.update(s => (s.live.hint = h)),
+      // Where the tables were found before, newest first (one per game build, e.g. Hookshot and Longshot).
+      hints: [...new Set([...(this.settings.data.live.hints ?? []), this.settings.data.live.hint].filter((h): h is string => !!h))],
+      onHint: h => this.settings.update(s => {
+        // Keep the older single hint too (settings from before there was a list).
+        const prev = [...(s.live.hints ?? []), ...(s.live.hint ? [s.live.hint] : [])];
+        s.live.hints = [...new Set([h, ...prev])].slice(0, 4);
+        s.live.hint = h;
+      }),
+      onGame: exe => void this.followGame(exe),
       onChange: () => void this.refresh(true),
       onStatus: () => {
         const i = this.live?.info;
@@ -170,6 +177,20 @@ export class Controller {
     this.watcher = new SaveWatcher(this.userDir, () => void this.refresh(true));
     this.watcher.start();
     await this.refresh(false);
+  }
+
+  /**
+   * When a game starts, follow its saves: Hookshot and Longshot installs each keep their
+   * own. Not while a slot is pinned (that's a choice of save), and only if it has saves.
+   */
+  private async followGame(exe: string | undefined) {
+    if (!exe || this.settings.data.pinnedSlot) return;
+    const dir = userFolderForExe(exe);
+    if (!dir || path.resolve(dir).toLowerCase() === path.resolve(this.userDir ?? '').toLowerCase()) return;
+    const game = path.dirname(exe).replace(/\\bin$/i, '');
+    this.log.write({ kind: 'source', status: 'switched', detail: `Following the running game: ${game}` });
+    this.toast(`Switched to the saves of the game that's running (${game}).`, 8000);
+    await this.useFolder(dir);
   }
 
   private fail(status: AppState['status'], message: string) {

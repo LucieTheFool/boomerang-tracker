@@ -149,7 +149,9 @@ export function locate(mem: Mem, ref: GameDataFile, hint: bigint, window = 64 <<
     if (!best) { if (L.optional) continue; return null; }
     records.push(best.t);
   }
-  // 64-bit keys: the table holding the most of the reference's set keys.
+  // 64-bit keys: the table holding the most of the reference's set keys. On a new file
+  // the save has none yet, so every ascending run ties; the real table lists every placed
+  // object in the game (11,658 in Hookshot v2.1.0), so prefer the longest on a tie.
   let b64: LiveTables['b64'] | undefined, bestHits = -1;
   const refKeys = [...ref.bool64];
   for (const run of findB64Runs(buf, lo, B64_MIN)) {
@@ -157,7 +159,7 @@ export function locate(mem: Mem, ref: GameDataFile, hint: bigint, window = 64 <<
     const off = Number(run.start - lo);
     for (let j = 0; j < run.count; j++) keys.add(buf.readBigUInt64LE(off + j * B64_STRIDE));
     const hits = refKeys.filter(k => keys.has(k)).length;
-    if (hits > bestHits) { bestHits = hits; b64 = run; }
+    if (hits > bestHits || (hits === bestHits && run.count > b64!.count)) { bestHits = hits; b64 = run; }
   }
   if (!b64 || (refKeys.length && bestHits < refKeys.length * 0.9)) return null;
   return { records, b64, location: findLocation(buf, lo) };

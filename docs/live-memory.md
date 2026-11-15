@@ -10,7 +10,13 @@ Code: `src/gamedata/live.ts` (layout, locating, reading; tested in `test/live.te
 `src/main/procmem.ts` (Windows access through koffi), `src/main/live.ts` (attach, poll,
 fall back).
 
-## Memory layout (Hookshot v2.1.0)
+## Memory layout (Hookshot v2.1.0, Longshot v1.0.0)
+
+Longshot (a fork of Hookshot v2.0.5) runs the game as `hookshot.exe` too and keeps the same
+layout: same record strides, value offsets and even the same distances between the tables. Only
+the start address differs (Bool records at host `0x1010_99F4_F418` in Hookshot v2.1.0,
+`0x1010_7EEA_F418` in Longshot v1.0.0). Both are built-in starting points; the tracker remembers the
+last four addresses it found and sweeps the heap if none fit.
 
 Hookshot maps the game's memory at host address `0x1000_0000_0000 + guest address`. The
 game heap is at guest `0x10_0000_0000` (about 7 GB).

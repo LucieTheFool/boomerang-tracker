@@ -37,27 +37,45 @@ export function resolveUserFolders(start: string): string[] {
   return [...new Set(out)];
 }
 
-/** Places Hookshot saves usually live. The first existing one wins. */
+/** A game folder built by Hookshot or Longshot: the game exe at the top or in bin\. */
+function isGameFolder(dir: string): boolean {
+  return ['hookshot.exe', path.join('bin', 'hookshot.exe'), 'Longshot.exe'].some(f => fs.existsSync(path.join(dir, f)));
+}
+
+/** Places Hookshot (and Longshot, its fork) game folders usually live. */
 export function candidateGameFolders(): string[] {
   const home = os.homedir();
-  const c = [path.join(home, 'Games', 'Hookshot')];
-  // Launchers (e.g. QuiverLauncher) install Hookshot builds as Apps\<name>-Hookshot.
+  const c = [path.join(home, 'Games', 'Hookshot'), path.join(home, 'Games', 'Longshot')];
   for (const drive of ['C:', 'D:', 'E:', 'F:']) {
+    // Launchers (e.g. QuiverLauncher) install Hookshot builds as Apps\<name>-Hookshot.
     for (const base of [path.join(drive + '\\', 'Games', 'QuiverLauncher', 'Apps'), path.join(home, 'QuiverLauncher', 'Apps')]) {
       try {
-        for (const n of fs.readdirSync(base)) if (/hookshot/i.test(n)) c.push(path.join(base, n));
+        for (const n of fs.readdirSync(base)) if (/hookshot|longshot/i.test(n)) c.push(path.join(base, n));
       } catch { /* not there */ }
     }
+    // Game folders straight under <drive>\Games, e.g. D:\Games\Longshot.
+    const games = path.join(drive + '\\', 'Games');
+    try {
+      for (const n of fs.readdirSync(games)) { const p = path.join(games, n); if (/hookshot|longshot/i.test(n) && isGameFolder(p)) c.push(p); }
+    } catch { /* not there */ }
   }
   return [...new Set(c)];
 }
 
+/**
+ * The save folder of the install a running game exe belongs to (exe at the top of the
+ * game folder or in bin\), the most recently played profile if there are several.
+ */
+export function userFolderForExe(exe: string): string | null {
+  let dir = path.dirname(exe);
+  if (path.basename(dir).toLowerCase() === 'bin') dir = path.dirname(dir);
+  return resolveUserFolders(dir).sort((a, b) => latestMtime(b) - latestMtime(a))[0] ?? null;
+}
+
+/** The save folder with the most recent save across every install found. */
 export function autoDetectUserFolder(): string | null {
-  for (const g of candidateGameFolders()) {
-    const u = resolveUserFolders(g);
-    if (u.length) return u.sort((a, b) => latestMtime(b) - latestMtime(a))[0];
-  }
-  return null;
+  const all = candidateGameFolders().flatMap(g => resolveUserFolders(g));
+  return all.sort((a, b) => latestMtime(b) - latestMtime(a))[0] ?? null;
 }
 
 function latestMtime(userDir: string): number {

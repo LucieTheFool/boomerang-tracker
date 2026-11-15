@@ -11,9 +11,9 @@ const hInt = (i: number) => (0x50000000 + i * 104729) >>> 0;
 const hEnum = (i: number) => (0x90000000 + i * 1299709) >>> 0;
 const key64 = (j: number) => 0x0100_0000_0000_0000n + BigInt(j) * 0x0000_0100_0000_0001n;
 
-function build() {
+function build(start = 0x1000) {
   const mem = Buffer.alloc(4 << 20);
-  let o = 0x1000;
+  let o = start;
   const tables: Record<string, number> = {};
   const put = (type: 'Bool' | 'Int' | 'Enum', n: number, h: (i: number) => number, vt: bigint, val: (i: number) => number) => {
     const L = LAYOUTS.find(l => l.type === type)!;
@@ -149,6 +149,18 @@ describe('live memory tables', () => {
     setList(['HyruleField', 'LonLonRanch']);
     expect(fingerprint(t, readTables(m, t)!, new Set())).not.toBe(fingerprint(t, first, new Set()));
     expect(readLive(m, t, ref)!.data.entries.get(LOCATION_KEY)!.value).toEqual(['HyruleField', 'LonLonRanch', '', '']);
+  });
+
+  it('on a new file with nothing collected yet, picks the full 64-bit table, not a shorter look-alike', () => {
+    // A shorter ascending run of 64-bit values elsewhere in memory, before the real tables.
+    const decoy = 0x1000;
+    const { mem, m, tables } = build(decoy + 1024 * 16 + 0x100);
+    const ref = reference();
+    ref.bool64.clear(); // brand-new file: no Skulltulas or heart pieces yet
+    for (let j = 0; j < 1024; j++) mem.writeBigUInt64LE(0x0200_0000_0000_0000n + BigInt(j) * 0x10001n, decoy + j * 16);
+    const t = locate(m, ref, BASE + 0x200000n, 2 << 20)!;
+    expect(Number(t.b64.start - BASE)).toBe(tables.b64);
+    expect(t.b64.count).toBe(nB64);
   });
 
   it('combines the stage with the place inside it', () => {
