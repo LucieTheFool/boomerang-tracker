@@ -10,8 +10,32 @@ import { applyLearned, findIdentifications, LearnedGroup, Pool } from './pools.j
 export interface ChecklistFile {
   categories: {
     id: string; label: string; part: 'A' | 'B' | 'C'; countsToward100: boolean; kind: 'list' | 'counter'; max?: number; note?: string;
-    items: { id: string; number: number; name: string; chapter?: string; region?: string; requirement?: string; details?: Record<string, string>; newInRemake?: boolean; iconId: string }[];
+    items: { id: string; number: number; name: string; chapter?: string; region?: string; requirement?: string; details?: Record<string, string>; newInRemake?: boolean; iconId: string; where?: string }[];
   }[];
+}
+
+/** data/descriptions.json: where each entry is, keyed by row id. `title` names a spot within its area. */
+export interface DescriptionsFile {
+  rows: Record<string, { title?: string; where: string }>;
+}
+
+/**
+ * Adds the "where" text to each row. A row with a title is renamed "<area>: <title>"
+ * (e.g. "Lake Hylia: Tunnel on the south-west shore"), so the public checklist's
+ * area-only Skulltula and heart piece names become specific.
+ */
+export function applyDescriptions(checklist: ChecklistFile, file: DescriptionsFile): ChecklistFile {
+  return {
+    ...checklist,
+    categories: checklist.categories.map(c => ({
+      ...c,
+      items: c.items.map(it => {
+        const d = file.rows[it.id];
+        if (!d) return it;
+        return { ...it, where: d.where, name: d.title ? (it.chapter ? `${it.chapter}: ${d.title}` : d.title) : it.name };
+      }),
+    })),
+  };
 }
 export interface MappingFile {
   entries: Record<string, { label: string; detect: Rule | null; confidence: 'confirmed' | 'likely' | 'guess'; evidence: string }>;

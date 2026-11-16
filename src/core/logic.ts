@@ -30,7 +30,19 @@ export interface LogicFile {
    * Their rows' own location entries are replaced by this.
    */
   progressive?: Record<string, ProgressiveFamily>;
+  /** Readable names for items, numbers ("{n}" = the amount) and macros, used in "still needed" lists. */
+  labels?: Record<string, string>;
 }
+
+/** A missing requirement as players read it: "Bombs or Bombchus", "50 Gold Skulltula tokens". */
+export function missingLabel(data: LogicFile, m: string): string {
+  const labels = data.labels ?? {};
+  if (labels[m]) return labels[m];
+  const num = m.match(/^(\w+) (\d+)$/);
+  if (num && labels[num[1]]?.includes('{n}')) return labels[num[1]].replace('{n}', num[2]);
+  return m;
+}
+const labelled = (data: LogicFile, missing: Set<string>) => [...new Set([...missing].map(m => missingLabel(data, m)))];
 
 export interface ProgressiveFamily {
   /** Checklist rows, lowest tier first ("capacity#7"). */
@@ -231,7 +243,7 @@ export function evaluateLogic(data: LogicFile, save: GameDataFile, rows: RowRef[
       if (L.test(needs, age, m)) ages.push(age);
       else m.forEach(x => missing.add(x));
     }
-    out.set(r.id, { ages, region, needs, night: loc.night, unsure: loc.unsure, note: loc.note, missing: ages.length ? [] : [...missing] });
+    out.set(r.id, { ages, region, needs, night: loc.night, unsure: loc.unsure, note: loc.note, missing: ages.length ? [] : labelled(data, missing) });
   }
   return out;
 }
@@ -253,7 +265,7 @@ function progressiveStatus(data: LogicFile, L: Logic, reach: Record<Age, Set<str
       const ages: Age[] = [];
       const missing = new Set<string>();
       const open: ProgressiveSource[] = [];
-      if (tier > owned) missing.add(`the ${ordinal(tier)} upgrade first`);
+      if (tier > owned) missing.add(`the ${ordinal(tier)} upgrade`);
       else if (tier === owned) {
         for (const age of ['child', 'adult'] as Age[]) {
           if (age === 'adult' && !adultOk) { missing.add('Master Sword (to travel to adult)'); continue; }
@@ -275,7 +287,7 @@ function progressiveStatus(data: LogicFile, L: Logic, reach: Record<Age, Set<str
         ages, region: L.resolveRegion(first.region) ?? first.region, needs: first.needs, night: first.night,
         unsure: fam.sources.some(s => s.unsure) || undefined,
         note: `Comes from ${places}, whichever you do first; the other gives the next one.`,
-        missing: ages.length ? [] : [...missing],
+        missing: ages.length ? [] : labelled(data, missing),
       });
     });
   }
@@ -327,5 +339,8 @@ export function lintLogic(data: LogicFile, rowKeys: Set<string>): string[] {
     }
   }
   for (const [a, r] of Object.entries(data.regionAliases)) if (!data.regions[r]) errs.push(`alias ${a} -> unknown region "${r}"`);
+  if (data.labels) for (const n of [...Object.keys(data.items), ...Object.keys(data.numbers), ...Object.keys(data.macros)]) {
+    if (!data.labels[n]) errs.push(`no label for "${n}"`);
+  }
   return errs;
 }

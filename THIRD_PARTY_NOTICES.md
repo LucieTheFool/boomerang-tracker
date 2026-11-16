@@ -49,6 +49,9 @@ project's license).
 - Video Games Chronicle's per-dungeon Gold Skulltula lists and Nintendo Life's heart piece guide:
   second sources for the dungeon Skulltulas and the Magic Bean heart pieces.
 
+The location descriptions in `data/descriptions.json` were written for this project from these
+facts; no guide text is reproduced.
+
 ## Format write-ups for Tears of the Kingdom saves
 General GameData container background (Murmur3 keys, typed sections).
 

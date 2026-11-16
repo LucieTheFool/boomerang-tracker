@@ -19,6 +19,8 @@ you can get next, and updates as you play.
 
 - **Summary:** hearts (out of 20), Gold Skulltula tokens with the next House of Skulltula reward
   (or "ready to claim"), and an overall 100% figure.
+- **Where to find it:** click any entry for a short description of where it is, and what you
+  still need for it if you can't get it yet.
 - **Categories:** Hearts, Gold Skulltulas, Songs, Equipment, Items (with upgrades shown as levels),
   Great Fairies, Dungeons, Bosses, Side Quests, Big Poes, plus optional quest-progress and extras.
 - **Can get now:** which 100% entries you can reach with what you have, as child or adult, with
@@ -43,7 +45,7 @@ you can get next, and updates as you play.
   (with an undo link); otherwise it asks after you collect one and remembers your answer.
 - **Change log:** every tracked change, with time, save slot and area, plus your answers and hand
   ticks, kept as monthly files on your PC. Useful for checking what the tracker saw.
-- **Hand ticks** for anything not detected from the save yet.
+- **Hand ticks:** double-click any entry to tick it yourself.
 
 ## Install
 
@@ -89,7 +91,7 @@ memory, the tracker keeps working from the save files.
 
 Everything the app writes goes to `%APPDATA%\Boomerang Tracker\`: `settings.json` (folder, slot,
 hand ticks, answers, layout, overlay, hotkeys), `logs\changes-YYYY-MM.jsonl` (the change log: every
-tracked change with time and area; can be turned off in Settings), `snapshots\` (developer panel),
+tracked change with time and area; can be turned off in Settings), `snapshots\` (developer tools),
 and `error.log`.
 
 ## How detection works
@@ -106,6 +108,7 @@ The data files are meant to be edited:
 | File | What |
 |---|---|
 | `data/checklist.json` | What to track: names, numbers and areas |
+| `data/descriptions.json` | Where each entry is, in a sentence or two |
 | `data/save-mapping.json` | How each entry is read from the save |
 | `data/logic.json` | Requirements and area connections for "Can get now" |
 
@@ -125,8 +128,8 @@ uses instead when it exists. Both use the same ids.
 
 ### Developer tools
 
-Tick **Developer** in the app for a Snapshot button and the list of keys that changed in the latest
-save. On the command line:
+Turn on **Developer tools** under Settings → Advanced for a Snapshot button, the list of keys that
+changed in the latest save, and how each entry is detected. On the command line:
 
 ```
 npm run sav -- dump <file.sav> [--nondefault --grep text --json]

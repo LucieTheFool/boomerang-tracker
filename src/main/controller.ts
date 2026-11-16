@@ -5,7 +5,7 @@ import path from 'node:path';
 import { parseGameData, GameDataFile, GameDataError } from '../gamedata/parser.js';
 import { autoDetectUserFolder, resolveUserFolders, listSlots, mostRecentSlot, readSaveStable, userFolderForExe, SlotInfo } from '../gamedata/saves.js';
 import { loadNames } from '../gamedata/names.js';
-import { Tracker, ChecklistFile, MappingFile } from '../core/tracker.js';
+import { Tracker, ChecklistFile, MappingFile, DescriptionsFile, applyDescriptions } from '../core/tracker.js';
 import { regionsForArea } from '../core/areas.js';
 import { evaluateLogic, Logic, LogicFile } from '../core/logic.js';
 import type { AvailableEntry } from '../shared/types.js';
@@ -45,7 +45,8 @@ export class Controller {
     // A detailed local checklist (built from your own guide text, never published) wins
     // over the public one; both use the same ids.
     const local = path.join(paths.appDir, 'data', 'checklist.local.json');
-    const checklist = (fs.existsSync(local) ? JSON.parse(fs.readFileSync(local, 'utf8')) : read('checklist.json')) as ChecklistFile;
+    let checklist = (fs.existsSync(local) ? JSON.parse(fs.readFileSync(local, 'utf8')) : read('checklist.json')) as ChecklistFile;
+    try { checklist = applyDescriptions(checklist, read('descriptions.json') as DescriptionsFile); } catch (e) { console.error('descriptions', e); }
     this.tracker = new Tracker(checklist, read('save-mapping.json') as MappingFile, settings.data.learned);
     try { this.logic = read('logic.json') as LogicFile; } catch { this.logic = undefined; }
     this.logicRows = this.tracker.checklist.categories.flatMap(c => c.items.map(i => ({ id: i.id, key: `${c.id}#${i.number}`, chapter: i.chapter })));

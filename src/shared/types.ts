@@ -12,6 +12,8 @@ export interface TrackedItem {
   details?: Record<string, string>;
   newInRemake?: boolean;
   iconId: string;
+  /** Where to find it, in a sentence or two (data/descriptions.json). */
+  where?: string;
   /** What the save says (unmapped = no rule yet). */
   state: ItemState;
   /** Ticked by hand in the tracker (saved per slot). */

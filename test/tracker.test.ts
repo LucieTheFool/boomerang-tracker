@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import { describe, it, expect } from 'vitest';
 import { parseGameData } from '../src/gamedata/parser.js';
-import { Tracker, ChecklistFile, MappingFile } from '../src/core/tracker.js';
+import { Tracker, ChecklistFile, MappingFile, DescriptionsFile, applyDescriptions } from '../src/core/tracker.js';
 import { regionsForArea } from '../src/core/areas.js';
 
 const read = (f: string) => JSON.parse(fs.readFileSync(f, 'utf8'));
@@ -60,5 +60,31 @@ describe('area matching', () => {
     expect(regionsForArea('Market/Market_Child', [])).toEqual(['Hyrule Castle Town']);
     expect(regionsForArea('GoronCity', ['Goron City', 'Graveyard'])).toEqual(['Goron City']);
     expect(regionsForArea(undefined, ['Goron City'])).toEqual([]);
+  });
+});
+
+describe('Location descriptions', () => {
+  const checklist = read('data/checklist.json') as ChecklistFile;
+  const desc = read('data/descriptions.json') as DescriptionsFile;
+  const rows = checklist.categories.flatMap(c => c.items);
+
+  it('describes every checklist entry and nothing else', () => {
+    const ids = new Set(rows.map(r => r.id));
+    expect(rows.filter(r => !desc.rows[r.id]?.where).map(r => r.id)).toEqual([]);
+    expect(Object.keys(desc.rows).filter(id => !ids.has(id))).toEqual([]);
+  });
+
+  it('names Skulltula and heart piece spots "<area>: <title>"', () => {
+    const merged = applyDescriptions(checklist, desc).categories.flatMap(c => c.items);
+    const gs = merged.find(r => r.id === 'gold_skulltulas.098')!;
+    expect(gs.name).toBe(`${gs.chapter}: ${desc.rows['gold_skulltulas.098'].title}`);
+    expect(gs.where).toBe(desc.rows['gold_skulltulas.098'].where);
+    // Rows without a title keep their name.
+    const song = merged.find(r => r.id === 'songs.zeldas_lullaby')!;
+    expect(song.name).toBe("Zelda's Lullaby");
+    expect(song.where).toBeTruthy();
+    // Every located spot gets its own name.
+    const located = merged.filter(r => /^(gold_skulltulas|heart_pieces)\./.test(r.id));
+    expect(new Set(located.map(r => r.name)).size).toBe(located.length);
   });
 });

@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import { describe, it, expect } from 'vitest';
-import { lintLogic, evaluateLogic, parseExpr, Logic, LogicFile } from '../src/core/logic.js';
+import { lintLogic, evaluateLogic, parseExpr, missingLabel, Logic, LogicFile } from '../src/core/logic.js';
 import { parseGameData, GameDataFile, Entry } from '../src/gamedata/parser.js';
 import { murmur3 } from '../src/gamedata/murmur3.js';
 import { evaluate } from '../src/gamedata/detect.js';
@@ -18,6 +18,12 @@ describe('logic.json', () => {
   });
   it('covers every Part A checklist row', () => {
     expect(partA.filter((k: string) => !logic.locations[k])).toEqual([]);
+  });
+  it('names missing requirements the way players know them', () => {
+    expect(missingLabel(logic, 'Explosives')).toBe('Bombs or Bombchus');
+    expect(missingLabel(logic, 'HookshotItem')).toBe('Hookshot');
+    expect(missingLabel(logic, 'Tokens 50')).toBe('50 Gold Skulltula tokens');
+    expect(missingLabel(logic, 'adult')).toBe('adult');
   });
   it('parses and/or with and binding tighter', () => {
     expect(parseExpr('child and A or adult and B')).toEqual({ op: 'or', args: [
@@ -68,7 +74,7 @@ describe('logic on a brand-new file', () => {
       const s = statusOf(fakeSave(base));
       expect(s('capacity#7').ages).toEqual(['child']);
       expect(s('capacity#8').ages).toEqual([]);
-      expect(s('capacity#8').missing).toEqual(['the first upgrade first']);
+      expect(s('capacity#8').missing).toEqual(['the first upgrade']);
     });
     it('after the Market gallery, the Lost Woods game gives the biggest', () => {
       const s = statusOf(fakeSave([...base, 'IsGet.Item_BulletBag_Medium']));

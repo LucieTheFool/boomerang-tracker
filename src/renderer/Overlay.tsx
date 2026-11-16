@@ -100,7 +100,7 @@ function Available({ state }: { state: AppState }) {
   let last = '';
   return (
     <div className="ov-list">
-      {state.available.length === 0 && <div className="ov-row muted">Nothing obtainable right now</div>}
+      {state.available.length === 0 && <div className="ov-row muted">Nothing to get right now</div>}
       {state.available.slice(0, 60).map(a => {
         const head = a.region !== last ? (last = a.region, <div key={'h' + a.region} className="ov-area">{a.here ? '▶ ' : ''}{a.region}</div>) : null;
         return [head, (
@@ -146,8 +146,8 @@ function Remaining({ state }: { state: AppState }) {
       {rows.slice(0, 40).map(({ c, i, later }) => (
         <div key={i.id} className={`ov-row ${i.state === 'unmapped' ? 'unmapped' : ''} ${later ? 'later' : ''}`}>
           <span className="dot" style={{ background: categoryColor(c.id) }} />
-          <span className="ov-label">{c.id === 'gold_skulltulas' ? `GS ${i.number}: ${i.name.replace(/^[^:]+: /, '')}` : i.name}</span>
-          {later ? <span className="ov-why">{later}</span> : i.logic?.night && <span className="age night">☾</span>}
+          <span className="ov-label">{c.id === 'gold_skulltulas' ? `GS ${i.number}: ` : ''}{i.name.replace(/^[^:]+: /, '')}</span>
+          {later ? <span className="ov-why" title={later}>{later}</span> : i.logic?.night && <span className="age night">☾</span>}
         </div>
       ))}
     </div>

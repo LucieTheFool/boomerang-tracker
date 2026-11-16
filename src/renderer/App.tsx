@@ -93,7 +93,7 @@ export function App() {
           {state.identify.length > 0 && <IdentifyCard q={state.identify[0]} more={state.identify.length - 1} onShow={setSelected} />}
           {selectedItem && 'stack' in selectedItem
             ? <StackDetails stack={selectedItem.stack} onShow={setSelected} onClose={() => setSelected(null)} />
-            : selectedItem ? <Details cat={selectedItem.cat} item={selectedItem.item} onClose={() => setSelected(null)} /> : <Legend />}
+            : selectedItem ? <Details cat={selectedItem.cat} item={selectedItem.item} dev={state.devPanel} onClose={() => setSelected(null)} /> : <Legend />}
           {state.devPanel && <DevPanel state={state} />}
         </aside>
       </div>
@@ -182,8 +182,6 @@ function Toolbar({ state, cards, prefs, onPrefs }: { state: AppState; cards: Car
         Overlay {state.overlay.visible ? 'on' : 'off'}
       </button>
       <SettingsButton state={state} />
-      <button onClick={() => void api.browseFolder()} title={state.saveDir}>Save folder…</button>
-      <label className="check"><input type="checkbox" checked={state.devPanel} onChange={e => void api.setDevPanel(e.target.checked)} /> Developer</label>
     </div>
   );
 }
@@ -218,19 +216,18 @@ function AvailablePanel({ state, open, selected, onSelect, onToggle, height, onR
       </button>
       {open && (
         <div className="avail-groups">
-          {state.available.length === 0 && <span className="muted small">Nothing obtainable right now according to the logic.</span>}
+          {state.available.length === 0 && <span className="muted small">Nothing left to get with what you have right now.</span>}
           {[...groups].map(([region, list]) => (
             <div key={region} className={`avail-group ${list[0].here ? 'here' : ''}`}>
               <div className="avail-region">{list[0].here && <span className="here-tag">you are here</span>}{region} <span className="muted">({list.length})</span></div>
               <div className="avail-chips">
                 {list.map(a => (
                   <button key={a.id} className={`chip ${selected === a.id ? 'selected' : ''}`} onClick={() => onSelect(a.id)}
-                    title={`${a.categoryLabel} #${a.number}${a.unsure ? '\nRequirements unconfirmed in the remake' : ''}`}>
+                    title={`${a.categoryLabel} #${a.number}`}>
                     <span className="dot" style={{ background: categoryColor(a.categoryId) }} />
                     {a.categoryId === 'gold_skulltulas' ? `GS ${a.number}: ` : ''}{a.name.replace(/^[^:]+: /, '')}
                     {state.canBeAdult && a.ages.length === 1 && <span className={`age ${a.ages[0]}`}>{a.ages[0]}</span>}
                     {a.night && <span className="age night">night</span>}
-                    {a.unsure && <span className="age unsure">?</span>}
                   </button>
                 ))}
               </div>
@@ -259,22 +256,30 @@ function SettingsButton({ state }: { state: AppState }) {
   const [open, setOpen] = useState(false);
   const [hk, setHk] = useState({ toggleOverlay: state.hotkeys.toggleOverlay, lockOverlay: state.hotkeys.lockOverlay });
   useEffect(() => setHk({ toggleOverlay: state.hotkeys.toggleOverlay, lockOverlay: state.hotkeys.lockOverlay }), [state.hotkeys.toggleOverlay, state.hotkeys.lockOverlay]);
+  // Close on a click outside the panel or on Escape.
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!open) return;
+    const down = (e: MouseEvent) => { if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false); };
+    const key = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false); };
+    document.addEventListener('mousedown', down);
+    document.addEventListener('keydown', key);
+    return () => { document.removeEventListener('mousedown', down); document.removeEventListener('keydown', key); };
+  }, [open]);
   const o = state.overlay;
   return (
-    <div className="dropdown">
-      <button onClick={() => setOpen(x => !x)}>Settings ▾</button>
+    <div className="dropdown" ref={ref}>
+      <button className={open ? 'on' : ''} onClick={() => setOpen(x => !x)}>Settings ▾</button>
       {open && (
         <div className="settings-pop">
+          <b>Saves</b>
+          <span className="muted small path" title={state.saveDir}>{state.saveDir ?? 'No folder chosen'}</span>
+          <button onClick={() => void api.browseFolder()}>Change save folder…</button>
           <b>Live tracking</b>
           <label className="check">
             <input type="checkbox" checked={state.live.enabled} onChange={e => void api.setLive(e.target.checked)} /> Read progress live from the running game
           </label>
           <span className="muted small">Read-only: the tracker only looks at the game's memory, it never changes anything. Uses your saves whenever the game isn't running.</span>
-          <label className="check">
-            <input type="checkbox" checked={state.changeLog.enabled} onChange={e => void api.setChangeLog(e.target.checked)} /> Keep a change log
-          </label>
-          <span className="muted small">Notes every change the tracker sees, with the time and area, in a file on this PC. Helps pin down what an item sets in the save.</span>
-          <button onClick={() => void api.openLogFolder()}>Open log folder</button>
           <b>Overlay</b>
           <label>Opacity: {Math.round(o.opacity * 100)}%
             <input type="range" min={0.2} max={1} step={0.05} value={o.opacity} onChange={e => void api.setOverlay({ opacity: Number(e.target.value) })} />
@@ -293,6 +298,17 @@ function SettingsButton({ state }: { state: AppState }) {
           <span className="muted small">Format like Control+Shift+O, Alt+F9. Works while the game has focus.</span>
           <button className="primary" onClick={() => void api.setHotkeys(hk)}>Save hotkeys</button>
           {state.hotkeys.errors.map(e => <span key={e} className="err">{e}</span>)}
+          <b>Advanced</b>
+          <label className="check">
+            <input type="checkbox" checked={state.changeLog.enabled} onChange={e => void api.setChangeLog(e.target.checked)} /> Keep a change log
+          </label>
+          <span className="muted small">Notes every change the tracker sees, with the time and area, in a file on this PC.</span>
+          <button onClick={() => void api.openLogFolder()}>Open log folder</button>
+          <label className="check">
+            <input type="checkbox" checked={state.devPanel} onChange={e => void api.setDevPanel(e.target.checked)} /> Developer tools
+          </label>
+          <span className="muted small">Adds a panel with save snapshots and the raw values that changed, and shows how each entry is detected.</span>
+          <span className="muted small version">Boomerang Tracker v{state.version}</span>
         </div>
       )}
     </div>
@@ -315,7 +331,7 @@ function CardView({ card, hideCollected, selected, onSelect, collapsed, onToggle
         <>
           {card.hint && <div className="hint">{card.hint}</div>}
           {card.kind === 'counter' ? (
-            <div className="counter-note">{card.value === null ? 'not readable from this save' : `${card.value} of ${card.max}`}{card.counterConfidence === 'guess' ? ' · unconfirmed' : ''}</div>
+            <div className="counter-note">{card.value === null ? 'Not in this save yet' : `${card.value} of ${card.max}`}</div>
           ) : card.sections.map((s, i) => {
             const tiles = hideCollected ? s.tiles.filter(t => tileItems(t).some(x => !x.done)) : s.tiles;
             return (
@@ -368,10 +384,9 @@ function Tile({ catId, item, selected, onSelect, major, numbered }: { catId: str
   return (
     <button className={cls} style={{ ['--c' as string]: icon.color }} onClick={() => onSelect(item.id)}
       onDoubleClick={() => item.state !== 'yes' && void api.toggleManual(item.id)}
-      title={`${item.number}. ${item.name}${item.region ? `\n${item.region}` : ''}`}>
+      title={`${numbered ? `#${item.number} ` : ''}${item.name}${item.where ? `\n${item.where}` : ''}`}>
       <span className="glyph">{numbered ? item.number : icon.symbol ? <Symbol name={icon.symbol} size={26} /> : icon.glyph}</span>
       {item.manual && <span className="badge m">M</span>}
-      {item.confidence === 'guess' && item.state === 'yes' && <span className="badge g" title="unconfirmed mapping">?</span>}
       {!numbered && <span className="tile-label">{shortName(item.name)}</span>}
     </button>
   );
@@ -399,10 +414,10 @@ function StackDetails({ stack, onShow, onClose }: { stack: Extract<TileModel, { 
       <div className="members">
         {stack.members.map(({ categoryLabel, item }) => (
           <div key={item.id} className={`member ${item.done ? 'is-done' : ''}`}>
-            <span className="mark">{item.done ? '✓' : item.state === 'unmapped' ? '?' : '·'}</span>
+            <span className="mark">{item.done ? '✓' : '·'}</span>
             <div className="member-body">
               <button className="link" onClick={() => onShow(item.id)}>{item.name}</button>
-              <span className="muted small"> {categoryLabel} #{item.number}{item.region ? ` · ${item.region}` : ''}</span>
+              <span className="muted small"> {categoryLabel} #{item.number}{item.chapter ? ` · ${item.chapter}` : ''}</span>
               {!item.done && item.logic?.ages.length ? <span className="age ok-tag">can get now</span> : null}
               {item.manual && <span className="muted small"> (ticked by hand)</span>}
             </div>
@@ -412,55 +427,68 @@ function StackDetails({ stack, onShow, onClose }: { stack: Extract<TileModel, { 
           </div>
         ))}
       </div>
-      <p className="muted small">Click a name for its full details.</p>
+      <p className="muted small">Click a name to see where it is.</p>
     </div>
   );
 }
 
-function Details({ cat, item, onClose }: { cat: TrackedCategory; item: TrackedItem; onClose: () => void }) {
-  const stateText = item.state === 'yes' ? 'Collected (from your save)'
+function Details({ cat, item, dev, onClose }: { cat: TrackedCategory; item: TrackedItem; dev: boolean; onClose: () => void }) {
+  const stateText = item.state === 'yes' ? 'Collected'
     : item.manual ? 'Ticked by hand'
-    : item.state === 'unmapped' ? 'Not detected yet: the tracker can’t read this from the save yet'
-    : item.state === 'unknown' ? 'Unknown: this save is missing the key'
-    : 'Not collected';
-  // Show only checklist columns not already shown as Where / Area / Needs / the name.
-  const shown = new Set([item.region, item.chapter, item.requirement].filter(Boolean));
-  const extra = Object.entries(item.details ?? {}).filter(([, v]) => !shown.has(v) && !item.name.includes(v));
+    : item.state === 'unmapped' ? 'The tracker can’t see this one in your save. Tick it by hand once you have it.'
+    : 'Not collected yet';
+  // "Lake Hylia: Tunnel on the south-west shore" -> heading "Tunnel on the south-west shore", area below it.
+  const title = item.chapter && item.name.startsWith(`${item.chapter}: `) ? item.name.slice(item.chapter.length + 2) : item.name;
+  const identified = ['Identified by you', 'You identified', 'Recognised automatically'].some(p => item.evidence?.startsWith(p));
+  // Checklist columns from a local checklist, shown with the developer tools.
+  const shown = new Set([item.chapter, item.requirement].filter(Boolean));
+  const extra = dev ? Object.entries(item.details ?? {}).filter(([, v]) => !shown.has(v) && !item.name.includes(v)) : [];
   return (
     <div className="panel details">
       <div className="panel-head">
         <span className="dot" style={{ background: categoryColor(cat.id) }} />
         <span>{cat.label} #{item.number}</span>
-        <button className="x" onClick={onClose}>×</button>
+        <button className="x" onClick={onClose} title="Close">×</button>
       </div>
-      <h3>{item.name}{item.newInRemake && <span className="new">new in remake</span>}</h3>
-      {item.region && <p><b>Where:</b> {item.region}</p>}
-      {item.chapter && item.chapter !== item.region && <p><b>Area:</b> {item.chapter}</p>}
-      {item.requirement && <p><b>Needs:</b> {item.requirement}</p>}
-      {extra.map(([k, v]) => <p key={k}><b>{k}:</b> {v}</p>)}
+      <h3>{title}{item.newInRemake && <span className="new">new in remake</span>}</h3>
+      {item.chapter && <p className="area">{item.chapter}</p>}
+      {item.where && <p className="where">{item.where}</p>}
       <p className={`status s-${item.done ? 'done' : item.state}`}>{stateText}</p>
       {item.logic && !item.done && (
         <p className="logic small">
           {item.logic.ages.length
-            ? <><b className="ok">Can get now</b> as {item.logic.ages.join(' or ')}{item.logic.night ? ' (at night)' : ''}.</>
-            : <><b>Not yet.</b> Missing: {item.logic.missing.join(', ')}.</>}
-          {item.logic.needs && <><br />Needs: <code>{item.logic.needs}</code></>}
+            ? <><b className="ok">You can get this now</b> as {item.logic.ages.join(' or ')}{item.logic.night ? ', at night' : ''}.</>
+            : <><b>Not yet.</b> Still needed: {item.logic.missing.map(needText).join('; ')}.</>}
           {item.logic.note && <><br />{item.logic.note}</>}
-          {item.logic.unsure && <><br /><span className="muted">These requirements are unconfirmed for the remake.</span></>}
         </p>
       )}
       {item.state !== 'yes' && (
-        <button className="primary" onClick={() => void api.toggleManual(item.id)}>{item.manual ? 'Remove manual tick' : 'Tick by hand'}</button>
+        <button className="primary" onClick={() => void api.toggleManual(item.id)}>{item.manual ? 'Remove hand tick' : 'Tick by hand'}</button>
       )}
-      {item.confidence && (
-        <p className="muted small">Detection: <b>{item.confidence}</b>{item.evidence ? `: ${item.evidence}` : ''}</p>
+      {identified && (
+        <button className="link" onClick={() => void api.forgetIdentification(item.id)}>Wrong spot? Undo this match</button>
       )}
-      {(item.evidence?.startsWith('Identified by you') || item.evidence?.startsWith('You identified') || item.evidence?.startsWith('Recognised automatically')) && (
-        <button className="link" onClick={() => void api.forgetIdentification(item.id)}>That was wrong: undo this identification</button>
+      {dev && (
+        <div className="dev-info small">
+          {item.requirement && <p><b>Requirement:</b> {item.requirement}</p>}
+          {extra.map(([k, v]) => <p key={k}><b>{k}:</b> {v}</p>)}
+          {item.logic?.needs && <p><b>Logic:</b> <code>{item.logic.needs}</code></p>}
+          {item.confidence
+            ? <p><b>Detection:</b> {item.confidence}{item.evidence ? `: ${item.evidence}` : ''}</p>
+            : item.evidence && <p>{item.evidence}</p>}
+        </div>
       )}
-      {!item.confidence && item.evidence && <p className="muted small">{item.evidence}</p>}
     </div>
   );
+}
+
+/** A "still needed" entry as a phrase: "adult" -> "to be an adult", "reach X as child" -> "a way to X as a child". */
+function needText(m: string): string {
+  if (m === 'adult') return 'to be an adult';
+  if (m === 'child') return 'to be a child';
+  const r = m.match(/^reach (.+) as (child|adult)$/);
+  if (r) return `a way to ${r[1]} as ${r[2] === 'adult' ? 'an adult' : 'a child'}`;
+  return m;
 }
 
 function IdentifyCard({ q, more, onShow }: { q: AppState['identify'][number]; more: number; onShow: (id: string) => void }) {
@@ -504,9 +532,8 @@ function Legend() {
       <div className="panel-head"><span>Legend</span></div>
       <div className="leg"><span className="tile done mini" style={{ ['--c' as string]: '#4fc39b' }} /> Collected</div>
       <div className="leg"><span className="tile todo mini" style={{ ['--c' as string]: '#4fc39b' }} /> Not collected yet</div>
-      <div className="leg"><span className="tile todo unmapped mini" /> Not detected yet (tick by hand)</div>
       <div className="leg"><span className="tile done manual mini" style={{ ['--c' as string]: '#4fc39b' }}><span className="badge m">M</span></span> Ticked by hand</div>
-      <p className="muted small">Click an entry for details. Double-click to tick or untick it by hand.</p>
+      <p className="muted small">Click an entry to see where it is and what you still need for it. Double-click to tick or untick it by hand.</p>
     </div>
   );
 }
@@ -516,7 +543,7 @@ function DevPanel({ state }: { state: AppState }) {
   const ch = state.lastChanges;
   return (
     <div className="panel dev">
-      <div className="panel-head"><span>Developer</span></div>
+      <div className="panel-head"><span>Developer tools</span></div>
       <div className="row">
         <input placeholder="snapshot label, e.g. before-skulltula" value={label} onChange={e => setLabel(e.target.value)}
           onKeyDown={e => { if (e.key === 'Enter') { void api.takeSnapshot(label); setLabel(''); } }} />
