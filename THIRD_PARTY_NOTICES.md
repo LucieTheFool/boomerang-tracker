@@ -24,6 +24,18 @@ Reference for key hashes (wallets, capacity tiers, ammo, token and heart-piece c
 stones, medallions, songs, trade items). Its `assets/switch2_ui/` images are game art and
 are **not** used here.
 
+## Clawshot, by Kareem Albaba and the Clawshot contributors — MIT License
+https://github.com/hiKareeem/Clawshot
+Reference for the remake's logic in `data/logic.json`: which checks moved or need different
+items than in the original game, that the clock only starts once Link has met Zelda, and how the
+remake routes its dungeons. Facts only, rewritten in this project's own format; no code or data
+files copied. Its object hashes also confirmed which save keys belong to which Gold Skulltula.
+
+## OoT Randomizer, by the OoTRandomizer contributors — MIT License
+https://github.com/OoTRandomizer/OoT-Randomizer
+The original game's requirements per check, as Clawshot translates them; the base the remake's
+changes above apply to.
+
 ## Hookshot, by NotRexed — GPL-3.0
 https://github.com/NotRexed/Hookshot
 Save-folder discovery ideas only. No code copied (GPL-3.0 code would change this

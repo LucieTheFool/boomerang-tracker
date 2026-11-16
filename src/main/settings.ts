@@ -26,7 +26,7 @@ export interface Settings {
   learned: LearnedGroup[];
   /** Questions not answered yet (kept across restarts) */
   pendingIdentify: IdentifyRequest[];
-  /** Read progress live from a running Hookshot or Longshot (read-only). hint = last table address, hints = the last few. */
+  /** Read progress live from a running Hookshot, Longshot, NX2navi or Fritchii (read-only). hint = last table address, hints = the last few. */
   live: { enabled: boolean; hint?: string; hints?: string[] };
   /** Keep a local log of every tracked change (logs/changes-YYYY-MM.jsonl). */
   changeLog: boolean;

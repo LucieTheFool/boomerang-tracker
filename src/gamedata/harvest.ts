@@ -49,8 +49,8 @@ export async function buildNameTable(romfsRoot: string, outFile: string, log: (m
     try { eat(rel, rom.read(rel)); } catch { failed++; }
     if (++n % 5000 === 0) log(`  scanned ${n}/${files.length} files, ${strings.size} strings`);
   }
-  // Hookshot keeps the ExeFS next to the RomFS.
-  for (const dir of ['../.hookshot_exefs', '../exefs']) {
+  // Hookshot (and NX2navi's Triforce) keep the ExeFS next to the RomFS.
+  for (const dir of ['../.hookshot_exefs', '../.triforce_exefs', '../exefs']) {
     const d = path.resolve(romfsRoot, dir);
     if (fs.existsSync(d)) for (const f of fs.readdirSync(d)) harvestStrings(fs.readFileSync(path.join(d, f)), 3, strings);
   }

@@ -1,7 +1,9 @@
 # Boomerang Tracker
 
 A 100% completion tracker for **The Legend of Zelda: Ocarina of Time** (the Nintendo Switch 2
-remake) when played through **Hookshot**, its fork **Longshot**, or a compatible Switch 2 emulator. It reads your
+remake) when played through **Hookshot**, its fork **Longshot**, **[NX2navi](https://github.com/tangerineturtle1/NX2navi)**
+(its game build is called Triforce), the **[Fritchii](https://github.com/Frizti/Fritchii)** emulator, or another
+compatible Switch 2 emulator (saves only). It reads your
 progress from the running game (or from your save files), shows what you've collected and what
 you can get next, and updates as you play.
 
@@ -23,7 +25,7 @@ you can get next, and updates as you play.
   night time, an area you can't reach yet). Tiered upgrades (seed bag, bomb bag, quiver, stick
   and nut capacity) are offered one tier at a time, since whichever place you do first gives the
   next tier. Resizable; also available as an overlay mode.
-- **Live tracking:** while Hookshot or Longshot is running, progress is read straight from the game
+- **Live tracking:** while Hookshot, Longshot, NX2navi or Fritchii is running, progress is read straight from the game
   (read-only) and updates within half a second, not just at autosaves. Your current area is live
   too, including places inside a bigger stage such as Lake Hylia and Lon Lon Ranch. At the title
   screen or in another save file it falls back to the save files on its own; the summary shows
@@ -59,25 +61,28 @@ npm test
 
 ## First run
 
-The tracker looks for Hookshot and Longshot saves in the usual places (`%USERPROFILE%\Games\Hookshot`
-or `Longshot`, `Games\Hookshot` or `Games\Longshot` on a drive, and launcher folders named
-`Apps\*Hookshot*`). If it finds several, it uses the one you played most recently; you can change it in
-Settings. If it can't find any it asks you to choose a folder: the game folder, its `user\save` folder,
-or the profile folder that contains `slot_00`,
-`slot_01`, …
+The tracker looks for Hookshot, Longshot and NX2navi saves in the usual places
+(`%USERPROFILE%\Games\Hookshot`, `Longshot` or `Triforce`, folders with those names under `Games`
+on a drive, and launcher folders named `Apps\*Hookshot*` or `Apps\*NX2navi*`), and for Fritchii's
+in `%APPDATA%\fritchii` (or a portable `user` folder next to the emulator). If it finds several, it
+uses the one you played most recently; you can change it in Settings. If it can't find any it asks
+you to choose a folder: the game folder, its `user\save` folder, the emulator's data folder, or the
+folder that contains `slot_00`, `slot_01`, … (in an emulator, the one named after the game's title
+id, `0400486024DEC000`).
 
 The game rotates its autosaves across all six slots, so the default **Most recent** setting follows
 whichever slot was written last. You can pin a slot instead.
 
-Hookshot and Longshot installs each keep their own saves. When one of them is running, the tracker
+Hookshot, Longshot, NX2navi and Fritchii each keep their own saves. When one of them is running, the tracker
 switches to that install's saves on its own (unless you've pinned a slot) and shows a note saying so.
 
 Live tracking starts on its own once the game is running and you're in your save file. The summary
 shows **● Live** when progress comes from the game and **○ Saves** when it comes from the save files.
 It's used only with **Most recent**, and only while the game's state matches your latest save.
-It was worked out on Hookshot v2.1.0 and checked on Longshot v1.0.0; if an update changes how the
-game is laid out in memory, the
-tracker keeps working from the save files.
+It was worked out on Hookshot v2.1.0 and checked on Longshot v1.0.0, NX2navi 0.12.0 (Triforce
+v0.4.0) and Fritchii v5.8.4. In an emulator the game's memory is somewhere new every run, so finding
+it takes longer (about half a minute in testing). If an update changes how the game is laid out in
+memory, the tracker keeps working from the save files.
 
 ## Settings and data
 
@@ -103,8 +108,11 @@ The data files are meant to be edited:
 | `data/save-mapping.json` | How each entry is read from the save |
 | `data/logic.json` | Requirements and area connections for "Can get now" |
 
-Requirements in `data/logic.json` follow the original game where the remake hasn't been checked;
-entries marked `unsure` may differ. Corrections are welcome.
+Requirements in `data/logic.json` follow the remake: the original game's requirements with the
+remake's changes as documented by [Clawshot](https://github.com/hiKareeem/Clawshot) and the guides it
+cites (moved Skulltulas, new heart pieces, the clock starting only once you've met Zelda, changed
+dungeon routes). Entries marked `unsure` are matched to a spot by description only, or not yet
+confirmed. Corrections are welcome.
 
 ### Optional: a more detailed local checklist
 

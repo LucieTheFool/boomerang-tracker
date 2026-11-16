@@ -1,5 +1,5 @@
 ﻿import { describe, it, expect } from 'vitest';
-import { locate, readLive, matchesReference, fingerprint, readTables, areaFrom, LAYOUTS, STAGE_KEY, LOCATION_KEY, GUEST_BASE, Mem } from '../src/gamedata/live';
+import { locate, readLive, matchesReference, fingerprint, readTables, areaFrom, sweepRanges, timeOfDay, LAYOUTS, STAGE_KEY, LOCATION_KEY, DAY_NIGHT_KEY, GUEST_BASE, Mem } from '../src/gamedata/live';
 import type { GameDataFile, Entry } from '../src/gamedata/parser';
 
 // Synthetic memory laid out like the game's: per type a {hash, index} map followed by a
@@ -127,10 +127,12 @@ describe('live memory tables', () => {
     expect(readLive(m, t, ref)!.data.entries.get(STAGE_KEY)!.value).toBe('LostWood_Child');
   });
 
-  it('reads where you are inside a stage from the location list, and notices it change', () => {
-    const { mem, m, tables } = build();
-    const ref = reference();
-    // A String64Array map + three 0x90-byte records after the 64-bit table; record 1 is the list.
+  /**
+   * A String64Array map + three 0x90-byte records after the 64-bit table; record 1 is the
+   * location list. guestBase: host address of guest 0 (GUEST_BASE in recomps, anything in an
+   * emulator). Elements start with a guest pointer to their own text, as in the game.
+   */
+  function addLocationList(mem: Buffer, tables: Record<string, number>, guestBase: bigint, { selfPointers = true } = {}) {
     let o = tables.b64 + nB64 * 16 + 0x200;
     const hashes = [0x12345678, LOCATION_KEY, 0x23456789];
     hashes.forEach((h, i) => { mem.writeUInt32LE(h, o); mem.writeUInt32LE(i, o + 4); o += 8; });
@@ -138,17 +140,76 @@ describe('live memory tables', () => {
     const recs = o, elems = recs + 3 * 0x90 + 0x100;
     hashes.forEach((_, i) => mem.writeBigUInt64LE(0x84c40cb0n, recs + i * 0x90));
     const rec = recs + 0x90;
+    const guest = (off: number) => BASE + BigInt(off) - guestBase;
     mem.writeUInt32LE(4, rec + 0x80);
-    mem.writeBigUInt64LE(BASE + BigInt(elems) - GUEST_BASE, rec + 0x88); // a guest pointer
-    const setList = (names: string[]) => { mem.fill(0, elems, elems + 4 * 0x50); names.forEach((n, i) => mem.write(n, elems + i * 0x50 + 0x0c, 'latin1')); };
+    mem.writeBigUInt64LE(guest(elems), rec + 0x88);
+    const setList = (names: string[]) => {
+      mem.fill(0, elems, elems + 4 * 0x50);
+      for (let i = 0; i < 4; i++) {
+        if (selfPointers) mem.writeBigUInt64LE(guest(elems + i * 0x50 + 0x0c), elems + i * 0x50);
+        mem.writeUInt32LE(0x40, elems + i * 0x50 + 8);
+      }
+      names.forEach((n, i) => mem.write(n, elems + i * 0x50 + 0x0c, 'latin1'));
+    };
+    return { rec, elems, guest, setList };
+  }
+
+  it('reads where you are inside a stage from the location list, and notices it change', () => {
+    const { mem, m, tables } = build();
+    const ref = reference();
+    const { rec, setList } = addLocationList(mem, tables, GUEST_BASE);
     setList(['HyruleField', 'LakeHylia']);
     const t = locate(m, ref, BASE + 0x200000n, 2 << 20)!;
     expect(Number(t.location!.record - BASE)).toBe(rec);
+    expect(t.location).toMatchObject({ base: GUEST_BASE, checked: true });
     const first = readTables(m, t)!;
     expect(readLive(m, t, ref)!.data.entries.get(LOCATION_KEY)!.value).toEqual(['HyruleField', 'LakeHylia', '', '']);
     setList(['HyruleField', 'LonLonRanch']);
     expect(fingerprint(t, readTables(m, t)!, new Set())).not.toBe(fingerprint(t, first, new Set()));
     expect(readLive(m, t, ref)!.data.entries.get(LOCATION_KEY)!.value).toEqual(['HyruleField', 'LonLonRanch', '', '']);
+  });
+
+  it('in an emulator, works out where guest memory is from the list elements', () => {
+    const { mem, m, tables } = build();
+    const ref = reference();
+    const EMU = 0x0ff0_0000_0000n; // guest 0 at some host address of the emulator's choosing
+    const { setList } = addLocationList(mem, tables, EMU);
+    setList(['HyruleField', 'LakeHylia']);
+    const t = locate(m, ref, BASE + 0x200000n, 2 << 20)!;
+    expect(t.location).toMatchObject({ base: EMU, checked: true });
+    expect(readLive(m, t, ref)!.data.entries.get(LOCATION_KEY)!.value).toEqual(['HyruleField', 'LakeHylia', '', '']);
+  });
+
+  it('reads a list that moved out of reach as unknown, not as garbage', () => {
+    const { mem, m, tables } = build();
+    const ref = reference();
+    const EMU = 0x0ff0_0000_0000n;
+    const { rec, guest, setList } = addLocationList(mem, tables, EMU);
+    setList(['HyruleField', 'LakeHylia']);
+    const t = locate(m, ref, BASE + 0x200000n, 2 << 20)!;
+    mem.writeBigUInt64LE(guest(0x2000), rec + 0x88); // now points at the Bool map, not at elements
+    expect(readTables(m, t)!.at(-1)!.length).toBe(0);
+  });
+
+  it('still reads a recomp list whose elements lack the self-pointers', () => {
+    const { mem, m, tables } = build();
+    const ref = reference();
+    const { setList } = addLocationList(mem, tables, GUEST_BASE, { selfPointers: false });
+    setList(['HyruleField', 'LakeHylia']);
+    const t = locate(m, ref, BASE + 0x200000n, 2 << 20)!;
+    expect(t.location).toMatchObject({ base: GUEST_BASE, checked: false });
+    expect(readLive(m, t, ref)!.data.entries.get(LOCATION_KEY)!.value).toEqual(['HyruleField', 'LakeHylia', '', '']);
+  });
+
+  it("orders an emulator's memory for the sweep: mapped views only, merged, biggest first", () => {
+    const MB = 1n << 20n;
+    const r = (base: bigint, size: bigint, type = 0x40000) => ({ base, size, type });
+    expect(sweepRanges([
+      r(0x1000n * MB, 100n * MB), r(0x1000n * MB + 100n * MB, 50n * MB), // touching: one block of 150 MB
+      r(0x3000n * MB, 400n * MB),
+      r(0x5000n * MB, 900n * MB, 0x20000), // private memory: skipped
+      r(0x6000n * MB, 2n * MB), // too small to hold the tables
+    ])).toEqual([[0x3000n * MB, 0x3000n * MB + 400n * MB], [0x1000n * MB, 0x1000n * MB + 150n * MB]]);
   });
 
   it('on a new file with nothing collected yet, picks the full 64-bit table, not a shorter look-alike', () => {
@@ -161,6 +222,29 @@ describe('live memory tables', () => {
     const t = locate(m, ref, BASE + 0x200000n, 2 << 20)!;
     expect(Number(t.b64.start - BASE)).toBe(tables.b64);
     expect(t.b64.count).toBe(nB64);
+  });
+
+  it('reads day or night from the 64-bit day/night counter, live', () => {
+    const { mem, m, tables } = build();
+    const ref = reference();
+    // An Int64 map + 12 records (stride 0x30, value at +0x20) after the 64-bit table.
+    let o = tables.b64 + nB64 * 16 + 0x200;
+    const hashes = [DAY_NIGHT_KEY, ...Array.from({ length: 11 }, (_, i) => (0x70000000 + i * 7) >>> 0)];
+    hashes.forEach((h, i) => { mem.writeUInt32LE(h, o); mem.writeUInt32LE(i, o + 4); o += 8; });
+    o = (o + 0x40) & ~7;
+    const recs = o;
+    hashes.forEach((h, i) => {
+      mem.writeBigUInt64LE(0x84c40e98n, recs + i * 0x30);
+      mem.writeBigInt64LE(h === DAY_NIGHT_KEY ? 14n : BigInt(i * 100), recs + i * 0x30 + 0x20);
+      ref.entries.set(h, { hash: h, type: 'Int64', value: h === DAY_NIGHT_KEY ? 14n : BigInt(i * 100), recordOffset: 0 });
+    });
+    const t = locate(m, ref, BASE + 0x200000n, 2 << 20)!;
+    expect(t.records.map(r => r.type)).toContain('Int64');
+    expect(timeOfDay(readLive(m, t, ref)!.data)).toBe('day');
+    const before = fingerprint(t, readTables(m, t)!, new Set([DAY_NIGHT_KEY]));
+    mem.writeBigInt64LE(15n, recs + 0x20); // Sun's Song: day -> night
+    expect(timeOfDay(readLive(m, t, ref)!.data)).toBe('night');
+    expect(fingerprint(t, readTables(m, t)!, new Set([DAY_NIGHT_KEY]))).not.toBe(before);
   });
 
   it('combines the stage with the place inside it', () => {

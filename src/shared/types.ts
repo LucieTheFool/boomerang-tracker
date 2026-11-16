@@ -85,6 +85,8 @@ export interface Summary {
   doneA: number;
   totalA: number;
   area?: string;
+  /** Day or night in the game (live when live tracking is on, else from the save). */
+  timeOfDay?: 'day' | 'night';
   lastSavedMs?: number;
 }
 
@@ -142,7 +144,7 @@ export interface AppState {
 }
 
 /**
- * off: turned off · unavailable: can't read memory on this system · no-game: Hookshot isn't
+ * off: turned off · unavailable: can't read memory on this system · no-game: no supported game is
  * running · searching: looking for the progress tables · waiting: found the game, but it
  * doesn't match the latest save (title screen, other file) · live: in use
  */

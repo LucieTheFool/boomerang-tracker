@@ -1,20 +1,32 @@
-// Live source: attaches (read-only) to a running Hookshot, keeps the progress tables
-// located, and reports when tracked values change. Falls back to nothing (the save
-// files) whenever the game isn't running or isn't in the same playthrough.
+// Live source: attaches (read-only) to a running game (Hookshot, Longshot, NX2navi or the
+// Fritchii emulator), keeps the progress tables located, and reports when tracked values
+// change. Falls back to nothing (the save files) whenever the game isn't running or isn't
+// in the same playthrough.
 import type { GameDataFile } from '../gamedata/parser.js';
-import { locate, readTables, buildLive, fingerprint, matchesReference, LiveTables, Agreement } from '../gamedata/live.js';
+import { locate, readTables, buildLive, fingerprint, matchesReference, sweepRanges, LiveTables, Agreement } from '../gamedata/live.js';
 import { ProcessMemory, findProcesses, initMemoryAccess } from './procmem.js';
 import type { LiveInfo } from '../shared/types.js';
 
-/** Hookshot and its fork Longshot both run the game as hookshot.exe. */
-const IMAGE = 'hookshot.exe';
+/**
+ * Programs that run the game. Hookshot and its fork Longshot run it as hookshot.exe;
+ * NX2navi builds it as Triforce.exe. Both map the game at a fixed place. The Fritchii
+ * emulator (lichii.exe) puts it somewhere new every run, so it's found by sweeping.
+ */
+const GAMES: { image: string; emulator?: boolean }[] = [
+  { image: 'hookshot.exe' }, { image: 'Triforce.exe' }, { image: 'lichii.exe', emulator: true },
+];
 const TICK_MS = 500;
 const FIND_EVERY_MS = 3000;
-/** Where the tables were in Hookshot v2.1.0 and Longshot v1.0.0 (host addresses). Only starting points. */
-const DEFAULT_HINTS = [0x1010_99f4_f418n, 0x1010_7eea_f418n];
+/**
+ * Where the tables were in Hookshot v2.1.0, Longshot v1.0.0 and NX2navi's Triforce v0.4.0
+ * (host addresses). Only starting points.
+ */
+const DEFAULT_HINTS = [0x1010_99f4_f418n, 0x1010_7eea_f418n, 0x1010_8bda_f418n];
 /** The game's heap: guest 0x10_0000_0000, ~7 GB, mapped at host base 0x1000_0000_0000. */
 const HEAP_LO = 0x1010_0000_0000n, HEAP_HI = 0x1011_c000_0000n;
 const SWEEP_WINDOW = 64 << 20; // locate() reads twice this per step
+/** Steps overlap a little, so tables lying across two windows are still found whole. */
+const SWEEP_STEP = BigInt(SWEEP_WINDOW * 2 - (8 << 20));
 
 export interface LiveOptions {
   /** Table addresses found before (hex), newest first. */
@@ -35,7 +47,9 @@ export class LiveSource {
   private lastFind = 0;
   private lastPrint?: string;
   private snapshot?: { data: GameDataFile; atMs: number; resettable: Set<bigint> };
-  private sweep?: bigint;
+  private emulator = false;
+  /** Where the sweep is: ranges to search (host [lo, hi)), the current one and the next window's centre. */
+  private sweep?: { ranges: [bigint, bigint][]; i: number; at: bigint };
   private sweepPausedUntil = 0;
   private busy = false;
   watchInts = new Set<number>();
@@ -88,9 +102,10 @@ export class LiveSource {
     if (!this.mem) {
       if (Date.now() - this.lastFind < FIND_EVERY_MS) return;
       this.lastFind = Date.now();
-      const [pid] = await findProcesses(IMAGE);
-      if (!pid) return this.set({ status: 'no-game' });
-      this.mem = new ProcessMemory(pid);
+      const game = await findGame();
+      if (!game) return this.set({ status: 'no-game' });
+      this.mem = new ProcessMemory(game.pid);
+      this.emulator = !!game.emulator;
       this.opts.onGame?.(this.mem.imagePath());
     }
     if (!this.ref) return this.set({ status: 'searching', detail: 'Waiting for a save to compare with.' });
@@ -115,27 +130,38 @@ export class LiveSource {
     }
   }
 
-  /** Try the saved hints, then the defaults, then sweep the heap one window per tick. */
+  /**
+   * Try the saved hints, then the defaults, then sweep one window per tick: the recomps'
+   * heap, or an emulator's mapped memory (biggest blocks first).
+   */
   private find(): boolean {
     const mem = this.mem!, ref = this.ref!;
+    if (Date.now() < this.sweepPausedUntil) return false;
     if (this.sweep === undefined) {
-      this.set({ status: 'searching' });
+      // After a full sweep found nothing, stay "waiting" rather than flicker back.
+      if (this.info.status !== 'waiting') this.set({ status: 'searching' });
       const hints = [...new Set([...this.opts.hints.map(h => BigInt('0x' + h)), ...DEFAULT_HINTS])];
-      // Exact spots first (cheap), then a wider window around each.
+      // Exact spots first (cheap), then a wider window around each. An emulator's memory
+      // moves every run, so only a tracker restart during the same run hits a hint there.
       for (const h of hints) { const t = locate(mem, ref, h, 4 << 20); if (t) return this.found(t); }
-      for (const h of hints.slice(0, 2)) {
+      if (!this.emulator) for (const h of hints.slice(0, 2)) {
         const t = locate(mem, ref, h, SWEEP_WINDOW);
         if (t) return this.found(t);
       }
-      this.sweep = HEAP_LO + BigInt(SWEEP_WINDOW);
+      const ranges: [bigint, bigint][] = this.emulator ? sweepRanges(mem.regions()) : [[HEAP_LO, HEAP_HI]];
+      this.sweep = { ranges, i: 0, at: (ranges[0]?.[0] ?? 0n) + BigInt(SWEEP_WINDOW) };
     }
-    if (Date.now() < this.sweepPausedUntil) return false;
-    const t = locate(mem, ref, this.sweep, SWEEP_WINDOW);
-    if (t) return this.found(t);
-    this.sweep += BigInt(SWEEP_WINDOW * 2);
-    if (this.sweep >= HEAP_HI) {
+    const s = this.sweep;
+    const range = s.ranges[s.i];
+    if (range) {
+      const t = locate(mem, ref, s.at, SWEEP_WINDOW);
+      if (t) return this.found(t);
+      s.at += SWEEP_STEP;
+      if (s.at - BigInt(SWEEP_WINDOW) >= range[1] && s.ranges[++s.i]) s.at = s.ranges[s.i][0] + BigInt(SWEEP_WINDOW);
+    }
+    if (!s.ranges[s.i]) {
       // Not found anywhere (e.g. still at the title screen). Try again in a bit.
-      this.sweep = HEAP_LO + BigInt(SWEEP_WINDOW);
+      this.sweep = undefined;
       this.sweepPausedUntil = Date.now() + 10_000;
       this.set({ status: 'waiting', detail: "Couldn't find the progress tables yet. Load your file in the game." });
     }
@@ -149,6 +175,15 @@ export class LiveSource {
     if (hint !== this.opts.hints[0]) { this.opts.hints = [hint, ...this.opts.hints.filter(h => h !== hint)].slice(0, 4); this.opts.onHint(hint); }
     return true;
   }
+}
+
+/** The first running game, in the order of GAMES. */
+async function findGame(): Promise<{ pid: number; emulator?: boolean } | undefined> {
+  for (const g of GAMES) {
+    const [pid] = await findProcesses(g.image);
+    if (pid) return { pid, emulator: g.emulator };
+  }
+  return undefined;
 }
 
 function describeMismatch(a: Agreement[]): string {

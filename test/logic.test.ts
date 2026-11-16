@@ -47,8 +47,13 @@ describe('logic on a brand-new file', () => {
     expect(new Logic(logic, fakeSave(['HavePlayedEvent.Dm_Deku_BossOut'])).reachable('child').has('Hyrule Field')).toBe(true);
   });
   it('needs something to kill a Gold Skulltula with', () => {
-    expect(statusOf(fakeSave())('gold_skulltulas#16').ages).toEqual([]);
-    expect(statusOf(fakeSave(['IsGet.Weapon_Sword_Kokiri']))('gold_skulltulas#16').ages).toEqual(['child']);
+    const metZelda = 'IsGet.Item_ZeldaLetter';
+    expect(statusOf(fakeSave([metZelda]))('gold_skulltulas#16').ages).toEqual([]);
+    expect(statusOf(fakeSave([metZelda, 'IsGet.Weapon_Sword_Kokiri']))('gold_skulltulas#16').ages).toEqual(['child']);
+  });
+  it("keeps night-only child checks for after meeting Zelda (the remake's clock starts then)", () => {
+    expect(statusOf(fakeSave(['IsGet.Weapon_Sword_Kokiri']))('gold_skulltulas#16').ages).toEqual([]);
+    expect(statusOf(fakeSave(['IsGet.Weapon_Sword_Kokiri', 'IsGet.Item_Melody_ZeldaLullaby']))('gold_skulltulas#16').ages).toEqual(['child']);
   });
   it("needs Talon back at the ranch for Epona's Song and the milk bottle", () => {
     const out = ['HavePlayedEvent.Dm_Deku_BossOut', 'IsGet.Item_Ocarina_Fairy'];

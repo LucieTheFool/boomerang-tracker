@@ -21,55 +21,102 @@ export function isUserFolder(dir: string): boolean {
   } catch { return false; }
 }
 
-/** Given a game folder, a "save" folder, or a user folder, return the user folders inside. */
+/**
+ * Given a game folder, a "save" folder, or a user folder, return the user folders inside.
+ * Also an emulator's data folder (or any folder down to the account one): see emulatorUserFolders.
+ */
 export function resolveUserFolders(start: string): string[] {
   if (!fs.existsSync(start)) return [];
   if (isUserFolder(start)) return [start];
   const tries = [start, path.join(start, 'save'), path.join(start, 'user', 'save')];
   const out: string[] = [];
   for (const t of tries) {
-    if (!fs.existsSync(t)) continue;
-    for (const n of fs.readdirSync(t)) {
+    for (const n of readdir(t)) {
       const p = path.join(t, n);
       if (/^[0-9a-f]{32}$/i.test(n) && isUserFolder(p)) out.push(p);
     }
   }
+  out.push(...emulatorUserFolders(start));
   return [...new Set(out)];
 }
 
-/** A game folder built by Hookshot or Longshot: the game exe at the top or in bin\. */
-function isGameFolder(dir: string): boolean {
-  return ['hookshot.exe', path.join('bin', 'hookshot.exe'), 'Longshot.exe'].some(f => fs.existsSync(path.join(dir, f)));
+function readdir(dir: string): string[] {
+  try { return fs.readdirSync(dir); } catch { return []; }
 }
 
-/** Places Hookshot (and Longshot, its fork) game folders usually live. */
+/** Ocarina of Time's title id: emulators keep its saves in a folder named after it. */
+export const OOT_TITLE_ID = '0400486024DEC000';
+
+/**
+ * Emulators keep saves as <data>\nand\user\save\0000000000000000\<32-hex account>\<title id>\slot_*
+ * (<data> is e.g. %APPDATA%\fritchii, or a portable "user" folder next to the exe). Only
+ * Ocarina of Time's title folder counts: other games' saves can look alike.
+ */
+function emulatorUserFolders(start: string): string[] {
+  const out: string[] = [];
+  const saveDirs = [start, path.join(start, 'save'), path.join(start, 'nand', 'user', 'save'), path.join(start, 'user', 'nand', 'user', 'save')];
+  const accountDirs = [start, ...saveDirs.map(d => path.join(d, '0000000000000000'))];
+  for (const a of accountDirs) {
+    const accounts = /^[0-9a-f]{32}$/i.test(path.basename(a)) ? [a] : readdir(a).filter(n => /^[0-9a-f]{32}$/i.test(n)).map(n => path.join(a, n));
+    for (const acc of accounts) {
+      const title = readdir(acc).find(n => n.toUpperCase() === OOT_TITLE_ID);
+      if (title && isUserFolder(path.join(acc, title))) out.push(path.join(acc, title));
+    }
+  }
+  return out;
+}
+
+/** Emulator exes, and the data folders (under %APPDATA%) they keep saves in. Fritchii runs as lichii.exe. */
+const EMULATOR_EXES = ['lichii.exe'];
+function emulatorDataDirs(appData = process.env.APPDATA ?? path.join(os.homedir(), 'AppData', 'Roaming')): string[] {
+  return ['fritchii', 'lichii'].map(n => path.join(appData, n));
+}
+
+/** Game exes, at the top of a game folder or in bin\: Hookshot, its fork Longshot, NX2navi's Triforce. */
+const GAME_EXES = ['hookshot.exe', path.join('bin', 'hookshot.exe'), 'Longshot.exe', 'Triforce.exe'];
+/** Folder names those games are usually installed under. */
+const GAME_NAMES = /hookshot|longshot|triforce|nx2navi/i;
+
+function isGameFolder(dir: string): boolean {
+  return GAME_EXES.some(f => fs.existsSync(path.join(dir, f)));
+}
+
+/** Places Hookshot, Longshot and NX2navi (Triforce) game folders usually live. */
 export function candidateGameFolders(): string[] {
   const home = os.homedir();
-  const c = [path.join(home, 'Games', 'Hookshot'), path.join(home, 'Games', 'Longshot')];
+  // NX2navi's setup builds the game into %USERPROFILE%\Games\Triforce.
+  const c = ['Hookshot', 'Longshot', 'Triforce'].map(n => path.join(home, 'Games', n));
+  const gameDirs = [path.join(home, 'Games')];
   for (const drive of ['C:', 'D:', 'E:', 'F:']) {
-    // Launchers (e.g. QuiverLauncher) install Hookshot builds as Apps\<name>-Hookshot.
+    // Launchers (e.g. QuiverLauncher) install builds as Apps\<name>-Hookshot, Apps\<name>-NX2navi.
     for (const base of [path.join(drive + '\\', 'Games', 'QuiverLauncher', 'Apps'), path.join(home, 'QuiverLauncher', 'Apps')]) {
       try {
-        for (const n of fs.readdirSync(base)) if (/hookshot|longshot/i.test(n)) c.push(path.join(base, n));
+        for (const n of fs.readdirSync(base)) if (GAME_NAMES.test(n)) c.push(path.join(base, n));
       } catch { /* not there */ }
     }
-    // Game folders straight under <drive>\Games, e.g. D:\Games\Longshot.
-    const games = path.join(drive + '\\', 'Games');
+    gameDirs.push(path.join(drive + '\\', 'Games'));
+  }
+  // Game folders straight under a Games folder, e.g. D:\Games\Longshot.
+  for (const games of gameDirs) {
     try {
-      for (const n of fs.readdirSync(games)) { const p = path.join(games, n); if (/hookshot|longshot/i.test(n) && isGameFolder(p)) c.push(p); }
+      for (const n of fs.readdirSync(games)) { const p = path.join(games, n); if (GAME_NAMES.test(n) && isGameFolder(p)) c.push(p); }
     } catch { /* not there */ }
   }
+  // Emulators keep their saves in their own data folder (Fritchii: %APPDATA%\fritchii).
+  c.push(...emulatorDataDirs());
   return [...new Set(c)];
 }
 
 /**
  * The save folder of the install a running game exe belongs to (exe at the top of the
- * game folder or in bin\), the most recently played profile if there are several.
+ * game folder or in bin\), the most recently played profile if there are several. For an
+ * emulator: its portable "user" folder next to the exe, or its data folder.
  */
-export function userFolderForExe(exe: string): string | null {
+export function userFolderForExe(exe: string, appData?: string): string | null {
   let dir = path.dirname(exe);
   if (path.basename(dir).toLowerCase() === 'bin') dir = path.dirname(dir);
-  return resolveUserFolders(dir).sort((a, b) => latestMtime(b) - latestMtime(a))[0] ?? null;
+  const roots = EMULATOR_EXES.includes(path.basename(exe).toLowerCase()) ? [dir, ...emulatorDataDirs(appData)] : [dir];
+  return roots.flatMap(resolveUserFolders).sort((a, b) => latestMtime(b) - latestMtime(a))[0] ?? null;
 }
 
 /** The save folder with the most recent save across every install found. */

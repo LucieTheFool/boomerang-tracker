@@ -12,7 +12,7 @@ import type { AvailableEntry } from '../shared/types.js';
 import { SaveWatcher } from './watcher.js';
 import { LiveSource } from './live.js';
 import { ChangeLog } from './changelog.js';
-import { STAGE_KEY, LOCATION_KEY, areaFrom } from '../gamedata/live.js';
+import { STAGE_KEY, LOCATION_KEY, DAY_NIGHT_KEY, areaFrom, timeOfDay } from '../gamedata/live.js';
 import { keyOf } from '../gamedata/detect.js';
 import { SettingsStore } from './settings.js';
 import type { AppState, Toast, SlotSummary } from '../shared/types.js';
@@ -155,6 +155,7 @@ export class Controller {
       }
     };
     walk(this.logic);
+    out.add(DAY_NIGHT_KEY); // the overlay's day/night icon
     return out;
   }
   /** Newest save read (the live source's reference). */
@@ -167,7 +168,7 @@ export class Controller {
     this.lastShownBySlot.clear();
     this.lastShown = undefined;
     this.userDir = undefined;
-    if (!dir) return this.fail('no-folder', 'No save folder found. Choose your Hookshot folder (or its user\\save\\<id> folder).');
+    if (!dir) return this.fail('no-folder', "No save folder found. Choose your game folder (Hookshot, Longshot or NX2navi's Triforce) or its user\\save\\<id> folder, or Fritchii's data folder (%APPDATA%\\fritchii).");
     if (!fs.existsSync(dir)) return this.fail('no-folder', `The save folder no longer exists:\n${dir}`);
     const users = resolveUserFolders(dir);
     if (!users.length) return this.fail('no-slots', `No slot_* folders with a progress.sav were found in:\n${dir}`);
@@ -180,7 +181,7 @@ export class Controller {
   }
 
   /**
-   * When a game starts, follow its saves: Hookshot and Longshot installs each keep their
+   * When a game starts, follow its saves: Hookshot, Longshot, NX2navi and Fritchii each keep their
    * own. Not while a slot is pinned (that's a choice of save), and only if it has saves.
    */
   private async followGame(exe: string | undefined) {
@@ -254,6 +255,7 @@ export class Controller {
     // A place inside the stage has no age of its own: take the stage's (_Child/_Adult).
     const age = rawArea !== stage ? stage?.match(/_(Adult|Child)$/)?.[0] ?? '' : '';
     summary.area = rawArea ? prettyArea(rawArea.split('/').pop()! + age) : undefined;
+    summary.timeOfDay = timeOfDay(cur.data);
     const { available, canBeAdult } = this.applyLogic(categories, cur.data, areaRegions);
     summary.lastSavedMs = read.mtimeMs;
 

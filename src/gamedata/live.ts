@@ -22,7 +22,7 @@ export interface Mem {
   read(addr: bigint, len: number): Buffer | null;
 }
 
-export interface TypeLayout { type: 'Bool' | 'Int' | 'Enum' | 'String64'; stride: number; valueOffset: number; minRecords: number; optional?: boolean }
+export interface TypeLayout { type: 'Bool' | 'Int' | 'Enum' | 'String64' | 'Int64'; stride: number; valueOffset: number; minRecords: number; optional?: boolean }
 export const LAYOUTS: TypeLayout[] = [
   { type: 'Bool', stride: 0x18, valueOffset: 0x16, minRecords: 2000 },
   { type: 'Int', stride: 0x28, valueOffset: 0x1c, minRecords: 200 },
@@ -30,19 +30,37 @@ export const LAYOUTS: TypeLayout[] = [
   // Three 64-byte text buffers per record (each after a pointer + capacity); the
   // second one, at +0x74, is the current value. Optional: only used for the area.
   { type: 'String64', stride: 0x108, valueOffset: 0x74, minRecords: 5, optional: true },
+  // i64 at +0x20, a copy at +0x28. Optional: only used for day or night (DAY_NIGHT_KEY).
+  { type: 'Int64', stride: 0x30, valueOffset: 0x20, minRecords: 10, optional: true },
 ];
+/**
+ * Int64 key that counts every switch between day and night (Sun's Song or the clock):
+ * even is day, odd is night (worked out against Sun's Song in Hookshot v2.1.0). The game
+ * keeps its exact time of day outside the GameData store.
+ */
+export const DAY_NIGHT_KEY = 0xd457ee3a;
+
+/** Day or night, from the day/night counter; undefined when the data has no counter. */
+export function timeOfDay(data: GameDataFile): 'day' | 'night' | undefined {
+  const v = data.entries.get(DAY_NIGHT_KEY)?.value;
+  if (typeof v !== 'bigint' && typeof v !== 'number') return undefined;
+  return BigInt(v) % 2n === 0n ? 'day' : 'night';
+}
 /** String64 key holding the current stage, e.g. "LostWood_Child" (also in progress.sav). */
 export const STAGE_KEY = 0x1d6189da;
 /**
  * String64Array key listing where you are inside the stage, e.g. ["HyruleField", "LakeHylia"]
  * (Lake Hylia and Lon Lon Ranch are part of the Hyrule Field stage). Also in progress.sav.
  * Records are 0x90 apart; +0x80 holds the element count and +0x88 a guest pointer to the
- * elements, each 0x50 bytes (pointer, capacity, then 64 bytes of text at +0x0C). A second
- * copy (count +0x70, pointer +0x78) changes at the same time.
+ * elements, each 0x50 bytes (a guest pointer to the element's own text, capacity 0x40, then
+ * 64 bytes of text at +0x0C). A second copy (count +0x70, pointer +0x78) changes at the same time.
  */
 export const LOCATION_KEY = 0xc458f1eb;
 const LOC_STRIDE = 0x90, LOC_COUNT = 0x80, LOC_PTR = 0x88, LOC_ELEM = 0x50, LOC_TEXT = 0x0c, LOC_MAX = 16;
-/** Hookshot maps guest memory at this host offset. */
+/**
+ * Hookshot, Longshot and NX2navi map guest memory at this host offset. Emulators (Fritchii)
+ * put it somewhere else every run; see locationBase().
+ */
 export const GUEST_BASE = 0x1000_0000_0000n;
 const B64_STRIDE = 16, B64_VALUE = 12, B64_MIN = 1000;
 
@@ -50,8 +68,12 @@ export interface RecordTable { type: TypeLayout['type']; start: bigint; count: n
 export interface LiveTables {
   records: RecordTable[];
   b64: { start: bigint; count: number };
-  /** The location-list record (optional: only used for the area). */
-  location?: { record: bigint; vtable: bigint };
+  /**
+   * The location-list record (optional: only used for the area). base: host address of
+   * guest 0 for its element pointer; checked: the elements' self-pointers matched at that
+   * base, so every read checks them again.
+   */
+  location?: { record: bigint; vtable: bigint; base: bigint; checked: boolean };
 }
 
 /** Runs of records that all start with the same 8-byte pointer, `stride` apart. */
@@ -113,10 +135,11 @@ function refByType(ref: GameDataFile) {
   return m;
 }
 
-function readValue(buf: Buffer, at: number, type: TypeLayout['type']): number | boolean | string {
+function readValue(buf: Buffer, at: number, type: TypeLayout['type']): number | boolean | string | bigint {
   if (type === 'Bool') return buf[at] !== 0;
   if (type === 'String64') { const b = buf.subarray(at, at + 64); const z = b.indexOf(0); return b.subarray(0, z < 0 ? 64 : z).toString('latin1'); }
   if (type === 'Int') return buf.readInt32LE(at);
+  if (type === 'Int64') return buf.readBigInt64LE(at);
   return buf.readUInt32LE(at);
 }
 
@@ -162,17 +185,41 @@ export function locate(mem: Mem, ref: GameDataFile, hint: bigint, window = 64 <<
     if (hits > bestHits || (hits === bestHits && run.count > b64!.count)) { bestHits = hits; b64 = run; }
   }
   if (!b64 || (refKeys.length && bestHits < refKeys.length * 0.9)) return null;
-  return { records, b64, location: findLocation(buf, lo) };
+  return { records, b64, location: findLocation(mem, buf, lo) };
 }
 
 /** The location-list record: a run of 0x90-byte records whose map holds LOCATION_KEY. */
-function findLocation(buf: Buffer, lo: bigint): LiveTables['location'] {
+function findLocation(mem: Mem, buf: Buffer, lo: bigint): LiveTables['location'] {
   for (const run of findRecordRuns(buf, lo, LOC_STRIDE, 2)) {
     const i = readIndexMap(buf, run.offset, run.count, new Set([LOCATION_KEY])).get(LOCATION_KEY);
     if (i === undefined) continue;
     const o = run.offset + i * LOC_STRIDE;
     const n = buf.readUInt32LE(o + LOC_COUNT), p = buf.readBigUInt64LE(o + LOC_PTR);
-    if (n >= 1 && n <= LOC_MAX && p > 0n && p < GUEST_BASE) return { record: run.start + BigInt(i * LOC_STRIDE), vtable: buf.readBigUInt64LE(run.offset) };
+    if (n < 1 || n > LOC_MAX || p === 0n || p >= GUEST_BASE) continue;
+    const base = locationBase(mem, buf, lo, p, n);
+    return { record: run.start + BigInt(i * LOC_STRIDE), vtable: buf.readBigUInt64LE(run.offset), base: base ?? GUEST_BASE, checked: base !== undefined };
+  }
+  return undefined;
+}
+
+/** Each element starts with a guest pointer to its own text; true if `b` holds n such elements for guest address p. */
+function elementsAt(b: Buffer | null, p: bigint, n: number): boolean {
+  if (!b || b.length < n * LOC_ELEM) return false;
+  for (let i = 0; i < n; i++) if (b.readBigUInt64LE(i * LOC_ELEM) !== p + BigInt(i * LOC_ELEM + LOC_TEXT)) return false;
+  return true;
+}
+
+/**
+ * Host address of guest 0 for the location list's pointer (p, n elements). Recomps map
+ * guest memory at GUEST_BASE. Elsewhere, find the elements by their self-pointers in the
+ * window that holds the tables (they sit next to the list record). undefined if neither fits.
+ */
+function locationBase(mem: Mem, buf: Buffer, lo: bigint, p: bigint, n: number): bigint | undefined {
+  if (elementsAt(mem.read(GUEST_BASE + p, n * LOC_ELEM), p, n)) return GUEST_BASE;
+  const want = Buffer.alloc(8);
+  want.writeBigUInt64LE(p + BigInt(LOC_TEXT));
+  for (let o = buf.indexOf(want); o >= 0; o = buf.indexOf(want, o + 1)) {
+    if (o + n * LOC_ELEM <= buf.length && elementsAt(buf.subarray(o, o + n * LOC_ELEM), p, n)) return lo + BigInt(o) - p;
   }
   return undefined;
 }
@@ -183,7 +230,23 @@ function readLocationRaw(mem: Mem, loc: NonNullable<LiveTables['location']>): Bu
   if (!r || r.readBigUInt64LE(0) !== loc.vtable) return null;
   const n = r.readUInt32LE(LOC_COUNT), p = r.readBigUInt64LE(LOC_PTR);
   if (n < 1 || n > LOC_MAX || p === 0n || p >= GUEST_BASE) return null;
-  return mem.read(GUEST_BASE + p, n * LOC_ELEM);
+  const b = mem.read(loc.base + p, n * LOC_ELEM);
+  // Where the base was checked, a list that moved out of reach reads as unknown, never as garbage.
+  return loc.checked && !elementsAt(b, p, n) ? null : b;
+}
+
+/**
+ * Where an emulator's guest memory may be, in the order to search it: its mapped views
+ * (type 0x40000), touching blocks merged, biggest first. Blocks under 4 MB can't hold the tables.
+ */
+export function sweepRanges(regions: { base: bigint; size: bigint; type: number }[]): [bigint, bigint][] {
+  const mapped = regions.filter(r => r.type === 0x40000).sort((a, b) => (a.base < b.base ? -1 : a.base > b.base ? 1 : 0));
+  const ranges: [bigint, bigint][] = [];
+  for (const r of mapped) {
+    const last = ranges[ranges.length - 1];
+    if (last && last[1] === r.base) last[1] = r.base + r.size; else ranges.push([r.base, r.base + r.size]);
+  }
+  return ranges.filter(([lo, hi]) => hi - lo >= 4n << 20n).sort((a, b) => (b[1] - b[0] > a[1] - a[0] ? 1 : b[1] - b[0] < a[1] - a[0] ? -1 : 0));
 }
 
 function locationStrings(b: Buffer): string[] {
@@ -214,7 +277,7 @@ function readWindow(mem: Mem, lo: bigint, len: number): Buffer | null {
   return any ? out : null;
 }
 
-function sameValue(live: number | boolean | string, saved: unknown): boolean {
+function sameValue(live: number | boolean | string | bigint, saved: unknown): boolean {
   return live === saved;
 }
 
@@ -271,6 +334,7 @@ export function fingerprint(tables: LiveTables, raw: Buffer[], watchInts: Set<nu
       const vals: (number | string)[] = [];
       for (const [h, i] of t.index) {
         if (t.type === 'String64') vals.push(h, readValue(buf, i * L.stride + L.valueOffset, 'String64') as string);
+        // Int and Int64 tables also hold play-time counters: only the watched ones count.
         else if (t.type === 'Enum' || watchInts.has(h)) vals.push(h, buf.readUInt32LE(i * L.stride + L.valueOffset));
       }
       parts.push(vals.join(','));

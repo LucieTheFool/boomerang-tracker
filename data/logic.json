@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "notes": "Requirements for 'can get now'. Modelled on the original game plus the checklist's requirement notes; entries marked unsure may differ in the remake. Expressions use and/or/parentheses, child/adult, and Name>=N for numbers. Location keys are '<category>#<checklist number>'. Edit freely: the app re-reads this file at start.",
+  "notes": "Requirements for 'can get now'. Modelled on the remake: the original game's logic (via OoT Randomizer) with the remake's changes as documented by Clawshot (MIT) and the guides it cites; entries marked unsure are matched to a spot by description only, or not yet confirmed. Expressions use and/or/parentheses, child/adult, and Name>=N for numbers. Location keys are '<category>#<checklist number>'. Edit freely: the app re-reads this file at start.",
   "start": {
     "child": "Kokiri Forest",
     "adult": "Temple of Time"
@@ -339,16 +339,23 @@
     "Prelude": "Ocarina and Song_Prelude",
     "ScarecrowSong": "Ocarina and Song_Scarecrow",
     "Epona": "EponaOwned and EponasSong",
-    "FrogSongs": "ZeldasLullaby and EponasSong and SariasSong and SunsSong and SongOfTime",
+    "FrogSongs": "ZeldasLullaby and EponasSong and SariasSong and SunsSong and SongOfTime and SongOfStorms",
     "BeanRide": "adult and MagicBean",
     "WaterTempleGear": "IronBoots and ZoraTunic and Hookshot",
     "FireTempleGear": "GoronTunic",
     "ShadowTempleGear": "Lens and HoverBoots and Hookshot",
     "SpiritAdultSide": "Strength2 and Hookshot",
-    "GtgGear": "Hookshot and Explosives and Bow and Lens",
+    "GtgGear": "Hookshot and Explosives and Bow and Lens and GoronTunic",
     "LeaveForest": "adult or DekuTreeCleared",
     "KillSkulltula": "adult or KokiriSword or Sticks or Slingshot or Boomerang or Explosives or DinsFire",
-    "StunScrub": "adult or KokiriSword or Sticks or Nuts or Slingshot or Boomerang or Explosives or DekuShield"
+    "StunScrub": "adult or KokiriSword or Sticks or Nuts or Slingshot or Boomerang or Explosives or DekuShield",
+    "MetZelda": "Song_ZeldasLullaby or ZeldasLetter",
+    "DodongoDone": "Strength1 and (Explosives or Slingshot)",
+    "ForestDone": "Bow and Strength1",
+    "FireDone": "Hammer and SongOfTime and Explosives",
+    "WaterDone": "WaterTempleGear and ZeldasLullaby and Longshot and Explosives and Strength1 and Bow",
+    "ShadowDone": "ShadowTempleGear and ZeldasLullaby and Bombs",
+    "SpiritDone": "MirrorShield and SpiritAdultSide and Explosives"
   },
   "regionAliases": {
     "Hyrule Field (near Gerudo Valley)": "Hyrule Field",
@@ -361,7 +368,7 @@
       "exits": {
         "Lost Woods": "true",
         "Hyrule Field": "adult or DekuTreeCleared",
-        "Great Deku Tree": "child and KokiriSword and DekuShield"
+        "Great Deku Tree": "child and KokiriSword and (DekuShield or HylianShield)"
       }
     },
     "Great Deku Tree": {
@@ -372,7 +379,7 @@
     "Lost Woods": {
       "exits": {
         "Kokiri Forest": "true",
-        "Sacred Forest Meadow": "true",
+        "Sacred Forest Meadow": "adult or MetZelda",
         "Hyrule Field": "LeaveForest",
         "Goron City": "LeaveForest and (BlastOrSmash or DinsFire)",
         "Zora's River": "LeaveForest and SilverScale"
@@ -396,7 +403,7 @@
         "Hyrule Castle Town": "true",
         "Lon Lon Ranch": "true",
         "Kakariko Village": "true",
-        "Zora's River": "adult or Explosives",
+        "Zora's River": "BlastOrSmash",
         "Lake Hylia": "true",
         "Gerudo Valley": "true"
       }
@@ -457,7 +464,7 @@
       "exits": {
         "Kakariko Village": "true",
         "Goron City": "true",
-        "Dodongo's Cavern": "Explosives or GoronsBracelet or (adult and Hammer)",
+        "Dodongo's Cavern": "adult or Strength1",
         "Death Mountain Crater": "BlastOrSmash"
       }
     },
@@ -477,7 +484,7 @@
       "exits": {
         "Death Mountain Trail": "true",
         "Goron City": "true",
-        "Fire Temple": "adult and FireTempleGear"
+        "Fire Temple": "adult and FireTempleGear and (Hookshot or HoverBoots)"
       }
     },
     "Fire Temple": {
@@ -496,13 +503,13 @@
       "exits": {
         "Zora's River": "true",
         "Zora's Fountain": "KingZoraMoved or (child and RutosLetter)",
-        "Lake Hylia": "child and SilverScale"
+        "Lake Hylia": "(child and SilverScale) or (adult and WaterTempleCleared and (SilverScale or IronBoots))"
       }
     },
     "Zora's Fountain": {
       "exits": {
         "Zora's Domain": "true",
-        "Lord Jabu-Jabu's Belly": "child and Bottle",
+        "Lord Jabu-Jabu's Belly": "child and Bottle and (Slingshot or Boomerang)",
         "Ice Cavern": "adult"
       }
     },
@@ -596,23 +603,23 @@
     },
     "heart_pieces#2": {
       "age": "child",
-      "night": true
+      "night": true,
+      "needs": "MetZelda"
     },
     "heart_pieces#3": {
       "age": "child"
     },
     "heart_pieces#4": {
-      "age": "child"
+      "needs": "child or Longshot"
     },
-    "heart_pieces#5": {
-      "age": "child"
-    },
+    "heart_pieces#5": {},
     "heart_pieces#6": {
       "age": "child"
     },
     "heart_pieces#7": {
       "age": "child",
-      "night": true
+      "night": true,
+      "needs": "MetZelda"
     },
     "heart_pieces#8": {
       "age": "child",
@@ -624,35 +631,38 @@
     },
     "heart_pieces#10": {
       "age": "child",
-      "needs": "(Explosives or Strength1) and (Sticks or DinsFire)"
+      "needs": "(Bombs or Strength1) and (Sticks or DinsFire)"
     },
     "heart_pieces#11": {
-      "age": "adult",
-      "needs": "GoronTunic and Hookshot"
+      "needs": "child or GoronTunic",
+      "note": "A child can grab it before the heat gets too much; as adult, wear the Goron Tunic. No Hookshot needed."
     },
     "heart_pieces#12": {
-      "needs": "child or Hookshot"
+      "needs": "(child and DinsFireItem and BlastOrSmash) or (adult and Hookshot)",
+      "note": "Child: the owl at the Death Mountain summit drops you on Impa's roof, but only once you have Din's Fire. Adult: Hookshot."
     },
     "heart_pieces#13": {
       "age": "child",
-      "needs": "Bombs"
+      "needs": "Bombs and GoronsRuby",
+      "note": "The Bombchu Bowling Alley opens only after King Dodongo."
     },
     "heart_pieces#14": {
-      "age": "child"
+      "needs": "child or HoverBoots"
     },
     "heart_pieces#15": {
-      "age": "child"
+      "needs": "child or HoverBoots"
     },
     "heart_pieces#16": {
       "age": "child",
-      "needs": "Sticks or DinsFire"
+      "needs": "Sticks"
     },
     "heart_pieces#17": {
       "needs": "BeanRide or (adult and Longshot)",
       "unsure": true
     },
     "heart_pieces#18": {
-      "needs": "adult or Boomerang"
+      "needs": "(child and Boomerang) or (adult and SongOfTime)",
+      "note": "Child: the Boomerang. Adult: through Dampé's grave (Song of Time)."
     },
     "heart_pieces#19": {
       "age": "adult"
@@ -673,7 +683,7 @@
       "unsure": true
     },
     "heart_pieces#24": {
-      "needs": "BeanRide or (adult and HoverBoots)",
+      "needs": "Bolero and (BeanRide or (adult and HoverBoots))",
       "unsure": true
     },
     "heart_pieces#25": {
@@ -681,7 +691,7 @@
     },
     "heart_pieces#26": {
       "age": "adult",
-      "needs": "IronBoots"
+      "needs": "IronBoots and ZoraTunic"
     },
     "heart_pieces#27": {
       "age": "child",
@@ -693,7 +703,7 @@
     },
     "heart_pieces#29": {
       "age": "child",
-      "needs": "Lens",
+      "needs": "Lens and MetZelda",
       "night": true
     },
     "heart_pieces#30": {
@@ -709,21 +719,23 @@
       "unsure": true
     },
     "heart_pieces#33": {
-      "unsure": true,
-      "needs": "SunsSong"
+      "needs": "adult or MetZelda",
+      "note": "No Sun's Song in the remake. As a child the grave can only be pulled at night."
     },
     "heart_pieces#34": {
       "age": "child",
-      "needs": "Explosives",
-      "unsure": true
+      "needs": "MasterSword and Explosives and StunScrub and AdultWallet",
+      "note": "Read the password on the Fairy Note by the hole as adult, then buy it as a child for 100 Rupees."
     },
     "heart_pieces#35": {
       "age": "child",
-      "unsure": true
+      "needs": "MasterSword",
+      "note": "Read the Fairy Note as adult first; the chest is opened as a child."
     },
     "heart_pieces#36": {
       "age": "child",
-      "needs": "StunScrub"
+      "needs": "StunScrub and AdultWallet",
+      "note": "The scrub sells it for 100 Rupees."
     },
     "heart_containers#1": {
       "age": "child",
@@ -731,7 +743,7 @@
     },
     "heart_containers#2": {
       "age": "child",
-      "needs": "Explosives or GoronsBracelet"
+      "needs": "DodongoDone"
     },
     "heart_containers#3": {
       "age": "child",
@@ -739,38 +751,38 @@
     },
     "heart_containers#4": {
       "age": "adult",
-      "needs": "Bow"
+      "needs": "ForestDone"
     },
     "heart_containers#5": {
       "age": "adult",
-      "needs": "Hammer"
+      "needs": "FireDone"
     },
     "heart_containers#6": {
       "age": "adult",
-      "needs": "Longshot and WaterTempleGear"
+      "needs": "WaterDone"
     },
     "heart_containers#7": {
       "age": "adult",
-      "needs": "ShadowTempleGear and Bow"
+      "needs": "ShadowDone"
     },
     "heart_containers#8": {
       "age": "adult",
-      "needs": "MirrorShield and SpiritAdultSide and Explosives"
+      "needs": "SpiritDone"
     },
     "gold_skulltulas#1": {
       "age": "child"
     },
     "gold_skulltulas#2": {
-      "age": "child"
+      "age": "child",
+      "needs": "Slingshot or Boomerang or DinsFire"
     },
     "gold_skulltulas#3": {
-      "age": "child",
-      "needs": "Sticks_or_Fire"
+      "age": "child"
     },
     "gold_skulltulas#4": {
       "age": "child",
-      "needs": "Slingshot or Boomerang",
-      "unsure": true
+      "needs": "Sticks_or_Fire and Explosives and Boomerang",
+      "note": "Burn the web, bomb the wall, then the Boomerang."
     },
     "gold_skulltulas#5": {
       "age": "child"
@@ -780,20 +792,23 @@
     },
     "gold_skulltulas#7": {
       "age": "child",
-      "night": true
+      "night": true,
+      "needs": "MetZelda"
     },
     "gold_skulltulas#8": {
       "age": "child",
-      "night": true
+      "night": true,
+      "needs": "MetZelda"
     },
     "gold_skulltulas#9": {
       "age": "child",
-      "night": true
+      "night": true,
+      "needs": "MetZelda"
     },
     "gold_skulltulas#10": {
       "age": "child",
       "night": true,
-      "needs": "Slingshot or Boomerang"
+      "needs": "MetZelda and (Slingshot or Bombchus)"
     },
     "gold_skulltulas#11": {
       "age": "child",
@@ -801,11 +816,11 @@
     },
     "gold_skulltulas#12": {
       "age": "child",
-      "night": true
+      "night": true,
+      "needs": "MetZelda"
     },
     "gold_skulltulas#13": {
-      "age": "child",
-      "night": true
+      "age": "child"
     },
     "gold_skulltulas#14": {
       "age": "child",
@@ -817,7 +832,8 @@
     },
     "gold_skulltulas#16": {
       "age": "child",
-      "night": true
+      "night": true,
+      "needs": "MetZelda"
     },
     "gold_skulltulas#17": {
       "age": "child",
@@ -833,15 +849,17 @@
     },
     "gold_skulltulas#20": {
       "age": "child",
-      "needs": "Bugs and (Explosives or GoronsBracelet)",
-      "note": "The soil is behind a rock: blow it up or lift it with the bracelet."
+      "needs": "Bugs and Strength1",
+      "note": "The soil is behind the boulder that the bracelet's bomb flower opens."
     },
-    "gold_skulltulas#21": {},
+    "gold_skulltulas#21": {
+      "needs": "Projectile"
+    },
     "gold_skulltulas#22": {
       "needs": "Explosives"
     },
     "gold_skulltulas#23": {
-      "needs": "RangedGrab"
+      "needs": "Explosives"
     },
     "gold_skulltulas#24": {
       "needs": "Explosives"
@@ -854,8 +872,7 @@
     },
     "gold_skulltulas#27": {
       "age": "child",
-      "needs": "Explosives",
-      "unsure": true
+      "needs": "Explosives"
     },
     "gold_skulltulas#28": {
       "age": "child",
@@ -864,11 +881,10 @@
     "gold_skulltulas#29": {
       "age": "child",
       "night": true,
-      "needs": "Slingshot or Boomerang"
+      "needs": "MetZelda and (Slingshot or Boomerang)"
     },
     "gold_skulltulas#30": {
-      "age": "child",
-      "night": true
+      "age": "child"
     },
     "gold_skulltulas#31": {
       "age": "child"
@@ -887,43 +903,41 @@
     "gold_skulltulas#35": {
       "age": "child",
       "night": true,
-      "needs": "Boomerang",
-      "unsure": true
+      "needs": "MetZelda and Boomerang"
     },
     "gold_skulltulas#36": {
       "age": "child",
       "night": true,
-      "needs": "Boomerang"
+      "needs": "MetZelda and Boomerang"
     },
     "gold_skulltulas#37": {
       "age": "child",
       "night": true,
-      "needs": "Boomerang",
+      "needs": "MetZelda and Boomerang",
       "note": "Out of reach on the house wall: the Boomerang brings the token back."
     },
     "gold_skulltulas#38": {
-      "age": "child",
       "night": true,
-      "needs": "Boomerang"
+      "needs": "(child and Boomerang and MetZelda) or (adult and Hookshot)"
     },
     "gold_skulltulas#39": {
-      "needs": "Explosives",
+      "needs": "BlastOrSmash and RangedGrab",
       "unsure": true
     },
     "gold_skulltulas#40": {
-      "age": "adult",
+      "age": "child",
       "night": true,
-      "needs": "Hookshot"
+      "needs": "MetZelda and Boomerang",
+      "unsure": true
     },
     "gold_skulltulas#41": {
       "night": true,
-      "needs": "Boomerang"
+      "needs": "MetZelda and Boomerang"
     },
-    "gold_skulltulas#42": {
-      "unsure": true
-    },
+    "gold_skulltulas#42": {},
     "gold_skulltulas#43": {
-      "age": "adult"
+      "age": "adult",
+      "needs": "Hookshot"
     },
     "gold_skulltulas#44": {
       "age": "adult",
@@ -958,44 +972,49 @@
     },
     "gold_skulltulas#51": {
       "age": "adult",
-      "needs": "Hookshot",
-      "unsure": true
+      "needs": "ScarecrowSong and Hookshot"
     },
     "gold_skulltulas#52": {
       "age": "adult",
-      "needs": "Hookshot"
+      "needs": "(ScarecrowSong and Hookshot) or Longshot"
     },
     "gold_skulltulas#53": {
-      "age": "adult"
+      "age": "adult",
+      "needs": "Hookshot"
     },
     "gold_skulltulas#54": {
       "age": "child",
-      "needs": "Bugs"
+      "needs": "Bugs and Bolero"
     },
     "gold_skulltulas#55": {
-      "age": "adult"
-    },
-    "gold_skulltulas#56": {
-      "age": "adult",
-      "needs": "Hammer"
-    },
-    "gold_skulltulas#57": {
       "age": "adult",
       "needs": "Hammer",
       "unsure": true
     },
+    "gold_skulltulas#56": {
+      "age": "adult",
+      "needs": "Explosives and Strength1",
+      "unsure": true
+    },
+    "gold_skulltulas#57": {
+      "age": "adult",
+      "needs": "Strength1 and ((ScarecrowSong and Hookshot) or Longshot)",
+      "unsure": true
+    },
     "gold_skulltulas#58": {
       "age": "adult",
-      "needs": "Hookshot or Hammer"
+      "needs": "Strength1 and ((ScarecrowSong and Hookshot) or Longshot)",
+      "unsure": true
     },
     "gold_skulltulas#59": {
       "age": "adult",
-      "needs": "Hammer"
+      "needs": "SongOfTime",
+      "unsure": true
     },
     "gold_skulltulas#60": {
       "age": "adult",
       "night": true,
-      "needs": "BlastOrSmash"
+      "needs": "Hammer"
     },
     "gold_skulltulas#61": {
       "age": "adult",
@@ -1010,19 +1029,19 @@
     "gold_skulltulas#63": {
       "age": "adult",
       "night": true,
-      "needs": "Hookshot or Bow or MagicMeter"
+      "needs": "Hookshot"
     },
     "gold_skulltulas#64": {
       "age": "adult",
-      "needs": "Hookshot"
+      "needs": "Bottle and Hookshot"
     },
     "gold_skulltulas#65": {
       "age": "adult",
-      "needs": "Hookshot"
+      "needs": "Bottle and Hookshot"
     },
     "gold_skulltulas#66": {
       "age": "adult",
-      "needs": "Bottle"
+      "needs": "Bottle and Hookshot"
     },
     "gold_skulltulas#67": {
       "age": "adult",
@@ -1035,23 +1054,28 @@
     },
     "gold_skulltulas#69": {
       "age": "adult",
-      "needs": "WaterTempleGear"
+      "needs": "WaterTempleGear and ZeldasLullaby and Explosives",
+      "unsure": true
     },
     "gold_skulltulas#70": {
       "age": "adult",
-      "needs": "WaterTempleGear"
+      "needs": "WaterTempleGear and ZeldasLullaby and Longshot and Explosives and Strength1",
+      "unsure": true
     },
     "gold_skulltulas#71": {
       "age": "adult",
-      "needs": "WaterTempleGear and Longshot"
+      "needs": "WaterTempleGear and ZeldasLullaby and Longshot",
+      "unsure": true
     },
     "gold_skulltulas#72": {
       "age": "adult",
-      "needs": "WaterTempleGear"
+      "needs": "WaterTempleGear and ZeldasLullaby",
+      "unsure": true
     },
     "gold_skulltulas#73": {
       "age": "adult",
-      "needs": "WaterTempleGear and Longshot"
+      "needs": "WaterTempleGear and ZeldasLullaby and Longshot",
+      "unsure": true
     },
     "gold_skulltulas#74": {
       "age": "adult",
@@ -1076,15 +1100,17 @@
     },
     "gold_skulltulas#79": {
       "age": "adult",
-      "needs": "Lens and Hookshot"
+      "needs": "ShadowTempleGear"
     },
     "gold_skulltulas#80": {
       "age": "adult",
-      "needs": "ShadowTempleGear"
+      "needs": "ShadowTempleGear and Longshot",
+      "unsure": true
     },
     "gold_skulltulas#81": {
       "age": "adult",
-      "needs": "ShadowTempleGear"
+      "needs": "ShadowTempleGear and ZeldasLullaby and Bombs",
+      "unsure": true
     },
     "gold_skulltulas#82": {
       "age": "adult",
@@ -1092,7 +1118,8 @@
     },
     "gold_skulltulas#83": {
       "age": "adult",
-      "needs": "ShadowTempleGear and Longshot"
+      "needs": "ShadowTempleGear and ScarecrowSong and Longshot",
+      "unsure": true
     },
     "gold_skulltulas#84": {
       "age": "adult",
@@ -1109,9 +1136,8 @@
       "needs": "Hookshot"
     },
     "gold_skulltulas#87": {
-      "age": "adult",
       "night": true,
-      "needs": "Hookshot"
+      "needs": "(adult and Longshot) or (child and Boomerang and MetZelda)"
     },
     "gold_skulltulas#88": {
       "age": "child",
@@ -1125,7 +1151,7 @@
     "gold_skulltulas#90": {
       "age": "adult",
       "night": true,
-      "needs": "Hookshot"
+      "needs": "MagicBean or Longshot"
     },
     "gold_skulltulas#91": {
       "age": "child",
@@ -1133,7 +1159,8 @@
     },
     "gold_skulltulas#92": {
       "age": "adult",
-      "needs": "SpiritAdultSide"
+      "needs": "SpiritAdultSide and ScarecrowSong and Longshot",
+      "unsure": true
     },
     "gold_skulltulas#93": {
       "age": "child",
@@ -1158,15 +1185,21 @@
       "needs": "Hookshot"
     },
     "gold_skulltulas#98": {
-      "unsure": true
+      "unsure": true,
+      "needs": "MetZelda",
+      "age": "child",
+      "night": true
     },
     "gold_skulltulas#99": {
-      "needs": "Explosives",
-      "unsure": true
+      "needs": "Explosives and MasterSword",
+      "unsure": true,
+      "age": "adult",
+      "note": "Kill the Skulltula in the marsh grotto as a child; as adult, break the crate for the token."
     },
     "gold_skulltulas#100": {
-      "needs": "Explosives",
-      "unsure": true
+      "needs": "Strength2 and Lens and Hookshot",
+      "age": "adult",
+      "night": true
     },
     "songs#1": {
       "region": "Hyrule Castle",
@@ -1175,9 +1208,7 @@
     },
     "songs#2": {
       "region": "Graveyard",
-      "age": "child",
-      "needs": "ZeldasLullaby",
-      "night": true
+      "needs": "ZeldasLullaby"
     },
     "songs#3": {
       "region": "Lon Lon Ranch",
@@ -1211,7 +1242,8 @@
     },
     "songs#9": {
       "region": "Death Mountain Crater",
-      "age": "adult"
+      "age": "adult",
+      "needs": "Hookshot or HoverBoots"
     },
     "songs#10": {
       "region": "Ice Cavern",
@@ -1269,7 +1301,7 @@
     "equipment#9": {
       "region": "Goron City",
       "age": "adult",
-      "needs": "Explosives or Bow or DinsFire or Strength1"
+      "needs": "Explosives or Bow or Strength1"
     },
     "equipment#10": {
       "region": "Zora's Domain",
@@ -1293,7 +1325,7 @@
     "items#2": {
       "region": "Forest Temple",
       "age": "adult",
-      "needs": "Hookshot"
+      "needs": "Hookshot and Strength1"
     },
     "items#3": {
       "region": "Lake Hylia",
@@ -1321,11 +1353,12 @@
     "items#8": {
       "region": "Water Temple",
       "age": "adult",
-      "needs": "WaterTempleGear"
+      "needs": "WaterTempleGear and ZeldasLullaby"
     },
     "items#9": {
       "region": "Fire Temple",
-      "age": "adult"
+      "age": "adult",
+      "needs": "Strength1 and Explosives"
     },
     "items#10": {
       "region": "Goron City",
@@ -1340,16 +1373,19 @@
     "items#12": {
       "region": "Ganon's Castle",
       "age": "adult",
-      "needs": "Lens and FireArrows"
+      "needs": "Lens and (Longshot or Bow)"
     },
     "items#13": {
       "region": "Dodongo's Cavern",
-      "age": "child"
+      "age": "child",
+      "needs": "Strength1 and Slingshot"
     },
     "items#14": {
       "region": "Hyrule Castle Town",
       "age": "child",
-      "needs": "Bombs"
+      "needs": "GoronsRuby and MetZelda",
+      "night": true,
+      "note": "The Bombchu Shop opens at night, after King Dodongo."
     },
     "items#15": {
       "region": "Kokiri Forest"
@@ -1367,7 +1403,7 @@
     },
     "items#19": {
       "region": "Desert Colossus",
-      "needs": "ZeldasLullaby and Explosives"
+      "needs": "ZeldasLullaby and BlastOrSmash"
     },
     "items#20": {
       "region": "Death Mountain Crater",
@@ -1480,7 +1516,7 @@
     },
     "great_fairies#5": {
       "region": "Desert Colossus",
-      "needs": "ZeldasLullaby and Explosives"
+      "needs": "ZeldasLullaby and BlastOrSmash"
     },
     "great_fairies#6": {
       "region": "Hyrule Castle",
@@ -1500,7 +1536,8 @@
     },
     "capacity#4": {
       "region": "Dodongo's Cavern",
-      "age": "child"
+      "age": "child",
+      "needs": "Strength1 and Slingshot"
     },
     "capacity#5": {
       "region": "Goron City",
@@ -1510,7 +1547,7 @@
     "capacity#6": {
       "region": "Hyrule Castle Town",
       "age": "child",
-      "needs": "Bombs"
+      "needs": "Bombs and GoronsRuby"
     },
     "capacity#7": {
       "region": "Lost Woods",
@@ -1545,8 +1582,7 @@
     "capacity#13": {
       "region": "Sacred Forest Meadow",
       "age": "child",
-      "needs": "BlastOrSmash and StunScrub",
-      "unsure": true
+      "needs": "SongOfStorms and StunScrub"
     },
     "capacity#14": {
       "region": "Lost Woods",
@@ -1561,7 +1597,7 @@
     "stones_medallions#2": {
       "region": "Dodongo's Cavern",
       "age": "child",
-      "needs": "Explosives or GoronsBracelet"
+      "needs": "DodongoDone"
     },
     "stones_medallions#3": {
       "region": "Lord Jabu-Jabu's Belly",
@@ -1575,27 +1611,27 @@
     "stones_medallions#5": {
       "region": "Forest Temple",
       "age": "adult",
-      "needs": "Bow"
+      "needs": "ForestDone"
     },
     "stones_medallions#6": {
       "region": "Fire Temple",
       "age": "adult",
-      "needs": "Hammer"
+      "needs": "FireDone"
     },
     "stones_medallions#7": {
       "region": "Water Temple",
       "age": "adult",
-      "needs": "Longshot and WaterTempleGear"
+      "needs": "WaterDone"
     },
     "stones_medallions#8": {
       "region": "Shadow Temple",
       "age": "adult",
-      "needs": "ShadowTempleGear and Bow"
+      "needs": "ShadowDone"
     },
     "stones_medallions#9": {
       "region": "Spirit Temple",
       "age": "adult",
-      "needs": "MirrorShield and SpiritAdultSide and Explosives"
+      "needs": "SpiritDone"
     },
     "dungeons#1": {
       "region": "Great Deku Tree",
@@ -1605,7 +1641,7 @@
     "dungeons#2": {
       "region": "Dodongo's Cavern",
       "age": "child",
-      "needs": "Explosives or GoronsBracelet"
+      "needs": "DodongoDone"
     },
     "dungeons#3": {
       "region": "Lord Jabu-Jabu's Belly",
@@ -1615,12 +1651,12 @@
     "dungeons#4": {
       "region": "Forest Temple",
       "age": "adult",
-      "needs": "Bow"
+      "needs": "ForestDone"
     },
     "dungeons#5": {
       "region": "Fire Temple",
       "age": "adult",
-      "needs": "Hammer"
+      "needs": "FireDone"
     },
     "dungeons#6": {
       "region": "Ice Cavern",
@@ -1630,7 +1666,7 @@
     "dungeons#7": {
       "region": "Water Temple",
       "age": "adult",
-      "needs": "Longshot and WaterTempleGear"
+      "needs": "WaterDone"
     },
     "dungeons#8": {
       "region": "Bottom of the Well",
@@ -1640,12 +1676,12 @@
     "dungeons#9": {
       "region": "Shadow Temple",
       "age": "adult",
-      "needs": "ShadowTempleGear and Bow"
+      "needs": "ShadowDone"
     },
     "dungeons#10": {
       "region": "Spirit Temple",
       "age": "adult",
-      "needs": "MirrorShield and SpiritAdultSide and Explosives"
+      "needs": "SpiritDone"
     },
     "dungeons#11": {
       "region": "Gerudo Training Ground",
@@ -1665,7 +1701,7 @@
     "bosses#2": {
       "region": "Dodongo's Cavern",
       "age": "child",
-      "needs": "Explosives or GoronsBracelet"
+      "needs": "DodongoDone"
     },
     "bosses#3": {
       "region": "Lord Jabu-Jabu's Belly",
@@ -1675,27 +1711,27 @@
     "bosses#4": {
       "region": "Forest Temple",
       "age": "adult",
-      "needs": "Bow"
+      "needs": "ForestDone"
     },
     "bosses#5": {
       "region": "Fire Temple",
       "age": "adult",
-      "needs": "Hammer"
+      "needs": "FireDone"
     },
     "bosses#6": {
       "region": "Water Temple",
       "age": "adult",
-      "needs": "Longshot and WaterTempleGear"
+      "needs": "WaterDone"
     },
     "bosses#7": {
       "region": "Shadow Temple",
       "age": "adult",
-      "needs": "ShadowTempleGear and Bow"
+      "needs": "ShadowDone"
     },
     "bosses#8": {
       "region": "Spirit Temple",
       "age": "adult",
-      "needs": "MirrorShield and SpiritAdultSide and Explosives"
+      "needs": "SpiritDone"
     },
     "bosses#9": {
       "region": "Ganon's Castle",
@@ -1719,12 +1755,12 @@
     "mini_bosses#3": {
       "region": "Forest Temple",
       "age": "adult",
-      "needs": "Bow"
+      "needs": "ForestDone"
     },
     "mini_bosses#4": {
       "region": "Fire Temple",
       "age": "adult",
-      "needs": "Hookshot or Hammer"
+      "needs": "Explosives and Strength1"
     },
     "mini_bosses#5": {
       "region": "Ice Cavern",
@@ -1734,7 +1770,7 @@
     "mini_bosses#6": {
       "region": "Water Temple",
       "age": "adult",
-      "needs": "WaterTempleGear"
+      "needs": "WaterTempleGear and ZeldasLullaby"
     },
     "mini_bosses#7": {
       "region": "Bottom of the Well",
@@ -1834,7 +1870,7 @@
           "name": "Bombchu Bowling",
           "region": "Hyrule Castle Town",
           "age": "child",
-          "needs": "Bombs"
+          "needs": "Bombs and GoronsRuby"
         }
       ]
     },
@@ -1897,11 +1933,10 @@
       ],
       "sources": [
         {
-          "name": "the Sacred Forest Meadow grotto scrub",
+          "name": "the Sacred Forest Meadow storms grotto scrub",
           "region": "Sacred Forest Meadow",
           "age": "child",
-          "needs": "BlastOrSmash and StunScrub",
-          "unsure": true
+          "needs": "SongOfStorms and StunScrub"
         },
         {
           "name": "the Deku Theater (Mask of Truth)",

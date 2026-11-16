@@ -8,7 +8,10 @@ const PROCESS_VM_READ = 0x0010;
 const PROCESS_QUERY_LIMITED_INFORMATION = 0x1000;
 
 type Fn = (...args: unknown[]) => unknown;
-let api: { OpenProcess: Fn; CloseHandle: Fn; ReadProcessMemory: Fn; GetExitCodeProcess: Fn; QueryFullProcessImageNameW: Fn } | null | undefined;
+let api: { OpenProcess: Fn; CloseHandle: Fn; ReadProcessMemory: Fn; GetExitCodeProcess: Fn; QueryFullProcessImageNameW: Fn; VirtualQueryEx: Fn; mbiSize: number } | null | undefined;
+
+/** A committed, readable block of the process's memory. type: 0x20000 private, 0x40000 mapped, 0x1000000 image. */
+export interface MemRegion { base: bigint; size: bigint; type: number }
 
 /** Load koffi and the kernel32 functions once. Call before using ProcessMemory. */
 export async function initMemoryAccess(): Promise<boolean> {
@@ -31,7 +34,13 @@ function load() { return api ?? null; }
 function bind(koffi: any) {
   {
     const k32 = koffi.load('kernel32.dll');
+    const mbi = koffi.struct('MEMORY_BASIC_INFORMATION', {
+      BaseAddress: 'uint64', AllocationBase: 'uint64', AllocationProtect: 'uint32', PartitionId: 'uint16', _pad: 'uint16',
+      RegionSize: 'uint64', State: 'uint32', Protect: 'uint32', Type: 'uint32', _pad2: 'uint32',
+    });
     return {
+      mbiSize: koffi.sizeof(mbi) as number,
+      VirtualQueryEx: k32.func('size_t __stdcall VirtualQueryEx(void *h, uint64_t addr, _Out_ MEMORY_BASIC_INFORMATION *info, size_t len)'),
       OpenProcess: k32.func('void * __stdcall OpenProcess(uint32_t access, int inherit, uint32_t pid)'),
       CloseHandle: k32.func('int __stdcall CloseHandle(void *h)'),
       ReadProcessMemory: k32.func('int __stdcall ReadProcessMemory(void *h, uint64_t addr, _Out_ uint8_t *buf, size_t size, void *read)'),
@@ -61,6 +70,25 @@ export class ProcessMemory implements Mem {
     const name = new Uint16Array(1024), size = [name.length];
     if (!api!.QueryFullProcessImageNameW(this.handle, 0, name, size)) return undefined;
     return String.fromCharCode(...name.subarray(0, size[0]));
+  }
+  /**
+   * The process's committed, readable memory blocks (works with the limited query right).
+   * Emulators put the game's memory at a different place every run, so it has to be found.
+   */
+  regions(): MemRegion[] {
+    const out: MemRegion[] = [];
+    if (!this.handle) return out;
+    let addr = 0n;
+    for (;;) {
+      const m: { BaseAddress: bigint | number; RegionSize: bigint | number; State: number; Protect: number; Type: number } = {} as never;
+      if (!api!.VirtualQueryEx(this.handle, addr, m, api!.mbiSize)) break;
+      const base = BigInt(m.BaseAddress), size = BigInt(m.RegionSize);
+      // MEM_COMMIT, and not PAGE_NOACCESS or PAGE_GUARD.
+      if (m.State === 0x1000 && m.Protect !== 0 && !(m.Protect & 0x01) && !(m.Protect & 0x100)) out.push({ base, size, type: m.Type });
+      if (base + size <= addr) break;
+      addr = base + size;
+    }
+    return out;
   }
   alive(): boolean {
     if (!this.handle) return false;
