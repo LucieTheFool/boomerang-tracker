@@ -12,7 +12,7 @@ import type { AvailableEntry } from '../shared/types.js';
 import { SaveWatcher } from './watcher.js';
 import { LiveSource } from './live.js';
 import { ChangeLog } from './changelog.js';
-import { STAGE_KEY, LOCATION_KEY, DAY_NIGHT_KEY, areaFrom, timeOfDay } from '../gamedata/live.js';
+import { STAGE_KEY, LOCATION_KEY, areaFrom } from '../gamedata/live.js';
 import { keyOf } from '../gamedata/detect.js';
 import { SettingsStore } from './settings.js';
 import type { AppState, Toast, SlotSummary } from '../shared/types.js';
@@ -155,7 +155,6 @@ export class Controller {
       }
     };
     walk(this.logic);
-    out.add(DAY_NIGHT_KEY); // the overlay's day/night icon
     return out;
   }
   /** Newest save read (the live source's reference). */
@@ -255,7 +254,6 @@ export class Controller {
     // A place inside the stage has no age of its own: take the stage's (_Child/_Adult).
     const age = rawArea !== stage ? stage?.match(/_(Adult|Child)$/)?.[0] ?? '' : '';
     summary.area = rawArea ? prettyArea(rawArea.split('/').pop()! + age) : undefined;
-    summary.timeOfDay = timeOfDay(cur.data);
     const { available, canBeAdult } = this.applyLogic(categories, cur.data, areaRegions);
     summary.lastSavedMs = read.mtimeMs;
 

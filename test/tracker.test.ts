@@ -16,7 +16,10 @@ describe.skipIf(!have)('Tracker on real saves', () => {
     expect(summary.heartPiecesHeld).toBe(3);
     expect(summary.tokens).toBe(15);
     expect(summary.claimable.map(c => c.reward)).toEqual(["Adult's Wallet"]);
-    expect(categories.find(c => c.id === 'heart_pieces')!.hint).toMatch(/3 pieces in total/);
+    // All three pieces are matched to a spot, the Zora's Domain chest one by its chest-open flag.
+    const hp = categories.find(c => c.id === 'heart_pieces')!;
+    expect(hp.items.filter(i => i.done).map(i => i.number)).toEqual([12, 16, 18]);
+    expect(hp.hint).toBeUndefined();
     expect(summary.totalA).toBeGreaterThan(250);
   });
 

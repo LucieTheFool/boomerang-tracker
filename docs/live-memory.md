@@ -101,13 +101,24 @@ per tick.
 - A refresh happens only when a Bool, Enum, 64-bit key or an Int the mapping or logic
   reads has changed (play time and similar counters are ignored).
 
-## Day or night
+## Time of day (not shown yet)
 
-The Int64 record `0xD457EE3A` counts every switch between day and night, whether the clock
-gets there or Sun's Song does: even is day, odd is night (checked against Sun's Song in Hookshot
-v2.1.0, a day there lasting about 12 minutes: 7 of day, 5 of night). The overlay shows it next
-to the area. The exact time of day isn't in the GameData store (the save records only some
-values about it, written at saves and songs), so the tracker doesn't show a clock yet.
+The tracker doesn't show the game's time or day/night yet. What was learned so far (Hookshot v2.1.0):
+
+- A game day lasts about 15 real minutes (roughly 7 of day and 5 of night by eye).
+- The Int64 record `0xD457EE3A` goes up by one each time Sun's Song is played, and does not
+  change when dusk or dawn comes by itself, so it can't tell day from night.
+- The exact time isn't in the GameData store. The save keeps only a few related values, written
+  at saves and songs.
+- A 16-bit value (0 to 65535 a day, as in the original game) runs at about 70 a second in dozens
+  of copies around the heap, but it keeps running in the pause menu and doesn't move with Sun's
+  Song, so it isn't the clock the game shows.
+- Other look-alikes ruled out: frame timers (60 or 120 a second), timers that restart with an
+  area, and a value that rises in the morning and falls in the afternoon (likely the sun's height).
+
+The real clock should move at the speed of a ~15-minute day, stop while the game is paused, and
+jump to 6:00 or 18:00 with Sun's Song. Probe scripts for this are in the gitignored `local/probe/`
+(`clock-hunt.ts`).
 
 ## If a Hookshot, Longshot, NX2navi, ReLink, Fritchii or game update breaks it
 

@@ -124,73 +124,129 @@
     "heart_containers.heart_container_gohma": {
       "label": "Heart Container (Gohma)",
       "detect": {
-        "name": "InsideTheDekuTree_Heart_Container_Obtained"
+        "any": [
+          {
+            "b64": "0xF914FA367471A3E3"
+          },
+          {
+            "name": "InsideTheDekuTree_Heart_Container_Obtained"
+          }
+        ]
       },
       "confidence": "likely",
-      "evidence": "Flag name from game files: InsideTheDekuTree_Heart_Container_Obtained"
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Deku Tree Queen Gohma Heart\" has object id 17948245526767051747; boss hearts are saved under their object id (Clawshot saw Gohma's in real saves). The earlier rule is kept as a fallback."
     },
     "heart_containers.heart_container_king_dodongo": {
       "label": "Heart Container (King Dodongo)",
       "detect": {
-        "name": "DefeatedEnemyNum.Enemy_DungeonBoss_Dodongo",
-        "gte": 1
+        "any": [
+          {
+            "b64": "0x5262CEA56C53554D"
+          },
+          {
+            "name": "DefeatedEnemyNum.Enemy_DungeonBoss_Dodongo",
+            "gte": 1
+          }
+        ]
       },
-      "confidence": "guess",
-      "evidence": "Assumes the container was picked up once the boss is beaten. Slot_05 agrees (4 bosses beaten, max hearts 3 + 4). Only the Deku Tree has its own flag. Needs a diff."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Dodongos Cavern King Dodongo Heart\" has object id 5936534468710061389; boss hearts are saved under their object id (Clawshot saw Gohma's in real saves). The earlier rule is kept as a fallback."
     },
     "heart_containers.heart_container_barinade": {
       "label": "Heart Container (Barinade)",
       "detect": {
-        "name": "DefeatedEnemyNum.Enemy_DungeonBoss_Barinade",
-        "gte": 1
+        "any": [
+          {
+            "b64": "0xF45F5319D88E7AC7"
+          },
+          {
+            "name": "DefeatedEnemyNum.Enemy_DungeonBoss_Barinade",
+            "gte": 1
+          }
+        ]
       },
-      "confidence": "guess",
-      "evidence": "Assumes the container was picked up once the boss is beaten. Slot_05 agrees (4 bosses beaten, max hearts 3 + 4). Only the Deku Tree has its own flag. Needs a diff."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Jabu Jabus Belly Barinade Heart\" has object id 17608884438514432711; boss hearts are saved under their object id (Clawshot saw Gohma's in real saves). The earlier rule is kept as a fallback."
     },
     "heart_containers.heart_container_phantom_ganon": {
       "label": "Heart Container (Phantom Ganon)",
       "detect": {
-        "name": "DefeatedEnemyNum.Enemy_DungeonBoss_PhantomGanon",
-        "gte": 1
+        "any": [
+          {
+            "b64": "0xFF11593A22778E7E"
+          },
+          {
+            "name": "DefeatedEnemyNum.Enemy_DungeonBoss_PhantomGanon",
+            "gte": 1
+          }
+        ]
       },
-      "confidence": "guess",
-      "evidence": "Assumes the container was picked up once the boss is beaten. Slot_05 agrees (4 bosses beaten, max hearts 3 + 4). Only the Deku Tree has its own flag. Needs a diff."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Forest Temple Phantom Ganon Heart\" has object id 18379569660496940670; boss hearts are saved under their object id (Clawshot saw Gohma's in real saves). The earlier rule is kept as a fallback."
     },
     "heart_containers.heart_container_volvagia": {
       "label": "Heart Container (Volvagia)",
       "detect": {
-        "name": "DefeatedEnemyNum.Enemy_DungeonBoss_Volvagia",
-        "gte": 1
+        "any": [
+          {
+            "b64": "0x8389CAFB1277D318"
+          },
+          {
+            "name": "DefeatedEnemyNum.Enemy_DungeonBoss_Volvagia",
+            "gte": 1
+          }
+        ]
       },
-      "confidence": "guess",
-      "evidence": "Assumes the container was picked up once the boss is beaten. Slot_05 agrees (4 bosses beaten, max hearts 3 + 4). Only the Deku Tree has its own flag. Needs a diff."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Fire Temple Volvagia Heart\" has object id 9478330070473364248; boss hearts are saved under their object id (Clawshot saw Gohma's in real saves). The earlier rule is kept as a fallback."
     },
     "heart_containers.heart_container_morpha": {
       "label": "Heart Container (Morpha)",
       "detect": {
-        "name": "DefeatedEnemyNum.Enemy_DungeonBoss_Morpha",
-        "gte": 1
+        "any": [
+          {
+            "b64": "0xC835E1D03656BF46"
+          },
+          {
+            "name": "DefeatedEnemyNum.Enemy_DungeonBoss_Morpha",
+            "gte": 1
+          }
+        ]
       },
-      "confidence": "guess",
-      "evidence": "Assumes the container was picked up once the boss is beaten. Slot_05 agrees (4 bosses beaten, max hearts 3 + 4). Only the Deku Tree has its own flag. Needs a diff."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Water Temple Morpha Heart\" has object id 14426685265732353862; boss hearts are saved under their object id (Clawshot saw Gohma's in real saves). The earlier rule is kept as a fallback."
     },
     "heart_containers.heart_container_bongo": {
       "label": "Heart Container (Bongo)",
       "detect": {
-        "name": "DefeatedEnemyNum.Enemy_DungeonBoss_BongoBongo",
-        "gte": 1
+        "any": [
+          {
+            "b64": "0xF43CCB260F5576DC"
+          },
+          {
+            "name": "DefeatedEnemyNum.Enemy_DungeonBoss_BongoBongo",
+            "gte": 1
+          }
+        ]
       },
-      "confidence": "guess",
-      "evidence": "Assumes the container was picked up once the boss is beaten. Slot_05 agrees (4 bosses beaten, max hearts 3 + 4). Only the Deku Tree has its own flag. Needs a diff."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Shadow Temple Bongo Bongo Heart\" has object id 17599164808183510748; boss hearts are saved under their object id (Clawshot saw Gohma's in real saves). The earlier rule is kept as a fallback."
     },
     "heart_containers.heart_container_twinrova": {
       "label": "Heart Container (Twinrova)",
       "detect": {
-        "name": "DefeatedEnemyNum.Enemy_DungeonBoss_Twinrova",
-        "gte": 1
+        "any": [
+          {
+            "b64": "0x41811F125B1EEDD5"
+          },
+          {
+            "name": "DefeatedEnemyNum.Enemy_DungeonBoss_Twinrova",
+            "gte": 1
+          }
+        ]
       },
-      "confidence": "guess",
-      "evidence": "Assumes the container was picked up once the boss is beaten. Slot_05 agrees (4 bosses beaten, max hearts 3 + 4). Only the Deku Tree has its own flag. Needs a diff."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Spirit Temple Twinrova Heart\" has object id 4720088048159616469; boss hearts are saved under their object id (Clawshot saw Gohma's in real saves). The earlier rule is kept as a fallback."
     },
     "songs.zeldas_lullaby": {
       "label": "Zelda's Lullaby",
@@ -1807,34 +1863,18 @@
     "gold_skulltulas.012": {
       "label": "Kakariko Village",
       "detect": {
-        "count": [
-          {
-            "b64": "0x2DF265292516BDF0"
-          },
-          {
-            "b64": "0xA1632E322C612B97"
-          }
-        ],
-        "gte": 1
+        "b64": "0xA1632E322C612B97"
       },
-      "confidence": "guess",
-      "evidence": "6 Gold Skulltulas in Kakariko Village. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Kak GS Near Gate Guard\" (object id 11629189455828560791), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.096": {
       "label": "Kakariko Village",
       "detect": {
-        "count": [
-          {
-            "b64": "0x2DF265292516BDF0"
-          },
-          {
-            "b64": "0xA1632E322C612B97"
-          }
-        ],
-        "gte": 2
+        "b64": "0x2DF265292516BDF0"
       },
-      "confidence": "guess",
-      "evidence": "6 Gold Skulltulas in Kakariko Village. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Kak GS Above Impas House\" (object id 3310819903461047792), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.011": {
       "label": "Graveyard",
@@ -1871,335 +1911,74 @@
     "gold_skulltulas.036": {
       "label": "Lake Hylia",
       "detect": {
-        "count": [
-          {
-            "b64": "0x0AF4D6F063D3AE9F"
-          },
-          {
-            "b64": "0x1E38E8D23596EECF"
-          },
-          {
-            "b64": "0x25E6072D4DF023B3"
-          },
-          {
-            "b64": "0x6689BDEBC95368EB"
-          },
-          {
-            "b64": "0x781E0DE8EED42373"
-          },
-          {
-            "b64": "0x7D8EC14BDD1F6341"
-          },
-          {
-            "b64": "0xA6A4E87DA18FA678"
-          },
-          {
-            "b64": "0xC1858A4FCD84A28E"
-          },
-          {
-            "b64": "0xDC8113831C56B194"
-          }
-        ],
-        "gte": 1
+        "b64": "0xC1858A4FCD84A28E"
       },
-      "confidence": "guess",
-      "evidence": "10 Gold Skulltulas in Hyrule Field / Hyrule Field (near Gerudo Valley) / Lon Lon Ranch / Lake Hylia / Lake Hylia (Lakeside Laboratory). The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"LH GS Lab Wall\" (object id 13944703896577680014), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.037": {
       "label": "Lon Lon Ranch",
       "detect": {
-        "count": [
-          {
-            "b64": "0x0AF4D6F063D3AE9F"
-          },
-          {
-            "b64": "0x1E38E8D23596EECF"
-          },
-          {
-            "b64": "0x25E6072D4DF023B3"
-          },
-          {
-            "b64": "0x6689BDEBC95368EB"
-          },
-          {
-            "b64": "0x781E0DE8EED42373"
-          },
-          {
-            "b64": "0x7D8EC14BDD1F6341"
-          },
-          {
-            "b64": "0xA6A4E87DA18FA678"
-          },
-          {
-            "b64": "0xC1858A4FCD84A28E"
-          },
-          {
-            "b64": "0xDC8113831C56B194"
-          }
-        ],
-        "gte": 2
+        "b64": "0xDC8113831C56B194"
       },
-      "confidence": "guess",
-      "evidence": "10 Gold Skulltulas in Hyrule Field / Hyrule Field (near Gerudo Valley) / Lon Lon Ranch / Lake Hylia / Lake Hylia (Lakeside Laboratory). The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"LLR GS House Window\" (object id 15889002414176907668), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.038": {
       "label": "Lon Lon Ranch",
       "detect": {
-        "count": [
-          {
-            "b64": "0x0AF4D6F063D3AE9F"
-          },
-          {
-            "b64": "0x1E38E8D23596EECF"
-          },
-          {
-            "b64": "0x25E6072D4DF023B3"
-          },
-          {
-            "b64": "0x6689BDEBC95368EB"
-          },
-          {
-            "b64": "0x781E0DE8EED42373"
-          },
-          {
-            "b64": "0x7D8EC14BDD1F6341"
-          },
-          {
-            "b64": "0xA6A4E87DA18FA678"
-          },
-          {
-            "b64": "0xC1858A4FCD84A28E"
-          },
-          {
-            "b64": "0xDC8113831C56B194"
-          }
-        ],
-        "gte": 3
+        "b64": "0x25E6072D4DF023B3"
       },
-      "confidence": "guess",
-      "evidence": "10 Gold Skulltulas in Hyrule Field / Hyrule Field (near Gerudo Valley) / Lon Lon Ranch / Lake Hylia / Lake Hylia (Lakeside Laboratory). The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"LLR GS Tower\" (object id 2730878115209290675), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.039": {
       "label": "Hyrule Field",
       "detect": {
-        "count": [
-          {
-            "b64": "0x0AF4D6F063D3AE9F"
-          },
-          {
-            "b64": "0x1E38E8D23596EECF"
-          },
-          {
-            "b64": "0x25E6072D4DF023B3"
-          },
-          {
-            "b64": "0x6689BDEBC95368EB"
-          },
-          {
-            "b64": "0x781E0DE8EED42373"
-          },
-          {
-            "b64": "0x7D8EC14BDD1F6341"
-          },
-          {
-            "b64": "0xA6A4E87DA18FA678"
-          },
-          {
-            "b64": "0xC1858A4FCD84A28E"
-          },
-          {
-            "b64": "0xDC8113831C56B194"
-          }
-        ],
-        "gte": 4
+        "b64": "0xA6A4E87DA18FA678"
       },
-      "confidence": "guess",
-      "evidence": "10 Gold Skulltulas in Hyrule Field / Hyrule Field (near Gerudo Valley) / Lon Lon Ranch / Lake Hylia / Lake Hylia (Lakeside Laboratory). The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"HF GS Near Kak Grotto\" (object id 12007978132755687032), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.042": {
       "label": "Hyrule Field",
       "detect": {
-        "count": [
-          {
-            "b64": "0x0AF4D6F063D3AE9F"
-          },
-          {
-            "b64": "0x1E38E8D23596EECF"
-          },
-          {
-            "b64": "0x25E6072D4DF023B3"
-          },
-          {
-            "b64": "0x6689BDEBC95368EB"
-          },
-          {
-            "b64": "0x781E0DE8EED42373"
-          },
-          {
-            "b64": "0x7D8EC14BDD1F6341"
-          },
-          {
-            "b64": "0xA6A4E87DA18FA678"
-          },
-          {
-            "b64": "0xC1858A4FCD84A28E"
-          },
-          {
-            "b64": "0xDC8113831C56B194"
-          }
-        ],
-        "gte": 5
+        "b64": "0x1E38E8D23596EECF"
       },
-      "confidence": "guess",
-      "evidence": "10 Gold Skulltulas in Hyrule Field / Hyrule Field (near Gerudo Valley) / Lon Lon Ranch / Lake Hylia / Lake Hylia (Lakeside Laboratory). The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"HF GS Lone Tree\" (object id 2177746409373494991), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.068": {
       "label": "Lake Hylia (Lakeside Laboratory)",
       "detect": {
-        "count": [
-          {
-            "b64": "0x0AF4D6F063D3AE9F"
-          },
-          {
-            "b64": "0x1E38E8D23596EECF"
-          },
-          {
-            "b64": "0x25E6072D4DF023B3"
-          },
-          {
-            "b64": "0x6689BDEBC95368EB"
-          },
-          {
-            "b64": "0x781E0DE8EED42373"
-          },
-          {
-            "b64": "0x7D8EC14BDD1F6341"
-          },
-          {
-            "b64": "0xA6A4E87DA18FA678"
-          },
-          {
-            "b64": "0xC1858A4FCD84A28E"
-          },
-          {
-            "b64": "0xDC8113831C56B194"
-          }
-        ],
-        "gte": 6
+        "b64": "0x6689BDEBC95368EB"
       },
-      "confidence": "guess",
-      "evidence": "10 Gold Skulltulas in Hyrule Field / Hyrule Field (near Gerudo Valley) / Lon Lon Ranch / Lake Hylia / Lake Hylia (Lakeside Laboratory). The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"LH GS Lab Crate\" (object id 7388645484070660331), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.074": {
       "label": "Lake Hylia",
       "detect": {
-        "count": [
-          {
-            "b64": "0x0AF4D6F063D3AE9F"
-          },
-          {
-            "b64": "0x1E38E8D23596EECF"
-          },
-          {
-            "b64": "0x25E6072D4DF023B3"
-          },
-          {
-            "b64": "0x6689BDEBC95368EB"
-          },
-          {
-            "b64": "0x781E0DE8EED42373"
-          },
-          {
-            "b64": "0x7D8EC14BDD1F6341"
-          },
-          {
-            "b64": "0xA6A4E87DA18FA678"
-          },
-          {
-            "b64": "0xC1858A4FCD84A28E"
-          },
-          {
-            "b64": "0xDC8113831C56B194"
-          }
-        ],
-        "gte": 7
+        "b64": "0x0AF4D6F063D3AE9F"
       },
-      "confidence": "guess",
-      "evidence": "10 Gold Skulltulas in Hyrule Field / Hyrule Field (near Gerudo Valley) / Lon Lon Ranch / Lake Hylia / Lake Hylia (Lakeside Laboratory). The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"LH GS Tree\" (object id 789492162651991711), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.098": {
       "label": "Lake Hylia",
       "detect": {
-        "count": [
-          {
-            "b64": "0x0AF4D6F063D3AE9F"
-          },
-          {
-            "b64": "0x1E38E8D23596EECF"
-          },
-          {
-            "b64": "0x25E6072D4DF023B3"
-          },
-          {
-            "b64": "0x6689BDEBC95368EB"
-          },
-          {
-            "b64": "0x781E0DE8EED42373"
-          },
-          {
-            "b64": "0x7D8EC14BDD1F6341"
-          },
-          {
-            "b64": "0xA6A4E87DA18FA678"
-          },
-          {
-            "b64": "0xC1858A4FCD84A28E"
-          },
-          {
-            "b64": "0xDC8113831C56B194"
-          }
-        ],
-        "gte": 8
+        "b64": "0x781E0DE8EED42373"
       },
-      "confidence": "guess",
-      "evidence": "10 Gold Skulltulas in Hyrule Field / Hyrule Field (near Gerudo Valley) / Lon Lon Ranch / Lake Hylia / Lake Hylia (Lakeside Laboratory). The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"LH GS Small Island\" (object id 8655370827943125875), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.099": {
       "label": "Hyrule Field",
       "detect": {
-        "count": [
-          {
-            "b64": "0x0AF4D6F063D3AE9F"
-          },
-          {
-            "b64": "0x1E38E8D23596EECF"
-          },
-          {
-            "b64": "0x25E6072D4DF023B3"
-          },
-          {
-            "b64": "0x6689BDEBC95368EB"
-          },
-          {
-            "b64": "0x781E0DE8EED42373"
-          },
-          {
-            "b64": "0x7D8EC14BDD1F6341"
-          },
-          {
-            "b64": "0xA6A4E87DA18FA678"
-          },
-          {
-            "b64": "0xC1858A4FCD84A28E"
-          },
-          {
-            "b64": "0xDC8113831C56B194"
-          }
-        ],
-        "gte": 9
+        "b64": "0x7D8EC14BDD1F6341"
       },
-      "confidence": "guess",
-      "evidence": "10 Gold Skulltulas in Hyrule Field / Hyrule Field (near Gerudo Valley) / Lon Lon Ranch / Lake Hylia / Lake Hylia (Lakeside Laboratory). The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"HF GS Wetland Grotto Crate\" (object id 9047381233010434881), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.015": {
       "label": "Gerudo Valley",
@@ -2207,64 +1986,31 @@
         "b64": "0x738F5746CC517702"
       },
       "confidence": "likely",
-      "evidence": "Soft-soil Skulltula (placement has IsMagicBeanSoil): the only one in Gerudo Valley (placement 0x738F5746CC517702)"
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"GV GS Bean Patch\" (object id 8326970197618554626), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.040": {
       "label": "Gerudo Valley",
       "detect": {
-        "count": [
-          {
-            "b64": "0xA017CE09904C2DCE"
-          },
-          {
-            "b64": "0xBC85EFCA2B222CD9"
-          },
-          {
-            "b64": "0xD3D86D3D6988ED8C"
-          }
-        ],
-        "gte": 1
+        "b64": "0xD3D86D3D6988ED8C"
       },
-      "confidence": "guess",
-      "evidence": "3 Gold Skulltulas in Gerudo Valley. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"GV GS Small Bridge\" (object id 15265071047503310220), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.067": {
       "label": "Gerudo Valley",
       "detect": {
-        "count": [
-          {
-            "b64": "0xA017CE09904C2DCE"
-          },
-          {
-            "b64": "0xBC85EFCA2B222CD9"
-          },
-          {
-            "b64": "0xD3D86D3D6988ED8C"
-          }
-        ],
-        "gte": 2
+        "b64": "0xA017CE09904C2DCE"
       },
-      "confidence": "guess",
-      "evidence": "3 Gold Skulltulas in Gerudo Valley. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"GV GS Pillar\" (object id 11535915511003753934), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.084": {
       "label": "Gerudo Valley",
       "detect": {
-        "count": [
-          {
-            "b64": "0xA017CE09904C2DCE"
-          },
-          {
-            "b64": "0xBC85EFCA2B222CD9"
-          },
-          {
-            "b64": "0xD3D86D3D6988ED8C"
-          }
-        ],
-        "gte": 3
+        "b64": "0xBC85EFCA2B222CD9"
       },
-      "confidence": "guess",
-      "evidence": "3 Gold Skulltulas in Gerudo Valley. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"GV GS Behind Tent\" (object id 13584527502619061465), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.019": {
       "label": "Kokiri Forest",
@@ -2272,7 +2018,7 @@
         "b64": "0x858F5000AD57B2CC"
       },
       "confidence": "likely",
-      "evidence": "Soft-soil Skulltula (placement has IsMagicBeanSoil): the only one in Kokiri Forest (placement 0x858F5000AD57B2CC)"
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"KF GS Bean Patch\" (object id 9623998892552467148), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.016": {
       "label": "Kokiri Forest",
@@ -2312,7 +2058,7 @@
         "b64": "0x3C2B585AC5C0443E"
       },
       "confidence": "likely",
-      "evidence": "The only Gold Skulltula left in Lost Woods after the matches above (placement 0x3C2B585AC5C0443E)"
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"LW GS Above Theater\" (object id 4335656213162247230), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.020": {
       "label": "Death Mountain Trail",
@@ -2320,189 +2066,71 @@
         "b64": "0xF1D32C06612DA232"
       },
       "confidence": "likely",
-      "evidence": "Soft-soil Skulltula (placement has IsMagicBeanSoil): the only one in Death Mountain Trail (placement 0xF1D32C06612DA232)"
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"DMT GS Bean Patch\" (object id 17425319789138387506), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.026": {
       "label": "Death Mountain Trail",
       "detect": {
-        "count": [
-          {
-            "b64": "0x04E03AC27985E328"
-          },
-          {
-            "b64": "0x0B8E43ABFA0B5F86"
-          },
-          {
-            "b64": "0xF5359B24FC86AC22"
-          }
-        ],
-        "gte": 1
+        "b64": "0x04E03AC27985E328"
       },
-      "confidence": "guess",
-      "evidence": "3 Gold Skulltulas in Death Mountain Trail. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"DMT GS Near Kak\" (object id 351345377871782696), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.060": {
       "label": "Death Mountain Trail",
       "detect": {
-        "count": [
-          {
-            "b64": "0x04E03AC27985E328"
-          },
-          {
-            "b64": "0x0B8E43ABFA0B5F86"
-          },
-          {
-            "b64": "0xF5359B24FC86AC22"
-          }
-        ],
-        "gte": 2
+        "b64": "0x0B8E43ABFA0B5F86"
       },
-      "confidence": "guess",
-      "evidence": "3 Gold Skulltulas in Death Mountain Trail. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"DMT GS Falling Rocks Path\" (object id 832677387023638406), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.061": {
       "label": "Death Mountain Trail",
       "detect": {
-        "count": [
-          {
-            "b64": "0x04E03AC27985E328"
-          },
-          {
-            "b64": "0x0B8E43ABFA0B5F86"
-          },
-          {
-            "b64": "0xF5359B24FC86AC22"
-          }
-        ],
-        "gte": 3
+        "b64": "0xF5359B24FC86AC22"
       },
-      "confidence": "guess",
-      "evidence": "3 Gold Skulltulas in Death Mountain Trail. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"DMT GS Above Dodongos Cavern\" (object id 17669199296215821346), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.021": {
       "label": "Dodongo's Cavern",
       "detect": {
-        "count": [
-          {
-            "b64": "0x0D53E429A1EF383D"
-          },
-          {
-            "b64": "0x10434342A3917EBD"
-          },
-          {
-            "b64": "0x3F5B150F16D84603"
-          },
-          {
-            "b64": "0x758CE7B4868447FB"
-          },
-          {
-            "b64": "0xBDFE13C37F356829"
-          }
-        ],
-        "gte": 1
+        "b64": "0x758CE7B4868447FB"
       },
-      "confidence": "guess",
-      "evidence": "5 Gold Skulltulas in Dodongo's Cavern. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Dodongos Cavern GS Vines Above Stairs\" (object id 8470399761714006011), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.022": {
       "label": "Dodongo's Cavern",
       "detect": {
-        "count": [
-          {
-            "b64": "0x0D53E429A1EF383D"
-          },
-          {
-            "b64": "0x10434342A3917EBD"
-          },
-          {
-            "b64": "0x3F5B150F16D84603"
-          },
-          {
-            "b64": "0x758CE7B4868447FB"
-          },
-          {
-            "b64": "0xBDFE13C37F356829"
-          }
-        ],
-        "gte": 2
+        "b64": "0x10434342A3917EBD"
       },
-      "confidence": "guess",
-      "evidence": "5 Gold Skulltulas in Dodongo's Cavern. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Dodongos Cavern GS Side Room Near Lower Lizalfos\" (object id 1171854281537584829), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.023": {
       "label": "Dodongo's Cavern",
       "detect": {
-        "count": [
-          {
-            "b64": "0x0D53E429A1EF383D"
-          },
-          {
-            "b64": "0x10434342A3917EBD"
-          },
-          {
-            "b64": "0x3F5B150F16D84603"
-          },
-          {
-            "b64": "0x758CE7B4868447FB"
-          },
-          {
-            "b64": "0xBDFE13C37F356829"
-          }
-        ],
-        "gte": 3
+        "b64": "0x3F5B150F16D84603"
       },
-      "confidence": "guess",
-      "evidence": "5 Gold Skulltulas in Dodongo's Cavern. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Dodongos Cavern GS Alcove Above Stairs\" (object id 4565265801822094851), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.024": {
       "label": "Dodongo's Cavern",
       "detect": {
-        "count": [
-          {
-            "b64": "0x0D53E429A1EF383D"
-          },
-          {
-            "b64": "0x10434342A3917EBD"
-          },
-          {
-            "b64": "0x3F5B150F16D84603"
-          },
-          {
-            "b64": "0x758CE7B4868447FB"
-          },
-          {
-            "b64": "0xBDFE13C37F356829"
-          }
-        ],
-        "gte": 4
+        "b64": "0xBDFE13C37F356829"
       },
-      "confidence": "guess",
-      "evidence": "5 Gold Skulltulas in Dodongo's Cavern. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Dodongos Cavern GS Back Room\" (object id 13690401647626643497), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.052": {
       "label": "Dodongo's Cavern",
       "detect": {
-        "count": [
-          {
-            "b64": "0x0D53E429A1EF383D"
-          },
-          {
-            "b64": "0x10434342A3917EBD"
-          },
-          {
-            "b64": "0x3F5B150F16D84603"
-          },
-          {
-            "b64": "0x758CE7B4868447FB"
-          },
-          {
-            "b64": "0xBDFE13C37F356829"
-          }
-        ],
-        "gte": 5
+        "b64": "0x0D53E429A1EF383D"
       },
-      "confidence": "guess",
-      "evidence": "5 Gold Skulltulas in Dodongo's Cavern. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Dodongos Cavern GS Scarecrow\" (object id 960362013021648957), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.054": {
       "label": "Death Mountain Crater",
@@ -2510,7 +2138,7 @@
         "b64": "0x58C75BADF059CA54"
       },
       "confidence": "likely",
-      "evidence": "Soft-soil Skulltula (placement has IsMagicBeanSoil): the only one in Death Mountain Crater (placement 0x58C75BADF059CA54)"
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"DMC GS Bean Patch\" (object id 6397182598322965076), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.025": {
       "label": "Death Mountain Crater",
@@ -2518,39 +2146,23 @@
         "b64": "0xFCD7F04DCF755E8E"
       },
       "confidence": "likely",
-      "evidence": "The only Gold Skulltula left in Death Mountain Crater after the matches above (placement 0xFCD7F04DCF755E8E)"
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"DMC GS Crate\" (object id 18219295034534354574), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.027": {
       "label": "Goron City",
       "detect": {
-        "count": [
-          {
-            "b64": "0x07E6E21142CC54DB"
-          },
-          {
-            "b64": "0xFBBC2D490276C68E"
-          }
-        ],
-        "gte": 1
+        "b64": "0x07E6E21142CC54DB"
       },
-      "confidence": "guess",
-      "evidence": "2 Gold Skulltulas in Goron City. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"GC GS Boulder Maze\" (object id 569390966671955163), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.053": {
       "label": "Goron City",
       "detect": {
-        "count": [
-          {
-            "b64": "0x07E6E21142CC54DB"
-          },
-          {
-            "b64": "0xFBBC2D490276C68E"
-          }
-        ],
-        "gte": 2
+        "b64": "0xFBBC2D490276C68E"
       },
-      "confidence": "guess",
-      "evidence": "2 Gold Skulltulas in Goron City. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"GC GS Center Platform\" (object id 18139423190738716302), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.028": {
       "label": "Zora's River",
@@ -2558,121 +2170,55 @@
         "b64": "0xABAD0E9F0D471156"
       },
       "confidence": "likely",
-      "evidence": "Soft-soil Skulltula (placement has IsMagicBeanSoil): the only one in Zora's River (placement 0xABAD0E9F0D471156)"
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"ZR GS Tree\" (object id 12370559827741970774), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.029": {
       "label": "Zora's River",
       "detect": {
-        "count": [
-          {
-            "b64": "0x78AE4FD90B3CFAAA"
-          },
-          {
-            "b64": "0x8325FEA55EDFBE97"
-          },
-          {
-            "b64": "0x97824C2FFEAA877C"
-          }
-        ],
-        "gte": 1
+        "b64": "0x78AE4FD90B3CFAAA"
       },
-      "confidence": "guess",
-      "evidence": "3 Gold Skulltulas in Zora's River. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"ZR GS Ladder\" (object id 8695975724114049706), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.062": {
       "label": "Zora's River",
       "detect": {
-        "count": [
-          {
-            "b64": "0x78AE4FD90B3CFAAA"
-          },
-          {
-            "b64": "0x8325FEA55EDFBE97"
-          },
-          {
-            "b64": "0x97824C2FFEAA877C"
-          }
-        ],
-        "gte": 2
+        "b64": "0x97824C2FFEAA877C"
       },
-      "confidence": "guess",
-      "evidence": "3 Gold Skulltulas in Zora's River. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"ZR GS Near Raised Grottos\" (object id 10917372215719266172), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.097": {
       "label": "Zora's River",
       "detect": {
-        "count": [
-          {
-            "b64": "0x78AE4FD90B3CFAAA"
-          },
-          {
-            "b64": "0x8325FEA55EDFBE97"
-          },
-          {
-            "b64": "0x97824C2FFEAA877C"
-          }
-        ],
-        "gte": 3
+        "b64": "0x8325FEA55EDFBE97"
       },
-      "confidence": "guess",
-      "evidence": "3 Gold Skulltulas in Zora's River. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"ZR GS Above Bridge\" (object id 9450239379321634455), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.030": {
       "label": "Zora's Fountain",
       "detect": {
-        "count": [
-          {
-            "b64": "0x63446D12663DAA83"
-          },
-          {
-            "b64": "0x845BA51DC18C855E"
-          },
-          {
-            "b64": "0xF0DAC245E2FC448E"
-          }
-        ],
-        "gte": 1
+        "b64": "0xF0DAC245E2FC448E"
       },
-      "confidence": "guess",
-      "evidence": "3 Gold Skulltulas in Zora's Fountain. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"ZF GS Tree\" (object id 17355397719442343054), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.035": {
       "label": "Zora's Fountain",
       "detect": {
-        "count": [
-          {
-            "b64": "0x63446D12663DAA83"
-          },
-          {
-            "b64": "0x845BA51DC18C855E"
-          },
-          {
-            "b64": "0xF0DAC245E2FC448E"
-          }
-        ],
-        "gte": 2
+        "b64": "0x63446D12663DAA83"
       },
-      "confidence": "guess",
-      "evidence": "3 Gold Skulltulas in Zora's Fountain. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"ZF GS Above the Log\" (object id 7152962033963346563), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.100": {
       "label": "Zora's Fountain",
       "detect": {
-        "count": [
-          {
-            "b64": "0x63446D12663DAA83"
-          },
-          {
-            "b64": "0x845BA51DC18C855E"
-          },
-          {
-            "b64": "0xF0DAC245E2FC448E"
-          }
-        ],
-        "gte": 3
+        "b64": "0x845BA51DC18C855E"
       },
-      "confidence": "guess",
-      "evidence": "3 Gold Skulltulas in Zora's Fountain. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"ZF GS Hidden Cave\" (object id 9537398183107003742), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.031": {
       "label": "Lord Jabu-Jabu's Belly",
@@ -2768,132 +2314,47 @@
         "b64": "0xC8DB3346F78EA31B"
       },
       "confidence": "likely",
-      "evidence": "The only Gold Skulltula left in Sacred Forest Meadow after the matches above (placement 0xC8DB3346F78EA31B)"
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"SFM GS\" (object id 14473218207379268379), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.047": {
       "label": "Forest Temple",
       "detect": {
-        "count": [
-          {
-            "b64": "0x1BF5F0176EF03BDA"
-          },
-          {
-            "b64": "0x2AA39F00AAA2D331"
-          },
-          {
-            "b64": "0x984021BC20419EBE"
-          },
-          {
-            "b64": "0x99CA89963485DF11"
-          },
-          {
-            "b64": "0xF46B1710ED0620D1"
-          }
-        ],
-        "gte": 1
+        "b64": "0x99CA89963485DF11"
       },
-      "confidence": "guess",
-      "evidence": "5 Gold Skulltulas in Forest Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Forest Temple GS First Room\" (object id 11081821111317815057), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.048": {
       "label": "Forest Temple",
       "detect": {
-        "count": [
-          {
-            "b64": "0x1BF5F0176EF03BDA"
-          },
-          {
-            "b64": "0x2AA39F00AAA2D331"
-          },
-          {
-            "b64": "0x984021BC20419EBE"
-          },
-          {
-            "b64": "0x99CA89963485DF11"
-          },
-          {
-            "b64": "0xF46B1710ED0620D1"
-          }
-        ],
-        "gte": 2
+        "b64": "0xF46B1710ED0620D1"
       },
-      "confidence": "guess",
-      "evidence": "5 Gold Skulltulas in Forest Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Forest Temple GS Lobby\" (object id 17612196129225973969), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.049": {
       "label": "Forest Temple",
       "detect": {
-        "count": [
-          {
-            "b64": "0x1BF5F0176EF03BDA"
-          },
-          {
-            "b64": "0x2AA39F00AAA2D331"
-          },
-          {
-            "b64": "0x984021BC20419EBE"
-          },
-          {
-            "b64": "0x99CA89963485DF11"
-          },
-          {
-            "b64": "0xF46B1710ED0620D1"
-          }
-        ],
-        "gte": 3
+        "b64": "0x984021BC20419EBE"
       },
-      "confidence": "guess",
-      "evidence": "5 Gold Skulltulas in Forest Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Forest Temple GS Level Island Courtyard\" (object id 10970805784153267902), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.050": {
       "label": "Forest Temple",
       "detect": {
-        "count": [
-          {
-            "b64": "0x1BF5F0176EF03BDA"
-          },
-          {
-            "b64": "0x2AA39F00AAA2D331"
-          },
-          {
-            "b64": "0x984021BC20419EBE"
-          },
-          {
-            "b64": "0x99CA89963485DF11"
-          },
-          {
-            "b64": "0xF46B1710ED0620D1"
-          }
-        ],
-        "gte": 4
+        "b64": "0x2AA39F00AAA2D331"
       },
-      "confidence": "guess",
-      "evidence": "5 Gold Skulltulas in Forest Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Forest Temple GS Basement\" (object id 3072474196008424241), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.051": {
       "label": "Forest Temple",
       "detect": {
-        "count": [
-          {
-            "b64": "0x1BF5F0176EF03BDA"
-          },
-          {
-            "b64": "0x2AA39F00AAA2D331"
-          },
-          {
-            "b64": "0x984021BC20419EBE"
-          },
-          {
-            "b64": "0x99CA89963485DF11"
-          },
-          {
-            "b64": "0xF46B1710ED0620D1"
-          }
-        ],
-        "gte": 5
+        "b64": "0x1BF5F0176EF03BDA"
       },
-      "confidence": "guess",
-      "evidence": "5 Gold Skulltulas in Forest Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Forest Temple GS Raised Island Courtyard\" (object id 2014780391754316762), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.055": {
       "label": "Fire Temple",
@@ -3026,7 +2487,7 @@
         "b64": "0x853B892663C0215D"
       },
       "confidence": "likely",
-      "evidence": "The only Gold Skulltula left in Zora's Domain after the matches above (placement 0x853B892663C0215D)"
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"ZD GS Frozen Waterfall\" (object id 9600417828645642589), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.064": {
       "label": "Ice Cavern",
@@ -3069,21 +2530,10 @@
     "gold_skulltulas.066": {
       "label": "Ice Cavern",
       "detect": {
-        "count": [
-          {
-            "b64": "0x165FC0BC0ACA1F6C"
-          },
-          {
-            "b64": "0x63701A2CF70B201C"
-          },
-          {
-            "b64": "0xCDB49F5D0A67FCF6"
-          }
-        ],
-        "gte": 3
+        "b64": "0x165FC0BC0ACA1F6C"
       },
-      "confidence": "guess",
-      "evidence": "3 Gold Skulltulas in Ice Cavern. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Ice Cavern GS Heart Piece Room\" (object id 1612219105489330028), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.069": {
       "label": "Water Temple",
@@ -3213,21 +2663,10 @@
     "gold_skulltulas.076": {
       "label": "Bottom of the Well",
       "detect": {
-        "count": [
-          {
-            "b64": "0x35FB354FAC262D36"
-          },
-          {
-            "b64": "0x6789388E9FB9C92C"
-          },
-          {
-            "b64": "0xA8D6182A5C956E16"
-          }
-        ],
-        "gte": 1
+        "b64": "0x35FB354FAC262D36"
       },
-      "confidence": "guess",
-      "evidence": "3 Gold Skulltulas in Bottom of the Well. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Bottom of the Well GS Like Like Cage\" (object id 3889761319471426870), matched to this checklist number by its description and Zelda Central's numbering cited there. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.077": {
       "label": "Bottom of the Well",
@@ -3395,34 +2834,18 @@
     "gold_skulltulas.085": {
       "label": "Gerudo Fortress",
       "detect": {
-        "count": [
-          {
-            "b64": "0x81ED4ED76699E3D8"
-          },
-          {
-            "b64": "0xB4ECE769E6F3A206"
-          }
-        ],
-        "gte": 1
+        "b64": "0x81ED4ED76699E3D8"
       },
-      "confidence": "guess",
-      "evidence": "2 Gold Skulltulas in Gerudo Fortress. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"GF GS Top Floor\" (object id 9362225887419425752), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.089": {
       "label": "Gerudo Fortress",
       "detect": {
-        "count": [
-          {
-            "b64": "0x81ED4ED76699E3D8"
-          },
-          {
-            "b64": "0xB4ECE769E6F3A206"
-          }
-        ],
-        "gte": 2
+        "b64": "0xB4ECE769E6F3A206"
       },
-      "confidence": "guess",
-      "evidence": "2 Gold Skulltulas in Gerudo Fortress. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"GF GS Archery Range\" (object id 13037049463363052038), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.086": {
       "label": "Haunted Wasteland (Mirage Desert)",
@@ -3430,7 +2853,7 @@
         "b64": "0xCEED596F17934971"
       },
       "confidence": "likely",
-      "evidence": "The only Gold Skulltula left in Haunted Wasteland (Mirage Desert) after the matches above (placement 0xCEED596F17934971)"
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Wasteland GS\" (object id 14910672274965350769), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.088": {
       "label": "Desert Colossus",
@@ -3438,64 +2861,31 @@
         "b64": "0x0341F2C03598C861"
       },
       "confidence": "likely",
-      "evidence": "Soft-soil Skulltula (placement has IsMagicBeanSoil): the only one in Desert Colossus (placement 0x0341F2C03598C861)"
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Colossus GS Bean Patch\" (object id 234735562946824289), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.087": {
       "label": "Desert Colossus",
       "detect": {
-        "count": [
-          {
-            "b64": "0x9AE3D0AC392E6CDA"
-          },
-          {
-            "b64": "0xD0F7E5FFA76BA288"
-          }
-        ],
-        "gte": 1
+        "b64": "0xD0F7E5FFA76BA288"
       },
-      "confidence": "guess",
-      "evidence": "2 Gold Skulltulas in Desert Colossus. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Colossus GS Tree\" (object id 15057756765324812936), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.090": {
       "label": "Desert Colossus",
       "detect": {
-        "count": [
-          {
-            "b64": "0x9AE3D0AC392E6CDA"
-          },
-          {
-            "b64": "0xD0F7E5FFA76BA288"
-          }
-        ],
-        "gte": 2
+        "b64": "0x9AE3D0AC392E6CDA"
       },
-      "confidence": "guess",
-      "evidence": "2 Gold Skulltulas in Desert Colossus. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Colossus GS Hill\" (object id 11160993739666517210), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.091": {
       "label": "Spirit Temple",
       "detect": {
-        "count": [
-          {
-            "b64": "0x4696B2730DE0516C"
-          },
-          {
-            "b64": "0x70B0FCA66CA4808A"
-          },
-          {
-            "b64": "0x8C8BB95471D20D02"
-          },
-          {
-            "b64": "0x9222E742B73D3D2C"
-          },
-          {
-            "b64": "0xB3D9F353599EEA53"
-          }
-        ],
-        "gte": 1
+        "b64": "0x9222E742B73D3D2C"
       },
-      "confidence": "guess",
-      "evidence": "5 Gold Skulltulas in Spirit Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Spirit Temple GS Metal Fence\" (object id 10530233152473742636), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.092": {
       "label": "Spirit Temple",
@@ -3550,27 +2940,10 @@
     "gold_skulltulas.094": {
       "label": "Spirit Temple",
       "detect": {
-        "count": [
-          {
-            "b64": "0x4696B2730DE0516C"
-          },
-          {
-            "b64": "0x70B0FCA66CA4808A"
-          },
-          {
-            "b64": "0x8C8BB95471D20D02"
-          },
-          {
-            "b64": "0x9222E742B73D3D2C"
-          },
-          {
-            "b64": "0xB3D9F353599EEA53"
-          }
-        ],
-        "gte": 4
+        "b64": "0x70B0FCA66CA4808A"
       },
-      "confidence": "guess",
-      "evidence": "5 Gold Skulltulas in Spirit Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Spirit Temple GS Boulder Room\" (object id 8120267919866495114), matched to this checklist number by its description. Skulltula tokens are saved under their object id."
     },
     "gold_skulltulas.095": {
       "label": "Spirit Temple",
@@ -3624,34 +2997,18 @@
     "heart_pieces.011": {
       "label": "Death Mountain Crater",
       "detect": {
-        "count": [
-          {
-            "b64": "0x0A564328FAF93C71"
-          },
-          {
-            "b64": "0x8F5F3D3321AEB7CD"
-          }
-        ],
-        "gte": 1
+        "b64": "0x8F5F3D3321AEB7CD"
       },
-      "confidence": "guess",
-      "evidence": "2 world heart pieces in DeathMountainCrater. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"DMC Wall Freestanding PoH\" has object id 10331043360028932045; loose heart pieces are saved under their object id (as the Gerudo Valley waterfall and Lon Lon Ranch pieces are in a real save)."
     },
     "heart_pieces.024": {
       "label": "Death Mountain Crater",
       "detect": {
-        "count": [
-          {
-            "b64": "0x0A564328FAF93C71"
-          },
-          {
-            "b64": "0x8F5F3D3321AEB7CD"
-          }
-        ],
-        "gte": 2
+        "b64": "0x0A564328FAF93C71"
       },
-      "confidence": "guess",
-      "evidence": "2 world heart pieces in DeathMountainCrater. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"DMC Volcano Freestanding PoH\" has object id 744856631664786545; loose heart pieces are saved under their object id (as the Gerudo Valley waterfall and Lon Lon Ranch pieces are in a real save)."
     },
     "heart_pieces.023": {
       "label": "Death Mountain Trail",
@@ -3704,98 +3061,50 @@
     "heart_pieces.012": {
       "label": "Kakariko Village",
       "detect": {
-        "count": [
-          {
-            "b64": "0xB9D0070B468F26D2"
-          },
-          {
-            "b64": "0xF8C7601DA7DD887E"
-          }
-        ],
-        "gte": 1
+        "b64": "0xF8C7601DA7DD887E"
       },
-      "confidence": "guess",
-      "evidence": "2 world heart pieces in KakarikoVillage. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Kak Impas House Freestanding PoH\" has object id 17926402522258180222; loose heart pieces are saved under their object id (as the Gerudo Valley waterfall and Lon Lon Ranch pieces are in a real save)."
     },
     "heart_pieces.018": {
       "label": "Kakariko Village",
       "detect": {
-        "count": [
-          {
-            "b64": "0xB9D0070B468F26D2"
-          },
-          {
-            "b64": "0xF8C7601DA7DD887E"
-          }
-        ],
-        "gte": 2
+        "b64": "0xB9D0070B468F26D2"
       },
-      "confidence": "guess",
-      "evidence": "2 world heart pieces in KakarikoVillage. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Kak Windmill Freestanding PoH\" has object id 13389209437182306002; loose heart pieces are saved under their object id (as the Gerudo Valley waterfall and Lon Lon Ranch pieces are in a real save)."
     },
     "heart_pieces.026": {
       "label": "Zora's Fountain",
       "detect": {
-        "count": [
-          {
-            "b64": "0x6F736FC80F7B0ACA"
-          },
-          {
-            "b64": "0xAC2E26B5EC7DA3A2"
-          }
-        ],
-        "gte": 2
+        "b64": "0x6F736FC80F7B0ACA"
       },
-      "confidence": "guess",
-      "evidence": "2 world heart pieces in ZoraFountain. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"ZF Bottom Freestanding PoH\" has object id 8030885465575590602; loose heart pieces are saved under their object id (as the Gerudo Valley waterfall and Lon Lon Ranch pieces are in a real save)."
     },
     "heart_pieces.025": {
       "label": "Zora's Fountain",
       "detect": {
-        "count": [
-          {
-            "b64": "0x6F736FC80F7B0ACA"
-          },
-          {
-            "b64": "0xAC2E26B5EC7DA3A2"
-          }
-        ],
-        "gte": 1
+        "b64": "0xAC2E26B5EC7DA3A2"
       },
-      "confidence": "guess",
-      "evidence": "2 world heart pieces in ZoraFountain. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"ZF Iceberg Freestanding PoH\" has object id 12406896586250888098; loose heart pieces are saved under their object id (as the Gerudo Valley waterfall and Lon Lon Ranch pieces are in a real save)."
     },
     "heart_pieces.014": {
       "label": "Zora's River",
       "detect": {
-        "count": [
-          {
-            "b64": "0x3A23B59EAEDC0510"
-          },
-          {
-            "b64": "0x9EFABD5B0516C341"
-          }
-        ],
-        "gte": 1
+        "b64": "0x9EFABD5B0516C341"
       },
-      "confidence": "guess",
-      "evidence": "2 world heart pieces in ZoraRiver. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"ZR Near Open Grotto Freestanding PoH\" has object id 11455676800795329345; loose heart pieces are saved under their object id (as the Gerudo Valley waterfall and Lon Lon Ranch pieces are in a real save)."
     },
     "heart_pieces.015": {
       "label": "Zora's River",
       "detect": {
-        "count": [
-          {
-            "b64": "0x3A23B59EAEDC0510"
-          },
-          {
-            "b64": "0x9EFABD5B0516C341"
-          }
-        ],
-        "gte": 2
+        "b64": "0x3A23B59EAEDC0510"
       },
-      "confidence": "guess",
-      "evidence": "2 world heart pieces in ZoraRiver. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"ZR Near Domain Freestanding PoH\" has object id 4189391771527808272; loose heart pieces are saved under their object id (as the Gerudo Valley waterfall and Lon Lon Ranch pieces are in a real save)."
     },
     "heart_pieces.004": {
       "label": "Gerudo Valley",
@@ -3808,27 +3117,35 @@
     },
     "heart_pieces.016": {
       "label": "Zora's Domain",
-      "detect": null,
-      "confidence": "guess",
-      "evidence": "Chest heart piece. The game marks it (HeartPieceAnchor type 1 next to a chest), but chests store their \"opened\" flag under a different key than their placement id. Needs one before/after snapshot."
+      "detect": {
+        "name": "IsTreasureBoxOpen.3130048366421939233"
+      },
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"ZD Chest\" has object id 3130048366421939233; a chest's open state is the Bool IsTreasureBoxOpen.3130048366421939233 (the same rule gives the Gerudo Valley chest's flag 0x7001F17C, seen in play)."
     },
     "heart_pieces.030": {
       "label": "Gerudo Fortress",
-      "detect": null,
-      "confidence": "guess",
-      "evidence": "Chest heart piece. The game marks it (HeartPieceAnchor type 1 next to a chest), but chests store their \"opened\" flag under a different key than their placement id. Needs one before/after snapshot."
+      "detect": {
+        "name": "IsTreasureBoxOpen.12343753510713797715"
+      },
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"GF Chest\" has object id 12343753510713797715; a chest's open state is the Bool IsTreasureBoxOpen.12343753510713797715 (the same rule gives the Gerudo Valley chest's flag 0x7001F17C, seen in play)."
     },
     "heart_pieces.033": {
       "label": "Graveyard",
-      "detect": null,
-      "confidence": "guess",
-      "evidence": "Chest heart piece. The game marks it (HeartPieceAnchor type 1 next to a chest), but chests store their \"opened\" flag under a different key than their placement id. Needs one before/after snapshot."
+      "detect": {
+        "name": "IsTreasureBoxOpen.9622128545943056087"
+      },
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Graveyard Heart Piece Grave Chest\" has object id 9622128545943056087; a chest's open state is the Bool IsTreasureBoxOpen.9622128545943056087 (the same rule gives the Gerudo Valley chest's flag 0x7001F17C, seen in play)."
     },
     "heart_pieces.035": {
       "label": "Hyrule Field (near Gerudo Valley)",
-      "detect": null,
-      "confidence": "guess",
-      "evidence": "Chest heart piece. The game marks it (HeartPieceAnchor type 1 next to a chest), but chests store their \"opened\" flag under a different key than their placement id. Needs one before/after snapshot."
+      "detect": {
+        "name": "IsTreasureBoxOpen.2967378296224661060"
+      },
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Hyrule Field Chest (Obj_Heart_Piece)\" has object id 2967378296224661060; a chest's open state is the Bool IsTreasureBoxOpen.2967378296224661060 (the same rule gives the Gerudo Valley chest's flag 0x7001F17C, seen in play)."
     }
   },
   "counters": {

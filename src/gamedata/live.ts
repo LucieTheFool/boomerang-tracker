@@ -34,18 +34,11 @@ export const LAYOUTS: TypeLayout[] = [
   { type: 'Int64', stride: 0x30, valueOffset: 0x20, minRecords: 10, optional: true },
 ];
 /**
- * Int64 key that counts every switch between day and night (Sun's Song or the clock):
- * even is day, odd is night (worked out against Sun's Song in Hookshot v2.1.0). The game
- * keeps its exact time of day outside the GameData store.
+ * Int64 key that goes up by one each time Sun's Song is played (not when the clock gets to
+ * dusk or dawn by itself; checked in Hookshot v2.1.0 over a whole game day), so it can't tell
+ * day from night. Read but not used yet; see docs/live-memory.md, "Time of day".
  */
 export const DAY_NIGHT_KEY = 0xd457ee3a;
-
-/** Day or night, from the day/night counter; undefined when the data has no counter. */
-export function timeOfDay(data: GameDataFile): 'day' | 'night' | undefined {
-  const v = data.entries.get(DAY_NIGHT_KEY)?.value;
-  if (typeof v !== 'bigint' && typeof v !== 'number') return undefined;
-  return BigInt(v) % 2n === 0n ? 'day' : 'night';
-}
 /** String64 key holding the current stage, e.g. "LostWood_Child" (also in progress.sav). */
 export const STAGE_KEY = 0x1d6189da;
 /**

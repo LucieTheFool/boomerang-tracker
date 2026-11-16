@@ -29,7 +29,9 @@ https://github.com/hiKareeem/Clawshot
 Reference for the remake's logic in `data/logic.json`: which checks moved or need different
 items than in the original game, that the clock only starts once Link has met Zelda, and how the
 remake routes its dungeons. Facts only, rewritten in this project's own format; no code or data
-files copied. Its object hashes also confirmed which save keys belong to which Gold Skulltula.
+files copied. Its object ids (game facts) also give the save keys in `data/save-mapping.json`
+for Gold Skulltulas, loose heart pieces, boss heart containers and chest heart pieces (a chest's
+open state is the Bool `IsTreasureBoxOpen.<object id>`, as its notes record), credited per entry.
 
 ## OoT Randomizer, by the OoTRandomizer contributors — MIT License
 https://github.com/OoTRandomizer/OoT-Randomizer

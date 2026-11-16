@@ -1,5 +1,5 @@
 ﻿import { describe, it, expect } from 'vitest';
-import { locate, readLive, matchesReference, fingerprint, readTables, areaFrom, sweepRanges, timeOfDay, LAYOUTS, STAGE_KEY, LOCATION_KEY, DAY_NIGHT_KEY, GUEST_BASE, Mem } from '../src/gamedata/live';
+import { locate, readLive, matchesReference, fingerprint, readTables, areaFrom, sweepRanges, LAYOUTS, STAGE_KEY, LOCATION_KEY, DAY_NIGHT_KEY, GUEST_BASE, Mem } from '../src/gamedata/live';
 import type { GameDataFile, Entry } from '../src/gamedata/parser';
 
 // Synthetic memory laid out like the game's: per type a {hash, index} map followed by a
@@ -224,7 +224,7 @@ describe('live memory tables', () => {
     expect(t.b64.count).toBe(nB64);
   });
 
-  it('reads day or night from the 64-bit day/night counter, live', () => {
+  it("reads the Int64 table (the Sun's Song day/night counter), live", () => {
     const { mem, m, tables } = build();
     const ref = reference();
     // An Int64 map + 12 records (stride 0x30, value at +0x20) after the 64-bit table.
@@ -240,10 +240,10 @@ describe('live memory tables', () => {
     });
     const t = locate(m, ref, BASE + 0x200000n, 2 << 20)!;
     expect(t.records.map(r => r.type)).toContain('Int64');
-    expect(timeOfDay(readLive(m, t, ref)!.data)).toBe('day');
+    expect(readLive(m, t, ref)!.data.entries.get(DAY_NIGHT_KEY)!.value).toBe(14n);
     const before = fingerprint(t, readTables(m, t)!, new Set([DAY_NIGHT_KEY]));
     mem.writeBigInt64LE(15n, recs + 0x20); // Sun's Song: day -> night
-    expect(timeOfDay(readLive(m, t, ref)!.data)).toBe('night');
+    expect(readLive(m, t, ref)!.data.entries.get(DAY_NIGHT_KEY)!.value).toBe(15n);
     expect(fingerprint(t, readTables(m, t)!, new Set([DAY_NIGHT_KEY]))).not.toBe(before);
   });
 

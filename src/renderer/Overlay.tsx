@@ -40,7 +40,6 @@ export function Overlay() {
         <>
           <div className="ov-head">
             <span className="ov-here">{s.area ?? 'Unknown area'}</span>
-            {s.timeOfDay && <DayNight when={s.timeOfDay} />}
             {live.enabled && live.status !== 'off' && live.status !== 'unavailable' && (
               <span className={`ov-src ${live.using ? 'on' : ''}`} title={live.using ? 'Live from the game' : (live.detail ?? 'Using saves')}>{live.using ? '● live' : '○ saves'}</span>
             )}
@@ -61,29 +60,6 @@ export function Overlay() {
 }
 
 /** Keys whose value went up recently (cleared after `ms`). Ignores the first render. */
-/** Sun or moon for the game's day/night (drawn here, no game art). */
-function DayNight({ when }: { when: 'day' | 'night' }) {
-  const day = when === 'day';
-  return (
-    <span className={`ov-time ${when}`} title={day ? 'Daytime in the game' : 'Night in the game'}>
-      <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
-        {day ? (
-          <g fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
-            <circle cx="8" cy="8" r="3" fill="currentColor" />
-            {[0, 45, 90, 135, 180, 225, 270, 315].map(a => {
-              const r = (a * Math.PI) / 180;
-              return <line key={a} x1={8 + Math.cos(r) * 5.2} y1={8 + Math.sin(r) * 5.2} x2={8 + Math.cos(r) * 7} y2={8 + Math.sin(r) * 7} />;
-            })}
-          </g>
-        ) : (
-          <path d="M10.8 1.6a6.5 6.5 0 1 0 3.6 10.6A5.2 5.2 0 0 1 10.8 1.6z" fill="currentColor" />
-        )}
-      </svg>
-      <span className="ov-time-label">{day ? 'Day' : 'Night'}</span>
-    </span>
-  );
-}
-
 function useBumps(values: Record<string, number>, ms = 4000): Set<string> {
   const prev = useRef<Record<string, number> | null>(null);
   const [bumped, setBumped] = useState<Set<string>>(new Set());

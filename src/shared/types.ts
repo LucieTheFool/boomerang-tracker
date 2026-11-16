@@ -85,8 +85,6 @@ export interface Summary {
   doneA: number;
   totalA: number;
   area?: string;
-  /** Day or night in the game (live when live tracking is on, else from the save). */
-  timeOfDay?: 'day' | 'night';
   lastSavedMs?: number;
 }
 
