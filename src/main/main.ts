@@ -205,7 +205,7 @@ app.whenReady().then(async () => {
   });
   ipcMain.handle('folder:browse', async () => {
     const r = await dialog.showOpenDialog(main!, {
-      title: 'Choose your game folder (Hookshot, Longshot or Triforce) or its user\\save\\<id> folder, or Fritchii\'s data folder',
+      title: 'Choose your game folder (Hookshot, Longshot, Triforce or ReLink) or its user\\save\\<id> folder, or Fritchii\'s data folder',
       properties: ['openDirectory'],
       defaultPath: settings.data.saveDir,
     });

@@ -34,6 +34,10 @@ describe('the running game\'s save folder', () => {
     const g = gameFolder('Triforce', { exe: 'Triforce.exe' });
     expect(userFolderForExe(g.exe)).toBe(g.user);
   });
+  it('finds it next to bin\\relink-game.exe (Project ReLink builds)', () => {
+    const g = gameFolder('ReLink', { bin: true, exe: 'relink-game.exe' });
+    expect(userFolderForExe(g.exe)).toBe(g.user);
+  });
   it('gives nothing when that install has no saves yet', () => {
     expect(userFolderForExe(gameFolder('Fresh', { saves: false }).exe)).toBeNull();
   });

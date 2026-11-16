@@ -9,17 +9,18 @@ import type { LiveInfo } from '../shared/types.js';
 
 /**
  * Programs that run the game. Hookshot and its fork Longshot run it as hookshot.exe;
- * NX2navi builds it as Triforce.exe. Both map the game at a fixed place. The Fritchii
+ * NX2navi builds it as Triforce.exe and Project ReLink as bin\relink-game.exe. They map the game
+ * at a fixed place. The Fritchii
  * emulator (lichii.exe) puts it somewhere new every run, so it's found by sweeping.
  */
 const GAMES: { image: string; emulator?: boolean }[] = [
-  { image: 'hookshot.exe' }, { image: 'Triforce.exe' }, { image: 'lichii.exe', emulator: true },
+  { image: 'hookshot.exe' }, { image: 'Triforce.exe' }, { image: 'relink-game.exe' }, { image: 'lichii.exe', emulator: true },
 ];
 const TICK_MS = 500;
 const FIND_EVERY_MS = 3000;
 /**
- * Where the tables were in Hookshot v2.1.0, Longshot v1.0.0 and NX2navi's Triforce v0.4.0
- * (host addresses). Only starting points.
+ * Where the tables were in Hookshot v2.1.0, Longshot v1.0.0, and NX2navi's Triforce v0.4.0 and
+ * Project ReLink (the same address) (host addresses). Only starting points.
  */
 const DEFAULT_HINTS = [0x1010_99f4_f418n, 0x1010_7eea_f418n, 0x1010_8bda_f418n];
 /** The game's heap: guest 0x10_0000_0000, ~7 GB, mapped at host base 0x1000_0000_0000. */

@@ -42,7 +42,7 @@ export function App() {
         {state.status === 'loading' ? <p>Looking for your saves…</p> : <p className="error-text">{state.message}</p>}
         {state.status !== 'loading' && (
           <>
-            <p className="muted">Pick the game folder (Hookshot, Longshot, or NX2navi's Triforce folder), Fritchii's data folder (<code>%APPDATA%\fritchii</code>), or the <code>user\save\&lt;id&gt;</code> folder inside it. The tracker only ever reads your saves.</p>
+            <p className="muted">Pick the game folder (Hookshot, Longshot, NX2navi's Triforce folder, or ReLink), Fritchii's data folder (<code>%APPDATA%\fritchii</code>), or the <code>user\save\&lt;id&gt;</code> folder inside it. The tracker only ever reads your saves.</p>
             <button className="primary" onClick={() => void api.browseFolder()}>Choose save folder…</button>
           </>
         )}

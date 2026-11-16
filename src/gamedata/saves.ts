@@ -72,20 +72,20 @@ function emulatorDataDirs(appData = process.env.APPDATA ?? path.join(os.homedir(
   return ['fritchii', 'lichii'].map(n => path.join(appData, n));
 }
 
-/** Game exes, at the top of a game folder or in bin\: Hookshot, its fork Longshot, NX2navi's Triforce. */
-const GAME_EXES = ['hookshot.exe', path.join('bin', 'hookshot.exe'), 'Longshot.exe', 'Triforce.exe'];
+/** Game exes, at the top of a game folder or in bin\: Hookshot, its fork Longshot, NX2navi's Triforce, Project ReLink. */
+const GAME_EXES = ['hookshot.exe', path.join('bin', 'hookshot.exe'), 'Longshot.exe', 'Triforce.exe', 'ReLink.exe', path.join('bin', 'relink-game.exe')];
 /** Folder names those games are usually installed under. */
-const GAME_NAMES = /hookshot|longshot|triforce|nx2navi/i;
+const GAME_NAMES = /hookshot|longshot|triforce|nx2navi|relink/i;
 
 function isGameFolder(dir: string): boolean {
   return GAME_EXES.some(f => fs.existsSync(path.join(dir, f)));
 }
 
-/** Places Hookshot, Longshot and NX2navi (Triforce) game folders usually live. */
+/** Places Hookshot, Longshot, NX2navi (Triforce) and Project ReLink game folders usually live. */
 export function candidateGameFolders(): string[] {
   const home = os.homedir();
-  // NX2navi's setup builds the game into %USERPROFILE%\Games\Triforce.
-  const c = ['Hookshot', 'Longshot', 'Triforce'].map(n => path.join(home, 'Games', n));
+  // NX2navi's setup builds the game into %USERPROFILE%\Games\Triforce; Project ReLink's setup defaults to Games\ReLink.
+  const c = ['Hookshot', 'Longshot', 'Triforce', 'ReLink'].map(n => path.join(home, 'Games', n));
   const gameDirs = [path.join(home, 'Games')];
   for (const drive of ['C:', 'D:', 'E:', 'F:']) {
     // Launchers (e.g. QuiverLauncher) install builds as Apps\<name>-Hookshot, Apps\<name>-NX2navi.

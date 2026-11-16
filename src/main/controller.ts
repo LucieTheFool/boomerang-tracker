@@ -168,7 +168,7 @@ export class Controller {
     this.lastShownBySlot.clear();
     this.lastShown = undefined;
     this.userDir = undefined;
-    if (!dir) return this.fail('no-folder', "No save folder found. Choose your game folder (Hookshot, Longshot or NX2navi's Triforce) or its user\\save\\<id> folder, or Fritchii's data folder (%APPDATA%\\fritchii).");
+    if (!dir) return this.fail('no-folder', "No save folder found. Choose your game folder (Hookshot, Longshot, NX2navi's Triforce or ReLink) or its user\\save\\<id> folder, or Fritchii's data folder (%APPDATA%\\fritchii).");
     if (!fs.existsSync(dir)) return this.fail('no-folder', `The save folder no longer exists:\n${dir}`);
     const users = resolveUserFolders(dir);
     if (!users.length) return this.fail('no-slots', `No slot_* folders with a progress.sav were found in:\n${dir}`);
@@ -181,7 +181,7 @@ export class Controller {
   }
 
   /**
-   * When a game starts, follow its saves: Hookshot, Longshot, NX2navi and Fritchii each keep their
+   * When a game starts, follow its saves: Hookshot, Longshot, NX2navi, ReLink and Fritchii each keep their
    * own. Not while a slot is pinned (that's a choice of save), and only if it has saves.
    */
   private async followGame(exe: string | undefined) {

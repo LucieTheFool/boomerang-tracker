@@ -1,6 +1,6 @@
 # Live tracking: reading progress from the running game
 
-The tracker can read progress straight from a running Hookshot, Longshot, NX2navi or Fritchii instead of waiting for an
+The tracker can read progress straight from a running Hookshot, Longshot, NX2navi, ReLink or Fritchii instead of waiting for an
 autosave. It is **read-only**: the process is opened with `PROCESS_VM_READ` and
 `PROCESS_QUERY_LIMITED_INFORMATION` only, and nothing is ever written to the game or the
 save folder. Whenever live data isn't available or doesn't match, the tracker uses the
@@ -10,7 +10,7 @@ Code: `src/gamedata/live.ts` (layout, locating, reading; tested in `test/live.te
 `src/main/procmem.ts` (Windows access through koffi), `src/main/live.ts` (attach, poll,
 fall back).
 
-## Memory layout (Hookshot v2.1.0, Longshot v1.0.0, NX2navi 0.12.0)
+## Memory layout (Hookshot v2.1.0, Longshot v1.0.0, NX2navi 0.12.0, ReLink v0.7.7)
 
 Longshot (a fork of Hookshot v2.0.5) runs the game as `hookshot.exe` too and keeps the same
 layout: same record strides, value offsets and even the same distances between the tables.
@@ -20,8 +20,10 @@ its saves use the same format and record keys. Only the start address differs (B
 host `0x1010_99F4_F418` in Hookshot v2.1.0, `0x1010_7EEA_F418` in Longshot v1.0.0,
 `0x1010_8BDA_F418` in Triforce v0.4.0). All three are built-in starting points; the tracker
 remembers the last four addresses it found and sweeps the heap if none fit.
+Project ReLink (another recompilation; the game runs as `bin\relink-game.exe`) was checked on
+v0.7.7: same mapping and layout, with the tables at the same address as Triforce v0.4.0.
 
-Hookshot (like NX2navi) maps the game's memory at host address `0x1000_0000_0000 + guest address`. The
+Hookshot (like NX2navi and ReLink) maps the game's memory at host address `0x1000_0000_0000 + guest address`. The
 game heap is at guest `0x10_0000_0000` (about 7 GB).
 
 ### Emulators (Fritchii v5.8.4)
@@ -107,7 +109,7 @@ v2.1.0, a day there lasting about 12 minutes: 7 of day, 5 of night). The overlay
 to the area. The exact time of day isn't in the GameData store (the save records only some
 values about it, written at saves and songs), so the tracker doesn't show a clock yet.
 
-## If a Hookshot, Longshot, NX2navi, Fritchii or game update breaks it
+## If a Hookshot, Longshot, NX2navi, ReLink, Fritchii or game update breaks it
 
 The tracker falls back to saves and shows "○ Saves". To re-derive the layout: take a
 memory copy, do one thing in game that sets a known flag (for example collect a heart

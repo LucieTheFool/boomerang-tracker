@@ -1,8 +1,8 @@
 {
   "name": "boomerang-tracker",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "private": true,
-  "description": "100% completion tracker for Ocarina of Time (Switch 2 remake) saves, as run by Hookshot, Longshot, NX2navi or Fritchii.",
+  "description": "100% completion tracker for Ocarina of Time (Switch 2 remake) saves, as run by Hookshot, Longshot, NX2navi, Project ReLink or Fritchii.",
   "type": "module",
   "license": "MIT",
   "scripts": {
