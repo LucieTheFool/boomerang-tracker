@@ -603,18 +603,10 @@
     "items.double_magic": {
       "label": "Double Magic",
       "detect": {
-        "any": [
-          {
-            "name": "IsGet.Item_FairyBless_MPDouble"
-          },
-          {
-            "name": "PlayerStatus.MPMax",
-            "gte": 480
-          }
-        ]
+        "name": "IsGet.Item_FairyBless_MPDouble"
       },
-      "confidence": "guess",
-      "evidence": "IsGet.Item_FairyBless_MPDouble, or the magic meter doubled (PlayerStatus.MPMax is 240 with single magic). IsGet.Item_FairyBless_MP stays false even with magic, so the IsGet flag alone may not be set. Needs a diff."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) plans/03-game-data.md: the Death Mountain Crater fountain runs Dm_FairyFountain_Wisdom and gives Item_FairyBless_MPDouble (double magic)."
     },
     "items.lenses_of_truth": {
       "label": "Lenses of Truth",
@@ -755,11 +747,11 @@
     "bottles.poe_collector_bottle": {
       "label": "Poe Collector bottle",
       "detect": {
-        "name": "GhostShop_CouponNum",
-        "gte": 5
+        "name": "Step_SubEvent_GhostShop",
+        "eq": "Complete"
       },
-      "confidence": "guess",
-      "evidence": "GhostShop_CouponNum (Poe buyer) ≥ 5. Assumes the number counts Big Poes sold. 0 in every slot so far. Needs a diff."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot): the Poe Collector's bottle is given when quest SubEvent_GhostShop completes (five Big Poes in the remake); its saved step is Step_SubEvent_GhostShop."
     },
     "great_fairies.death_mountain_summit_magic_meter_dins_fire": {
       "label": "Death Mountain summit: Magic Meter + Din's Fire",
@@ -778,9 +770,18 @@
     },
     "great_fairies.hyrule_castle_grounds_child_enhanced_charged_spin_attack": {
       "label": "Hyrule Castle grounds (child): Enhanced (charged) Spin Attack",
-      "detect": null,
-      "confidence": "guess",
-      "evidence": "Unmapped: one of HavePlayedEvent.Dm_FairyFountain_{Power,Wisdom,Courage}, but which one is unknown. One diff after this fairy settles it."
+      "detect": {
+        "any": [
+          {
+            "name": "HavePlayedEvent.Dm_FairyFountain_Power"
+          },
+          {
+            "name": "IsGet.Item_FairyBless_MP"
+          }
+        ]
+      },
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) plans/03-game-data.md: the Hyrule Castle fountain runs Dm_FairyFountain_Power and gives Item_FairyBless_MP (the stronger spin attack)."
     },
     "great_fairies.zoras_fountain_farores_wind": {
       "label": "Zora's Fountain: Farore's Wind",
@@ -802,16 +803,15 @@
       "detect": {
         "any": [
           {
-            "name": "IsGet.Item_FairyBless_MPDouble"
+            "name": "HavePlayedEvent.Dm_FairyFountain_Wisdom"
           },
           {
-            "name": "PlayerStatus.MPMax",
-            "gte": 480
+            "name": "IsGet.Item_FairyBless_MPDouble"
           }
         ]
       },
-      "confidence": "guess",
-      "evidence": "Same rule as Items: Double Magic"
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) plans/03-game-data.md: the Death Mountain Crater fountain runs Dm_FairyFountain_Wisdom and gives Item_FairyBless_MPDouble (double magic)."
     },
     "great_fairies.desert_colossus_nayrus_love": {
       "label": "Desert Colossus: Nayru's Love",
@@ -831,10 +831,17 @@
     "great_fairies.outside_ganons_castle_adult_double_defense_halved_damage": {
       "label": "Outside Ganon's Castle (adult): Double Defense (halved damage)",
       "detect": {
-        "name": "IsGet.Item_FairyBless_DefenseDouble"
+        "any": [
+          {
+            "name": "HavePlayedEvent.Dm_FairyFountain_Courage"
+          },
+          {
+            "name": "IsGet.Item_FairyBless_DefenseDouble"
+          }
+        ]
       },
-      "confidence": "guess",
-      "evidence": "IsGet.Item_FairyBless_DefenseDouble. Its Magic counterpart (FairyBless_MP) never gets set, so this one may not either. Needs a diff."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) plans/03-game-data.md: the Ganon's Castle fountain runs Dm_FairyFountain_Courage and gives Item_FairyBless_DefenseDouble (damage halved)."
     },
     "capacity.kokiri_wallet": {
       "label": "Kokiri Wallet",
@@ -1313,8 +1320,8 @@
           }
         ]
       },
-      "confidence": "guess",
-      "evidence": "Any of the three plain Iron Knuckle counters. Which colour the Spirit Temple one is needs a diff."
+      "confidence": "likely",
+      "evidence": "Any of the game's three plain Iron Knuckle kill counters (Silver, Black, White); Nabooru's has its own. Whichever colour the Spirit Temple's is, defeating one counts."
     },
     "mini_bosses.iron_knuckle_nabooru": {
       "label": "Iron Knuckle (Nabooru)",
@@ -1373,11 +1380,11 @@
     "side_quests.broken_windmill_dry_well": {
       "label": "Broken Windmill, Dry Well",
       "detect": {
-        "key": "0x7A5B9537",
+        "name": "Step_SubEvent_GetStormSong",
         "eq": "Complete"
       },
-      "confidence": "guess",
-      "evidence": "Unnamed quest enum whose first step is ReadyForGetStormSong; slot_05 (has Song of Storms) is at step02. Needs a diff."
+      "confidence": "likely",
+      "evidence": "The quest step enum 0x7A5B9537 is Step_SubEvent_GetStormSong (name found by hashing; its first step is ReadyForGetStormSong). Quests end at Complete."
     },
     "skulltula_rewards.10_tokens_adults_wallet": {
       "label": "10 tokens: Adult's Wallet",
@@ -2223,90 +2230,34 @@
     "gold_skulltulas.031": {
       "label": "Lord Jabu-Jabu's Belly",
       "detect": {
-        "count": [
-          {
-            "b64": "0x9C95FD41B89C058A"
-          },
-          {
-            "b64": "0x9FC92497F014DBD5"
-          },
-          {
-            "b64": "0xC03F282FF60942B6"
-          },
-          {
-            "b64": "0xDDD260AFB6F2989A"
-          }
-        ],
-        "gte": 1
+        "b64": "0x9FC92497F014DBD5"
       },
-      "confidence": "guess",
-      "evidence": "4 Gold Skulltulas in Lord Jabu-Jabu's Belly. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Jabu Jabus Belly GS Water Switch Room\" (object id 11513774157335944149). Matched to this number from Zelda Central's numbered guide and Clawshot's room notes (on the wall above the vines, by the room of pots); VGC's dungeon list agrees."
     },
     "gold_skulltulas.032": {
       "label": "Lord Jabu-Jabu's Belly",
       "detect": {
-        "count": [
-          {
-            "b64": "0x9C95FD41B89C058A"
-          },
-          {
-            "b64": "0x9FC92497F014DBD5"
-          },
-          {
-            "b64": "0xC03F282FF60942B6"
-          },
-          {
-            "b64": "0xDDD260AFB6F2989A"
-          }
-        ],
-        "gte": 2
+        "b64": "0xC03F282FF60942B6"
       },
-      "confidence": "guess",
-      "evidence": "4 Gold Skulltulas in Lord Jabu-Jabu's Belly. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Jabu Jabus Belly GS Lobby Basement Lower\" (object id 13852835165271311030). Matched to this number from Zelda Central's numbered guide and Clawshot's room notes (the first of the two B1 ones, in the cavern); VGC's dungeon list agrees."
     },
     "gold_skulltulas.033": {
       "label": "Lord Jabu-Jabu's Belly",
       "detect": {
-        "count": [
-          {
-            "b64": "0x9C95FD41B89C058A"
-          },
-          {
-            "b64": "0x9FC92497F014DBD5"
-          },
-          {
-            "b64": "0xC03F282FF60942B6"
-          },
-          {
-            "b64": "0xDDD260AFB6F2989A"
-          }
-        ],
-        "gte": 3
+        "b64": "0x9C95FD41B89C058A"
       },
-      "confidence": "guess",
-      "evidence": "4 Gold Skulltulas in Lord Jabu-Jabu's Belly. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Jabu Jabus Belly GS Lobby Basement Upper\" (object id 11283202900158580106). Matched to this number from Zelda Central's numbered guide and Clawshot's room notes (the second B1 one, in the passage towards Big Octo); VGC's dungeon list agrees."
     },
     "gold_skulltulas.034": {
       "label": "Lord Jabu-Jabu's Belly",
       "detect": {
-        "count": [
-          {
-            "b64": "0x9C95FD41B89C058A"
-          },
-          {
-            "b64": "0x9FC92497F014DBD5"
-          },
-          {
-            "b64": "0xC03F282FF60942B6"
-          },
-          {
-            "b64": "0xDDD260AFB6F2989A"
-          }
-        ],
-        "gte": 4
+        "b64": "0xDDD260AFB6F2989A"
       },
-      "confidence": "guess",
-      "evidence": "4 Gold Skulltulas in Lord Jabu-Jabu's Belly. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Jabu Jabus Belly GS Near Boss\" (object id 15983944335296207002). Matched to this number from Zelda Central's numbered guide and Clawshot's room notes (the vine pillar on the way to the boss); VGC's dungeon list agrees."
     },
     "gold_skulltulas.046": {
       "label": "Sacred Forest Meadow",
@@ -2359,127 +2310,42 @@
     "gold_skulltulas.055": {
       "label": "Fire Temple",
       "detect": {
-        "count": [
-          {
-            "b64": "0x4D1B7E35CA0C6484"
-          },
-          {
-            "b64": "0x5E3AE6A7CF3AC292"
-          },
-          {
-            "b64": "0x7F498ADA1C2E9C7A"
-          },
-          {
-            "b64": "0xB0F77B17CFB37458"
-          },
-          {
-            "b64": "0xCC175A90E0014905"
-          }
-        ],
-        "gte": 1
+        "b64": "0x5E3AE6A7CF3AC292"
       },
-      "confidence": "guess",
-      "evidence": "5 Gold Skulltulas in Fire Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Fire Temple GS Song of Time Room\" (object id 6789992996625105554). Matched to this number from Zelda Central's numbered guide and Clawshot's room notes (the tile room behind the Song of Time block); VGC's dungeon list agrees."
     },
     "gold_skulltulas.056": {
       "label": "Fire Temple",
       "detect": {
-        "count": [
-          {
-            "b64": "0x4D1B7E35CA0C6484"
-          },
-          {
-            "b64": "0x5E3AE6A7CF3AC292"
-          },
-          {
-            "b64": "0x7F498ADA1C2E9C7A"
-          },
-          {
-            "b64": "0xB0F77B17CFB37458"
-          },
-          {
-            "b64": "0xCC175A90E0014905"
-          }
-        ],
-        "gte": 2
+        "b64": "0xB0F77B17CFB37458"
       },
-      "confidence": "guess",
-      "evidence": "5 Gold Skulltulas in Fire Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Fire Temple GS Boulder Maze\" (object id 12751796212121957464). Matched to this number from Zelda Central's numbered guide and Clawshot's room notes (the bombable wall in the boulder maze); VGC's dungeon list agrees."
     },
     "gold_skulltulas.057": {
       "label": "Fire Temple",
       "detect": {
-        "count": [
-          {
-            "b64": "0x4D1B7E35CA0C6484"
-          },
-          {
-            "b64": "0x5E3AE6A7CF3AC292"
-          },
-          {
-            "b64": "0x7F498ADA1C2E9C7A"
-          },
-          {
-            "b64": "0xB0F77B17CFB37458"
-          },
-          {
-            "b64": "0xCC175A90E0014905"
-          }
-        ],
-        "gte": 3
+        "b64": "0xCC175A90E0014905"
       },
-      "confidence": "guess",
-      "evidence": "5 Gold Skulltulas in Fire Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Fire Temple GS Boss Key Loop\" (object id 14706322686481615109). Matched to this number from Zelda Central's numbered guide and Clawshot's room notes (the rocks the Megaton Hammer breaks); VGC's dungeon list agrees."
     },
     "gold_skulltulas.058": {
       "label": "Fire Temple",
       "detect": {
-        "count": [
-          {
-            "b64": "0x4D1B7E35CA0C6484"
-          },
-          {
-            "b64": "0x5E3AE6A7CF3AC292"
-          },
-          {
-            "b64": "0x7F498ADA1C2E9C7A"
-          },
-          {
-            "b64": "0xB0F77B17CFB37458"
-          },
-          {
-            "b64": "0xCC175A90E0014905"
-          }
-        ],
-        "gte": 4
+        "b64": "0x4D1B7E35CA0C6484"
       },
-      "confidence": "guess",
-      "evidence": "5 Gold Skulltulas in Fire Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Fire Temple GS Scarecrow Climb\" (object id 5556173334779815044). Matched to this number from Zelda Central's numbered guide and Clawshot's room notes (top of the scarecrow climb, by the door); VGC's dungeon list agrees."
     },
     "gold_skulltulas.059": {
       "label": "Fire Temple",
       "detect": {
-        "count": [
-          {
-            "b64": "0x4D1B7E35CA0C6484"
-          },
-          {
-            "b64": "0x5E3AE6A7CF3AC292"
-          },
-          {
-            "b64": "0x7F498ADA1C2E9C7A"
-          },
-          {
-            "b64": "0xB0F77B17CFB37458"
-          },
-          {
-            "b64": "0xCC175A90E0014905"
-          }
-        ],
-        "gte": 5
+        "b64": "0x7F498ADA1C2E9C7A"
       },
-      "confidence": "guess",
-      "evidence": "5 Gold Skulltulas in Fire Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Fire Temple GS Scarecrow Top\" (object id 9172014785497046138). Matched to this number from Zelda Central's numbered guide and Clawshot's room notes (the room after the scarecrow climb); VGC's dungeon list agrees."
     },
     "gold_skulltulas.063": {
       "label": "Zora's Domain",
@@ -2492,40 +2358,18 @@
     "gold_skulltulas.064": {
       "label": "Ice Cavern",
       "detect": {
-        "count": [
-          {
-            "b64": "0x165FC0BC0ACA1F6C"
-          },
-          {
-            "b64": "0x63701A2CF70B201C"
-          },
-          {
-            "b64": "0xCDB49F5D0A67FCF6"
-          }
-        ],
-        "gte": 1
+        "b64": "0x63701A2CF70B201C"
       },
-      "confidence": "guess",
-      "evidence": "3 Gold Skulltulas in Ice Cavern. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Ice Cavern GS Spinning Scythe Room\" (object id 7165255787572043804). Matched to this number from Zelda Central's numbered guide and Clawshot's room notes (high on the wall of the first, spinning-blade room); VGC's dungeon list agrees."
     },
     "gold_skulltulas.065": {
       "label": "Ice Cavern",
       "detect": {
-        "count": [
-          {
-            "b64": "0x165FC0BC0ACA1F6C"
-          },
-          {
-            "b64": "0x63701A2CF70B201C"
-          },
-          {
-            "b64": "0xCDB49F5D0A67FCF6"
-          }
-        ],
-        "gte": 2
+        "b64": "0xCDB49F5D0A67FCF6"
       },
-      "confidence": "guess",
-      "evidence": "3 Gold Skulltulas in Ice Cavern. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Ice Cavern GS Push Block Room\" (object id 14822647495538506998). Matched to this number from Zelda Central's numbered guide and Clawshot's room notes (the ceiling of the sliding-block room); VGC's dungeon list agrees."
     },
     "gold_skulltulas.066": {
       "label": "Ice Cavern",
@@ -2538,127 +2382,42 @@
     "gold_skulltulas.069": {
       "label": "Water Temple",
       "detect": {
-        "count": [
-          {
-            "b64": "0x02974596F92CF377"
-          },
-          {
-            "b64": "0x3D0DE5ADAEB73CC9"
-          },
-          {
-            "b64": "0xA0973706F6415ECD"
-          },
-          {
-            "b64": "0xD731EA6A04D0FD01"
-          },
-          {
-            "b64": "0xE03A2965DF9F7B30"
-          }
-        ],
-        "gte": 1
+        "b64": "0xD731EA6A04D0FD01"
       },
-      "confidence": "guess",
-      "evidence": "5 Gold Skulltulas in Water Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Water Temple GS River\" (object id 15506432733081566465). Matched to this number from Zelda Central's numbered guide and Clawshot's room notes (the river after the Longshot chest); VGC's dungeon list agrees."
     },
     "gold_skulltulas.070": {
       "label": "Water Temple",
       "detect": {
-        "count": [
-          {
-            "b64": "0x02974596F92CF377"
-          },
-          {
-            "b64": "0x3D0DE5ADAEB73CC9"
-          },
-          {
-            "b64": "0xA0973706F6415ECD"
-          },
-          {
-            "b64": "0xD731EA6A04D0FD01"
-          },
-          {
-            "b64": "0xE03A2965DF9F7B30"
-          }
-        ],
-        "gte": 2
+        "b64": "0xA0973706F6415ECD"
       },
-      "confidence": "guess",
-      "evidence": "5 Gold Skulltulas in Water Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Water Temple GS Central Pillar\" (object id 11571778270592589517). Matched to this number from Zelda Central's numbered guide and Clawshot's room notes (the top of the central pillar); VGC's dungeon list agrees."
     },
     "gold_skulltulas.071": {
       "label": "Water Temple",
       "detect": {
-        "count": [
-          {
-            "b64": "0x02974596F92CF377"
-          },
-          {
-            "b64": "0x3D0DE5ADAEB73CC9"
-          },
-          {
-            "b64": "0xA0973706F6415ECD"
-          },
-          {
-            "b64": "0xD731EA6A04D0FD01"
-          },
-          {
-            "b64": "0xE03A2965DF9F7B30"
-          }
-        ],
-        "gte": 3
+        "b64": "0x02974596F92CF377"
       },
-      "confidence": "guess",
-      "evidence": "5 Gold Skulltulas in Water Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Water Temple GS Near Boss Key Chest\" (object id 186694424287048567). Matched to this number from Zelda Central's numbered guide and Clawshot's room notes (the boulder corridor by the Boss Key room); VGC's dungeon list agrees."
     },
     "gold_skulltulas.072": {
       "label": "Water Temple",
       "detect": {
-        "count": [
-          {
-            "b64": "0x02974596F92CF377"
-          },
-          {
-            "b64": "0x3D0DE5ADAEB73CC9"
-          },
-          {
-            "b64": "0xA0973706F6415ECD"
-          },
-          {
-            "b64": "0xD731EA6A04D0FD01"
-          },
-          {
-            "b64": "0xE03A2965DF9F7B30"
-          }
-        ],
-        "gte": 4
+        "b64": "0xE03A2965DF9F7B30"
       },
-      "confidence": "guess",
-      "evidence": "5 Gold Skulltulas in Water Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Water Temple GS Behind Gate\" (object id 16157272130665282352). Matched to this number from Zelda Central's numbered guide and Clawshot's room notes (the basement under the central room, with the Iron Boots); VGC's dungeon list agrees."
     },
     "gold_skulltulas.073": {
       "label": "Water Temple",
       "detect": {
-        "count": [
-          {
-            "b64": "0x02974596F92CF377"
-          },
-          {
-            "b64": "0x3D0DE5ADAEB73CC9"
-          },
-          {
-            "b64": "0xA0973706F6415ECD"
-          },
-          {
-            "b64": "0xD731EA6A04D0FD01"
-          },
-          {
-            "b64": "0xE03A2965DF9F7B30"
-          }
-        ],
-        "gte": 5
+        "b64": "0x3D0DE5ADAEB73CC9"
       },
-      "confidence": "guess",
-      "evidence": "5 Gold Skulltulas in Water Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Water Temple GS Falling Platform Room\" (object id 4399424945134189769). Matched to this number from Zelda Central's numbered guide and Clawshot's room notes (behind the bombable wall, with the Shell Blades); VGC's dungeon list agrees."
     },
     "gold_skulltulas.076": {
       "label": "Bottom of the Well",
@@ -2671,165 +2430,58 @@
     "gold_skulltulas.077": {
       "label": "Bottom of the Well",
       "detect": {
-        "count": [
-          {
-            "b64": "0x35FB354FAC262D36"
-          },
-          {
-            "b64": "0x6789388E9FB9C92C"
-          },
-          {
-            "b64": "0xA8D6182A5C956E16"
-          }
-        ],
-        "gte": 2
+        "b64": "0xA8D6182A5C956E16"
       },
-      "confidence": "guess",
-      "evidence": "3 Gold Skulltulas in Bottom of the Well. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Bottom of the Well GS East Inner Room\" (object id 12165938013608963606). Matched to this number from Zelda Central's numbered guide and Clawshot's room notes (behind the first locked door, with the Keese); VGC's dungeon list agrees."
     },
     "gold_skulltulas.078": {
       "label": "Bottom of the Well",
       "detect": {
-        "count": [
-          {
-            "b64": "0x35FB354FAC262D36"
-          },
-          {
-            "b64": "0x6789388E9FB9C92C"
-          },
-          {
-            "b64": "0xA8D6182A5C956E16"
-          }
-        ],
-        "gte": 3
+        "b64": "0x6789388E9FB9C92C"
       },
-      "confidence": "guess",
-      "evidence": "3 Gold Skulltulas in Bottom of the Well. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Bottom of the Well GS West Inner Room\" (object id 7460556442932201772). Matched to this number from Zelda Central's numbered guide and Clawshot's room notes (behind the second locked door); VGC's dungeon list agrees."
     },
     "gold_skulltulas.079": {
       "label": "Shadow Temple",
       "detect": {
-        "count": [
-          {
-            "b64": "0x7A74BC651F9FE024"
-          },
-          {
-            "b64": "0x8E87908CB035E950"
-          },
-          {
-            "b64": "0xD23A7A2C9ECED9CE"
-          },
-          {
-            "b64": "0xD7FFBE169189E50D"
-          },
-          {
-            "b64": "0xEAFE60E592E9A3FB"
-          }
-        ],
-        "gte": 1
+        "b64": "0xEAFE60E592E9A3FB"
       },
-      "confidence": "guess",
-      "evidence": "5 Gold Skulltulas in Shadow Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Shadow Temple GS Invisible Blades Room\" (object id 16933078188088206331). Matched to this number from Zelda Central's numbered guide and Clawshot's room notes (the first one, above a chest); VGC's dungeon list agrees."
     },
     "gold_skulltulas.080": {
       "label": "Shadow Temple",
       "detect": {
-        "count": [
-          {
-            "b64": "0x7A74BC651F9FE024"
-          },
-          {
-            "b64": "0x8E87908CB035E950"
-          },
-          {
-            "b64": "0xD23A7A2C9ECED9CE"
-          },
-          {
-            "b64": "0xD7FFBE169189E50D"
-          },
-          {
-            "b64": "0xEAFE60E592E9A3FB"
-          }
-        ],
-        "gte": 2
+        "b64": "0xD23A7A2C9ECED9CE"
       },
-      "confidence": "guess",
-      "evidence": "5 Gold Skulltulas in Shadow Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Shadow Temple GS Falling Spikes Room\" (object id 15148554628675590606). Matched to this number from Zelda Central's numbered guide and Clawshot's room notes (beside the bars in the falling-spikes room); VGC's dungeon list agrees."
     },
     "gold_skulltulas.081": {
       "label": "Shadow Temple",
       "detect": {
-        "count": [
-          {
-            "b64": "0x7A74BC651F9FE024"
-          },
-          {
-            "b64": "0x8E87908CB035E950"
-          },
-          {
-            "b64": "0xD23A7A2C9ECED9CE"
-          },
-          {
-            "b64": "0xD7FFBE169189E50D"
-          },
-          {
-            "b64": "0xEAFE60E592E9A3FB"
-          }
-        ],
-        "gte": 3
+        "b64": "0xD7FFBE169189E50D"
       },
-      "confidence": "guess",
-      "evidence": "5 Gold Skulltulas in Shadow Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Shadow Temple GS Single Giant Pot\" (object id 15564367841356014861). Matched to this number from Zelda Central's numbered guide and Clawshot's room notes (the corridor with the fans); VGC's dungeon list agrees."
     },
     "gold_skulltulas.082": {
       "label": "Shadow Temple",
       "detect": {
-        "count": [
-          {
-            "b64": "0x7A74BC651F9FE024"
-          },
-          {
-            "b64": "0x8E87908CB035E950"
-          },
-          {
-            "b64": "0xD23A7A2C9ECED9CE"
-          },
-          {
-            "b64": "0xD7FFBE169189E50D"
-          },
-          {
-            "b64": "0xEAFE60E592E9A3FB"
-          }
-        ],
-        "gte": 4
+        "b64": "0x7A74BC651F9FE024"
       },
-      "confidence": "guess",
-      "evidence": "5 Gold Skulltulas in Shadow Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Shadow Temple GS Near Ship\" (object id 8823884712433934372). Matched to this number from Zelda Central's numbered guide and Clawshot's room notes (the scarecrow before the boat); VGC's dungeon list agrees."
     },
     "gold_skulltulas.083": {
       "label": "Shadow Temple",
       "detect": {
-        "count": [
-          {
-            "b64": "0x7A74BC651F9FE024"
-          },
-          {
-            "b64": "0x8E87908CB035E950"
-          },
-          {
-            "b64": "0xD23A7A2C9ECED9CE"
-          },
-          {
-            "b64": "0xD7FFBE169189E50D"
-          },
-          {
-            "b64": "0xEAFE60E592E9A3FB"
-          }
-        ],
-        "gte": 5
+        "b64": "0x8E87908CB035E950"
       },
-      "confidence": "guess",
-      "evidence": "5 Gold Skulltulas in Shadow Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Shadow Temple GS Triple Giant Pot\" (object id 10270336409167849808). Matched to this number from Zelda Central's numbered guide and Clawshot's room notes (the three skull pots after the boat); VGC's dungeon list agrees."
     },
     "gold_skulltulas.085": {
       "label": "Gerudo Fortress",
@@ -2890,52 +2542,18 @@
     "gold_skulltulas.092": {
       "label": "Spirit Temple",
       "detect": {
-        "count": [
-          {
-            "b64": "0x4696B2730DE0516C"
-          },
-          {
-            "b64": "0x70B0FCA66CA4808A"
-          },
-          {
-            "b64": "0x8C8BB95471D20D02"
-          },
-          {
-            "b64": "0x9222E742B73D3D2C"
-          },
-          {
-            "b64": "0xB3D9F353599EEA53"
-          }
-        ],
-        "gte": 2
+        "b64": "0x8C8BB95471D20D02"
       },
-      "confidence": "guess",
-      "evidence": "5 Gold Skulltulas in Spirit Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Spirit Temple GS Hall After Sun Block Room\" (object id 10127391959410674946). Matched to this number from Zelda Central's numbered guide and Clawshot's room notes (above the stairs after the small-key chest, child side); VGC's dungeon list agrees."
     },
     "gold_skulltulas.093": {
       "label": "Spirit Temple",
       "detect": {
-        "count": [
-          {
-            "b64": "0x4696B2730DE0516C"
-          },
-          {
-            "b64": "0x70B0FCA66CA4808A"
-          },
-          {
-            "b64": "0x8C8BB95471D20D02"
-          },
-          {
-            "b64": "0x9222E742B73D3D2C"
-          },
-          {
-            "b64": "0xB3D9F353599EEA53"
-          }
-        ],
-        "gte": 3
+        "b64": "0xB3D9F353599EEA53"
       },
-      "confidence": "guess",
-      "evidence": "5 Gold Skulltulas in Spirit Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Spirit Temple GS Lobby\" (object id 12959656942046734931). Matched to this number from Zelda Central's numbered guide and Clawshot's room notes (in the statue room's corner, no item needed); VGC's dungeon list agrees."
     },
     "gold_skulltulas.094": {
       "label": "Spirit Temple",
@@ -2948,27 +2566,10 @@
     "gold_skulltulas.095": {
       "label": "Spirit Temple",
       "detect": {
-        "count": [
-          {
-            "b64": "0x4696B2730DE0516C"
-          },
-          {
-            "b64": "0x70B0FCA66CA4808A"
-          },
-          {
-            "b64": "0x8C8BB95471D20D02"
-          },
-          {
-            "b64": "0x9222E742B73D3D2C"
-          },
-          {
-            "b64": "0xB3D9F353599EEA53"
-          }
-        ],
-        "gte": 5
+        "b64": "0x4696B2730DE0516C"
       },
-      "confidence": "guess",
-      "evidence": "5 Gold Skulltulas in Spirit Temple. The count for this group is exact, but which tile is which isn't known yet: tiles fill in order as the count goes up. One before/after snapshot per spot pins it down."
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot) data/locations.toml: \"Spirit Temple GS Sun on Floor Room\" (object id 5086449036385341804). Matched to this number from Zelda Central's numbered guide and Clawshot's room notes (the scarecrow by the statue's hand); VGC's dungeon list agrees."
     },
     "heart_pieces.022": {
       "label": "Lake Hylia",

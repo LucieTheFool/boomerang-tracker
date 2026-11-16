@@ -43,6 +43,12 @@ https://github.com/NotRexed/Hookshot
 Save-folder discovery ideas only. No code copied (GPL-3.0 code would change this
 project's license).
 
+## Published guides (facts only, no text copied)
+- Zelda Central's Ocarina of Time remake guides (https://zeldacentral.com/games/ocarina-of-time-remake/):
+  the checklist's Gold Skulltula and heart piece numbering, and where each numbered one is.
+- Video Games Chronicle's per-dungeon Gold Skulltula lists and Nintendo Life's heart piece guide:
+  second sources for the dungeon Skulltulas and the Magic Bean heart pieces.
+
 ## Format write-ups for Tears of the Kingdom saves
 General GameData container background (Murmur3 keys, typed sections).
 

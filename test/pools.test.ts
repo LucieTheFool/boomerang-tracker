@@ -80,7 +80,21 @@ const snap = fs.existsSync(snapDir) ? fs.readdirSync(snapDir).find(f => f.includ
 describe.skipIf(!snap)('identify flow on a real save', () => {
   it('asks about the Fire Temple rows, then confirms the answer', () => {
     const read = (f: string) => JSON.parse(fs.readFileSync(f, 'utf8'));
-    const tracker = new Tracker(read('data/checklist.json') as ChecklistFile, read('data/save-mapping.json') as MappingFile);
+    // The shipped mapping knows every Skulltula's own key now: with it, no question is asked.
+    const exact = new Tracker(read('data/checklist.json') as ChecklistFile, read('data/save-mapping.json') as MappingFile);
+    expect(exact.pools.filter(p => p.rows.some(r => r.startsWith('gold_skulltulas.')))).toEqual([]);
+    const bossKeyLoop = (read('data/save-mapping.json') as MappingFile).entries['gold_skulltulas.057'].detect as { b64: string };
+    const direct = parseGameData(fs.readFileSync(snapDir + snap));
+    direct.bool64.add(BigInt(bossKeyLoop.b64));
+    expect(exact.identifications(parseGameData(fs.readFileSync(snapDir + snap)), direct).ask).toEqual([]);
+    expect(exact.evaluate(direct).categories.find(c => c.id === 'gold_skulltulas')!.items.filter(i => i.chapter === 'Fire Temple' && i.done).map(i => i.number)).toEqual([57]);
+
+    // The question flow itself, on a mapping where the Fire Temple's five share a pool again.
+    const pooled = read('data/save-mapping.json') as MappingFile;
+    const rows = [55, 56, 57, 58, 59].map(n => `gold_skulltulas.0${n}`);
+    const keys = rows.map(r => (pooled.entries[r].detect as { b64: string }).b64);
+    rows.forEach((r, i) => { pooled.entries[r] = { ...pooled.entries[r], detect: { count: keys.map(b64 => ({ b64 })), gte: i + 1 }, confidence: 'guess' }; });
+    const tracker = new Tracker(read('data/checklist.json') as ChecklistFile, pooled);
     const before = parseGameData(fs.readFileSync(snapDir + snap));
     const fire = tracker.pools.find(p => p.rows.some(r => r.startsWith('gold_skulltulas.055')))!;
     expect(fire.rows).toHaveLength(5);

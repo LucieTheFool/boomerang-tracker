@@ -657,8 +657,7 @@
       "needs": "Sticks"
     },
     "heart_pieces#17": {
-      "needs": "BeanRide or (adult and Longshot)",
-      "unsure": true
+      "needs": "BeanRide"
     },
     "heart_pieces#18": {
       "needs": "(child and Boomerang) or (adult and SongOfTime)",
@@ -672,19 +671,17 @@
     },
     "heart_pieces#21": {
       "age": "adult",
-      "needs": "MagicBean or (ScarecrowSong and Hookshot)",
-      "unsure": true
+      "needs": "MagicBean or (ScarecrowSong and Hookshot)"
     },
     "heart_pieces#22": {
       "needs": "GoldenScale"
     },
     "heart_pieces#23": {
-      "needs": "BeanRide",
-      "unsure": true
+      "needs": "BeanRide and GoronsBracelet",
+      "note": "The soil is behind the Dodongo's Cavern boulder, which the bracelet's bomb flower opens."
     },
     "heart_pieces#24": {
-      "needs": "Bolero and (BeanRide or (adult and HoverBoots))",
-      "unsure": true
+      "needs": "Bolero and BeanRide"
     },
     "heart_pieces#25": {
       "age": "adult"
@@ -715,8 +712,7 @@
       "needs": "Epona and Bow and GerudoCard"
     },
     "heart_pieces#32": {
-      "needs": "BeanRide",
-      "unsure": true
+      "needs": "Requiem and BeanRide"
     },
     "heart_pieces#33": {
       "needs": "adult or MetZelda",
@@ -724,7 +720,7 @@
     },
     "heart_pieces#34": {
       "age": "child",
-      "needs": "MasterSword and Explosives and StunScrub and AdultWallet",
+      "needs": "MasterSword and Explosives and StunScrub",
       "note": "Read the password on the Fairy Note by the hole as adult, then buy it as a child for 100 Rupees."
     },
     "heart_pieces#35": {
@@ -734,8 +730,8 @@
     },
     "heart_pieces#36": {
       "age": "child",
-      "needs": "StunScrub and AdultWallet",
-      "note": "The scrub sells it for 100 Rupees."
+      "needs": "StunScrub",
+      "note": "The scrub sells it for 100 Rupees (the starting wallet holds 200)."
     },
     "heart_containers#1": {
       "age": "child",
@@ -921,14 +917,12 @@
       "needs": "(child and Boomerang and MetZelda) or (adult and Hookshot)"
     },
     "gold_skulltulas#39": {
-      "needs": "BlastOrSmash and RangedGrab",
-      "unsure": true
+      "needs": "Explosives and RangedGrab"
     },
     "gold_skulltulas#40": {
       "age": "child",
       "night": true,
-      "needs": "MetZelda and Boomerang",
-      "unsure": true
+      "needs": "MetZelda and Boomerang"
     },
     "gold_skulltulas#41": {
       "night": true,
@@ -947,8 +941,7 @@
     "gold_skulltulas#45": {
       "age": "adult",
       "night": true,
-      "needs": "MagicBean or Longshot",
-      "unsure": true
+      "needs": "MagicBean"
     },
     "gold_skulltulas#46": {
       "age": "adult",
@@ -988,28 +981,23 @@
     },
     "gold_skulltulas#55": {
       "age": "adult",
-      "needs": "Hammer",
-      "unsure": true
+      "needs": "SongOfTime"
     },
     "gold_skulltulas#56": {
       "age": "adult",
-      "needs": "Explosives and Strength1",
-      "unsure": true
+      "needs": "Explosives and Strength1"
     },
     "gold_skulltulas#57": {
       "age": "adult",
-      "needs": "Strength1 and ((ScarecrowSong and Hookshot) or Longshot)",
-      "unsure": true
+      "needs": "Hammer and Explosives and Strength1"
     },
     "gold_skulltulas#58": {
       "age": "adult",
-      "needs": "Strength1 and ((ScarecrowSong and Hookshot) or Longshot)",
-      "unsure": true
+      "needs": "Strength1 and ScarecrowSong and Hookshot"
     },
     "gold_skulltulas#59": {
       "age": "adult",
-      "needs": "SongOfTime",
-      "unsure": true
+      "needs": "Strength1 and ScarecrowSong and Hookshot"
     },
     "gold_skulltulas#60": {
       "age": "adult",
@@ -1033,7 +1021,7 @@
     },
     "gold_skulltulas#64": {
       "age": "adult",
-      "needs": "Bottle and Hookshot"
+      "needs": "Hookshot"
     },
     "gold_skulltulas#65": {
       "age": "adult",
@@ -1054,28 +1042,23 @@
     },
     "gold_skulltulas#69": {
       "age": "adult",
-      "needs": "WaterTempleGear and ZeldasLullaby and Explosives",
-      "unsure": true
+      "needs": "WaterTempleGear and ZeldasLullaby and Longshot"
     },
     "gold_skulltulas#70": {
       "age": "adult",
-      "needs": "WaterTempleGear and ZeldasLullaby and Longshot and Explosives and Strength1",
-      "unsure": true
+      "needs": "WaterTempleGear and ZeldasLullaby and Longshot"
     },
     "gold_skulltulas#71": {
       "age": "adult",
-      "needs": "WaterTempleGear and ZeldasLullaby and Longshot",
-      "unsure": true
+      "needs": "WaterTempleGear and ZeldasLullaby and Longshot and Explosives and Strength1"
     },
     "gold_skulltulas#72": {
       "age": "adult",
-      "needs": "WaterTempleGear and ZeldasLullaby",
-      "unsure": true
+      "needs": "WaterTempleGear and ZeldasLullaby"
     },
     "gold_skulltulas#73": {
       "age": "adult",
-      "needs": "WaterTempleGear and ZeldasLullaby and Longshot",
-      "unsure": true
+      "needs": "WaterTempleGear and ZeldasLullaby and Explosives"
     },
     "gold_skulltulas#74": {
       "age": "adult",
@@ -1104,22 +1087,19 @@
     },
     "gold_skulltulas#80": {
       "age": "adult",
-      "needs": "ShadowTempleGear and Longshot",
-      "unsure": true
+      "needs": "ShadowTempleGear"
     },
     "gold_skulltulas#81": {
       "age": "adult",
-      "needs": "ShadowTempleGear and ZeldasLullaby and Bombs",
-      "unsure": true
+      "needs": "ShadowTempleGear and Longshot"
     },
     "gold_skulltulas#82": {
       "age": "adult",
-      "needs": "ShadowTempleGear"
+      "needs": "ShadowTempleGear and ScarecrowSong and Longshot"
     },
     "gold_skulltulas#83": {
       "age": "adult",
-      "needs": "ShadowTempleGear and ScarecrowSong and Longshot",
-      "unsure": true
+      "needs": "ShadowTempleGear and ZeldasLullaby and Bombs"
     },
     "gold_skulltulas#84": {
       "age": "adult",
@@ -1158,13 +1138,10 @@
       "needs": "Boomerang"
     },
     "gold_skulltulas#92": {
-      "age": "adult",
-      "needs": "SpiritAdultSide and ScarecrowSong and Longshot",
-      "unsure": true
+      "needs": "(child and Boomerang and Explosives) or (adult and SpiritAdultSide)"
     },
     "gold_skulltulas#93": {
-      "age": "child",
-      "needs": "Boomerang"
+      "needs": "(child and Explosives) or (adult and SpiritAdultSide)"
     },
     "gold_skulltulas#94": {
       "age": "adult",
@@ -1172,7 +1149,7 @@
     },
     "gold_skulltulas#95": {
       "age": "adult",
-      "needs": "SpiritAdultSide and Lens"
+      "needs": "SpiritAdultSide and ScarecrowSong and Longshot"
     },
     "gold_skulltulas#96": {
       "age": "adult",
@@ -1185,14 +1162,10 @@
       "needs": "Hookshot"
     },
     "gold_skulltulas#98": {
-      "unsure": true,
-      "needs": "MetZelda",
-      "age": "child",
-      "night": true
+      "age": "child"
     },
     "gold_skulltulas#99": {
       "needs": "Explosives and MasterSword",
-      "unsure": true,
       "age": "adult",
       "note": "Kill the Skulltula in the marsh grotto as a child; as adult, break the crate for the token."
     },
@@ -1399,16 +1372,16 @@
     },
     "items#18": {
       "region": "Zora's Fountain",
-      "needs": "ZeldasLullaby and Explosives"
+      "needs": "ZeldasLullaby and Explosives and DinsFireItem"
     },
     "items#19": {
       "region": "Desert Colossus",
-      "needs": "ZeldasLullaby and BlastOrSmash"
+      "needs": "ZeldasLullaby and BlastOrSmash and DinsFireItem and AdultWallet"
     },
     "items#20": {
       "region": "Death Mountain Crater",
       "age": "adult",
-      "needs": "ZeldasLullaby and Hammer"
+      "needs": "ZeldasLullaby and Hammer and DinsFireItem"
     },
     "items#21": {
       "region": "Bottom of the Well",
@@ -1502,26 +1475,30 @@
     "great_fairies#2": {
       "region": "Hyrule Castle",
       "age": "child",
-      "needs": "ZeldasLullaby and Explosives",
-      "unsure": true
+      "needs": "ZeldasLullaby and Explosives and DinsFireItem",
+      "note": "Appears only once you have Din's Fire. 50 Rupees."
     },
     "great_fairies#3": {
       "region": "Zora's Fountain",
-      "needs": "ZeldasLullaby and Explosives"
+      "needs": "ZeldasLullaby and Explosives and DinsFireItem",
+      "note": "Appears only once you have Din's Fire. 100 Rupees."
     },
     "great_fairies#4": {
       "region": "Death Mountain Crater",
       "age": "adult",
-      "needs": "ZeldasLullaby and Hammer"
+      "needs": "ZeldasLullaby and Hammer and DinsFireItem",
+      "note": "Appears only once you have Din's Fire. 200 Rupees."
     },
     "great_fairies#5": {
       "region": "Desert Colossus",
-      "needs": "ZeldasLullaby and BlastOrSmash"
+      "needs": "ZeldasLullaby and BlastOrSmash and DinsFireItem and AdultWallet",
+      "note": "Appears only once you have Din's Fire. 300 Rupees: more than the starting wallet holds."
     },
     "great_fairies#6": {
       "region": "Hyrule Castle",
       "age": "adult",
-      "needs": "ZeldasLullaby and Strength3"
+      "needs": "ZeldasLullaby and Strength3 and DinsFireItem and AdultWallet",
+      "note": "Appears only once you have Din's Fire. 500 Rupees: needs the Adult's Wallet."
     },
     "capacity#1": {
       "region": "Kokiri Forest"

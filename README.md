@@ -112,8 +112,9 @@ The data files are meant to be edited:
 Requirements in `data/logic.json` follow the remake: the original game's requirements with the
 remake's changes as documented by [Clawshot](https://github.com/hiKareeem/Clawshot) and the guides it
 cites (moved Skulltulas, new heart pieces, the clock starting only once you've met Zelda, changed
-dungeon routes). Entries marked `unsure` are matched to a spot by description only, or not yet
-confirmed. Corrections are welcome.
+dungeon routes). Every Gold Skulltula and heart piece has its own exact check, matched to its
+checklist number from published guides. Rules marked `likely` in `data/save-mapping.json` haven't
+been seen in play yet; corrections are welcome.
 
 ### Optional: a more detailed local checklist
 
