@@ -1,10 +1,12 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import type { AppState, TrackedCategory, TrackedItem, UiPrefs, ChangeRow, OverlayMode, AvailableEntry } from '../shared/types';
-import { api, timeAgo } from './api';
+import type { AppState, TrackedCategory, TrackedItem, UiPrefs, ChangeRow, OverlayMode, AvailableEntry, AvailableFilters } from '../shared/types';
+import { api } from './api';
+import { recentLabel, slotLabel, slotTitle, timeAgo } from './slot-label';
 import { symbolIcons, categoryColor } from './icons';
 import { Symbol } from './symbols';
 import { buildCards, tileItems, Card, TileModel } from './view';
 import { Masonry } from './Masonry';
+import { NO_FILTERS, entryLabel, filterCanGetNow, filterChoices, hasActiveFilters } from './filter';
 
 const icons = symbolIcons;
 
@@ -22,7 +24,14 @@ export function App() {
     return () => { off(); clearInterval(t); };
   }, []);
 
-  const updatePrefs = (p: UiPrefs) => { setPrefs(p); void api.setPrefs(p); };
+  // saveAfterMs: wait before writing settings (typing). Any later change writes the newest prefs anyway.
+  const saveTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const updatePrefs = (p: UiPrefs, saveAfterMs = 0) => {
+    setPrefs(p);
+    clearTimeout(saveTimer.current);
+    if (saveAfterMs) saveTimer.current = setTimeout(() => void api.setPrefs(p), saveAfterMs);
+    else void api.setPrefs(p);
+  };
 
   const cards = useMemo(() => (state ? buildCards(state.categories) : []), [state]);
   type Selection = { stack: Extract<TileModel, { kind: 'stack' }> } | { cat: TrackedCategory; item: TrackedItem } | null;
@@ -65,6 +74,7 @@ export function App() {
       {state.message && <div className="banner">{state.message}</div>}
       <AvailablePanel state={state} open={!(prefs.collapsed ?? []).includes('__available')} selected={selected} onSelect={setSelected}
         height={prefs.availableHeight} onResize={h => updatePrefs({ ...prefs, availableHeight: h })}
+        filters={{ ...NO_FILTERS, ...prefs.availableFilters }} onFilters={(f, saveAfterMs) => updatePrefs({ ...prefs, availableFilters: f }, saveAfterMs)}
         onToggle={open => updatePrefs({ ...prefs, collapsed: open ? (prefs.collapsed ?? []).filter(x => x !== '__available') : [...(prefs.collapsed ?? []), '__available'] })} />
       <div className="body">
         <main className="grid-wrap">
@@ -145,14 +155,15 @@ function SummaryBar({ state }: { state: AppState }) {
 function Toolbar({ state, cards, prefs, onPrefs }: { state: AppState; cards: Card[]; prefs: UiPrefs; onPrefs: (p: UiPrefs) => void }) {
   const [catsOpen, setCatsOpen] = useState(false);
   const recent = [...state.slots].sort((a, b) => b.mtimeMs - a.mtimeMs)[0];
+  const selected = state.slotMode === 'recent' ? recent : state.slots.find(s => s.name === state.activeSlot);
   return (
     <div className="toolbar">
       <label>
         Slot&nbsp;
-        <select value={state.slotMode === 'recent' ? '' : state.activeSlot} onChange={e => void api.pinSlot(e.target.value || null)}>
-          <option value="">Most recent ({recent?.name})</option>
+        <select value={state.slotMode === 'recent' ? '' : state.activeSlot} title={selected && slotLabel(selected)} onChange={e => void api.pinSlot(e.target.value || null)}>
+          <option value="" title={recent && slotLabel(recent)}>{recentLabel(recent)}</option>
           {state.slots.map(s => (
-            <option key={s.name} value={s.name}>{s.name} · {s.area ?? '?'} · {timeAgo(s.mtimeMs)}</option>
+            <option key={s.name} value={s.name} title={slotTitle(s)}>{slotLabel(s)}</option>
           ))}
         </select>
       </label>
@@ -187,9 +198,12 @@ function Toolbar({ state, cards, prefs, onPrefs }: { state: AppState; cards: Car
 }
 
 /** "Can get now": Part A entries the logic says are obtainable, current area first. */
-function AvailablePanel({ state, open, selected, onSelect, onToggle, height, onResize }: { state: AppState; open: boolean; selected: string | null; onSelect: (id: string) => void; onToggle: (open: boolean) => void; height?: number; onResize: (h: number) => void }) {
+function AvailablePanel({ state, open, selected, onSelect, onToggle, height, onResize, filters, onFilters }: { state: AppState; open: boolean; selected: string | null; onSelect: (id: string) => void; onToggle: (open: boolean) => void; height?: number; onResize: (h: number) => void; filters: AvailableFilters; onFilters: (f: AvailableFilters, saveAfterMs?: number) => void }) {
+  const total = state.available.length;
+  const rows = filterCanGetNow(state.available, filters);
   const groups = new Map<string, AvailableEntry[]>();
-  for (const a of state.available) groups.set(a.region, [...(groups.get(a.region) ?? []), a]);
+  for (const a of rows) groups.set(a.region, [...(groups.get(a.region) ?? []), a]);
+  const areaCount = new Set(state.available.map(a => a.region)).size;
   // Drag the bottom edge to resize; the height is saved shortly after you stop.
   const ref = useRef<HTMLElement>(null);
   const resizeRef = useRef(onResize);
@@ -212,11 +226,18 @@ function AvailablePanel({ state, open, selected, onSelect, onToggle, height, onR
       <button className="avail-head" onClick={() => onToggle(!open)}>
         <span className="chev">{open ? '▾' : '▸'}</span>
         <b>Can get now</b>
-        <span className="muted">{state.available.length} entries in {groups.size} areas{state.canBeAdult ? '' : ' · child only until you can travel through time'}</span>
+        <span className="muted">{total} entries in {areaCount} areas{state.canBeAdult ? '' : ' · child only until you can travel through time'}</span>
       </button>
+      {open && total > 0 && <AvailableFilterBar entries={state.available} shown={rows.length} filters={filters} onFilters={onFilters} />}
       {open && (
         <div className="avail-groups">
-          {state.available.length === 0 && <span className="muted small">Nothing left to get with what you have right now.</span>}
+          {total === 0 && <span className="muted small">Nothing left to get with what you have right now.</span>}
+          {total > 0 && rows.length === 0 && (
+            <div className="avail-empty">
+              <span className="muted small">No entries match these filters.</span>
+              <button className="small-btn" onClick={() => onFilters(NO_FILTERS)}>Clear filters</button>
+            </div>
+          )}
           {[...groups].map(([region, list]) => (
             <div key={region} className={`avail-group ${list[0].here ? 'here' : ''}`}>
               <div className="avail-region">{list[0].here && <span className="here-tag">you are here</span>}{region} <span className="muted">({list.length})</span></div>
@@ -225,7 +246,7 @@ function AvailablePanel({ state, open, selected, onSelect, onToggle, height, onR
                   <button key={a.id} className={`chip ${selected === a.id ? 'selected' : ''}`} onClick={() => onSelect(a.id)}
                     title={`${a.categoryLabel} #${a.number}`}>
                     <span className="dot" style={{ background: categoryColor(a.categoryId) }} />
-                    {a.categoryId === 'gold_skulltulas' ? `GS ${a.number}: ` : ''}{a.name.replace(/^[^:]+: /, '')}
+                    {entryLabel(a)}
                     {state.canBeAdult && a.ages.length === 1 && <span className={`age ${a.ages[0]}`}>{a.ages[0]}</span>}
                     {a.night && <span className="age night">night</span>}
                   </button>
@@ -236,6 +257,39 @@ function AvailablePanel({ state, open, selected, onSelect, onToggle, height, onR
         </div>
       )}
     </section>
+  );
+}
+
+/** Search box and filter chips above the "Can get now" list. */
+function AvailableFilterBar({ entries, shown, filters, onFilters }: { entries: AvailableEntry[]; shown: number; filters: AvailableFilters; onFilters: (f: AvailableFilters, saveAfterMs?: number) => void }) {
+  const set = (p: Partial<AvailableFilters>) => onFilters({ ...filters, ...p });
+  const ages: { value: AvailableFilters['age']; label: string }[] = [{ value: null, label: 'All' }, { value: 'child', label: 'Child' }, { value: 'adult', label: 'Adult' }];
+  return (
+    <div className="avail-filters">
+      <input placeholder="Search name or area" aria-label="Search name or area" value={filters.search}
+        onChange={e => onFilters({ ...filters, search: e.target.value }, 400)} />
+      <select aria-label="Area" className={filters.area != null ? 'on' : ''} value={filters.area ?? ''} onChange={e => set({ area: e.target.value || null })}>
+        <option value="">All areas</option>
+        {filterChoices(entries.map(a => a.region), filters.area).map(r => <option key={r} value={r}>{r}</option>)}
+      </select>
+      <select aria-label="Category" className={filters.category != null ? 'on' : ''} value={filters.category ?? ''} onChange={e => set({ category: e.target.value || null })}>
+        <option value="">All categories</option>
+        {filterChoices(entries.map(a => a.categoryLabel), filters.category).map(c => <option key={c} value={c}>{c}</option>)}
+      </select>
+      <span className="btn-pair" role="group" aria-label="Age">
+        {ages.map(a => (
+          <button key={a.label} className={`chip ${filters.age === a.value ? 'on' : ''}`} aria-pressed={filters.age === a.value} onClick={() => set({ age: a.value })}>{a.label}</button>
+        ))}
+      </span>
+      <button className={`chip ${filters.nightOnly ? 'on' : ''}`} aria-pressed={filters.nightOnly} onClick={() => set({ nightOnly: !filters.nightOnly })}>Night only</button>
+      <button className={`chip ${filters.hereOnly ? 'on' : ''}`} aria-pressed={filters.hereOnly} title="Only entries in the area you are in" onClick={() => set({ hereOnly: !filters.hereOnly })}>Here</button>
+      {hasActiveFilters(filters) && (
+        <span className="avail-count">
+          <span className="muted small">Showing {shown} of {entries.length}</span>
+          {shown > 0 && <button className="small-btn" onClick={() => onFilters(NO_FILTERS)}>Clear filters</button>}
+        </span>
+      )}
+    </div>
   );
 }
 

@@ -102,12 +102,15 @@ export class ProcessMemory implements Mem {
   }
 }
 
-/** Process ids of running programs with this image name (e.g. "hookshot.exe"). */
-export function findProcesses(image: string): Promise<number[]> {
-  return new Promise(resolve => {
+/**
+ * Process ids of running programs with this image name (e.g. "hookshot.exe").
+ * `strict`: reject when tasklist fails instead of answering "none" (for checks that must be sure).
+ */
+export function findProcesses(image: string, strict = false): Promise<number[]> {
+  return new Promise((resolve, reject) => {
     if (process.platform !== 'win32') return resolve([]);
     execFile('tasklist.exe', ['/FI', `IMAGENAME eq ${image}`, '/FO', 'CSV', '/NH'], { windowsHide: true, timeout: 5000 }, (err, out) => {
-      if (err) return resolve([]);
+      if (err) return strict ? reject(new Error(`couldn’t list running programs (${err.message})`)) : resolve([]);
       const pids = String(out).split(/\r?\n/).map(l => l.match(/^"[^"]+","(\d+)"/)?.[1]).filter((x): x is string => !!x).map(Number);
       resolve(pids);
     });

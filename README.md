@@ -27,7 +27,8 @@ you can get next, and updates as you play.
   your current area first. Each entry knows what it still needs (an item, a song, being adult,
   night time, an area you can't reach yet). Tiered upgrades (seed bag, bomb bag, quiver, stick
   and nut capacity) are offered one tier at a time, since whichever place you do first gives the
-  next tier. Resizable; also available as an overlay mode.
+  next tier. A search box and filters (by name, form or area) keep the list short. Resizable; also
+  available as an overlay mode.
 - **Live tracking:** while Hookshot, Longshot, NX2navi, ReLink or Fritchii is running, progress is read straight from the game
   (read-only) and updates within half a second, not just at autosaves. Your current area is live
   too, including places inside a bigger stage such as Lake Hylia and Lon Lon Ranch. At the title
@@ -74,7 +75,8 @@ folder that contains `slot_00`, `slot_01`, … (in an emulator, the one named af
 id, `0400486024DEC000`).
 
 The game rotates its autosaves across all six slots, so the default **Most recent** setting follows
-whichever slot was written last. You can pin a slot instead.
+whichever slot was written last. You can pin a slot instead. The slot picker lists each slot with
+its area, hearts and save time, so you can tell them apart before choosing.
 
 Hookshot, Longshot, NX2navi, ReLink and Fritchii each keep their own saves. When one of them is running, the tracker
 switches to that install's saves on its own (unless you've pinned a slot) and shows a note saying so.

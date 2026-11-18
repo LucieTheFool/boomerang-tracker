@@ -73,6 +73,17 @@ export interface SlotSummary {
   name: string; // slot_03
   mtimeMs: number;
   area?: string;
+  // From the slot's caption.sav; absent when it doesn't say or can't be read.
+  hearts?: number; // 4.75 = four and three quarters
+  maxHearts?: number;
+  savedAt?: number; // ms epoch, the caption's date read as local time
+  autoSave?: boolean;
+  rupees?: number;
+  tokens?: number;
+  songs?: number;
+  medals?: number;
+  stones?: number;
+  age?: 'child' | 'adult';
 }
 
 export interface Summary {
@@ -175,6 +186,19 @@ export interface OverlayState {
   mode: OverlayMode;
 }
 
+/** Search and filters of the "Can get now" list. null = no restriction. */
+export interface AvailableFilters {
+  search: string;
+  area: string | null;
+  /** A categoryLabel */
+  category: string | null;
+  age: 'child' | 'adult' | null;
+  nightOnly: boolean;
+  hereOnly: boolean;
+}
+
+export const NO_FILTERS: AvailableFilters = { search: '', area: null, category: null, age: null, nightOnly: false, hereOnly: false };
+
 export interface UiPrefs {
   hideCollected: boolean;
   hiddenCategories: string[];
@@ -183,4 +207,5 @@ export interface UiPrefs {
   showParts: { B: boolean; C: boolean };
   /** Height of the "Can get now" panel in pixels (user-resized) */
   availableHeight?: number;
+  availableFilters?: AvailableFilters;
 }

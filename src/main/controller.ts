@@ -14,6 +14,7 @@ import { LiveSource } from './live.js';
 import { ChangeLog } from './changelog.js';
 import { STAGE_KEY, LOCATION_KEY, areaFrom } from '../gamedata/live.js';
 import { keyOf } from '../gamedata/detect.js';
+import { CaptionCache, prettyArea, slotSummaryFromCaption } from './slot-summary.js';
 import { SettingsStore } from './settings.js';
 import type { AppState, Toast, SlotSummary } from '../shared/types.js';
 
@@ -34,6 +35,7 @@ export class Controller {
   private lastParsed = new Map<string, { mtimeMs: number; data: GameDataFile; buf: Buffer }>();
   /** the save shown last (any slot) */
   private lastShown?: { mtimeMs: number; data: GameDataFile; buf: Buffer };
+  private captions = new CaptionCache();
   private log!: ChangeLog;
   private toastId = 1;
   private toasts: Toast[] = [];
@@ -165,6 +167,7 @@ export class Controller {
     this.watcher?.stop();
     this.watcher = undefined;
     this.lastParsed.clear();
+    this.captions.clear();
     this.lastShownBySlot.clear();
     this.lastShown = undefined;
     this.userDir = undefined;
@@ -277,7 +280,10 @@ export class Controller {
       status: 'ok',
       message: warn,
       saveDir: this.userDir,
-      slots: slots.map((s): SlotSummary => ({ name: s.name, mtimeMs: s.mtimeMs, area: this.readArea(s) })),
+      slots: slots.map((s): SlotSummary => {
+        const { info, rawArea } = this.captions.get(s.caption);
+        return slotSummaryFromCaption(s.name, s.mtimeMs, info, rawArea);
+      }),
       slotMode: pinned ? 'manual' : 'recent',
       activeSlot: slot.name,
       summary, categories, lastChanges, areaRegions, available, canBeAdult,
@@ -310,16 +316,7 @@ export class Controller {
 
   /** Area string from caption.sav, e.g. "Market/Market_Child". */
   private readRawArea(slot: SlotInfo): string | undefined {
-    try {
-      const cap = parseGameData(fs.readFileSync(slot.caption));
-      const strs = [...cap.entries.values()].filter(e => e.type === 'String64' && typeof e.value === 'string').map(e => e.value as string);
-      return strs.find(s => s.includes('/')) ?? strs[0];
-    } catch { return undefined; }
-  }
-
-  private readArea(slot: SlotInfo): string | undefined {
-    const raw = this.readRawArea(slot);
-    return raw ? prettyArea(raw.split('/').pop()!) : undefined;
+    return this.captions.get(slot.caption).rawArea;
   }
 
   // ---- "which one was this?"
@@ -474,11 +471,4 @@ function singular(label: string) {
   const map: Record<string, string> = { 'Heart Pieces': 'Piece of Heart', 'Gold Skulltulas': 'Gold Skulltula', 'Bosses': 'Boss', 'Mini-bosses': 'Mini-boss',
     'Dungeons Cleared': 'Dungeon cleared', 'Side Quests': 'Side quest', 'Great Fairies': 'Great Fairy', 'Capacity Upgrades': 'Upgrade', 'Stones & Medallions': 'Stone/Medallion' };
   return map[label] ?? label.replace(/es$/, '').replace(/s$/, '');
-}
-
-/** "Market_Child" -> "Market (child)", "HyruleField_Adult" -> "Hyrule Field (adult)" */
-export function prettyArea(s: string): string {
-  const m = s.match(/^(.*?)(?:_(Adult|Child))?$/)!;
-  const base = m[1].replace(/_/g, ' ').replace(/([a-z])([A-Z])/g, '$1 $2').trim();
-  return m[2] ? `${base} (${m[2].toLowerCase()})` : base;
 }

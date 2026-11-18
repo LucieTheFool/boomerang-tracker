@@ -62,9 +62,12 @@ These match the GameDataList entries with `SaveFileIndex = 0` exactly.
 
 ## caption.sav
 
-Same container, 46 keys, data at 0x2A0. Contains a JPEG thumbnail (Binary, `FF D8 …`)
-and area strings such as `"Market"` / `"Market/Market_Adult"` (String64), usable as the
-slot's location label.
+Same container (parsed by `src/gamedata/caption.ts`, key-based), 46 keys in the reference
+save. Holds `CaptionData.*` keys: `BancScenePath` / `LocationName` (String64, e.g.
+`"Market/Market_Child"` / `"Market"`), `Date.*` (Int), `Life`/`MaxLife` (quarter hearts),
+`MP`/`MPMax`, `CurrentRupee`, `GoldToken`, `Pos` (Vector3), `Dir` (Float), `IsAutoSave`, a JPEG
+thumbnail (`ScreenShot`, Binary) and 22 mirror bools of learned songs/medals/stones. The key table and hashes
+were checked against a reference save.
 
 ## Uncertain
 

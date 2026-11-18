@@ -29,6 +29,9 @@ const SWEEP_WINDOW = 64 << 20; // locate() reads twice this per step
 /** Steps overlap a little, so tables lying across two windows are still found whole. */
 const SWEEP_STEP = BigInt(SWEEP_WINDOW * 2 - (8 << 20));
 
+/** What the live source needs from an opened game (read-only). */
+export type LiveMem = Pick<ProcessMemory, 'read' | 'imagePath' | 'regions' | 'alive' | 'close'>;
+
 export interface LiveOptions {
   /** Table addresses found before (hex), newest first. */
   hints: string[];
@@ -37,11 +40,15 @@ export interface LiveOptions {
   onGame?(exe: string | undefined): void;
   onChange(): void;
   onStatus(): void;
+  /** Tests: find and open the game without Windows (defaults: tasklist + ProcessMemory). */
+  findGame?: () => Promise<{ pid: number; image: string; emulator?: boolean } | undefined>;
+  open?: (pid: number) => LiveMem;
+  now?: () => number;
 }
 
 export class LiveSource {
   info: LiveInfo = { status: 'off' };
-  private mem?: ProcessMemory;
+  private mem?: LiveMem;
   private tables?: LiveTables;
   private ref?: GameDataFile;
   private timer?: NodeJS.Timeout;
@@ -53,9 +60,11 @@ export class LiveSource {
   private sweep?: { ranges: [bigint, bigint][]; i: number; at: bigint };
   private sweepPausedUntil = 0;
   private busy = false;
+  private lastError?: string;
+  private readonly now: () => number;
   watchInts = new Set<number>();
 
-  constructor(private opts: LiveOptions) {}
+  constructor(private opts: LiveOptions) { this.now = opts.now ?? Date.now; }
 
   async start() {
     if (!(await initMemoryAccess())) return this.set({ status: 'unavailable', detail: 'Reading game memory is not available on this system.' });
@@ -76,6 +85,8 @@ export class LiveSource {
   /** Live data, only while it matches the reference save. */
   current() { return this.info.status === 'live' ? this.snapshot : undefined; }
 
+  private gone() { this.detach(); this.set({ status: 'no-game' }); }
+
   private set(info: LiveInfo) {
     const changed = info.status !== this.info.status || info.detail !== this.info.detail;
     this.info = info;
@@ -89,23 +100,38 @@ export class LiveSource {
     this.snapshot = undefined;
     this.lastPrint = undefined;
     this.sweep = undefined;
+    // A game started again is a fresh run: don't wait out the last run's "not found" pause.
+    this.sweepPausedUntil = 0;
   }
 
-  private async tick() {
+  /** One attach/poll step (public for tests; start() runs it on a timer). */
+  async tick() {
     if (this.busy) return;
     this.busy = true;
-    try { await this.step(); } catch (e) { console.error('live', e); this.detach(); this.set({ status: 'no-game', detail: String((e as Error).message ?? e) }); }
-    finally { this.busy = false; }
+    try { await this.step(); } catch (e) {
+      // Once per distinct problem: this runs twice a second.
+      const msg = String((e as Error)?.message ?? e);
+      if (msg !== this.lastError) console.error('live', e);
+      this.lastError = msg;
+      this.detach();
+      this.lastFind = this.now(); // look again at the usual pace, not on the very next tick
+      this.set({ status: 'no-game', detail: msg });
+    } finally { this.busy = false; }
   }
 
   private async step() {
-    if (this.mem && !this.mem.alive()) { this.detach(); this.set({ status: 'no-game' }); }
+    if (this.mem && !this.mem.alive()) this.gone();
     if (!this.mem) {
-      if (Date.now() - this.lastFind < FIND_EVERY_MS) return;
-      this.lastFind = Date.now();
-      const game = await findGame();
+      if (this.now() - this.lastFind < FIND_EVERY_MS) return;
+      this.lastFind = this.now();
+      const game = await (this.opts.findGame ?? findGame)();
       if (!game) return this.set({ status: 'no-game' });
-      this.mem = new ProcessMemory(game.pid);
+      try {
+        this.mem = this.opts.open ? this.opts.open(game.pid) : new ProcessMemory(game.pid);
+      } catch {
+        // Typically a game started as administrator. Retried every few seconds; said once.
+        return this.set({ status: 'no-game', detail: `${game.image} is running, but Windows won't let Boomerang Tracker open it. If the game runs as administrator, run the tracker as administrator too.` });
+      }
       this.emulator = !!game.emulator;
       this.opts.onGame?.(this.mem.imagePath());
     }
@@ -122,11 +148,12 @@ export class LiveSource {
       this.lastPrint = undefined;
       return this.set({ status: 'waiting', detail: describeMismatch(live.agreement) });
     }
+    this.lastError = undefined;
     const wasLive = this.info.status === 'live';
     this.set({ status: 'live' });
     if (print !== this.lastPrint || !wasLive) {
       this.lastPrint = print;
-      this.snapshot = { data: live.data, atMs: Date.now(), resettable: live.resettable };
+      this.snapshot = { data: live.data, atMs: this.now(), resettable: live.resettable };
       this.opts.onChange();
     }
   }
@@ -137,7 +164,7 @@ export class LiveSource {
    */
   private find(): boolean {
     const mem = this.mem!, ref = this.ref!;
-    if (Date.now() < this.sweepPausedUntil) return false;
+    if (this.now() < this.sweepPausedUntil) return false;
     if (this.sweep === undefined) {
       // After a full sweep found nothing, stay "waiting" rather than flicker back.
       if (this.info.status !== 'waiting') this.set({ status: 'searching' });
@@ -163,7 +190,7 @@ export class LiveSource {
     if (!s.ranges[s.i]) {
       // Not found anywhere (e.g. still at the title screen). Try again in a bit.
       this.sweep = undefined;
-      this.sweepPausedUntil = Date.now() + 10_000;
+      this.sweepPausedUntil = this.now() + 10_000;
       this.set({ status: 'waiting', detail: "Couldn't find the progress tables yet. Load your file in the game." });
     }
     return false;
@@ -178,11 +205,11 @@ export class LiveSource {
   }
 }
 
-/** The first running game, in the order of GAMES. */
-async function findGame(): Promise<{ pid: number; emulator?: boolean } | undefined> {
+/** The first running game, in the order of GAMES. `strict`: see findProcesses. */
+export async function findGame(strict = false): Promise<{ pid: number; image: string; emulator?: boolean } | undefined> {
   for (const g of GAMES) {
-    const [pid] = await findProcesses(g.image);
-    if (pid) return { pid, emulator: g.emulator };
+    const [pid] = await findProcesses(g.image, strict);
+    if (pid) return { pid, image: g.image, emulator: g.emulator };
   }
   return undefined;
 }

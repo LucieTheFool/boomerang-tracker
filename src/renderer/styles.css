@@ -191,6 +191,7 @@ button.card-head .card-count { margin-left: auto; }
 .logic .ok { color: var(--ok); }
 .toolbar { flex-wrap: wrap; row-gap: 6px; }
 .toolbar button, .toolbar label { white-space: nowrap; }
+.toolbar select { max-width: min(20em, 70vw); text-overflow: ellipsis; }
 .toolbar button { padding: 4px 10px; font-size: 13px; }
 
 /* Line-icon tiles */
@@ -221,6 +222,15 @@ button.card-head .card-count { margin-left: auto; }
 /* Resizable "Can get now" */
 .available { resize: vertical; overflow: auto; max-height: none; min-height: 44px; }
 .available.closed { resize: none; height: auto !important; }
+
+/* "Can get now" search and filters: stay in view while the list scrolls */
+.avail-filters { position: sticky; top: 0; z-index: 1; display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; margin-top: 6px; padding: 4px 0; background: #151822; }
+.avail-filters input { width: 190px; font-size: 13px; padding: 3px 9px; border-radius: 14px; }
+.avail-filters select { max-width: 190px; font-size: 13px; padding: 3px 8px; border-radius: 14px; }
+.avail-filters select.on { background: #2a5ea8; border-color: #3b74c6; }
+.avail-filters option { background: var(--panel-2); }
+.avail-count { display: inline-flex; gap: 8px; align-items: center; margin-left: auto; }
+.avail-empty { display: flex; gap: 10px; align-items: center; }
 
 /* Masonry columns: cards fill the shortest column, no empty rows */
 .masonry { display: flex; align-items: flex-start; }
