@@ -1,23 +1,47 @@
-// Live source: attaches (read-only) to a running game (Hookshot, Longshot, NX2navi or the
-// Fritchii emulator), keeps the progress tables located, and reports when tracked values
-// change. Falls back to nothing (the save files) whenever the game isn't running or isn't
-// in the same playthrough.
+// Live source: attaches (read-only) to a running game (Hookshot, Longshot, NX2navi, ReLink,
+// Rekarina or the Fritchii emulator), keeps the progress tables located, and reports when
+// tracked values change. Falls back to nothing (the save files) whenever the game isn't
+// running or isn't in the same playthrough.
 import type { GameDataFile } from '../gamedata/parser.js';
-import { locate, readTables, buildLive, fingerprint, matchesReference, sweepRanges, LiveTables, Agreement } from '../gamedata/live.js';
-import { ProcessMemory, findProcesses, initMemoryAccess } from './procmem.js';
+import { locate, readTables, buildLive, fingerprint, matchesReference, sweepRanges, type LiveTables, type Agreement, type Mem, type MemLayout } from '../gamedata/live.js';
+import { ProcessMemory, findProcesses, initMemoryAccess, type MemRegion } from './procmem.js';
 import type { LiveInfo } from '../shared/types.js';
+
+export interface GameInfo {
+  image: string;
+  /** An emulator: the game's memory moves every run; swept through its mapped views. */
+  emulator?: boolean;
+  /** Where things are, when it isn't the recomps' layout (RECOMP_LAYOUT). */
+  layout?: MemLayout;
+  /** No fixed place known: sweep the committed, readable blocks in [lo, hi) (host addresses). */
+  heap?: readonly [bigint, bigint];
+}
+
+/**
+ * Rekarina 1.2.1 maps guest memory at the same addresses (guest 0 = host 0), with the
+ * game's code at 0x70_0000_0000, so the tables' vtables are 0x70xxxxxxxx. The tables are
+ * in the heap between 4 GB and the code; there is no fixed place to try first.
+ */
+const REKARINA: Pick<GameInfo, 'layout' | 'heap'> = {
+  layout: { guestBase: 0n, vtables: [0x70_0000_0000n, 0x80_0000_0000n] },
+  heap: [0x1_0000_0000n, 0x70_0000_0000n],
+};
 
 /**
  * Programs that run the game. Hookshot and its fork Longshot run it as hookshot.exe;
  * NX2navi builds it as Triforce.exe and Project ReLink as bin\relink-game.exe. They map the game
- * at a fixed place. The Fritchii
+ * at a fixed place. Rekarina (game\Rekarina.exe; its helper rekarina_xlate.exe is not the
+ * game) keeps the tables somewhere in its heap, found by sweeping it. The Fritchii
  * emulator (lichii.exe) puts it somewhere new every run, so it's found by sweeping.
  */
-const GAMES: { image: string; emulator?: boolean }[] = [
+export const GAMES: GameInfo[] = [
   { image: 'hookshot.exe' }, { image: 'Triforce.exe' }, { image: 'relink-game.exe' }, { image: 'lichii.exe', emulator: true },
+  { image: 'Rekarina.exe', ...REKARINA },
 ];
 const TICK_MS = 500;
 const FIND_EVERY_MS = 3000;
+/** While attached but not live, how often to tell the app again which game it is (onGame). */
+const FOLLOW_EVERY_MS = 5000;
 /**
  * Where the tables were in Hookshot v2.1.0, Longshot v1.0.0, and NX2navi's Triforce v0.4.0 and
  * Project ReLink (the same address) (host addresses). Only starting points.
@@ -28,6 +52,52 @@ const HEAP_LO = 0x1010_0000_0000n, HEAP_HI = 0x1011_c000_0000n;
 const SWEEP_WINDOW = 64 << 20; // locate() reads twice this per step
 /** Steps overlap a little, so tables lying across two windows are still found whole. */
 const SWEEP_STEP = BigInt(SWEEP_WINDOW * 2 - (8 << 20));
+/** A heap sweep (GameInfo.heap) joins blocks closer than this and skips smaller ones. */
+const HEAP_JOIN_GAP = 8n << 20n, HEAP_MIN_BLOCK = 1n << 20n;
+
+/** One step of a sweep: locate() around `at`, `half` bytes either side. */
+export interface SweepWindow { at: bigint; half: number }
+
+/**
+ * The windows to sweep `ranges` with, in order. A range longer than one window is stepped
+ * through (overlapping a little); with `fit`, a shorter one gets a single window of its own
+ * size (Rekarina's heap is many blocks: reading 128 MB around each would be slow).
+ */
+export function sweepWindows(ranges: [bigint, bigint][], fit = false): SweepWindow[] {
+  const out: SweepWindow[] = [];
+  const W = BigInt(SWEEP_WINDOW);
+  for (const [lo, hi] of ranges) {
+    if (fit && hi - lo <= 2n * W) { const half = (hi - lo + 1n) / 2n; out.push({ at: lo + half, half: Number(half) }); continue; }
+    for (let at = lo + W; at - W < hi; at += SWEEP_STEP) out.push({ at, half: SWEEP_WINDOW });
+  }
+  return out;
+}
+
+/**
+ * Reads that only touch the given committed blocks (sorted by address): a read that fails
+ * as a whole is put together from the parts inside the blocks, the rest left zero. A sweep
+ * window then still sees tables next to a hole in Rekarina's heap. null if none of it is readable.
+ */
+export function committedReader(mem: Mem, blocks: MemRegion[]): Mem {
+  const sorted = [...blocks].sort((a, b) => (a.base < b.base ? -1 : a.base > b.base ? 1 : 0));
+  return {
+    read(addr, len) {
+      const whole = mem.read(addr, len);
+      if (whole) return whole;
+      const end = addr + BigInt(len);
+      const out = Buffer.alloc(len);
+      let any = false;
+      for (const r of sorted) {
+        if (r.base >= end) break;
+        const lo = r.base > addr ? r.base : addr, hi = r.base + r.size < end ? r.base + r.size : end;
+        if (hi <= lo) continue;
+        const b = mem.read(lo, Number(hi - lo));
+        if (b) { b.copy(out, Number(lo - addr)); any = true; }
+      }
+      return any ? out : null;
+    },
+  };
+}
 
 /** What the live source needs from an opened game (read-only). */
 export type LiveMem = Pick<ProcessMemory, 'read' | 'imagePath' | 'regions' | 'alive' | 'close'>;
@@ -36,12 +106,16 @@ export interface LiveOptions {
   /** Table addresses found before (hex), newest first. */
   hints: string[];
   onHint(hex: string): void;
-  /** A game was attached to: the full path of its exe, if Windows gave it. */
-  onGame?(exe: string | undefined): void;
+  /**
+   * A game is attached: the full path of its exe, if Windows gave it, and which attach this
+   * is (a new number each time a game is attached). Called on attach, then every
+   * FOLLOW_EVERY_MS for as long as it isn't live, so the app can follow the game's saves.
+   */
+  onGame?(exe: string | undefined, attach: number): void;
   onChange(): void;
   onStatus(): void;
   /** Tests: find and open the game without Windows (defaults: tasklist + ProcessMemory). */
-  findGame?: () => Promise<{ pid: number; image: string; emulator?: boolean } | undefined>;
+  findGame?: () => Promise<(GameInfo & { pid: number }) | undefined>;
   open?: (pid: number) => LiveMem;
   now?: () => number;
 }
@@ -55,9 +129,12 @@ export class LiveSource {
   private lastFind = 0;
   private lastPrint?: string;
   private snapshot?: { data: GameDataFile; atMs: number; resettable: Set<bigint> };
-  private emulator = false;
-  /** Where the sweep is: ranges to search (host [lo, hi)), the current one and the next window's centre. */
-  private sweep?: { ranges: [bigint, bigint][]; i: number; at: bigint };
+  private game?: GameInfo;
+  /** The current attach: its number, the exe path once Windows gave it, when onGame was last called. */
+  private attach?: { id: number; exe?: string; lastFollow: number };
+  private attaches = 0;
+  /** Where the sweep is: the windows to search, the next one, and how to read memory for it. */
+  private sweep?: { windows: SweepWindow[]; i: number; reader: Mem };
   private sweepPausedUntil = 0;
   private busy = false;
   private lastError?: string;
@@ -85,6 +162,9 @@ export class LiveSource {
   /** Live data, only while it matches the reference save. */
   current() { return this.info.status === 'live' ? this.snapshot : undefined; }
 
+  /** The tables found (also while they don't match the save), for scripts/live-check.ts. */
+  located() { return this.tables; }
+
   private gone() { this.detach(); this.set({ status: 'no-game' }); }
 
   private set(info: LiveInfo) {
@@ -100,6 +180,7 @@ export class LiveSource {
     this.snapshot = undefined;
     this.lastPrint = undefined;
     this.sweep = undefined;
+    this.attach = undefined;
     // A game started again is a fresh run: don't wait out the last run's "not found" pause.
     this.sweepPausedUntil = 0;
   }
@@ -132,9 +213,12 @@ export class LiveSource {
         // Typically a game started as administrator. Retried every few seconds; said once.
         return this.set({ status: 'no-game', detail: `${game.image} is running, but Windows won't let Boomerang Tracker open it. If the game runs as administrator, run the tracker as administrator too.` });
       }
-      this.emulator = !!game.emulator;
-      this.opts.onGame?.(this.mem.imagePath());
+      this.game = game;
+      this.attach = { id: ++this.attaches, lastFollow: -Infinity };
     }
+    // Following the game's saves can fail for a moment (no exe path yet, Rekarina swapping a
+    // save in): keep offering until live.
+    if (this.info.status !== 'live') this.follow();
     if (!this.ref) return this.set({ status: 'searching', detail: 'Waiting for a save to compare with.' });
     if (!this.tables && !this.find()) return;
     const raw = readTables(this.mem, this.tables!);
@@ -160,40 +244,54 @@ export class LiveSource {
 
   /**
    * Try the saved hints, then the defaults, then sweep one window per tick: the recomps'
-   * heap, or an emulator's mapped memory (biggest blocks first).
+   * heap, an emulator's mapped memory (biggest blocks first), or Rekarina's heap blocks.
    */
   private find(): boolean {
-    const mem = this.mem!, ref = this.ref!;
+    const mem = this.mem!, ref = this.ref!, game = this.game!;
     if (this.now() < this.sweepPausedUntil) return false;
     if (this.sweep === undefined) {
       // After a full sweep found nothing, stay "waiting" rather than flicker back.
       if (this.info.status !== 'waiting') this.set({ status: 'searching' });
+      // A heap sweep reads around the holes between the committed blocks.
+      const blocks = game.heap ? mem.regions() : [];
+      const reader = game.heap ? committedReader(mem, blocks) : mem;
       const hints = [...new Set([...this.opts.hints.map(h => BigInt('0x' + h)), ...DEFAULT_HINTS])];
       // Exact spots first (cheap), then a wider window around each. An emulator's memory
       // moves every run, so only a tracker restart during the same run hits a hint there.
-      for (const h of hints) { const t = locate(mem, ref, h, 4 << 20); if (t) return this.found(t); }
-      if (!this.emulator) for (const h of hints.slice(0, 2)) {
-        const t = locate(mem, ref, h, SWEEP_WINDOW);
+      for (const h of hints) { const t = locate(reader, ref, h, 4 << 20, game.layout); if (t) return this.found(t); }
+      if (!game.emulator) for (const h of hints.slice(0, 2)) {
+        const t = locate(reader, ref, h, SWEEP_WINDOW, game.layout);
         if (t) return this.found(t);
       }
-      const ranges: [bigint, bigint][] = this.emulator ? sweepRanges(mem.regions()) : [[HEAP_LO, HEAP_HI]];
-      this.sweep = { ranges, i: 0, at: (ranges[0]?.[0] ?? 0n) + BigInt(SWEEP_WINDOW) };
+      const ranges: [bigint, bigint][] = game.heap
+        ? sweepRanges(blocks, { within: game.heap, anyType: true, joinGap: HEAP_JOIN_GAP, minSize: HEAP_MIN_BLOCK })
+        : game.emulator ? sweepRanges(mem.regions()) : [[HEAP_LO, HEAP_HI]];
+      this.sweep = { windows: sweepWindows(ranges, !!game.heap), i: 0, reader };
     }
     const s = this.sweep;
-    const range = s.ranges[s.i];
-    if (range) {
-      const t = locate(mem, ref, s.at, SWEEP_WINDOW);
+    // One full window per tick; a heap sweep's smaller windows share that much reading.
+    for (let budget = SWEEP_WINDOW * 2; budget > 0 && s.i < s.windows.length;) {
+      const w = s.windows[s.i++];
+      const t = locate(s.reader, ref, w.at, w.half, game.layout);
       if (t) return this.found(t);
-      s.at += SWEEP_STEP;
-      if (s.at - BigInt(SWEEP_WINDOW) >= range[1] && s.ranges[++s.i]) s.at = s.ranges[s.i][0] + BigInt(SWEEP_WINDOW);
+      budget -= w.half * 2;
     }
-    if (!s.ranges[s.i]) {
+    if (s.i >= s.windows.length) {
       // Not found anywhere (e.g. still at the title screen). Try again in a bit.
       this.sweep = undefined;
       this.sweepPausedUntil = this.now() + 10_000;
       this.set({ status: 'waiting', detail: "Couldn't find the progress tables yet. Load your file in the game." });
     }
     return false;
+  }
+
+  /** onGame, at most every FOLLOW_EVERY_MS. Asks Windows for the exe path until it gives it. */
+  private follow() {
+    const a = this.attach!;
+    if (this.now() - a.lastFollow < FOLLOW_EVERY_MS) return;
+    a.lastFollow = this.now();
+    a.exe ??= this.mem!.imagePath();
+    this.opts.onGame?.(a.exe, a.id);
   }
 
   private found(t: LiveTables): boolean {
@@ -206,10 +304,10 @@ export class LiveSource {
 }
 
 /** The first running game, in the order of GAMES. `strict`: see findProcesses. */
-export async function findGame(strict = false): Promise<{ pid: number; image: string; emulator?: boolean } | undefined> {
-  for (const g of GAMES) {
+export async function findGame(strict = false, games = GAMES): Promise<(GameInfo & { pid: number }) | undefined> {
+  for (const g of games) {
     const [pid] = await findProcesses(g.image, strict);
-    if (pid) return { pid, image: g.image, emulator: g.emulator };
+    if (pid) return { ...g, pid };
   }
   return undefined;
 }

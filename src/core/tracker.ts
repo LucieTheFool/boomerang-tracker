@@ -4,7 +4,7 @@ import { GameDataFile } from '../gamedata/parser.js';
 import { evaluate, evaluateCounter, readValue, ruleKeys, Rule, CounterRule, keyOf } from '../gamedata/detect.js';
 import { diffGameData, Change } from '../gamedata/diff.js';
 import { hex32 } from '../gamedata/murmur3.js';
-import type { TrackedCategory, TrackedItem, Summary, ChangeReport, ChangeRow } from '../shared/types.js';
+import type { KeyInfo, TrackedCategory, TrackedItem, Summary, ChangeReport, ChangeRow } from '../shared/types.js';
 import { applyLearned, findIdentifications, LearnedGroup, Pool } from './pools.js';
 
 export interface ChecklistFile {
@@ -40,6 +40,8 @@ export function applyDescriptions(checklist: ChecklistFile, file: DescriptionsFi
 export interface MappingFile {
   entries: Record<string, { label: string; detect: Rule | null; confidence: 'confirmed' | 'likely' | 'guess'; evidence: string }>;
   counters: Record<string, CounterRule & { confidence: string; evidence: string }>;
+  /** Per-dungeon key info that isn't a checklist row: the current room-key count (`held`) and how many there are (`max`). Absent until mapped. */
+  keys?: Record<string, { held?: { name: string }; max?: number }>;
   derived: {
     maxHearts: { name: string; scale: number };
     heartPiecesHeld: { name: string };
@@ -115,7 +117,7 @@ export class Tracker {
     }
   }
 
-  evaluate(save: GameDataFile, manual: ManualTicks = {}, previous?: GameDataFile): { categories: TrackedCategory[]; summary: Summary } {
+  evaluate(save: GameDataFile, manual: ManualTicks = {}, previous?: GameDataFile): { categories: TrackedCategory[]; summary: Summary; keys: KeyInfo } {
     const categories: TrackedCategory[] = [];
     let doneA = 0;
     let totalA = 0;
@@ -126,7 +128,8 @@ export class Tracker {
         const max = c.max ?? 0;
         if (c.countsToward100) { doneA += Math.min(value ?? 0, max); totalA += max; }
         categories.push({ id: c.id, label: c.label, part: c.part, countsToward100: c.countsToward100, kind: 'counter', note: c.note,
-          items: [], done: Math.min(value ?? 0, max), total: max, value, max, counterConfidence: ctr?.confidence });
+          items: [], done: Math.min(value ?? 0, max), total: max, value, max, counterConfidence: ctr?.confidence,
+          ...(c.items.length ? { spots: c.items.map(it => ({ ...it, state: 'unmapped' as const, manual: false, done: false })) } : {}) });
         continue;
       }
       const pooled = new Set(this.pools.flatMap(p => p.rows));
@@ -185,7 +188,17 @@ export class Tracker {
     }
     const gs = categories.find(c => c.id === 'gold_skulltulas');
     if (gs && tokens !== null && tokens !== gs.done) gs.hint = `Your save has ${tokens} token${tokens === 1 ? '' : 's'}; ${gs.done} matched to a location so far.`;
-    return { categories, summary };
+    return { categories, summary, keys: this.keyInfo(save) };
+  }
+
+  /** Room-key counts for the dungeons the mapping knows them for (see MappingFile.keys). */
+  keyInfo(save: GameDataFile): KeyInfo {
+    const out: KeyInfo = {};
+    for (const [dungeon, k] of Object.entries(this.mapping.keys ?? {})) {
+      const v = k.held ? readValue(save, k.held) : undefined;
+      out[dungeon] = { held: typeof v === 'number' ? v : null, max: k.max };
+    }
+    return out;
   }
 
   /** Split a diff into keys the mapping uses and everything else. */

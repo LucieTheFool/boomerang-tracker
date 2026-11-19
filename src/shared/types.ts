@@ -63,6 +63,12 @@ export interface TrackedCategory {
   items: TrackedItem[];
   done: number;
   total: number;
+  /**
+   * Counters only: the checklist's per-location rows, for display. Kept out of `items` so
+   * they never reach "can get now", Remaining or the 100% count (the counter value does).
+   * Always unmapped until a rule ties a flag to a spot.
+   */
+  spots?: TrackedItem[];
   /** For counters */
   value?: number | null;
   max?: number;
@@ -84,6 +90,8 @@ export interface SlotSummary {
   medals?: number;
   stones?: number;
   age?: 'child' | 'adult';
+  /** Rekarina: a finished save the game hasn't put in place yet (it does on its next start). */
+  pending?: boolean;
 }
 
 export interface Summary {
@@ -121,6 +129,9 @@ export interface ChangeReport {
 
 export interface Toast { id: number; text: string }
 
+/** Per-dungeon room-key info that isn't a checklist row; `held` is null when unreadable. */
+export type KeyInfo = Record<string, { held: number | null; max?: number }>;
+
 export interface AppState {
   status: 'ok' | 'no-folder' | 'no-slots' | 'error' | 'loading';
   message?: string;
@@ -130,6 +141,7 @@ export interface AppState {
   activeSlot?: string;
   summary?: Summary;
   categories: TrackedCategory[];
+  keys?: KeyInfo;
   lastChanges?: ChangeReport;
   snapshots: { file: string; label: string }[];
   snapshotDiff?: { from: string; to: string; rows: ChangeRow[] };

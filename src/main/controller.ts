@@ -3,7 +3,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { parseGameData, GameDataFile, GameDataError } from '../gamedata/parser.js';
-import { autoDetectUserFolder, resolveUserFolders, listSlots, mostRecentSlot, readSaveStable, userFolderForExe, SlotInfo } from '../gamedata/saves.js';
+import { autoDetectUserFolder, resolveUserFolders, listSlots, mostRecentSlot, readSaveStable, userFolderForExe, isMissing, SlotInfo } from '../gamedata/saves.js';
 import { loadNames } from '../gamedata/names.js';
 import { Tracker, ChecklistFile, MappingFile, DescriptionsFile, applyDescriptions } from '../core/tracker.js';
 import { regionsForArea } from '../core/areas.js';
@@ -107,7 +107,7 @@ export class Controller {
       const found = autoDetectUserFolder();
       if (found) { dir = found; this.settings.update(s => (s.saveDir = found)); }
     }
-    await this.useFolder(dir);
+    await this.openFolder(dir);
     if (this.settings.data.live.enabled) await this.startLive();
   }
 
@@ -125,7 +125,7 @@ export class Controller {
         s.live.hints = [...new Set([h, ...prev])].slice(0, 4);
         s.live.hint = h;
       }),
-      onGame: exe => void this.followGame(exe),
+      onGame: (exe, attach) => void this.followGame(exe, attach),
       onChange: () => void this.refresh(true),
       onStatus: () => {
         const i = this.live?.info;
@@ -163,7 +163,16 @@ export class Controller {
   /** Newest save read (the live source's reference). */
   private lastShownSave?: GameDataFile;
 
+  /**
+   * The user chose a folder (folder:browse). While a game is attached, it's kept: the
+   * running game's saves aren't followed away from it until a game is attached again.
+   */
   async useFolder(dir: string | undefined) {
+    this.following.chosen = true;
+    await this.openFolder(dir);
+  }
+
+  private async openFolder(dir: string | undefined) {
     this.watcher?.stop();
     this.watcher = undefined;
     this.lastParsed.clear();
@@ -171,7 +180,7 @@ export class Controller {
     this.lastShownBySlot.clear();
     this.lastShown = undefined;
     this.userDir = undefined;
-    if (!dir) return this.fail('no-folder', "No save folder found. Choose your game folder (Hookshot, Longshot, NX2navi's Triforce or ReLink) or its user\\save\\<id> folder, or Fritchii's data folder (%APPDATA%\\fritchii).");
+    if (!dir) return this.fail('no-folder', "No save folder found. Choose your game folder (Hookshot, Longshot, NX2navi's Triforce, ReLink or Rekarina) or its user\\save\\<id> folder (Rekarina: game\\profile\\save\\<id>), or Fritchii's data folder (%APPDATA%\\fritchii).");
     if (!fs.existsSync(dir)) return this.fail('no-folder', `The save folder no longer exists:\n${dir}`);
     const users = resolveUserFolders(dir);
     if (!users.length) return this.fail('no-slots', `No slot_* folders with a progress.sav were found in:\n${dir}`);
@@ -184,18 +193,32 @@ export class Controller {
   }
 
   /**
-   * When a game starts, follow its saves: Hookshot, Longshot, NX2navi, ReLink and Fritchii each keep their
-   * own. Not while a slot is pinned (that's a choice of save), and only if it has saves.
+   * Follow the running game's saves: Hookshot, Longshot, NX2navi, ReLink, Rekarina and Fritchii each keep their
+   * own. The live source offers this on attach and every few seconds until live, as it can fail for a moment (no
+   * exe path yet, Rekarina's save folder swapped away). Not while a slot is pinned (that's a choice of save), not
+   * after the user chose a folder during this attach, and only if the game has saves.
    */
-  private async followGame(exe: string | undefined) {
-    if (!exe || this.settings.data.pinnedSlot) return;
+  async followGame(exe: string | undefined, attach: number) {
+    if (attach !== this.following.attach) this.following = { attach, said: new Set() };
+    // Retried every few seconds: say each reason once per attach.
+    const skip = (why: string) => {
+      if (!this.following.said.has(why)) console.log('[follow]', why);
+      this.following.said.add(why);
+    };
+    if (!exe) return skip('no exe path');
+    if (this.settings.data.pinnedSlot) return skip('pinned');
+    if (this.following.chosen) return skip(`keeping the folder you chose: ${this.userDir ?? '(none)'}`);
     const dir = userFolderForExe(exe);
-    if (!dir || path.resolve(dir).toLowerCase() === path.resolve(this.userDir ?? '').toLowerCase()) return;
-    const game = path.dirname(exe).replace(/\\bin$/i, '');
+    if (!dir) return skip(`no saves found for ${exe}`);
+    if (path.resolve(dir).toLowerCase() === path.resolve(this.userDir ?? '').toLowerCase()) return skip(`already using ${dir}`);
+    const game = path.dirname(exe).replace(/\\(bin|game)$/i, '');
+    console.log('[follow] switched to', dir);
     this.log.write({ kind: 'source', status: 'switched', detail: `Following the running game: ${game}` });
     this.toast(`Switched to the saves of the game that's running (${game}).`, 8000);
-    await this.useFolder(dir);
+    await this.openFolder(dir);
   }
+  /** Following the attached game (followGame): which attach, reasons already logged, a folder the user chose. */
+  private following: { attach?: number; said: Set<string>; chosen?: boolean } = { said: new Set() };
 
   private fail(status: AppState['status'], message: string) {
     this.state = { ...this.state, status, message, slots: [], categories: [], summary: undefined, saveDir: this.userDir };
@@ -205,16 +228,24 @@ export class Controller {
   /** Re-read the active slot. `fromWatcher` = a new save was written (enables glow and toasts). */
   async refresh(fromWatcher: boolean) {
     if (!this.userDir) return;
-    const slots = listSlots(this.userDir);
+    let slots = listSlots(this.userDir);
     if (!slots.length) return this.fail('no-slots', `No slot_* folders with a progress.sav in:\n${this.userDir}`);
     const pinned = this.settings.data.pinnedSlot;
-    const slot: SlotInfo = (pinned && slots.find(s => s.name === pinned)) || mostRecentSlot(slots);
+    let slot: SlotInfo = (pinned && slots.find(s => s.name === pinned)) || mostRecentSlot(slots);
 
     let read: { mtimeMs: number; data: GameDataFile; buf: Buffer };
     try {
       // Live updates refresh often; don't re-read a save that hasn't changed.
       const cached = this.lastParsed.get(slot.name);
-      read = cached && cached.mtimeMs === slot.mtimeMs ? cached : await readSaveStable(slot.progress);
+      read = cached && cached.mtimeMs === slot.mtimeMs ? cached : await readSaveStable(slot.progress).catch(async e => {
+        // Rekarina swapped a pending save in while it was read: find the slot again, once.
+        const relisted = isMissing(e) ? listSlots(this.userDir!) : [];
+        const again = relisted.find(s => s.name === slot.name);
+        if (!again || again.progress === slot.progress) throw e;
+        slots = relisted;
+        slot = again;
+        return readSaveStable(again.progress);
+      });
     } catch (e) {
       // Keep showing the last good state; just report the problem.
       const msg = e instanceof GameDataError ? `This save doesn't look like an Ocarina of Time save: ${e.message}` : `Couldn't read ${slot.name}/progress.sav: ${(e as Error).message}`;
@@ -254,7 +285,7 @@ export class Controller {
     // Where you are only says which spot you just collected when it's read live.
     if (samePlaythrough && fromWatcher) this.collectIdentifications(prev!.data, cur.data, stageIsLive ? nearRegions : undefined);
     const manual = this.manualFor(slot.name);
-    const { categories, summary } = this.tracker.evaluate(cur.data, manual, samePlaythrough ? prev!.data : undefined);
+    const { categories, summary, keys } = this.tracker.evaluate(cur.data, manual, samePlaythrough ? prev!.data : undefined);
     // A place inside the stage has no age of its own: take the stage's (_Child/_Adult).
     const age = rawArea !== stage ? stage?.match(/_(Adult|Child)$/)?.[0] ?? '' : '';
     summary.area = rawArea ? prettyArea(rawArea.split('/').pop()! + age) : undefined;
@@ -282,11 +313,12 @@ export class Controller {
       saveDir: this.userDir,
       slots: slots.map((s): SlotSummary => {
         const { info, rawArea } = this.captions.get(s.caption);
-        return slotSummaryFromCaption(s.name, s.mtimeMs, info, rawArea);
+        const sum = slotSummaryFromCaption(s.name, s.mtimeMs, info, rawArea);
+        return s.pending ? { ...sum, pending: true } : sum;
       }),
       slotMode: pinned ? 'manual' : 'recent',
       activeSlot: slot.name,
-      summary, categories, lastChanges, areaRegions, available, canBeAdult,
+      summary, categories, keys, lastChanges, areaRegions, available, canBeAdult,
       identify: this.settings.data.pendingIdentify,
       learnedCount: this.settings.data.learned.length,
       snapshots: this.listSnapshots(),

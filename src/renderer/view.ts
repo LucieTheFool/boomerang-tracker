@@ -1,6 +1,6 @@
 // Display grouping: how checklist categories are merged into cards on screen.
 // Purely visual. Every checklist row still exists and counts toward 100%.
-import type { TrackedCategory, TrackedItem } from '../shared/types';
+import type { KeyInfo, TrackedCategory, TrackedItem } from '../shared/types';
 
 /** One tile: a single checklist row, or a stack of rows shown as one tile with a level. */
 export type TileModel =
@@ -105,7 +105,9 @@ export function buildCards(cats: TrackedCategory[]): Card[] {
   for (const c of cats) {
     if (used.has(c.id)) continue;
     if (c.kind === 'counter') {
-      cards.push({ id: c.id, label: c.label, colorCat: c.id, part: c.part, kind: 'counter', sections: [], done: c.done, total: c.total, value: c.value, max: c.max, counterConfidence: c.counterConfidence });
+      // Big Poes: the sold count plus one tile per field spot (unmapped until flags are tied to spots).
+      const sections: Section[] = c.id === 'big_poes' && c.spots?.length ? [{ title: 'Locations', tiles: c.spots.map(i => single(c, i)) }] : [];
+      cards.push({ id: c.id, label: c.label, colorCat: c.id, part: c.part, kind: 'counter', sections, done: c.done, total: c.total, value: c.value, max: c.max, counterConfidence: c.counterConfidence });
     } else {
       push(c.id, c.label, c.id, c.part, [all(c.id, c.id === 'heart_pieces' ? 'numbered' : undefined)], { hint: c.hint });
     }
@@ -117,3 +119,42 @@ export function buildCards(cats: TrackedCategory[]): Card[] {
 
 /** Every item in a card (for hide-collected and selection lookups). */
 export const tileItems = (t: TileModel) => (t.kind === 'single' ? [t.item] : t.members.map(m => m.item));
+
+/** One line of the Keys panel. */
+export interface KeyRow {
+  dungeon: string;
+  /** Room-key pickup flags seen / known; null when the dungeon has no pickup data. */
+  pickups: { done: number; total: number } | null;
+  /** Current room-key count; 'unmapped' until its save key is known, null when mapped but unreadable. */
+  held: number | null | 'unmapped';
+  /** Boss key found, or null when it isn't mapped. */
+  bossKey: boolean | null;
+  text: string;
+}
+
+/**
+ * Keys panel model: one row per dungeon that has any key data, from the Room Keys category
+ * (pickup flags, grouped by chapter) and the boss-key rows of Maps, Compasses & Boss Keys.
+ * Never feeds the 100% count (both categories are Part C).
+ */
+export function keysView(categories: TrackedCategory[], state: { keys?: KeyInfo } = {}): KeyRow[] {
+  const rows = new Map<string, { pickups: TrackedItem[]; boss?: TrackedItem }>();
+  const row = (d: string) => rows.get(d) ?? (rows.set(d, { pickups: [] }), rows.get(d)!);
+  for (const it of categories.find(c => c.id === 'room_keys')?.items ?? []) {
+    if (it.chapter && it.state !== 'unmapped') row(it.chapter).pickups.push(it);
+  }
+  for (const it of categories.find(c => c.id === 'dungeon_items')?.items ?? []) {
+    if (it.chapter && it.iconId === 'boss_key' && it.state !== 'unmapped') row(it.chapter).boss = it;
+  }
+  return [...rows].map(([dungeon, r]) => {
+    const info = state.keys?.[dungeon];
+    const pickups = r.pickups.length ? { done: r.pickups.filter(i => i.done).length, total: Math.max(info?.max ?? 0, r.pickups.length) } : null;
+    const held: KeyRow['held'] = info ? info.held : 'unmapped';
+    const bossKey = r.boss ? r.boss.done : null;
+    const parts: string[] = [];
+    if (pickups) parts.push(`keys picked up ${pickups.done}/${pickups.total}`);
+    if (pickups || info) parts.push(held === 'unmapped' ? 'keys held: not mapped yet' : held === null ? 'keys held: unknown' : `keys held ${held}`);
+    if (bossKey !== null) parts.push(`boss key ${bossKey ? '✓' : '✗'}`);
+    return { dungeon, pickups, held, bossKey, text: `${dungeon} — ${parts.join(' · ')}` };
+  });
+}

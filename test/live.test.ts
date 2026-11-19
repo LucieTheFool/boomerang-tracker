@@ -1,5 +1,6 @@
-﻿import { describe, it, expect } from 'vitest';
-import { locate, readLive, matchesReference, fingerprint, readTables, areaFrom, sweepRanges, LAYOUTS, STAGE_KEY, LOCATION_KEY, DAY_NIGHT_KEY, GUEST_BASE, Mem } from '../src/gamedata/live';
+﻿import { describe, it, expect, vi } from 'vitest';
+import { locate, readLive, matchesReference, fingerprint, readTables, areaFrom, sweepRanges, findRecordRuns, LAYOUTS, STAGE_KEY, LOCATION_KEY, DAY_NIGHT_KEY, GUEST_BASE, Mem } from '../src/gamedata/live';
+import { GAMES, LiveSource, sweepWindows, committedReader } from '../src/main/live';
 import type { GameDataFile, Entry } from '../src/gamedata/parser';
 
 // Synthetic memory laid out like the game's: per type a {hash, index} map followed by a
@@ -11,7 +12,8 @@ const hInt = (i: number) => (0x50000000 + i * 104729) >>> 0;
 const hEnum = (i: number) => (0x90000000 + i * 1299709) >>> 0;
 const key64 = (j: number) => 0x0100_0000_0000_0000n + BigInt(j) * 0x0000_0100_0000_0001n;
 
-function build(start = 0x1000) {
+/** base: host address of the fake memory; vt: where the made-up vtables are (types at vt + small offsets). */
+function build(start = 0x1000, { base = BASE, vt = 0x84c40000n } = {}) {
   const mem = Buffer.alloc(4 << 20);
   let o = start;
   const tables: Record<string, number> = {};
@@ -28,9 +30,9 @@ function build(start = 0x1000) {
     }
     o += n * L.stride + 0x100;
   };
-  put('Bool', nBool, hBool, 0x84c40658n, i => (i % 10 === 0 ? 1 : 0));
-  put('Int', nInt, hInt, 0x84c40718n, i => i * 3 - 5);
-  put('Enum', nEnum, hEnum, 0x84c40898n, i => hEnum(i) ^ 0xabc);
+  put('Bool', nBool, hBool, vt + 0x658n, i => (i % 10 === 0 ? 1 : 0));
+  put('Int', nInt, hInt, vt + 0x718n, i => i * 3 - 5);
+  put('Enum', nEnum, hEnum, vt + 0x898n, i => hEnum(i) ^ 0xabc);
   tables.b64 = o;
   for (let j = 0; j < nB64; j++) {
     const r = o + j * 16;
@@ -39,7 +41,7 @@ function build(start = 0x1000) {
     mem[r + 12] = j % 20 === 0 || j % 50 === 1 ? 1 : 0;
   }
   const m: Mem = { read: (addr, len) => {
-    const off = Number(addr - BASE);
+    const off = Number(addr - base);
     if (off < 0 || off + len > mem.length) return null;
     return Buffer.from(mem.subarray(off, off + len));
   } };
@@ -55,6 +57,33 @@ function reference(): GameDataFile {
   const bool64 = new Set<bigint>();
   for (let j = 0; j < nB64; j++) if (j % 20 === 0 || j % 50 === 1) bool64.add(key64(j));
   return { version: 0, dataStart: 0, size: 0, entries, bool64, warnings: [] };
+}
+
+/**
+ * A String64Array map + three 0x90-byte records after the 64-bit table; record 1 is the
+ * location list. guestBase: host address of guest 0 (GUEST_BASE in recomps, anything in an
+ * emulator). Elements start with a guest pointer to their own text, as in the game.
+ */
+function addLocationList(mem: Buffer, tables: Record<string, number>, guestBase: bigint, { selfPointers = true, base = BASE, vt = 0x84c40000n } = {}) {
+  let o = tables.b64 + nB64 * 16 + 0x200;
+  const hashes = [0x12345678, LOCATION_KEY, 0x23456789];
+  hashes.forEach((h, i) => { mem.writeUInt32LE(h, o); mem.writeUInt32LE(i, o + 4); o += 8; });
+  o = (o + 0x40) & ~7;
+  const recs = o, elems = recs + 3 * 0x90 + 0x100;
+  hashes.forEach((_, i) => mem.writeBigUInt64LE(vt + 0xcb0n, recs + i * 0x90));
+  const rec = recs + 0x90;
+  const guest = (off: number) => base + BigInt(off) - guestBase;
+  mem.writeUInt32LE(4, rec + 0x80);
+  mem.writeBigUInt64LE(guest(elems), rec + 0x88);
+  const setList = (names: string[]) => {
+    mem.fill(0, elems, elems + 4 * 0x50);
+    for (let i = 0; i < 4; i++) {
+      if (selfPointers) mem.writeBigUInt64LE(guest(elems + i * 0x50 + 0x0c), elems + i * 0x50);
+      mem.writeUInt32LE(0x40, elems + i * 0x50 + 8);
+    }
+    names.forEach((n, i) => mem.write(n, elems + i * 0x50 + 0x0c, 'latin1'));
+  };
+  return { rec, elems, guest, setList };
 }
 
 describe('live memory tables', () => {
@@ -126,33 +155,6 @@ describe('live memory tables', () => {
     expect(t.records.map(r => r.type)).toContain('String64');
     expect(readLive(m, t, ref)!.data.entries.get(STAGE_KEY)!.value).toBe('LostWood_Child');
   });
-
-  /**
-   * A String64Array map + three 0x90-byte records after the 64-bit table; record 1 is the
-   * location list. guestBase: host address of guest 0 (GUEST_BASE in recomps, anything in an
-   * emulator). Elements start with a guest pointer to their own text, as in the game.
-   */
-  function addLocationList(mem: Buffer, tables: Record<string, number>, guestBase: bigint, { selfPointers = true } = {}) {
-    let o = tables.b64 + nB64 * 16 + 0x200;
-    const hashes = [0x12345678, LOCATION_KEY, 0x23456789];
-    hashes.forEach((h, i) => { mem.writeUInt32LE(h, o); mem.writeUInt32LE(i, o + 4); o += 8; });
-    o = (o + 0x40) & ~7;
-    const recs = o, elems = recs + 3 * 0x90 + 0x100;
-    hashes.forEach((_, i) => mem.writeBigUInt64LE(0x84c40cb0n, recs + i * 0x90));
-    const rec = recs + 0x90;
-    const guest = (off: number) => BASE + BigInt(off) - guestBase;
-    mem.writeUInt32LE(4, rec + 0x80);
-    mem.writeBigUInt64LE(guest(elems), rec + 0x88);
-    const setList = (names: string[]) => {
-      mem.fill(0, elems, elems + 4 * 0x50);
-      for (let i = 0; i < 4; i++) {
-        if (selfPointers) mem.writeBigUInt64LE(guest(elems + i * 0x50 + 0x0c), elems + i * 0x50);
-        mem.writeUInt32LE(0x40, elems + i * 0x50 + 8);
-      }
-      names.forEach((n, i) => mem.write(n, elems + i * 0x50 + 0x0c, 'latin1'));
-    };
-    return { rec, elems, guest, setList };
-  }
 
   it('reads where you are inside a stage from the location list, and notices it change', () => {
     const { mem, m, tables } = build();
@@ -260,5 +262,94 @@ describe('live memory tables', () => {
     const t = locate(m, ref, BASE + 0x200000n, 2 << 20)!;
     mem.fill(0, tables.Bool, tables.Bool + 0x100);
     expect(readTables(m, t)).toBeNull();
+  });
+});
+
+describe('Rekarina live memory', () => {
+  // Rekarina maps guest memory at the same addresses: tables in the heap above 4 GB,
+  // vtables in the game's code at 0x70xxxxxxxx (the real Life vtable was 0x7004B63438).
+  const HEAP = 0x1_74a0_0000n, VT = 0x70_04b6_3000n;
+  const rek = GAMES.find(g => g.image === 'Rekarina.exe')!;
+  const rekarina = () => {
+    const b = build(0x1000, { base: HEAP, vt: VT });
+    const loc = addLocationList(b.mem, b.tables, 0n, { base: HEAP, vt: VT });
+    loc.setList(['HyruleField', 'LakeHylia']);
+    return { ...b, loc };
+  };
+
+  it('finds the tables and the location list with its layout (guest base 0, 0x70… vtables)', () => {
+    const { m, tables, loc } = rekarina();
+    const ref = reference();
+    const t = locate(m, ref, HEAP + 0x200000n, 2 << 20, rek.layout)!;
+    expect(t.records.map(r => [r.type, r.start - HEAP, r.vtable])).toEqual([
+      ['Bool', BigInt(tables.Bool), VT + 0x658n], ['Int', BigInt(tables.Int), VT + 0x718n], ['Enum', BigInt(tables.Enum), VT + 0x898n],
+    ]);
+    expect(t.b64.start).toBe(HEAP + BigInt(tables.b64));
+    expect(t.location).toEqual({ record: HEAP + BigInt(loc.rec), vtable: VT + 0xcb0n, base: 0n, checked: true });
+    const live = readLive(m, t, ref)!;
+    expect(matchesReference(live.agreement)).toBe(true);
+    expect(live.data.entries.get(LOCATION_KEY)!.value).toEqual(['HyruleField', 'LakeHylia', '', '']);
+  });
+
+  it("doesn't take 0x70… pointers for vtables with the recomps' layout (Hookshot unaffected)", () => {
+    const { mem, m } = rekarina();
+    expect(locate(m, reference(), HEAP + 0x200000n, 2 << 20)).toBeNull();
+    expect(findRecordRuns(mem, HEAP, 0x18, 2000)).toEqual([]);
+    expect(findRecordRuns(mem, HEAP, 0x18, 2000, rek.layout!.vtables)).toHaveLength(1);
+    // ...and Rekarina's layout doesn't take a recomp's small ones.
+    const hook = build();
+    expect(locate(hook.m, reference(), BASE + 0x200000n, 2 << 20, rek.layout)).toBeNull();
+  });
+
+  it('sweeps only the committed heap blocks between 4 GB and the code, joining close ones', () => {
+    const MB = 1n << 20n;
+    const r = (base: bigint, size: bigint, type = 0x20000) => ({ base, size, type });
+    expect(sweepRanges([
+      r(0x8000_0000n, 64n * MB), // below 4 GB: host memory
+      r(0x1_0000_0000n - 2n * MB, 4n * MB), // straddles 4 GB: only the upper half counts
+      r(0x2_0000_0000n, 3n * MB), r(0x2_0000_0000n + 5n * MB, 2n * MB, 0x40000), // 2 MB apart: one range
+      r(0x3_0000_0000n, 512n * 1024n), // too small on its own
+      r(0x70_0000_0000n, 32n * MB, 0x1000000), // the game's code
+    ], { within: rek.heap, anyType: true, joinGap: 8n * MB, minSize: MB })).toEqual([
+      [0x2_0000_0000n, 0x2_0000_0000n + 7n * MB], [0x1_0000_0000n, 0x1_0000_0000n + 2n * MB],
+    ]);
+  });
+
+  it('gives small blocks one window of their own size, and steps through big ones as before', () => {
+    const MB = 1n << 20n, W = 64 << 20;
+    expect(sweepWindows([[0x1000n * MB, 0x1000n * MB + 10n * MB]], true)).toEqual([{ at: 0x1000n * MB + 5n * MB, half: 5 << 20 }]);
+    const big: [bigint, bigint] = [0x1000n * MB, 0x1000n * MB + 300n * MB];
+    expect(sweepWindows([big], true)).toEqual(sweepWindows([big]));
+    expect(sweepWindows([big]).map(w => [w.at - big[0], w.half])).toEqual([[64n * MB, W], [184n * MB, W], [304n * MB, W]]);
+  });
+
+  it('reads around holes between committed blocks', () => {
+    const backing = Buffer.alloc(0x3000, 0xaa);
+    const blocks = [{ base: 0x10000n, size: 0x1000n, type: 0x20000 }, { base: 0x12000n, size: 0x1000n, type: 0x20000 }];
+    const inBlock = (a: bigint, n: number) => blocks.some(b => a >= b.base && a + BigInt(n) <= b.base + b.size);
+    const mem: Mem = { read: (a, n) => (inBlock(a, n) ? Buffer.from(backing.subarray(Number(a - 0x10000n), Number(a - 0x10000n) + n)) : null) };
+    const b = committedReader(mem, blocks).read(0x10800n, 0x2000)!;
+    expect([b[0], b[0x7ff], b[0x800], b[0x17ff], b[0x1800], b[0x1fff]]).toEqual([0xaa, 0xaa, 0, 0, 0xaa, 0xaa]);
+    expect(committedReader(mem, blocks).read(0x20000n, 0x100)).toBeNull();
+  });
+
+  it('attaches to Rekarina.exe and finds the tables by sweeping its heap blocks', async () => {
+    const { m, tables } = rekarina();
+    const regions = [{ base: 0x1_0000_0000n, size: 0x1000n, type: 0x20000 }, { base: HEAP, size: 4n << 20n, type: 0x20000 }];
+    const clock = { t: 100_000 };
+    const hints: string[] = [];
+    vi.spyOn(console, 'log').mockImplementation(() => {});
+    const live = new LiveSource({
+      hints: [], onHint: h => hints.push(h), onChange() {}, onStatus() {}, now: () => clock.t,
+      findGame: async () => ({ ...rek, pid: 77 }),
+      open: () => ({ read: m.read, regions: () => regions, imagePath: () => 'D:\\Games\\Rekarina\\game\\Rekarina.exe', alive: () => true, close() {} }),
+    });
+    live.setReference(reference());
+    for (let i = 0; i < 20 && live.info.status !== 'live'; i++) { await live.tick(); clock.t += 500; }
+    vi.restoreAllMocks();
+    expect(live.info.status).toBe('live');
+    expect(live.located()!.location).toMatchObject({ base: 0n, checked: true });
+    expect(live.located()!.records[0].start).toBe(HEAP + BigInt(tables.Bool));
+    expect(hints).toEqual([live.located()!.records[0].start.toString(16)]); // remembered, like the other games
   });
 });

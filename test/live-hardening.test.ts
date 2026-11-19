@@ -22,7 +22,7 @@ const GAME = { pid: 4321, image: 'hookshot.exe' };
 const ADMIN = "hookshot.exe is running, but Windows won't let Boomerang Tracker open it. If the game runs as administrator, run the tracker as administrator too.";
 
 function fakeMem() {
-  const m = { running: true, close: vi.fn(), read: () => null, imagePath: () => undefined, regions: () => [], alive: () => m.running };
+  const m = { running: true, close: vi.fn(), read: () => null, imagePath: (): string | undefined => undefined, regions: () => [], alive: () => m.running };
   return m satisfies LiveMem;
 }
 
@@ -175,6 +175,66 @@ describe('LiveSource attach', () => {
     expect(findGame).toHaveBeenCalledTimes(2);
     expect(found.mock.calls.length).toBeGreaterThan(looked);
     expect(live.info.status).toBe('live');
+  });
+});
+
+describe('LiveSource offering the game to follow', () => {
+  const found = vi.mocked(locate);
+  const EXE = 'D:\\Games\\Rekarina\\game\\Rekarina.exe';
+
+  beforeEach(() => {
+    found.mockReset().mockReturnValue(null); // not live: still searching
+    vi.spyOn(console, 'log').mockImplementation(() => {});
+  });
+  afterEach(() => { vi.restoreAllMocks(); });
+
+  it('offers it on attach and every 5 s while not live, and stops once live', async () => {
+    const onGame = vi.fn();
+    const { live, mem, clock } = setup({ onGame });
+    mem.imagePath = () => EXE;
+    await live.tick();
+    expect(onGame.mock.calls).toEqual([[EXE, 1]]);
+    for (let i = 0; i < 9; i++) { clock.t += 500; await live.tick(); } // 4.5 s
+    expect(onGame).toHaveBeenCalledTimes(1);
+    clock.t += 500;
+    await live.tick();
+    expect(onGame.mock.calls).toEqual([[EXE, 1], [EXE, 1]]);
+    expect(live.info.status).not.toBe('live');
+
+    found.mockReturnValue(TABLES as never);
+    clock.t += 5000;
+    await live.tick();
+    expect(live.info.status).toBe('live');
+    const offers = onGame.mock.calls.length;
+    for (let i = 0; i < 30; i++) { clock.t += 500; await live.tick(); }
+    expect(onGame).toHaveBeenCalledTimes(offers);
+  });
+
+  it('asks Windows for the exe path again until it gives it, then keeps it', async () => {
+    const onGame = vi.fn();
+    const { live, mem, clock } = setup({ onGame });
+    const imagePath = vi.fn((): string | undefined => undefined);
+    mem.imagePath = imagePath;
+    await live.tick();
+    imagePath.mockReturnValue(EXE);
+    clock.t += 5000;
+    await live.tick();
+    clock.t += 5000;
+    await live.tick();
+    expect(onGame.mock.calls).toEqual([[undefined, 1], [EXE, 1], [EXE, 1]]);
+    expect(imagePath).toHaveBeenCalledTimes(2);
+  });
+
+  it('numbers each attach and offers a game started again straight away', async () => {
+    const onGame = vi.fn();
+    const { live, mem, clock } = setup({ onGame });
+    mem.imagePath = () => EXE;
+    await live.tick();
+    mem.running = false;
+    clock.t += FIND_EVERY_MS;
+    await live.tick(); // let go, and attached again in the same step
+    mem.running = true;
+    expect(onGame.mock.calls).toEqual([[EXE, 1], [EXE, 2]]);
   });
 });
 

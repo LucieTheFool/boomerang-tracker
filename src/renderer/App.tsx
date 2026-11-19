@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { AppState, TrackedCategory, TrackedItem, UiPrefs, ChangeRow, OverlayMode, AvailableEntry, AvailableFilters } from '../shared/types';
 import { api } from './api';
-import { recentLabel, slotLabel, slotTitle, timeAgo } from './slot-label';
+import { recentLabel, recentTitle, slotLabel, slotTitle, timeAgo } from './slot-label';
 import { symbolIcons, categoryColor } from './icons';
 import { Symbol } from './symbols';
-import { buildCards, tileItems, Card, TileModel } from './view';
+import { buildCards, keysView, tileItems, Card, TileModel } from './view';
 import { Masonry } from './Masonry';
 import { NO_FILTERS, entryLabel, filterCanGetNow, filterChoices, hasActiveFilters } from './filter';
 
@@ -51,7 +51,7 @@ export function App() {
         {state.status === 'loading' ? <p>Looking for your saves…</p> : <p className="error-text">{state.message}</p>}
         {state.status !== 'loading' && (
           <>
-            <p className="muted">Pick the game folder (Hookshot, Longshot, NX2navi's Triforce folder, or ReLink), Fritchii's data folder (<code>%APPDATA%\fritchii</code>), or the <code>user\save\&lt;id&gt;</code> folder inside it. The tracker only ever reads your saves.</p>
+            <p className="muted">Pick the game folder (Hookshot, Longshot, NX2navi's Triforce folder, ReLink, or Rekarina), Fritchii's data folder (<code>%APPDATA%\fritchii</code>), or the <code>user\save\&lt;id&gt;</code> folder inside it (Rekarina: <code>game\profile\save\&lt;id&gt;</code>). The tracker only ever reads your saves.</p>
             <button className="primary" onClick={() => void api.browseFolder()}>Choose save folder…</button>
           </>
         )}
@@ -78,6 +78,8 @@ export function App() {
         onToggle={open => updatePrefs({ ...prefs, collapsed: open ? (prefs.collapsed ?? []).filter(x => x !== '__available') : [...(prefs.collapsed ?? []), '__available'] })} />
       <div className="body">
         <main className="grid-wrap">
+          <KeysPanel state={state} open={!(prefs.collapsed ?? []).includes('__keys')}
+            onToggle={open => updatePrefs({ ...prefs, collapsed: open ? (prefs.collapsed ?? []).filter(x => x !== '__keys') : [...(prefs.collapsed ?? []), '__keys'] })} />
           {parts.map(({ part, title }) => {
             const list = cards.filter(c => c.part === part && visible(c));
             if (!list.length) return null;
@@ -111,6 +113,24 @@ export function App() {
         {state.toasts.map(t => <div key={t.id} className="toast">{t.text}</div>)}
       </div>
     </div>
+  );
+}
+
+/** Per-dungeon key status, worded from the data (see keysView). Hidden when no dungeon has key data. */
+function KeysPanel({ state, open, onToggle }: { state: AppState; open: boolean; onToggle: (open: boolean) => void }) {
+  const rows = useMemo(() => keysView(state.categories, state), [state.categories, state.keys]);
+  if (!rows.length) return null;
+  return (
+    <section className="keys-panel">
+      <button className="card-head" onClick={() => onToggle(!open)} title={open ? 'Collapse' : 'Expand'}>
+        <span className="chev">{open ? '▾' : '▸'}</span>
+        <span className="card-title">Keys</span>
+        <span className="small">not counted</span>
+      </button>
+      {open && <ul className="keys-list">
+        {rows.map(r => <li key={r.dungeon} className={r.pickups && r.pickups.done === r.pickups.total && r.bossKey !== false ? 'complete' : ''}>{r.text}</li>)}
+      </ul>}
+    </section>
   );
 }
 
@@ -161,7 +181,7 @@ function Toolbar({ state, cards, prefs, onPrefs }: { state: AppState; cards: Car
       <label>
         Slot&nbsp;
         <select value={state.slotMode === 'recent' ? '' : state.activeSlot} title={selected && slotLabel(selected)} onChange={e => void api.pinSlot(e.target.value || null)}>
-          <option value="" title={recent && slotLabel(recent)}>{recentLabel(recent)}</option>
+          <option value="" title={recentTitle(recent)}>{recentLabel(recent)}</option>
           {state.slots.map(s => (
             <option key={s.name} value={s.name} title={slotTitle(s)}>{slotLabel(s)}</option>
           ))}
@@ -333,7 +353,7 @@ function SettingsButton({ state }: { state: AppState }) {
           <label className="check">
             <input type="checkbox" checked={state.live.enabled} onChange={e => void api.setLive(e.target.checked)} /> Read progress live from the running game
           </label>
-          <span className="muted small">Read-only: the tracker only looks at the game's memory, it never changes anything. Uses your saves whenever the game isn't running.</span>
+          <span className="muted small">Works with Hookshot, Longshot, NX2navi, ReLink, Rekarina and Fritchii. Read-only: the tracker only looks at the game's memory, it never changes anything. Uses your saves whenever the game isn't running.</span>
           <b>Overlay</b>
           <label>Opacity: {Math.round(o.opacity * 100)}%
             <input type="range" min={0.2} max={1} step={0.05} value={o.opacity} onChange={e => void api.setOverlay({ opacity: Number(e.target.value) })} />
@@ -384,16 +404,17 @@ function CardView({ card, hideCollected, selected, onSelect, collapsed, onToggle
       {!collapsed && (
         <>
           {card.hint && <div className="hint">{card.hint}</div>}
-          {card.kind === 'counter' ? (
+          {card.kind === 'counter' && (
             <div className="counter-note">{card.value === null ? 'Not in this save yet' : `${card.value} of ${card.max}`}</div>
-          ) : card.sections.map((s, i) => {
+          )}
+          {card.sections.map((s, i) => {
             const tiles = hideCollected ? s.tiles.filter(t => tileItems(t).some(x => !x.done)) : s.tiles;
             return (
               <div key={i} className={`section ${s.style ?? ''}`}>
                 {s.title && <div className="section-title">{s.title}</div>}
                 <div className="tiles">
                   {tiles.map(t => t.kind === 'single'
-                    ? <Tile key={t.key} catId={t.categoryId} item={t.item} major={s.style === 'major'} numbered={s.style === 'numbered'} selected={selected === t.item.id} onSelect={onSelect} />
+                    ? <Tile key={t.key} catId={t.categoryId} item={t.item} noManual={card.kind === 'counter'} major={s.style === 'major'} numbered={s.style === 'numbered'} selected={selected === t.item.id} onSelect={onSelect} />
                     : <StackTile key={t.key} stack={t} selected={selected === t.key} onSelect={onSelect} />)}
                   {hideCollected && !tiles.length && <div className="muted small">All collected</div>}
                 </div>
@@ -423,7 +444,7 @@ function StackTile({ stack, selected, onSelect }: { stack: Extract<TileModel, { 
   );
 }
 
-function Tile({ catId, item, selected, onSelect, major, numbered }: { catId: string; item: TrackedItem; selected: boolean; onSelect: (id: string) => void; major?: boolean; numbered?: boolean }) {
+function Tile({ catId, item, selected, onSelect, major, numbered, noManual }: { catId: string; item: TrackedItem; selected: boolean; onSelect: (id: string) => void; major?: boolean; numbered?: boolean; noManual?: boolean }) {
   const icon = icons.get(item.iconId, catId, item.name);
   const cls = [
     'tile',
@@ -437,7 +458,7 @@ function Tile({ catId, item, selected, onSelect, major, numbered }: { catId: str
   ].join(' ');
   return (
     <button className={cls} style={{ ['--c' as string]: icon.color }} onClick={() => onSelect(item.id)}
-      onDoubleClick={() => item.state !== 'yes' && void api.toggleManual(item.id)}
+      onDoubleClick={() => !noManual && item.state !== 'yes' && void api.toggleManual(item.id)}
       title={`${numbered ? `#${item.number} ` : ''}${item.name}${item.where ? `\n${item.where}` : ''}`}>
       <span className="glyph">{numbered ? item.number : icon.symbol ? <Symbol name={icon.symbol} size={26} /> : icon.glyph}</span>
       {item.manual && <span className="badge m">M</span>}

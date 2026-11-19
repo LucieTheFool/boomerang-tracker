@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-11T20:23:39.230Z",
+  "generatedAt": "2026-11-19T03:34:00.389Z",
   "categories": [
     {
       "id": "heart_pieces",
@@ -2218,7 +2218,88 @@
       "countsToward100": true,
       "kind": "counter",
       "max": 10,
-      "items": []
+      "items": [
+        {
+          "id": "big_poes.001",
+          "number": 1,
+          "name": "Ruined bridge entrance (by the sign)",
+          "chapter": "Hyrule Field",
+          "iconId": "big_poe",
+          "detect": null
+        },
+        {
+          "id": "big_poes.002",
+          "number": 2,
+          "name": "Between Lon Lon Ranch and Hyrule Castle",
+          "chapter": "Hyrule Field",
+          "iconId": "big_poe",
+          "detect": null
+        },
+        {
+          "id": "big_poes.003",
+          "number": 3,
+          "name": "Lon Lon Ranch entrance (by a tree)",
+          "chapter": "Hyrule Field",
+          "iconId": "big_poe",
+          "detect": null
+        },
+        {
+          "id": "big_poes.004",
+          "number": 4,
+          "name": "Behind Lon Lon Ranch",
+          "chapter": "Hyrule Field",
+          "iconId": "big_poe",
+          "detect": null
+        },
+        {
+          "id": "big_poes.005",
+          "number": 5,
+          "name": "Base of the hill to Gerudo Valley",
+          "chapter": "Hyrule Field",
+          "iconId": "big_poe",
+          "detect": null
+        },
+        {
+          "id": "big_poes.006",
+          "number": 6,
+          "name": "Hill to Gerudo Valley (closer to the ranch)",
+          "chapter": "Hyrule Field",
+          "iconId": "big_poe",
+          "detect": null
+        },
+        {
+          "id": "big_poes.007",
+          "number": 7,
+          "name": "Woods south of Lon Lon Ranch",
+          "chapter": "Hyrule Field",
+          "iconId": "big_poe",
+          "detect": null
+        },
+        {
+          "id": "big_poes.008",
+          "number": 8,
+          "name": "South of the crab-shaped watering hole",
+          "chapter": "Hyrule Field",
+          "iconId": "big_poe",
+          "detect": null
+        },
+        {
+          "id": "big_poes.009",
+          "number": 9,
+          "name": "Left/south of the Kokiri entrance",
+          "chapter": "Hyrule Field",
+          "iconId": "big_poe",
+          "detect": null
+        },
+        {
+          "id": "big_poes.010",
+          "number": 10,
+          "name": "Field between Lon Lon Ranch and Kokiri Forest",
+          "chapter": "Hyrule Field",
+          "iconId": "big_poe",
+          "detect": null
+        }
+      ]
     },
     {
       "id": "skulltula_rewards",
@@ -2391,7 +2472,7 @@
       "id": "magic_beans_planted",
       "label": "Magic Bean Spots Planted",
       "part": "B",
-      "countsToward100": false,
+      "countsToward100": true,
       "kind": "counter",
       "max": 10,
       "items": []
@@ -2614,6 +2695,215 @@
       ]
     },
     {
+      "id": "room_keys",
+      "label": "Room Keys",
+      "part": "C",
+      "countsToward100": false,
+      "kind": "list",
+      "items": [
+        {
+          "id": "room_keys.forest_temple_1",
+          "number": 1,
+          "name": "Forest Temple small key 1",
+          "chapter": "Forest Temple",
+          "iconId": "small_key",
+          "detect": null
+        },
+        {
+          "id": "room_keys.forest_temple_2",
+          "number": 2,
+          "name": "Forest Temple small key 2",
+          "chapter": "Forest Temple",
+          "iconId": "small_key",
+          "detect": null
+        },
+        {
+          "id": "room_keys.forest_temple_3",
+          "number": 3,
+          "name": "Forest Temple small key 3",
+          "chapter": "Forest Temple",
+          "iconId": "small_key",
+          "detect": null
+        },
+        {
+          "id": "room_keys.forest_temple_4",
+          "number": 4,
+          "name": "Forest Temple small key 4",
+          "chapter": "Forest Temple",
+          "iconId": "small_key",
+          "detect": null
+        },
+        {
+          "id": "room_keys.forest_temple_5",
+          "number": 5,
+          "name": "Forest Temple small key 5",
+          "chapter": "Forest Temple",
+          "iconId": "small_key",
+          "detect": null
+        },
+        {
+          "id": "room_keys.fire_temple_1",
+          "number": 6,
+          "name": "Fire Temple small key 1",
+          "chapter": "Fire Temple",
+          "iconId": "small_key",
+          "detect": null
+        },
+        {
+          "id": "room_keys.fire_temple_2",
+          "number": 7,
+          "name": "Fire Temple small key 2",
+          "chapter": "Fire Temple",
+          "iconId": "small_key",
+          "detect": null
+        },
+        {
+          "id": "room_keys.fire_temple_3",
+          "number": 8,
+          "name": "Fire Temple small key 3",
+          "chapter": "Fire Temple",
+          "iconId": "small_key",
+          "detect": null
+        },
+        {
+          "id": "room_keys.fire_temple_4",
+          "number": 9,
+          "name": "Fire Temple small key 4",
+          "chapter": "Fire Temple",
+          "iconId": "small_key",
+          "detect": null
+        },
+        {
+          "id": "room_keys.fire_temple_5",
+          "number": 10,
+          "name": "Fire Temple small key 5",
+          "chapter": "Fire Temple",
+          "iconId": "small_key",
+          "detect": null
+        },
+        {
+          "id": "room_keys.fire_temple_6",
+          "number": 11,
+          "name": "Fire Temple small key 6",
+          "chapter": "Fire Temple",
+          "iconId": "small_key",
+          "detect": null
+        },
+        {
+          "id": "room_keys.fire_temple_7",
+          "number": 12,
+          "name": "Fire Temple small key 7",
+          "chapter": "Fire Temple",
+          "iconId": "small_key",
+          "detect": null
+        },
+        {
+          "id": "room_keys.fire_temple_8",
+          "number": 13,
+          "name": "Fire Temple small key 8",
+          "chapter": "Fire Temple",
+          "iconId": "small_key",
+          "detect": null
+        },
+        {
+          "id": "room_keys.water_temple_1",
+          "number": 14,
+          "name": "Water Temple small key 1",
+          "chapter": "Water Temple",
+          "iconId": "small_key",
+          "detect": null
+        },
+        {
+          "id": "room_keys.water_temple_2",
+          "number": 15,
+          "name": "Water Temple small key 2",
+          "chapter": "Water Temple",
+          "iconId": "small_key",
+          "detect": null
+        },
+        {
+          "id": "room_keys.water_temple_3",
+          "number": 16,
+          "name": "Water Temple small key 3",
+          "chapter": "Water Temple",
+          "iconId": "small_key",
+          "detect": null
+        },
+        {
+          "id": "room_keys.water_temple_4",
+          "number": 17,
+          "name": "Water Temple small key 4",
+          "chapter": "Water Temple",
+          "iconId": "small_key",
+          "detect": null
+        },
+        {
+          "id": "room_keys.water_temple_5",
+          "number": 18,
+          "name": "Water Temple small key 5",
+          "chapter": "Water Temple",
+          "iconId": "small_key",
+          "detect": null
+        },
+        {
+          "id": "room_keys.water_temple_6",
+          "number": 19,
+          "name": "Water Temple small key 6",
+          "chapter": "Water Temple",
+          "iconId": "small_key",
+          "detect": null
+        },
+        {
+          "id": "room_keys.water_temple_7",
+          "number": 20,
+          "name": "Water Temple small key 7",
+          "chapter": "Water Temple",
+          "iconId": "small_key",
+          "detect": null
+        },
+        {
+          "id": "room_keys.bottom_of_the_well_1",
+          "number": 21,
+          "name": "Bottom of the Well small key 1",
+          "chapter": "Bottom of the Well",
+          "iconId": "small_key",
+          "detect": null
+        },
+        {
+          "id": "room_keys.gerudo_fortress_1",
+          "number": 22,
+          "name": "Gerudo Fortress small key 1",
+          "chapter": "Gerudo Fortress",
+          "iconId": "small_key",
+          "detect": null
+        },
+        {
+          "id": "room_keys.gerudo_fortress_2",
+          "number": 23,
+          "name": "Gerudo Fortress small key 2",
+          "chapter": "Gerudo Fortress",
+          "iconId": "small_key",
+          "detect": null
+        },
+        {
+          "id": "room_keys.gerudo_fortress_3",
+          "number": 24,
+          "name": "Gerudo Fortress small key 3",
+          "chapter": "Gerudo Fortress",
+          "iconId": "small_key",
+          "detect": null
+        },
+        {
+          "id": "room_keys.gerudo_fortress_4",
+          "number": 25,
+          "name": "Gerudo Fortress small key 4",
+          "chapter": "Gerudo Fortress",
+          "iconId": "small_key",
+          "detect": null
+        }
+      ]
+    },
+    {
       "id": "amiibo_masks",
       "label": "amiibo Retro Masks",
       "part": "C",
@@ -2631,6 +2921,29 @@
           "id": "amiibo_masks.young_zelda",
           "number": 2,
           "name": "Young Zelda amiibo mask",
+          "iconId": "mask",
+          "detect": null
+        }
+      ]
+    },
+    {
+      "id": "extra_masks",
+      "label": "Zora & Gerudo Masks",
+      "part": "C",
+      "countsToward100": false,
+      "kind": "list",
+      "items": [
+        {
+          "id": "extra_masks.zora_mask",
+          "number": 1,
+          "name": "Zora Mask",
+          "iconId": "mask",
+          "detect": null
+        },
+        {
+          "id": "extra_masks.gerudo_mask",
+          "number": 2,
+          "name": "Gerudo Mask",
           "iconId": "mask",
           "detect": null
         }

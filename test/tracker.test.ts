@@ -10,6 +10,15 @@ const slot = (n: string) => `fixtures/save/slot_${n}/progress.sav`;
 const have = fs.existsSync(slot('05')) && fs.existsSync(slot('02'));
 
 describe.skipIf(!have)('Tracker on real saves', () => {
+  it('passes Big Poe spots as unmapped display rows, outside items', () => {
+    const { categories } = tracker.evaluate(parseGameData(fs.readFileSync(slot('05'))));
+    const poes = categories.find(c => c.id === 'big_poes')!;
+    expect(poes.items).toEqual([]);
+    expect(poes.spots).toHaveLength(10);
+    expect(poes.spots!.every(s => s.state === 'unmapped' && !s.done && s.chapter === 'Hyrule Field')).toBe(true);
+    expect(categories.find(c => c.id === 'magic_beans_planted')!.spots).toBeUndefined();
+  });
+
   it('reads the summary for slot_05', () => {
     const { summary, categories } = tracker.evaluate(parseGameData(fs.readFileSync(slot('05'))));
     expect(summary.hearts).toBe(7);
@@ -86,5 +95,22 @@ describe('Location descriptions', () => {
     // Every located spot gets its own name.
     const located = merged.filter(r => /^(gold_skulltulas|heart_pieces)\./.test(r.id));
     expect(new Set(located.map(r => r.name)).size).toBe(located.length);
+  });
+});
+
+describe('Room keys data', () => {
+  const checklist = read('data/checklist.json') as ChecklistFile;
+  const mapping = read('data/save-mapping.json') as MappingFile;
+  const cat = checklist.categories.find(c => c.id === 'room_keys')!;
+
+  it('is a Part C category excluded from 100% with every pickup mapped by name', () => {
+    expect(cat.part).toBe('C');
+    expect(cat.countsToward100).toBe(false);
+    expect(cat.items.length).toBe(25);
+    for (const it of cat.items) expect(mapping.entries[it.id]?.detect, it.id).toHaveProperty('name');
+    expect(mapping.entries['room_keys.forest_temple_1'].detect).toEqual({ name: 'ForestTemple_Room00_GetSmallKey' });
+  });
+  it('leaves keys held unmapped for now', () => {
+    expect(mapping.keys).toBeUndefined();
   });
 });

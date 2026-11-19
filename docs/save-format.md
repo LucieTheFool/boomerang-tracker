@@ -66,8 +66,8 @@ Same container (parsed by `src/gamedata/caption.ts`, key-based), 46 keys in the 
 save. Holds `CaptionData.*` keys: `BancScenePath` / `LocationName` (String64, e.g.
 `"Market/Market_Child"` / `"Market"`), `Date.*` (Int), `Life`/`MaxLife` (quarter hearts),
 `MP`/`MPMax`, `CurrentRupee`, `GoldToken`, `Pos` (Vector3), `Dir` (Float), `IsAutoSave`, a JPEG
-thumbnail (`ScreenShot`, Binary) and 22 mirror bools of learned songs/medals/stones. The key table and hashes
-were checked against a reference save.
+thumbnail (`ScreenShot`, Binary) and 22 mirror bools of learned songs/medals/stones. Verified key
+table and hashes: `docs/longshot-crossref.md`, "Caption.sav layout".
 
 ## Uncertain
 

@@ -1,12 +1,19 @@
 # Boomerang Tracker
 
+<p align="center"><img src="build/icon.png" width="96" alt="Boomerang Tracker icon"></p>
+
+Track your way to 100% — from your save files or straight from the running game.
+
 A 100% completion tracker for **The Legend of Zelda: Ocarina of Time** (the Nintendo Switch 2
 remake) when played through **Hookshot**, its fork **Longshot**, **[NX2navi](https://github.com/tangerineturtle1/NX2navi)**
 (its game build is called Triforce), **[Project ReLink](https://github.com/pixl27/ProjectReLink)**, the
-**[Fritchii](https://github.com/Frizti/Fritchii)** emulator, or another
+**[Fritchii](https://github.com/Frizti/Fritchii)** emulator, **[Rekarina](https://git.rekarina.dev/rekarina/rekarina)**
+(native PC port), or another
 compatible Switch 2 emulator (saves only). It reads your
 progress from the running game (or from your save files), shows what you've collected and what
 you can get next, and updates as you play.
+
+![Main window: the summary, the can-get-now list, the keys, and the 100% checklist](docs/screenshots/tracker-main.png)
 
 - **Read-only.** Saves are only ever read, never written. Live tracking reads the game's memory
   but never writes to it, and can be turned off in Settings.
@@ -15,28 +22,48 @@ you can get next, and updates as you play.
 - Not affiliated with or endorsed by Nintendo. *The Legend of Zelda* and *Ocarina of Time* are
   trademarks of Nintendo.
 
+## Download
+
+Get the latest release (a portable exe) from the [Releases page](../../releases). Nothing is
+installed and no admin rights are needed — run the exe and it's ready.
+
+### Build it yourself (Node.js 22.15+ or 24)
+
+```
+npm install
+npm start          # build and run
+npm run dev        # run with live reload
+npm run dist       # build the portable exe into release\
+npm test
+```
+
 ## What it shows
 
 - **Summary:** hearts (out of 20), Gold Skulltula tokens with the next House of Skulltula reward
   (or "ready to claim"), and an overall 100% figure.
 - **Where to find it:** click any entry for a short description of where it is, and what you
   still need for it if you can't get it yet.
-- **Categories:** Hearts, Gold Skulltulas, Songs, Equipment, Items (with upgrades shown as levels),
-  Great Fairies, Dungeons, Bosses, Side Quests, Big Poes, plus optional quest-progress and extras.
+
+| **Categories** | |
+|---|---|
+| Hearts, Gold Skulltulas, Songs, Equipment, Items (with upgrades shown as levels), Great Fairies, Dungeons, Bosses, Side Quests, Big Poes, plus optional quest-progress and extras. | <img src="docs/screenshots/tracker-checklist.png" alt="The category grid: Songs, Equipment and Gold Skulltulas" width="480"> |
+
 - **Can get now:** which 100% entries you can reach with what you have, as child or adult, with
   your current area first. Each entry knows what it still needs (an item, a song, being adult,
   night time, an area you can't reach yet). Tiered upgrades (seed bag, bomb bag, quiver, stick
   and nut capacity) are offered one tier at a time, since whichever place you do first gives the
   next tier. A search box and filters (by name, form or area) keep the list short. Resizable; also
   available as an overlay mode.
-- **Live tracking:** while Hookshot, Longshot, NX2navi, ReLink or Fritchii is running, progress is read straight from the game
+- **Live tracking:** while Hookshot, Longshot, NX2navi, ReLink, Fritchii or Rekarina is running, progress is read straight from the game
   (read-only) and updates within half a second, not just at autosaves. Your current area is live
   too, including places inside a bigger stage such as Lake Hylia and Lon Lon Ranch. At the title
   screen or in another save file it falls back to the save files on its own; the summary shows
   which source it's using. Details in [docs/live-memory.md](docs/live-memory.md).
 - **Overlay:** a compact, always-on-top, see-through window for one-screen play
   (`Ctrl+Shift+O` to show/hide, `Ctrl+Shift+L` to lock/unlock; both changeable). It shows your
-  area and the live/saves source, and numbers pulse when they go up. Modes:
+  area and the live/saves source, and numbers pulse when they go up.
+  <img src="docs/screenshots/tracker-overlay.png" alt="Overlay mode: totals up top, what's left in your area below" width="320">
+  Modes:
   - **Counters:** category totals.
   - **Remaining here:** what's left in your current area. What you can get now comes first;
     the rest is dimmed with a short reason (`adult`, `needs Boomerang`, `can't reach yet`).
@@ -48,27 +75,28 @@ you can get next, and updates as you play.
   ticks, kept as monthly files on your PC. Useful for checking what the tracker saw.
 - **Hand ticks:** double-click any entry to tick it yourself.
 
-## Install
+## Supported games
 
-Download the portable exe from the Releases page and run it. Nothing is installed and no admin rights
-are needed.
-
-Or build it yourself (Node.js 22.15+ or 24):
-
-```
-npm install
-npm start          # build and run
-npm run dev        # run with live reload
-npm run dist       # build the portable exe into release\
-npm test
-```
+- **Hookshot** and **Longshot** — saves + live tracking.
+- **NX2navi** (Triforce) and **Project ReLink** — saves + live tracking.
+- **Fritchii** — saves + live tracking.
+- **Rekarina** (native PC port) — saves are found automatically at
+  `<Rekarina>\game\profile\save\<account id>\` (any `*rekarina*` folder under `Games` on a drive),
+  and live tracking runs read-only on `Rekarina.exe`. Rekarina journals its saves, so the tracker
+  reads a finished commit waiting in `save-tx\ready-<n>` as the newest save; it never keeps a save
+  file open, so it can't block the game's save writes.
+- Other compatible Switch 2 emulators — saves only.
 
 ## First run
 
 The tracker looks for Hookshot, Longshot, NX2navi and ReLink saves in the usual places
 (`%USERPROFILE%\Games\Hookshot`, `Longshot`, `Triforce` or `ReLink`, folders with those names under `Games`
 on a drive, and launcher folders named `Apps\*Hookshot*` or `Apps\*NX2navi*`), and for Fritchii's
-in `%APPDATA%\fritchii` (or a portable `user` folder next to the emulator). If it finds several, it
+in `%APPDATA%\fritchii` (or a portable `user` folder next to the emulator), and for Rekarina's in
+`Games\Rekarina\game\profile\save\<account id>` (any `*rekarina*` folder under `Games` on a drive).
+Rekarina journals its saves — when a finished commit is waiting in `save-tx\ready-<n>`, the tracker
+reads that as the newest save. It only reads those saves and never keeps them open, so it can't
+block the game's save writes. If it finds several, it
 uses the one you played most recently; you can change it in Settings. If it can't find any it asks
 you to choose a folder: the game folder, its `user\save` folder, the emulator's data folder, or the
 folder that contains `slot_00`, `slot_01`, … (in an emulator, the one named after the game's title
@@ -78,14 +106,15 @@ The game rotates its autosaves across all six slots, so the default **Most recen
 whichever slot was written last. You can pin a slot instead. The slot picker lists each slot with
 its area, hearts and save time, so you can tell them apart before choosing.
 
-Hookshot, Longshot, NX2navi, ReLink and Fritchii each keep their own saves. When one of them is running, the tracker
+Hookshot, Longshot, NX2navi, ReLink, Fritchii and Rekarina each keep their own saves. When one of them is running, the tracker
 switches to that install's saves on its own (unless you've pinned a slot) and shows a note saying so.
 
 Live tracking starts on its own once the game is running and you're in your save file. The summary
 shows **● Live** when progress comes from the game and **○ Saves** when it comes from the save files.
 It's used only with **Most recent**, and only while the game's state matches your latest save.
 It was worked out on Hookshot v2.1.0 and checked on Longshot v1.0.0, NX2navi 0.12.0 (Triforce
-v0.4.0), Project ReLink v0.7.7 and Fritchii v5.8.4. In an emulator the game's memory is somewhere new every run, so finding
+v0.4.0), Project ReLink v0.7.7, Fritchii v5.8.4 and Rekarina 1.2.1 (all tables found in under 10
+seconds, 100% agreement with the newest save). In an emulator the game's memory is somewhere new every run, so finding
 it takes longer (about half a minute in testing). If an update changes how the game is laid out in
 memory, the tracker keeps working from the save files.
 

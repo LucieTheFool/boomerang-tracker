@@ -57,6 +57,16 @@ const LOC_STRIDE = 0x90, LOC_COUNT = 0x80, LOC_PTR = 0x88, LOC_ELEM = 0x50, LOC_
 export const GUEST_BASE = 0x1000_0000_0000n;
 const B64_STRIDE = 16, B64_VALUE = 12, B64_MIN = 1000;
 
+/** Where a game build keeps things (host addresses). */
+export interface MemLayout {
+  /** Host address of guest 0, for following guest pointers. */
+  guestBase: bigint;
+  /** Records start with their type's vtable, a guest code pointer in [lo, hi). */
+  vtables: readonly [bigint, bigint];
+}
+/** Hookshot, Longshot, NX2navi, ReLink (and Fritchii): guest code pointers are small. */
+export const RECOMP_LAYOUT: MemLayout = { guestBase: GUEST_BASE, vtables: [1n, 0x1_0000_0000n] };
+
 export interface RecordTable { type: TypeLayout['type']; start: bigint; count: number; index: Map<number, number>; vtable: bigint }
 export interface LiveTables {
   records: RecordTable[];
@@ -69,13 +79,14 @@ export interface LiveTables {
   location?: { record: bigint; vtable: bigint; base: bigint; checked: boolean };
 }
 
-/** Runs of records that all start with the same 8-byte pointer, `stride` apart. */
-export function findRecordRuns(buf: Buffer, base: bigint, stride: number, minRecords: number): { start: bigint; count: number; offset: number }[] {
+/** Runs of records that all start with the same 8-byte pointer (in `vtables`), `stride` apart. */
+export function findRecordRuns(buf: Buffer, base: bigint, stride: number, minRecords: number, vtables = RECOMP_LAYOUT.vtables): { start: bigint; count: number; offset: number }[] {
   const out: { start: bigint; count: number; offset: number }[] = [];
   const last = buf.length - 8;
+  const [vlo, vhi] = vtables;
   for (let o = 0; o + stride * 2 <= last; o += 8) {
     const p = buf.readBigUInt64LE(o);
-    if (p === 0n || p >= 0x1_0000_0000n) continue; // guest code pointers are small
+    if (p < vlo || p >= vhi) continue; // not a guest code pointer
     if (buf.readBigUInt64LE(o + stride) !== p || buf.readBigUInt64LE(o + stride * 2) !== p) continue;
     // Walk back to the first record of the run.
     let s = o;
@@ -138,9 +149,10 @@ function readValue(buf: Buffer, at: number, type: TypeLayout['type']): number | 
 
 /**
  * Find the live tables near `hint` (host address), using `ref` to tell real tables from
- * look-alikes. Searches `window` bytes either side of the hint.
+ * look-alikes. Searches `window` bytes either side of the hint. `layout`: the game build's
+ * guest base and vtable range (default: the recomps').
  */
-export function locate(mem: Mem, ref: GameDataFile, hint: bigint, window = 64 << 20): LiveTables | null {
+export function locate(mem: Mem, ref: GameDataFile, hint: bigint, window = 64 << 20, layout: MemLayout = RECOMP_LAYOUT): LiveTables | null {
   const lo = hint > BigInt(window) ? hint - BigInt(window) : 0n;
   const buf = readWindow(mem, lo, window * 2);
   if (!buf) return null;
@@ -151,7 +163,7 @@ export function locate(mem: Mem, ref: GameDataFile, hint: bigint, window = 64 <<
     if (!refEntries?.size) { if (L.optional) continue; return null; }
     const wanted = new Set(refEntries.keys());
     let best: { t: RecordTable; score: number } | undefined;
-    for (const run of findRecordRuns(buf, lo, L.stride, L.minRecords)) {
+    for (const run of findRecordRuns(buf, lo, L.stride, L.minRecords, layout.vtables)) {
       const index = readIndexMap(buf, run.offset, run.count, wanted);
       if (index.size < wanted.size * 0.9) continue;
       let agree = 0;
@@ -178,19 +190,19 @@ export function locate(mem: Mem, ref: GameDataFile, hint: bigint, window = 64 <<
     if (hits > bestHits || (hits === bestHits && run.count > b64!.count)) { bestHits = hits; b64 = run; }
   }
   if (!b64 || (refKeys.length && bestHits < refKeys.length * 0.9)) return null;
-  return { records, b64, location: findLocation(mem, buf, lo) };
+  return { records, b64, location: findLocation(mem, buf, lo, layout) };
 }
 
 /** The location-list record: a run of 0x90-byte records whose map holds LOCATION_KEY. */
-function findLocation(mem: Mem, buf: Buffer, lo: bigint): LiveTables['location'] {
-  for (const run of findRecordRuns(buf, lo, LOC_STRIDE, 2)) {
+function findLocation(mem: Mem, buf: Buffer, lo: bigint, layout: MemLayout): LiveTables['location'] {
+  for (const run of findRecordRuns(buf, lo, LOC_STRIDE, 2, layout.vtables)) {
     const i = readIndexMap(buf, run.offset, run.count, new Set([LOCATION_KEY])).get(LOCATION_KEY);
     if (i === undefined) continue;
     const o = run.offset + i * LOC_STRIDE;
     const n = buf.readUInt32LE(o + LOC_COUNT), p = buf.readBigUInt64LE(o + LOC_PTR);
     if (n < 1 || n > LOC_MAX || p === 0n || p >= GUEST_BASE) continue;
-    const base = locationBase(mem, buf, lo, p, n);
-    return { record: run.start + BigInt(i * LOC_STRIDE), vtable: buf.readBigUInt64LE(run.offset), base: base ?? GUEST_BASE, checked: base !== undefined };
+    const base = locationBase(mem, buf, lo, p, n, layout.guestBase);
+    return { record: run.start + BigInt(i * LOC_STRIDE), vtable: buf.readBigUInt64LE(run.offset), base: base ?? layout.guestBase, checked: base !== undefined };
   }
   return undefined;
 }
@@ -204,11 +216,12 @@ function elementsAt(b: Buffer | null, p: bigint, n: number): boolean {
 
 /**
  * Host address of guest 0 for the location list's pointer (p, n elements). Recomps map
- * guest memory at GUEST_BASE. Elsewhere, find the elements by their self-pointers in the
- * window that holds the tables (they sit next to the list record). undefined if neither fits.
+ * guest memory at a known base (GUEST_BASE; Rekarina: 0). Elsewhere, find the elements by
+ * their self-pointers in the window that holds the tables (they sit next to the list
+ * record). undefined if neither fits.
  */
-function locationBase(mem: Mem, buf: Buffer, lo: bigint, p: bigint, n: number): bigint | undefined {
-  if (elementsAt(mem.read(GUEST_BASE + p, n * LOC_ELEM), p, n)) return GUEST_BASE;
+function locationBase(mem: Mem, buf: Buffer, lo: bigint, p: bigint, n: number, guestBase: bigint): bigint | undefined {
+  if (elementsAt(mem.read(guestBase + p, n * LOC_ELEM), p, n)) return guestBase;
   const want = Buffer.alloc(8);
   want.writeBigUInt64LE(p + BigInt(LOC_TEXT));
   for (let o = buf.indexOf(want); o >= 0; o = buf.indexOf(want, o + 1)) {
@@ -231,15 +244,27 @@ function readLocationRaw(mem: Mem, loc: NonNullable<LiveTables['location']>): Bu
 /**
  * Where an emulator's guest memory may be, in the order to search it: its mapped views
  * (type 0x40000), touching blocks merged, biggest first. Blocks under 4 MB can't hold the tables.
+ *
+ * Options (Rekarina's heap): `within` keeps only the part of each block inside [lo, hi);
+ * `anyType` takes every committed readable block, not just mapped views; `joinGap` merges
+ * blocks less than that far apart (so one sweep window covers neighbours, holes and all);
+ * `minSize` replaces the 4 MB floor.
  */
-export function sweepRanges(regions: { base: bigint; size: bigint; type: number }[]): [bigint, bigint][] {
-  const mapped = regions.filter(r => r.type === 0x40000).sort((a, b) => (a.base < b.base ? -1 : a.base > b.base ? 1 : 0));
-  const ranges: [bigint, bigint][] = [];
-  for (const r of mapped) {
-    const last = ranges[ranges.length - 1];
-    if (last && last[1] === r.base) last[1] = r.base + r.size; else ranges.push([r.base, r.base + r.size]);
+export function sweepRanges(regions: { base: bigint; size: bigint; type: number }[], { within, anyType = false, joinGap = 0n, minSize = 4n << 20n }: { within?: readonly [bigint, bigint]; anyType?: boolean; joinGap?: bigint; minSize?: bigint } = {}): [bigint, bigint][] {
+  const blocks: [bigint, bigint][] = [];
+  for (const r of regions) {
+    if (!anyType && r.type !== 0x40000) continue;
+    let lo = r.base, hi = r.base + r.size;
+    if (within) { lo = lo > within[0] ? lo : within[0]; hi = hi < within[1] ? hi : within[1]; }
+    if (hi > lo) blocks.push([lo, hi]);
   }
-  return ranges.filter(([lo, hi]) => hi - lo >= 4n << 20n).sort((a, b) => (b[1] - b[0] > a[1] - a[0] ? 1 : b[1] - b[0] < a[1] - a[0] ? -1 : 0));
+  blocks.sort((a, b) => (a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0));
+  const ranges: [bigint, bigint][] = [];
+  for (const [lo, hi] of blocks) {
+    const last = ranges[ranges.length - 1];
+    if (last && lo - last[1] <= joinGap) { if (hi > last[1]) last[1] = hi; } else ranges.push([lo, hi]);
+  }
+  return ranges.filter(([lo, hi]) => hi - lo >= minSize).sort((a, b) => (b[1] - b[0] > a[1] - a[0] ? 1 : b[1] - b[0] < a[1] - a[0] ? -1 : 0));
 }
 
 function locationStrings(b: Buffer): string[] {

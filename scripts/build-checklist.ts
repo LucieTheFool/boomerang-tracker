@@ -78,10 +78,13 @@ const SECTIONS: Record<string, { id: string; label?: string; icon: string | ((na
   'Child trading sequence': { id: 'child_trade', label: 'Child Trading Sequence', icon: n => slug(n), name: r => r.Item, req: 'From → To' },
   'Adult trading sequence': { id: 'adult_trade', label: 'Adult Trading Sequence', icon: n => slug(n), name: r => r.Item, req: 'Trade' },
 };
-// Sections without a table.
-const COUNTERS: Record<string, { id: string; label: string; max: number; icon: string }> = {
-  'Big Poes sold': { id: 'big_poes', label: 'Big Poes Sold', max: 10, icon: 'big_poe' },
-  'Magic Bean soft-soil spots planted': { id: 'magic_beans_planted', label: 'Magic Bean Spots Planted', max: 10, icon: 'magic_bean' },
+// Counter sections. Most are a bare counter with no table; some (Big Poes) also
+// carry a location table whose rows become numbered display-only spots.
+// countsToward100 overrides the "part A => counts" default (Magic Beans is Part B
+// but currently counts toward 100% per the route sheet, pending an in-game check).
+const COUNTERS: Record<string, { id: string; label: string; max: number; icon: string; locations?: { column: string; chapter: string }; countsToward100?: boolean }> = {
+  'Big Poes sold': { id: 'big_poes', label: 'Big Poes Sold', max: 10, icon: 'big_poe', locations: { column: 'Location', chapter: 'Hyrule Field' } },
+  'Magic Bean soft-soil spots planted': { id: 'magic_beans_planted', label: 'Magic Bean Spots Planted', max: 10, icon: 'magic_bean', countsToward100: true },
 };
 
 export function slug(s: string): string {
@@ -102,6 +105,37 @@ export function cleanName(s: string): string {
 
 function splitRow(line: string): string[] {
   return line.trim().replace(/^\||\|$/g, '').split('|').map(c => c.trim());
+}
+
+interface TableCfg {
+  name: (r: Record<string, string>) => string;
+  chapter?: string;      // column name to read as the chapter/region
+  region?: string;
+  req?: string;
+  icon: string | ((n: string) => string);
+  fixedChapter?: string; // constant chapter (e.g. all Big Poes are Hyrule Field)
+  numberedId: boolean;   // id base is "NNN" instead of a slug of the name
+  nameColumn?: string;   // column that became the name (excluded from `details`)
+}
+/** Table config for a section: list sections from SECTIONS, or a counter that carries a location table. */
+function tableCfg(section: string): TableCfg | null {
+  const sec = SECTIONS[section];
+  if (sec) {
+    return {
+      name: sec.name!,
+      chapter: sec.chapter,
+      region: sec.region,
+      req: sec.req,
+      icon: sec.icon,
+      numberedId: sec.id === 'gold_skulltulas' || sec.id === 'heart_pieces',
+    };
+  }
+  const ctr = COUNTERS[section];
+  if (ctr?.locations) {
+    const { column, chapter } = ctr.locations;
+    return { name: r => r[column], icon: ctr.icon, fixedChapter: chapter, numberedId: true, nameColumn: column };
+  }
+  return null;
 }
 
 function parse(text: string) {
@@ -138,7 +172,7 @@ function parse(text: string) {
         cats.push(cur);
         if (declared !== null) declaredCounts[sec.id] = declared;
       } else if (ctr) {
-        cur = { id: ctr.id, label: ctr.label, part, countsToward100: part === 'A', kind: 'counter', max: ctr.max, items: [] };
+        cur = { id: ctr.id, label: ctr.label, part, countsToward100: ctr.countsToward100 ?? (part === 'A'), kind: 'counter', max: ctr.max, items: [] };
         cats.push(cur);
       }
       continue;
@@ -149,29 +183,29 @@ function parse(text: string) {
       const cells = splitRow(line);
       if (!header) { header = cells; continue; }
       if (cells.every(c => /^-+$/.test(c))) continue;
-      const sec = SECTIONS[section];
-      if (!sec) continue;
+      const cfg = tableCfg(section);
+      if (!cfg) continue;
       const row: Record<string, string> = {};
       header.forEach((k, i) => (row[k] = cells[i] ?? ''));
-      let name = cleanName(sec.name!(row));
+      let name = cleanName(cfg.name(row));
       const newInRemake = /\(NEW in remake\)/i.test(name);
       name = name.replace(/\s*\(NEW in remake\)/i, '').trim();
       const number = parseInt(row['#'], 10);
       const details: Record<string, string> = {};
-      for (const [k, v] of Object.entries(row)) if (k !== '#' && v && v !== '—') details[k] = cleanName(v);
+      for (const [k, v] of Object.entries(row)) if (k !== '#' && v && v !== '—' && k !== cfg.nameColumn) details[k] = cleanName(v);
       // Location rows get plain numbered ids, so the public checklist (no guide text)
       // and a detailed local one share the same ids.
-      const idBase = cur.id === 'gold_skulltulas' || cur.id === 'heart_pieces' ? String(number).padStart(3, '0') : slug(name);
+      const idBase = cfg.numberedId ? String(number).padStart(3, '0') : slug(name);
       cur.items.push({
         id: `${cur.id}.${idBase}`,
         number,
         name,
-        chapter: sec.chapter ? row[sec.chapter] : undefined,
-        region: sec.region ? row[sec.region] || undefined : undefined,
-        requirement: sec.req ? row[sec.req] || undefined : undefined,
+        chapter: cfg.fixedChapter ?? (cfg.chapter ? row[cfg.chapter] : undefined),
+        region: cfg.region ? row[cfg.region] || undefined : undefined,
+        requirement: cfg.req ? row[cfg.req] || undefined : undefined,
         details,
         newInRemake: newInRemake || undefined,
-        iconId: typeof sec.icon === 'function' ? sec.icon(name) : sec.icon,
+        iconId: typeof cfg.icon === 'function' ? cfg.icon(name) : cfg.icon,
         detect: null,
       });
       continue;
@@ -181,6 +215,24 @@ function parse(text: string) {
   }
   flushNote();
   return { cats, declaredCounts };
+}
+
+/** Room (small) key pickups per dungeon, in the order the Keys panel lists them. Detection lives in data/save-mapping.json. */
+export const ROOM_KEY_FLAGS: Record<string, string[]> = {
+  'Forest Temple': [0, 6, 9, 12, 18].map(r => `ForestTemple_Room${String(r).padStart(2, '0')}_GetSmallKey`),
+  'Fire Temple': [1, 2, 3, 4, 5, 6, 7, 8].map(n => `FireTemple_GetSmallKey_${String(n).padStart(2, '0')}`),
+  'Water Temple': [2, 8, 16, 17, 18, 20, 21].map(r => `WaterTemple_Room${String(r).padStart(2, '0')}_GetSmallKey`),
+  'Bottom of the Well': ['BottomOfTheWell_Level_Room_03_Get_SmallKey'],
+  'Gerudo Fortress': [1, 2, 3, 4].map(n => `IsGet_SmallKey_GerudoFortress.SmallKey0${n}`),
+};
+
+function roomKeysCategory(): Category {
+  const items: Item[] = [];
+  let n = 1;
+  for (const [d, flags] of Object.entries(ROOM_KEY_FLAGS)) flags.forEach((f, i) =>
+    items.push({ id: `room_keys.${slug(d)}_${i + 1}`, number: n++, name: `${d} small key ${i + 1}`, chapter: d, iconId: 'small_key', detect: null }));
+  return { id: 'room_keys', label: 'Room Keys', part: 'C', countsToward100: false, kind: 'list',
+    note: 'Pickup flags for small keys found in rooms; never counted toward 100%.', items };
 }
 
 function addExtras(cats: Category[]) {
@@ -194,11 +246,18 @@ function addExtras(cats: Category[]) {
   for (const d of bossKeys) items.push({ id: `dungeon_items.${slug(d)}_boss_key`, number: n++, name: `${d} Boss Key`, chapter: d, iconId: 'boss_key', detect: null });
   cats.push({ id: 'dungeon_items', label: 'Maps, Compasses & Boss Keys', part: 'C', countsToward100: false, kind: 'list',
     note: 'Counts from the original game; not yet confirmed for the remake.', items });
+  cats.push(roomKeysCategory());
   cats.push({ id: 'amiibo_masks', label: 'amiibo Retro Masks', part: 'C', countsToward100: false, kind: 'list',
     note: 'Cosmetic; never counted toward 100%.',
     items: [
       { id: 'amiibo_masks.young_link', number: 1, name: 'Young Link amiibo mask', iconId: 'mask', detect: null },
       { id: 'amiibo_masks.young_zelda', number: 2, name: 'Young Zelda amiibo mask', iconId: 'mask', detect: null },
+    ] });
+  cats.push({ id: 'extra_masks', label: 'Zora & Gerudo Masks', part: 'C', countsToward100: false, kind: 'list',
+    note: 'Cosmetic remake extras; never counted toward 100%.',
+    items: [
+      { id: 'extra_masks.zora_mask', number: 1, name: 'Zora Mask', iconId: 'mask', detect: null },
+      { id: 'extra_masks.gerudo_mask', number: 2, name: 'Gerudo Mask', iconId: 'mask', detect: null },
     ] });
 }
 

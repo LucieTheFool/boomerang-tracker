@@ -92,13 +92,13 @@ const CATEGORY_FALLBACK: Record<string, string> = {
   bottles: 'bottle', great_fairies: 'fairy', capacity: 'bag', stones_medallions: 'medallion',
   dungeons: 'door', bosses: 'skull', mini_bosses: 'crossedSwords', side_quests: 'quest',
   skulltula_rewards: 'token', child_trade: 'quest', adult_trade: 'quest', amiibo_masks: 'mask',
-  key_items: 'card', masks: 'mask', equipment: 'shield', items: 'bag', magic_beans_planted: 'sprout', big_poes: 'poe',
+  room_keys: 'key', key_items: 'card', masks: 'mask', equipment: 'shield', items: 'bag', magic_beans_planted: 'sprout', big_poes: 'poe',
 };
 
 export function symbolFor(categoryId: string, iconId: string, name: string): string {
   if (categoryId === 'dungeon_items') return iconId === 'dungeon_map' ? 'map' : iconId === 'compass' ? 'compass' : 'key';
   // Categories whose rows all share one symbol (the name would mislead the keyword match).
-  if (['heart_pieces', 'heart_containers', 'gold_skulltulas', 'songs', 'dungeons', 'bosses', 'mini_bosses', 'side_quests', 'skulltula_rewards'].includes(categoryId)) {
+  if (['heart_pieces', 'heart_containers', 'gold_skulltulas', 'songs', 'dungeons', 'bosses', 'mini_bosses', 'side_quests', 'skulltula_rewards', 'room_keys'].includes(categoryId)) {
     return CATEGORY_FALLBACK[categoryId];
   }
   if (categoryId === 'bottles') return 'bottle';

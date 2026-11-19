@@ -1,6 +1,7 @@
 # Live tracking: reading progress from the running game
 
-The tracker can read progress straight from a running Hookshot, Longshot, NX2navi, ReLink or Fritchii instead of waiting for an
+The tracker can read progress straight from a running Hookshot, Longshot, NX2navi, ReLink, Fritchii
+or Rekarina instead of waiting for an
 autosave. It is **read-only**: the process is opened with `PROCESS_VM_READ` and
 `PROCESS_QUERY_LIMITED_INFORMATION` only, and nothing is ever written to the game or the
 save folder. Whenever live data isn't available or doesn't match, the tracker uses the
@@ -8,9 +9,10 @@ save files as before.
 
 Code: `src/gamedata/live.ts` (layout, locating, reading; tested in `test/live.test.ts`),
 `src/main/procmem.ts` (Windows access through koffi), `src/main/live.ts` (attach, poll,
-fall back).
+fall back). The per-game memory layouts are the `MemLayout` entries in `src/gamedata/live.ts`,
+and the game process list (including `REKARINA`) is the `GAMES` table in `src/main/live.ts`.
 
-## Memory layout (Hookshot v2.1.0, Longshot v1.0.0, NX2navi 0.12.0, ReLink v0.7.7)
+## Memory layout (Hookshot v2.1.0, Longshot v1.0.0, NX2navi 0.12.0, ReLink v0.7.7, Rekarina 1.2.1)
 
 Longshot (a fork of Hookshot v2.0.5) runs the game as `hookshot.exe` too and keeps the same
 layout: same record strides, value offsets and even the same distances between the tables.
@@ -47,6 +49,18 @@ build), and read as before when they aren't.
 
 Saves are in the emulator's data folder: `%APPDATA%\fritchii\nand\user\save\0000000000000000\
 <account>\0400486024DEC000\slot_*` (Ocarina of Time's title id), in the same format as Hookshot's.
+
+### Rekarina 1.2.1
+
+Rekarina (the native PC port) maps the game's memory at host address = guest address (guest
+base 0), with the code at `0x70_0000_0000`, so the tables' vtables are `0x70xxxxxxxx`
+(e.g. the Bool table vtable `0x7004C20658`, the Life/MaxLife engine objects' vtable
+`0x7004B63438`). There's no fixed table address: the tracker lists the process's committed
+readable blocks in `[0x1_0000_0000, 0x70_0000_0000)` (about 5,600 blocks, 9.9 GB) and sweeps
+them, which takes about 7.5 seconds, then remembers where it found the tables (the `live.hint`
+setting, as for the recomps). The record layouts and strides are the same as Hookshot's (the
+table below). Measured on the maintainer's install: all five tables, the 64-bit key table and
+the location list were found, and the live values agreed 100% with the newest save.
 
 The game keeps the same GameData store that saves are written from:
 
@@ -120,7 +134,7 @@ The real clock should move at the speed of a ~15-minute day, stop while the game
 jump to 6:00 or 18:00 with Sun's Song. Probe scripts for this are in the gitignored `local/probe/`
 (`clock-hunt.ts`).
 
-## If a Hookshot, Longshot, NX2navi, ReLink, Fritchii or game update breaks it
+## If a Hookshot, Longshot, NX2navi, ReLink, Fritchii, Rekarina or game update breaks it
 
 The tracker falls back to saves and shows "○ Saves". To re-derive the layout: take a
 memory copy, do one thing in game that sets a known flag (for example collect a heart

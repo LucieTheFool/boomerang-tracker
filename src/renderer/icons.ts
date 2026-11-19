@@ -37,6 +37,7 @@ const CATEGORY_STYLE: Record<string, { color: string; glyph?: string }> = {
   child_trade: { color: '#9fd36b', glyph: '⇄' },
   adult_trade: { color: '#6bbf59', glyph: '⇄' },
   dungeon_items: { color: '#8f9bb3' },
+  room_keys: { color: '#8f9bb3', glyph: 'SK' },
   amiibo_masks: { color: '#888', glyph: '◐' },
 };
 

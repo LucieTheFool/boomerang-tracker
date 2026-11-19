@@ -67,10 +67,22 @@ export function recentLabel(s: SlotSummary | undefined): string {
   return s ? `Most recent (${slotNumber(s.name)})` : 'Most recent';
 }
 
+/** Rekarina keeps a finished save aside until it can put it in place. */
+export const PENDING_NOTE = 'Newest save, waiting for the game to put it in place (it does that on its next start at the latest)';
+
+/** The "Most recent" option's tooltip: the slot's label, and the note above if it applies. */
+export function recentTitle(s: SlotSummary | undefined): string | undefined {
+  return s && (s.pending ? `${slotLabel(s)} · ${PENDING_NOTE}` : slotLabel(s));
+}
+
 const counted = (n: number | undefined, one: string) => (known(n) ? `${n} ${one}${n === 1 ? '' : 's'}` : '');
 
-/** The option's tooltip: "999 rupees · 16 Gold Skulltula tokens · 12 songs · 6 medals · 3 stones" */
+/**
+ * The option's tooltip: "999 rupees · 16 Gold Skulltula tokens · 12 songs · 6 medals · 3 stones",
+ * plus a note when the save is still waiting for the game to put it in place (Rekarina).
+ */
 export function slotTitle(s: SlotSummary): string | undefined {
-  const parts = [counted(s.rupees, 'rupee'), counted(s.tokens, 'Gold Skulltula token'), counted(s.songs, 'song'), counted(s.medals, 'medal'), counted(s.stones, 'stone')];
+  const parts = [counted(s.rupees, 'rupee'), counted(s.tokens, 'Gold Skulltula token'), counted(s.songs, 'song'), counted(s.medals, 'medal'), counted(s.stones, 'stone'),
+    s.pending ? PENDING_NOTE : ''];
   return parts.filter(Boolean).join(' · ') || undefined;
 }

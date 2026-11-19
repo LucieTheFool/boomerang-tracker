@@ -12,6 +12,9 @@ const appDir = app.getAppPath();
 // Development/testing only: run against a scratch settings folder and save folder.
 if (isDev && process.env.OOT_USER_DATA) app.setPath('userData', process.env.OOT_USER_DATA);
 
+// Packaged builds use the exe's icon (build.win.icon); this covers dev runs.
+const windowIcon = fs.existsSync(path.join(appDir, 'build', 'icon.png')) ? { icon: path.join(appDir, 'build', 'icon.png') } : {};
+
 let main: BrowserWindow | null = null;
 let controller: Controller;
 let settings: SettingsStore;
@@ -28,6 +31,7 @@ function createMain() {
     minWidth: 640, minHeight: 480,
     backgroundColor: '#11131a',
     title: 'Boomerang Tracker',
+    ...windowIcon,
     autoHideMenuBar: true,
     webPreferences: { preload: path.join(appDir, 'dist-electron', 'preload.cjs'), contextIsolation: true, sandbox: true, nodeIntegration: false },
   });
@@ -57,6 +61,7 @@ function createOverlay() {
     frame: false, transparent: true, backgroundColor: '#00000000', hasShadow: false,
     alwaysOnTop: true, skipTaskbar: true, resizable: true, focusable: !o.locked, show: false,
     title: 'Boomerang Tracker overlay',
+    ...windowIcon,
     webPreferences: { preload: path.join(appDir, 'dist-electron', 'preload.cjs'), contextIsolation: true, sandbox: true, nodeIntegration: false },
   });
   overlay.setAlwaysOnTop(true, 'screen-saver'); // stays above borderless-fullscreen games
@@ -205,7 +210,7 @@ app.whenReady().then(async () => {
   });
   ipcMain.handle('folder:browse', async () => {
     const r = await dialog.showOpenDialog(main!, {
-      title: 'Choose your game folder (Hookshot, Longshot, Triforce or ReLink) or its user\\save\\<id> folder, or Fritchii\'s data folder',
+      title: 'Choose your game folder (Hookshot, Longshot, Triforce, ReLink or Rekarina) or its user\\save\\<id> folder, or Fritchii\'s data folder',
       properties: ['openDirectory'],
       defaultPath: settings.data.saveDir,
     });
