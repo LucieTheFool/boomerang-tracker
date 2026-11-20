@@ -69,6 +69,22 @@ save. Holds `CaptionData.*` keys: `BancScenePath` / `LocationName` (String64, e.
 thumbnail (`ScreenShot`, Binary) and 22 mirror bools of learned songs/medals/stones. Verified key
 table and hashes: `docs/longshot-crossref.md`, "Caption.sav layout".
 
+## Linux save locations
+
+On Linux the tracker looks for saves in:
+
+- Hookshot and Longshot data folders under `~/.local/share` (`hookshot`, `Hookshot`, `longshot`,
+  `Longshot`); Hookshot keeps its saves in `save/<id>` inside its folder;
+- game folders in `~/Games` and `~/Applications` — named like a game, or any child folder that
+  is one (a game's program, or a save layout such as `user/save`); Rekarina keeps its saves in
+  `game/profile/save/<account id>` inside its own folder;
+- emulator data folders in `~/.config`, `~/.local/share` and each Flatpak app's
+  `~/.var/app/<id>/{config,data}` (the XDG variables, when set, win over the defaults).
+
+Ryujinx-style emulators keep saves in `bis/user/save/<n>/0`, and that path doesn't say which
+game a save belongs to — the emulator runs any title. The tracker therefore doesn't search
+those folders automatically; with one, choose the save folder by hand in Settings.
+
 ## Uncertain
 
 - The one String32 key starts with a NUL byte followed by text (`\0okiriForest_Adult`).

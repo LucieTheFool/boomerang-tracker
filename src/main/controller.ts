@@ -10,7 +10,7 @@ import { regionsForArea } from '../core/areas.js';
 import { evaluateLogic, Logic, LogicFile } from '../core/logic.js';
 import type { AvailableEntry } from '../shared/types.js';
 import { SaveWatcher } from './watcher.js';
-import { LiveSource } from './live.js';
+import { LiveSource, liveUnavailableReason } from './live.js';
 import { ChangeLog } from './changelog.js';
 import { STAGE_KEY, LOCATION_KEY, areaFrom } from '../gamedata/live.js';
 import { keyOf } from '../gamedata/detect.js';
@@ -23,6 +23,18 @@ export interface ControllerPaths {
   userData: string;
   snapshots: string;
   version: string;
+}
+
+/** What to tell someone who has no save folder yet: where the saves are on their system. */
+export function noSaveFolderMessage(platform: NodeJS.Platform = process.platform): string {
+  if (platform === 'linux') return "No save folder found. Choose Hookshot's save folder (~/.local/share/hookshot/save/<id>), your game folder (Hookshot, Longshot, NX2navi's Triforce, ReLink or Rekarina; Rekarina: game/profile/save/<id>), or the emulator's data folder.";
+  return "No save folder found. Choose your game folder (Hookshot, Longshot, NX2navi's Triforce, ReLink or Rekarina) or its user\\save\\<id> folder (Rekarina: game\\profile\\save\\<id>), or Fritchii's data folder (%APPDATA%\\fritchii).";
+}
+
+/** The game folder a running exe belongs to: the exe's folder, or the one above bin\ or game\. */
+export function gameFolderOfExe(exe: string): string {
+  const dir = path.dirname(exe);
+  return /^(bin|game)$/i.test(path.basename(dir)) ? path.dirname(dir) : dir;
 }
 
 export class Controller {
@@ -42,7 +54,14 @@ export class Controller {
   state: AppState;
   private listeners = new Set<(s: AppState) => void>();
 
-  constructor(readonly paths: ControllerPaths, readonly settings: SettingsStore) {
+  /** The system the tracker runs on (tests inject it): live tracking is Windows-only for now. */
+  private readonly platform: NodeJS.Platform;
+  /** Why live tracking can't run here, if it can't (then it's never started). */
+  private readonly liveOff?: string;
+
+  constructor(readonly paths: ControllerPaths, readonly settings: SettingsStore, opts: { platform?: NodeJS.Platform } = {}) {
+    this.platform = opts.platform ?? process.platform;
+    this.liveOff = liveUnavailableReason(this.platform);
     const read = (f: string) => JSON.parse(fs.readFileSync(path.join(paths.appDir, 'data', f), 'utf8'));
     // A detailed local checklist (built from your own guide text, never published) wins
     // over the public one; both use the same ids.
@@ -57,7 +76,7 @@ export class Controller {
     }
     const o = settings.data.overlay;
     this.state = {
-      status: 'loading', slots: [], slotMode: 'recent', categories: [], snapshots: [], toasts: [], devPanel: settings.data.devPanel, version: paths.version,
+      status: 'loading', slots: [], slotMode: 'recent', categories: [], snapshots: [], toasts: [], devPanel: settings.data.devPanel, version: paths.version, platform: this.platform,
       areaRegions: [],
       available: [],
       canBeAdult: false,
@@ -65,7 +84,7 @@ export class Controller {
       learnedCount: settings.data.learned.length,
       overlay: { visible: false, locked: o.locked, opacity: o.opacity, mode: o.mode },
       hotkeys: { ...settings.data.hotkeys, errors: [] },
-      live: { status: 'off', enabled: settings.data.live.enabled, using: false },
+      live: this.liveState(),
       changeLog: { enabled: settings.data.changeLog, dir: path.join(paths.userData, 'logs') },
     };
     this.log = new ChangeLog(path.join(paths.userData, 'logs'));
@@ -104,7 +123,7 @@ export class Controller {
   async start() {
     let dir = this.settings.data.saveDir;
     if (!dir || !resolveUserFolders(dir).length) {
-      const found = autoDetectUserFolder();
+      const found = autoDetectUserFolder({ platform: this.platform });
       if (found) { dir = found; this.settings.update(s => (s.saveDir = found)); }
     }
     await this.openFolder(dir);
@@ -114,9 +133,16 @@ export class Controller {
   // ---- live (read-only) progress from the running game
   private live?: LiveSource;
 
+  /** The live part of the state. Where live tracking can't run, it says why (and shows as off). */
+  private liveState(using = false): AppState['live'] {
+    if (this.liveOff) return { status: 'unavailable', detail: this.liveOff, enabled: false, using: false };
+    return { ...(this.live?.info ?? { status: 'off' }), enabled: this.settings.data.live.enabled, using };
+  }
+
   private async startLive() {
-    if (this.live) return;
+    if (this.live || this.liveOff) return;
     this.live = new LiveSource({
+      platform: this.platform,
       // Where the tables were found before, newest first (one per game build, e.g. Hookshot and Longshot).
       hints: [...new Set([...(this.settings.data.live.hints ?? []), this.settings.data.live.hint].filter((h): h is string => !!h))],
       onHint: h => this.settings.update(s => {
@@ -139,6 +165,7 @@ export class Controller {
   }
 
   async setLiveEnabled(on: boolean) {
+    if (this.liveOff) return;
     this.settings.update(s => (s.live.enabled = on));
     if (on) await this.startLive();
     else { this.live?.stop(); this.live = undefined; }
@@ -180,7 +207,7 @@ export class Controller {
     this.lastShownBySlot.clear();
     this.lastShown = undefined;
     this.userDir = undefined;
-    if (!dir) return this.fail('no-folder', "No save folder found. Choose your game folder (Hookshot, Longshot, NX2navi's Triforce, ReLink or Rekarina) or its user\\save\\<id> folder (Rekarina: game\\profile\\save\\<id>), or Fritchii's data folder (%APPDATA%\\fritchii).");
+    if (!dir) return this.fail('no-folder', noSaveFolderMessage(this.platform));
     if (!fs.existsSync(dir)) return this.fail('no-folder', `The save folder no longer exists:\n${dir}`);
     const users = resolveUserFolders(dir);
     if (!users.length) return this.fail('no-slots', `No slot_* folders with a progress.sav were found in:\n${dir}`);
@@ -208,10 +235,12 @@ export class Controller {
     if (!exe) return skip('no exe path');
     if (this.settings.data.pinnedSlot) return skip('pinned');
     if (this.following.chosen) return skip(`keeping the folder you chose: ${this.userDir ?? '(none)'}`);
-    const dir = userFolderForExe(exe);
+    const dir = userFolderForExe(exe, { platform: this.platform });
     if (!dir) return skip(`no saves found for ${exe}`);
-    if (path.resolve(dir).toLowerCase() === path.resolve(this.userDir ?? '').toLowerCase()) return skip(`already using ${dir}`);
-    const game = path.dirname(exe).replace(/\\(bin|game)$/i, '');
+    // Windows paths ignore case; Linux paths don't.
+    const same = (a: string, b: string) => (this.platform === 'win32' ? a.toLowerCase() === b.toLowerCase() : a === b);
+    if (same(path.resolve(dir), path.resolve(this.userDir ?? ''))) return skip(`already using ${dir}`);
+    const game = gameFolderOfExe(exe);
     console.log('[follow] switched to', dir);
     this.log.write({ kind: 'source', status: 'switched', detail: `Following the running game: ${game}` });
     this.toast(`Switched to the saves of the game that's running (${game}).`, 8000);
@@ -324,7 +353,7 @@ export class Controller {
       snapshots: this.listSnapshots(),
       toasts: this.toasts,
       devPanel: this.settings.data.devPanel,
-      live: { ...(this.live?.info ?? { status: 'off' }), enabled: this.settings.data.live.enabled, using: !!liveSnap },
+      live: this.liveState(!!liveSnap),
     };
     this.emit();
   }

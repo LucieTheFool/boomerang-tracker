@@ -24,8 +24,25 @@ you can get next, and updates as you play.
 
 ## Download
 
-Get the latest release (a portable exe) from the [Releases page](../../releases). Nothing is
-installed and no admin rights are needed — run the exe and it's ready.
+Get the latest release from the [Releases page](../../releases): a portable exe for Windows, an
+AppImage (or a `.tar.gz`) for Linux. Nothing is installed and no admin rights are needed — run
+it and it's ready.
+
+### Linux (saves only)
+
+Download `Boomerang-Tracker-<version>-x86_64.AppImage`, make it executable (`chmod +x`) and run
+it, or unpack the `.tar.gz` and run `boomerang-tracker`.
+
+The tracker finds Hookshot's saves in `~/.local/share/hookshot/save/<id>`, game folders in
+`~/Games` or `~/Applications` (Rekarina keeps its saves in `game/profile/save/<account id>`
+inside its folder), and emulator data folders in `~/.config`, `~/.local/share` or Flatpak's
+`~/.var/app/<id>/{config,data}`. If it doesn't find them, choose the folder in Settings.
+
+Live tracking isn't available on Linux yet: the tracker follows your save files and updates each
+time the game saves. Settings are kept in `~/.config/Boomerang Tracker`.
+
+Ryujinx-style emulators keep their saves in a folder that doesn't say which game they belong to,
+so the tracker doesn't pick those up automatically — choose that save folder by hand in Settings.
 
 ### Build it yourself (Node.js 22.15+ or 24)
 
@@ -34,6 +51,7 @@ npm install
 npm start          # build and run
 npm run dev        # run with live reload
 npm run dist       # build the portable exe into release\
+npm run dist:linux # AppImage + tar.gz (scripts/dist-linux-wsl.sh, WSL with Node 24)
 npm test
 ```
 

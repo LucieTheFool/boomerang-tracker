@@ -70,10 +70,41 @@ function emulatorUserFolders(start: string): string[] {
   return out;
 }
 
-/** Emulator exes, and the data folders (under %APPDATA%) they keep saves in. Fritchii runs as lichii.exe. */
-const EMULATOR_EXES = ['lichii.exe'];
-function emulatorDataDirs(appData = process.env.APPDATA ?? path.join(os.homedir(), 'AppData', 'Roaming')): string[] {
-  return ['fritchii', 'lichii'].map(n => path.join(appData, n));
+/** The system the saves are looked for on: its platform, home folder and environment (tests inject them). */
+export interface Host { platform: NodeJS.Platform; home: string; env: NodeJS.ProcessEnv }
+function host(h: Partial<Host> = {}): Host {
+  return { platform: h.platform ?? process.platform, home: h.home ?? os.homedir(), env: h.env ?? process.env };
+}
+
+/** Emulator exes (Fritchii runs as lichii.exe; its Linux name is a guess), and their data folder names. */
+const EMULATOR_EXES = ['lichii.exe', 'lichii'];
+const EMULATOR_NAMES = ['fritchii', 'lichii'];
+
+/**
+ * The XDG base folders (https://specifications.freedesktop.org/basedir-spec/): the variable
+ * when it holds an absolute path, else the default under home.
+ */
+function xdg(h: Host, name: 'XDG_DATA_HOME' | 'XDG_CONFIG_HOME', fallback: string): string {
+  const v = h.env[name];
+  return v && path.isAbsolute(v) ? v : path.join(h.home, fallback);
+}
+
+/**
+ * The data folders emulators keep saves in. Windows: under %APPDATA%. Linux: under
+ * ~/.config and ~/.local/share (or the XDG variables), and the same inside each Flatpak
+ * app's ~/.var/app/<id>/{config,data}.
+ */
+function emulatorDataDirs(hh: Partial<Host> = {}): string[] {
+  const h = host(hh);
+  if (h.platform !== 'linux') return EMULATOR_NAMES.map(n => path.join(h.env.APPDATA ?? path.join(h.home, 'AppData', 'Roaming'), n));
+  const roots = [xdg(h, 'XDG_CONFIG_HOME', '.config'), xdg(h, 'XDG_DATA_HOME', path.join('.local', 'share')), ...flatpakRoots(h)];
+  return roots.flatMap(base => EMULATOR_NAMES.map(n => path.join(base, n)));
+}
+
+/** Each Flatpak app's own config and data folders: ~/.var/app/<id>/{config,data}. */
+function flatpakRoots(h: Host): string[] {
+  const apps = path.join(h.home, '.var', 'app');
+  return readdir(apps).flatMap(id => [path.join(apps, id, 'config'), path.join(apps, id, 'data')]);
 }
 
 /**
@@ -81,35 +112,73 @@ function emulatorDataDirs(appData = process.env.APPDATA ?? path.join(os.homedir(
  * NX2navi's Triforce, Project ReLink, Rekarina.
  */
 const GAME_EXES = ['hookshot.exe', path.join('bin', 'hookshot.exe'), 'Longshot.exe', 'Triforce.exe', 'ReLink.exe', path.join('bin', 'relink-game.exe'), 'Rekarina.exe', path.join('game', 'Rekarina.exe')];
+/** The same programs on Linux (no .exe; names are case-sensitive there). */
+const LINUX_GAME_FILES = ['hookshot', path.join('bin', 'hookshot'), 'Longshot', 'Triforce', 'ReLink', path.join('bin', 'relink-game'), 'Rekarina', path.join('game', 'Rekarina')];
+/**
+ * Save layouts that make a folder a game folder on Linux, whatever its program is called
+ * (Rekarina's Linux binary name isn't known): Rekarina's profile, a game's user\save, Hookshot's data folder.
+ */
+const LINUX_SAVE_LAYOUTS = [path.join('game', 'profile', 'save'), path.join('profile', 'save'), path.join('user', 'save'), 'save'];
 /** Folder names those games are usually installed under. */
 const GAME_NAMES = /hookshot|longshot|triforce|nx2navi|relink|rekarina/i;
+/** The games' folder names, as their setups and docs spell them. */
+const GAME_FOLDERS = ['Hookshot', 'Longshot', 'Triforce', 'ReLink', 'Rekarina'];
 
-export function isGameFolder(dir: string): boolean {
-  return GAME_EXES.some(f => fs.existsSync(path.join(dir, f)));
+/**
+ * A game's install folder: one of the games' programs is in it. On Linux also a Windows
+ * build (run through Wine/Proton), or a folder with one of the save layouts.
+ */
+export function isGameFolder(dir: string, platform: NodeJS.Platform = process.platform): boolean {
+  const isFile = (f: string) => { try { return fs.statSync(path.join(dir, f)).isFile(); } catch { return false; } };
+  const isDir = (f: string) => { try { return fs.statSync(path.join(dir, f)).isDirectory(); } catch { return false; } };
+  if (platform !== 'linux') return GAME_EXES.some(f => fs.existsSync(path.join(dir, f)));
+  return [...LINUX_GAME_FILES, ...GAME_EXES].some(isFile) || LINUX_SAVE_LAYOUTS.some(isDir);
 }
 
 /** Places Hookshot, Longshot, NX2navi (Triforce), Project ReLink and Rekarina game folders usually live. */
-export function candidateGameFolders(home = os.homedir(), drives = ['C:', 'D:', 'E:', 'F:']): string[] {
+export function candidateGameFolders(home = os.homedir(), drives = ['C:', 'D:', 'E:', 'F:'], hh: Partial<Host> = {}): string[] {
+  const h = host({ ...hh, home });
+  if (h.platform === 'linux') return linuxCandidates(h);
   // NX2navi's setup builds the game into %USERPROFILE%\Games\Triforce; Project ReLink's setup defaults to Games\ReLink.
-  const c = ['Hookshot', 'Longshot', 'Triforce', 'ReLink', 'Rekarina'].map(n => path.join(home, 'Games', n));
+  const c = GAME_FOLDERS.map(n => path.join(home, 'Games', n));
   const gameDirs = [path.join(home, 'Games')];
   for (const drive of drives) {
     // Launchers (e.g. QuiverLauncher) install builds as Apps\<name>-Hookshot, Apps\<name>-NX2navi.
-    for (const base of [path.join(drive + '\\', 'Games', 'QuiverLauncher', 'Apps'), path.join(home, 'QuiverLauncher', 'Apps')]) {
+    for (const base of [path.join(drive, path.sep, 'Games', 'QuiverLauncher', 'Apps'), path.join(home, 'QuiverLauncher', 'Apps')]) {
       try {
         for (const n of fs.readdirSync(base)) if (GAME_NAMES.test(n)) c.push(path.join(base, n));
       } catch { /* not there */ }
     }
-    gameDirs.push(path.join(drive + '\\', 'Games'));
+    gameDirs.push(path.join(drive, path.sep, 'Games'));
   }
   // Game folders straight under a Games folder, e.g. D:\Games\Longshot.
   for (const games of gameDirs) {
     try {
-      for (const n of fs.readdirSync(games)) { const p = path.join(games, n); if (GAME_NAMES.test(n) && isGameFolder(p)) c.push(p); }
+      for (const n of fs.readdirSync(games)) { const p = path.join(games, n); if (GAME_NAMES.test(n) && isGameFolder(p, h.platform)) c.push(p); }
     } catch { /* not there */ }
   }
   // Emulators keep their saves in their own data folder (Fritchii: %APPDATA%\fritchii).
-  c.push(...emulatorDataDirs());
+  c.push(...emulatorDataDirs(h));
+  return [...new Set(c)];
+}
+
+/**
+ * Linux: no drive letters. Hookshot keeps its saves in ~/.local/share/hookshot/save/<id>
+ * (Longshot likely alike); game folders in ~/Games or ~/Applications (Rekarina keeps
+ * game/profile/save/<id> in its own folder there too); emulators in their data folders.
+ */
+function linuxCandidates(h: Host): string[] {
+  const data = xdg(h, 'XDG_DATA_HOME', path.join('.local', 'share'));
+  const c = ['hookshot', 'Hookshot', 'longshot', 'Longshot'].map(n => path.join(data, n));
+  const gameDirs = [path.join(h.home, 'Games'), path.join(h.home, 'Applications')];
+  for (const games of gameDirs) c.push(...GAME_FOLDERS.map(n => path.join(games, n)));
+  for (const games of gameDirs) {
+    for (const n of readdir(games)) { const p = path.join(games, n); if (GAME_NAMES.test(n) && isGameFolder(p, 'linux')) c.push(p); }
+  }
+  c.push(...emulatorDataDirs(h));
+  // Flatpak builds of the games keep their data inside the app's folder.
+  for (const base of flatpakRoots(h)) c.push(...['hookshot', 'longshot'].map(n => path.join(base, n)));
+  // Ryujinx-style emulators (bis/user/save/<n>/0) aren't searched: their folders don't say which game a save is for.
   return [...new Set(c)];
 }
 
@@ -119,16 +188,16 @@ export function candidateGameFolders(home = os.homedir(), drives = ['C:', 'D:', 
  * exe is in <install>\game\, its saves in game\profile\save\<id>. For an emulator: its
  * portable "user" folder next to the exe, or its data folder.
  */
-export function userFolderForExe(exe: string, appData?: string): string | null {
+export function userFolderForExe(exe: string, hh: Partial<Host> = {}): string | null {
   let dir = path.dirname(exe);
   if (path.basename(dir).toLowerCase() === 'bin') dir = path.dirname(dir);
-  const roots = EMULATOR_EXES.includes(path.basename(exe).toLowerCase()) ? [dir, ...emulatorDataDirs(appData)] : [dir];
+  const roots = EMULATOR_EXES.includes(path.basename(exe).toLowerCase()) ? [dir, ...emulatorDataDirs(hh)] : [dir];
   return roots.flatMap(resolveUserFolders).sort((a, b) => latestMtime(b) - latestMtime(a))[0] ?? null;
 }
 
 /** The save folder with the most recent save across every install found. */
-export function autoDetectUserFolder(): string | null {
-  const all = candidateGameFolders().flatMap(g => resolveUserFolders(g));
+export function autoDetectUserFolder(hh: Partial<Host> = {}): string | null {
+  const all = candidateGameFolders(hh.home, undefined, hh).flatMap(g => resolveUserFolders(g));
   return all.sort((a, b) => latestMtime(b) - latestMtime(a))[0] ?? null;
 }
 

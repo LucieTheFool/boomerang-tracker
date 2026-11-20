@@ -72,11 +72,12 @@ describe("an emulator's save folders", () => {
     const exe = path.join(exeDir, 'lichii.exe');
     fs.writeFileSync(exe, '');
     const appData = path.join(root, 'AppData');
+    const windows = { platform: 'win32' as const, env: { APPDATA: appData } };
     const inData = emulatorData(path.join(appData, 'fritchii'), [OOT_TITLE_ID])[OOT_TITLE_ID];
-    expect(userFolderForExe(exe, appData)).toBe(inData);
+    expect(userFolderForExe(exe, windows)).toBe(inData);
     const portable = emulatorData(path.join(exeDir, 'user'), [OOT_TITLE_ID])[OOT_TITLE_ID];
     const later = new Date(Date.now() + 60_000);
     fs.utimesSync(path.join(portable, 'slot_00', 'progress.sav'), later, later);
-    expect(userFolderForExe(exe, appData)).toBe(portable); // the most recently played one
+    expect(userFolderForExe(exe, windows)).toBe(portable); // the most recently played one
   });
 });

@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { afterAll, afterEach, beforeEach, describe, it, expect, vi } from 'vitest';
-import { Controller } from '../src/main/controller.js';
+import { Controller, gameFolderOfExe } from '../src/main/controller.js';
 import { SettingsStore } from '../src/main/settings.js';
 import { LiveSource, type LiveMem } from '../src/main/live.js';
 
@@ -134,6 +134,16 @@ describe('following the running game', () => {
     expect(follows()).toEqual([`[follow] already using ${rk.user}`]);
   });
 
+  it('names the game folder above game/ in a Linux-style exe path', async () => {
+    const hs = hookshot(), rk = rekarina();
+    const c = await tracker(hs.dir);
+    const exe = rk.exe.split(path.sep).join('/').replace(/\.exe$/, ''); // .../Rekarina-<n>/game/Rekarina
+    const game = exe.slice(0, -'/game/Rekarina'.length);
+    await c.followGame(exe, 1);
+    expect(c.state.saveDir).toBe(rk.user);
+    expect(c.state.toasts.map(t => t.text)).toContain(`Switched to the saves of the game that's running (${game}).`);
+  });
+
   it("switches on the next try after Rekarina's save swap had save\\<uid> away for a moment", async () => {
     const hs = hookshot(), rk = rekarina();
     putSlot(path.join(rk.tx, 'ready-1')); // a finished save waiting to be swapped in
@@ -147,5 +157,19 @@ describe('following the running game', () => {
     expect(c.state.saveDir).toBe(rk.user);
     expect(c.state.status).toBe('ok');
     expect(follows()).toEqual([`[follow] no saves found for ${rk.exe}`, `[follow] switched to ${rk.user}`]);
+  });
+});
+
+describe('the game folder of a running exe', () => {
+  it('works with Linux paths', () => {
+    expect(gameFolderOfExe('/home/link/Games/Rekarina/game/Rekarina')).toBe('/home/link/Games/Rekarina');
+    expect(gameFolderOfExe('/home/link/Applications/Hookshot/bin/hookshot')).toBe('/home/link/Applications/Hookshot');
+    expect(gameFolderOfExe('/home/link/Games/Longshot/Longshot')).toBe('/home/link/Games/Longshot');
+    expect(gameFolderOfExe('/opt/binaries/hookshot')).toBe('/opt/binaries'); // only a folder named bin or game
+  });
+  it.skipIf(process.platform !== 'win32')('works with Windows paths', () => {
+    expect(gameFolderOfExe('D:\\Games\\Rekarina\\game\\Rekarina.exe')).toBe('D:\\Games\\Rekarina');
+    expect(gameFolderOfExe('C:\\Games\\ReLink\\BIN\\relink-game.exe')).toBe('C:\\Games\\ReLink');
+    expect(gameFolderOfExe('D:\\Games\\Longshot\\hookshot.exe')).toBe('D:\\Games\\Longshot');
   });
 });

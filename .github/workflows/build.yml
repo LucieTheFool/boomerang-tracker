@@ -1,0 +1,51 @@
+# Typecheck, test and build Boomerang Tracker for Windows (portable exe) and Linux (AppImage, tar.gz).
+# Builds only: no secrets, nothing is published (the artifacts are attached to the run).
+name: build
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+
+permissions:
+  contents: read
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx tsc --noEmit
+      - run: npx vitest run
+      # electron-builder may try to publish when it builds a tag in CI: never.
+      - run: npm run dist -- --publish never
+      - uses: actions/upload-artifact@v4
+        with:
+          name: boomerang-tracker-windows
+          path: release/*.exe
+          if-no-files-found: error
+
+  linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx tsc --noEmit
+      - run: npx vitest run
+      - run: npm run dist:linux -- --publish never
+      - uses: actions/upload-artifact@v4
+        with:
+          name: boomerang-tracker-linux
+          path: |
+            release/*.AppImage
+            release/*.tar.gz
+          if-no-files-found: error

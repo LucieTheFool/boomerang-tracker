@@ -1,6 +1,6 @@
 {
   "name": "boomerang-tracker",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "private": true,
   "description": "100% completion tracker for Ocarina of Time (Switch 2 remake) saves, as run by Hookshot, Longshot, NX2navi, Project ReLink or Fritchii.",
   "type": "module",
@@ -13,7 +13,8 @@
     "dev": "node scripts/dev.mjs",
     "build": "vite build && node scripts/build-electron.mjs",
     "start": "npm run build && node scripts/start.mjs",
-    "dist": "npm run build && electron-builder --win portable"
+    "dist": "npm run build && electron-builder --win portable",
+    "dist:linux": "npm run build && electron-builder --linux AppImage tar.gz"
   },
   "devDependencies": {
     "@types/node": "^24.19.2",
@@ -35,6 +36,7 @@
   },
   "main": "dist-electron/main.cjs",
   "productName": "Boomerang Tracker",
+  "desktopName": "boomerang-tracker.desktop",
   "build": {
     "appId": "io.github.boomerang-tracker",
     "productName": "Boomerang Tracker",
@@ -46,6 +48,7 @@
       "dist-electron/**",
       "!dist-electron/*.map",
       "data/**",
+      "!data/checklist.local.json",
       "package.json"
     ],
     "win": {
@@ -61,6 +64,36 @@
     },
     "portable": {
       "artifactName": "Boomerang-Tracker-${version}-portable.exe"
+    },
+    "linux": {
+      "icon": "build/icon.png",
+      "category": "Game",
+      "syncDesktopName": true,
+      "artifactName": "Boomerang-Tracker-${version}-x86_64.${ext}",
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "tar.gz",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "files": [
+        "dist/**",
+        "dist-electron/**",
+        "!dist-electron/*.map",
+        "data/**",
+        "!data/checklist.local.json",
+        "package.json",
+        "!node_modules/koffi/**",
+        "!node_modules/@koromix/**"
+      ]
     },
     "asar": true,
     "asarUnpack": [

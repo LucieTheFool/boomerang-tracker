@@ -118,6 +118,12 @@ function registerHotkeys() {
   controller.patch({ hotkeys: { ...hk, errors } });
 }
 
+/** The folder picker's title: where the saves are on this system. */
+function browseTitle() {
+  if (process.platform === 'linux') return "Choose your game folder, Hookshot's ~/.local/share/hookshot/save/<id> folder, or the emulator's data folder";
+  return 'Choose your game folder (Hookshot, Longshot, Triforce, ReLink or Rekarina) or its user\\save\\<id> folder, or Fritchii\'s data folder';
+}
+
 function debounce<T extends (...a: never[]) => void>(fn: T, ms: number) {
   let t: NodeJS.Timeout | undefined;
   return (...a: Parameters<T>) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); };
@@ -210,7 +216,7 @@ app.whenReady().then(async () => {
   });
   ipcMain.handle('folder:browse', async () => {
     const r = await dialog.showOpenDialog(main!, {
-      title: 'Choose your game folder (Hookshot, Longshot, Triforce, ReLink or Rekarina) or its user\\save\\<id> folder, or Fritchii\'s data folder',
+      title: browseTitle(),
       properties: ['openDirectory'],
       defaultPath: settings.data.saveDir,
     });

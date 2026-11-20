@@ -148,6 +148,8 @@ export interface AppState {
   toasts: Toast[];
   devPanel: boolean;
   version: string;
+  /** The system the tracker runs on (process.platform): help texts name its folders. */
+  platform: string;
   /** Checklist regions matching the save's current area (for the overlay) */
   areaRegions: string[];
   /** 100% entries obtainable right now (logic), current area first */

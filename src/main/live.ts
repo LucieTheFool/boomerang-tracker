@@ -38,6 +38,16 @@ export const GAMES: GameInfo[] = [
   { image: 'hookshot.exe' }, { image: 'Triforce.exe' }, { image: 'relink-game.exe' }, { image: 'lichii.exe', emulator: true },
   { image: 'Rekarina.exe', ...REKARINA },
 ];
+/**
+ * Why live tracking can't run on this system, or undefined where it can (Windows). Elsewhere
+ * nothing is tried: no process list, no memory access library.
+ */
+export function liveUnavailableReason(platform: NodeJS.Platform = process.platform): string | undefined {
+  if (platform === 'win32') return undefined;
+  const where = platform === 'linux' ? 'on Linux yet' : 'on this system';
+  return `Live tracking isn't available ${where}. The tracker follows your save files and updates each time the game saves.`;
+}
+
 const TICK_MS = 500;
 const FIND_EVERY_MS = 3000;
 /** While attached but not live, how often to tell the app again which game it is (onGame). */
@@ -118,6 +128,8 @@ export interface LiveOptions {
   findGame?: () => Promise<(GameInfo & { pid: number }) | undefined>;
   open?: (pid: number) => LiveMem;
   now?: () => number;
+  /** Tests: the system to act as (default: this one). */
+  platform?: NodeJS.Platform;
 }
 
 export class LiveSource {
@@ -144,6 +156,8 @@ export class LiveSource {
   constructor(private opts: LiveOptions) { this.now = opts.now ?? Date.now; }
 
   async start() {
+    const off = liveUnavailableReason(this.opts.platform);
+    if (off) return this.set({ status: 'unavailable', detail: off });
     if (!(await initMemoryAccess())) return this.set({ status: 'unavailable', detail: 'Reading game memory is not available on this system.' });
     this.set({ status: 'no-game' });
     this.timer = setInterval(() => void this.tick(), TICK_MS);

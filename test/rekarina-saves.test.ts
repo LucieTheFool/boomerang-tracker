@@ -58,7 +58,7 @@ describe('finding a Rekarina install', () => {
     fs.renameSync(install('Rekarina-c').dir, path.join(games, 'Rekarina 1.2.1'));
     fs.mkdirSync(path.join(games, 'Something else', 'game'), { recursive: true });
     const home = path.join(root, 'home');
-    const found = candidateGameFolders(home, [drive]);
+    const found = candidateGameFolders(home, [drive], { platform: 'win32' });
     expect(found).toContain(path.join(games, 'Rekarina 1.2.1'));
     expect(found).not.toContain(path.join(games, 'Something else'));
     expect(found).toContain(path.join(home, 'Games', 'Rekarina'));

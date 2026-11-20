@@ -51,7 +51,9 @@ export function App() {
         {state.status === 'loading' ? <p>Looking for your saves…</p> : <p className="error-text">{state.message}</p>}
         {state.status !== 'loading' && (
           <>
-            <p className="muted">Pick the game folder (Hookshot, Longshot, NX2navi's Triforce folder, ReLink, or Rekarina), Fritchii's data folder (<code>%APPDATA%\fritchii</code>), or the <code>user\save\&lt;id&gt;</code> folder inside it (Rekarina: <code>game\profile\save\&lt;id&gt;</code>). The tracker only ever reads your saves.</p>
+            {state.platform === 'linux'
+              ? <p className="muted">Pick Hookshot's save folder (<code>~/.local/share/hookshot/save/&lt;id&gt;</code>), the game folder (Hookshot, Longshot, NX2navi's Triforce folder, ReLink, or Rekarina: <code>game/profile/save/&lt;id&gt;</code>), or the emulator's data folder. The tracker only ever reads your saves.</p>
+              : <p className="muted">Pick the game folder (Hookshot, Longshot, NX2navi's Triforce folder, ReLink, or Rekarina), Fritchii's data folder (<code>%APPDATA%\fritchii</code>), or the <code>user\save\&lt;id&gt;</code> folder inside it (Rekarina: <code>game\profile\save\&lt;id&gt;</code>). The tracker only ever reads your saves.</p>}
             <button className="primary" onClick={() => void api.browseFolder()}>Choose save folder…</button>
           </>
         )}
@@ -316,6 +318,8 @@ function AvailableFilterBar({ entries, shown, filters, onFilters }: { entries: A
 /** Where the numbers come from right now: the running game, or the save files. */
 function LiveBadge({ state }: { state: AppState }) {
   const l = state.live;
+  // No live tracking on this system: always the saves, and why.
+  if (state.platform !== 'win32') return <span className="live-badge" title={l.detail}>○ Saves</span>;
   if (!l.enabled || l.status === 'off' || l.status === 'unavailable') return null;
   if (l.using) return <span className="live-badge on" title="Reading progress live from the game (read-only)">● Live</span>;
   const text: Record<string, string> = {
@@ -341,6 +345,8 @@ function SettingsButton({ state }: { state: AppState }) {
     return () => { document.removeEventListener('mousedown', down); document.removeEventListener('keydown', key); };
   }, [open]);
   const o = state.overlay;
+  // Live tracking is Windows-only for now: elsewhere the toggle is off, with the reason.
+  const liveOff = state.platform !== 'win32';
   return (
     <div className="dropdown" ref={ref}>
       <button className={open ? 'on' : ''} onClick={() => setOpen(x => !x)}>Settings ▾</button>
@@ -351,9 +357,11 @@ function SettingsButton({ state }: { state: AppState }) {
           <button onClick={() => void api.browseFolder()}>Change save folder…</button>
           <b>Live tracking</b>
           <label className="check">
-            <input type="checkbox" checked={state.live.enabled} onChange={e => void api.setLive(e.target.checked)} /> Read progress live from the running game
+            <input type="checkbox" checked={state.live.enabled} disabled={liveOff} onChange={e => void api.setLive(e.target.checked)} /> Read progress live from the running game
           </label>
-          <span className="muted small">Works with Hookshot, Longshot, NX2navi, ReLink, Rekarina and Fritchii. Read-only: the tracker only looks at the game's memory, it never changes anything. Uses your saves whenever the game isn't running.</span>
+          {liveOff
+            ? <span className="muted small">{state.live.detail}</span>
+            : <span className="muted small">Works with Hookshot, Longshot, NX2navi, ReLink, Rekarina and Fritchii. Read-only: the tracker only looks at the game's memory, it never changes anything. Uses your saves whenever the game isn't running.</span>}
           <b>Overlay</b>
           <label>Opacity: {Math.round(o.opacity * 100)}%
             <input type="range" min={0.2} max={1} step={0.05} value={o.opacity} onChange={e => void api.setOverlay({ opacity: Number(e.target.value) })} />

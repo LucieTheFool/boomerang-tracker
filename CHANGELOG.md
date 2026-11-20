@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.5.1 (2026-11-20)
+
+- **Linux (saves only):** AppImage and `.tar.gz` builds
+  (`Boomerang-Tracker-<version>-x86_64.AppImage` / `.tar.gz`). Live tracking is Windows-only
+  for now, so on Linux the tracker follows the save files and updates each time the game
+  saves. It looks for Hookshot's saves in `~/.local/share/hookshot/save/<id>`, game folders in
+  `~/Games` or `~/Applications` (Rekarina: `game/profile/save/<account id>`), and emulator
+  data folders in `~/.config`, `~/.local/share` and Flatpak's `~/.var/app/<id>/{config,data}`;
+  anything it can't find can be chosen in Settings. Ryujinx-style saves aren't picked up
+  automatically (their folder doesn't say which game they belong to) — choose that folder by
+  hand. Settings live in `~/.config/Boomerang Tracker`.
+
 ## 0.5.0 (2026-11-19)
 
 - **Rekarina support** — [Rekarina](https://git.rekarina.dev/rekarina/rekarina), the native PC port
