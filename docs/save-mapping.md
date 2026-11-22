@@ -32,7 +32,7 @@ npm test                                   # includes: every rule reads keys tha
 | Items | A | 27/27 | 3 confirmed, 23 likely, 1 guess (Double Magic) |
 | Key Items | A | 1/1 | likely |
 | Masks | A | 5/5 | likely |
-| Bottles | A | 5/5 | 3 likely, 2 guess |
+| Bottles | A | 5/5 | 2 confirmed, 3 likely |
 | Great Fairies | A | 5/6 | 3 likely, 2 guess (Hyrule Castle fairy unmapped) |
 | Capacity Upgrades | A | 14/14 | likely |
 | Stones & Medallions | A | 9/9 | likely |
@@ -40,7 +40,7 @@ npm test                                   # includes: every rule reads keys tha
 | Bosses | A | 10/10 | likely |
 | Mini-bosses | A | 10/10 | 9 likely, 1 guess (Iron Knuckle) |
 | Side Quests | A | 6/6 | 5 likely, 1 guess (windmill/well) |
-| Big Poes Sold | A | counter | guess |
+| Big Poes Sold | A | 10/10 + counter | confirmed |
 | House of Skulltula Rewards | B | 6/6 | likely |
 | Child / Adult Trading Sequence | B | 3/3, 11/11 | likely |
 | Magic Bean Spots Planted | B | counter | guess |
@@ -90,6 +90,9 @@ save first). It copies the most recent save and prints what changed. A baseline 
 
 Done 2026-11-10 (fresh save): Kokiri Sword, Deku Shield, Deku Sticks, Deku Nuts, Fairy Slingshot,
 Deku Tree map and compass, Gold Skulltula Deku Tree 3F. All confirmed.
+Done 2026-11-20 (Big Poes, Rekarina): all 10 locations + sold counter — the per-location
+sold/still-alive flag arrays, `GhostShop_CouponNum`'s unit (100 points per Poe, 0 → 1000) and
+`Step_SubEvent_GhostShop` going `Playing` → `Complete` after the 10th sale. All confirmed.
 
 1. **Any Gold Skulltula in an area with several**: each before/after pair pins one pooled tile to
    its exact spot. Just label the snapshot with the checklist number (e.g. `after-gs-2`).
@@ -100,13 +103,18 @@ Deku Tree map and compass, Gold Skulltula Deku Tree 3F. All confirmed.
 5. **Hyrule Castle Great Fairy (child)**: tells us which of `Dm_FairyFountain_{Power,Wisdom,Courage}` it is.
 6. **10-token House of Skulltula reward** (you already have 15): confirms `GetReward10` and the Adult's Wallet.
 7. **Next bottle** (Potion Shop bug, Cucco Lady or Talon's game).
-8. **Selling a Big Poe**: confirms what `GhostShop_CouponNum` counts.
-9. **Planting a Magic Bean**: confirms the soft-soil flags.
-10. **Double Magic / Double Defense fairies** when you get there: checks whether their `IsGet` flags get set.
-11. **Song of Storms in the windmill**: confirms the unnamed windmill/well quest key `0x7A5B9537`.
+8. **Planting a Magic Bean**: confirms the soft-soil flags.
+9. **Double Magic / Double Defense fairies** when you get there: checks whether their `IsGet` flags get set.
+10. **Song of Storms in the windmill**: confirms the unnamed windmill/well quest key `0x7A5B9537`.
 
 ## Still unknown
 
 - Which pooled Skulltula / world heart piece is which checklist row (83 + 9 tiles).
 - How chests store "opened" (5 chest heart pieces).
 - The Hyrule Castle Great Fairy (spin attack).
+- The small-key count field: absent from the key table. Named by the game's own
+  recompiled code in Longshot's host (reference/crossref/longshot-modapi-crossref.md,
+  2026-11-21): `DungeonInfo.<D>.SmallKeyNum` (held now) + `DungeonInfo.<D>
+  .SmallKeyTotalNum` (got ever), read by `QueryDungeonGetSmallKeyNum` — the
+  Links-Toolbox candidate had the right shape. A small-key pickup diff still
+  settles it.

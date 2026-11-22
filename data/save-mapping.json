@@ -1,6 +1,6 @@
 {
  "version": 2,
- "notes": "Keyed by data/checklist.json ids. confidence: confirmed = seen changing in a diff at the right moment; likely = the flag name says what it is (or an MIT editor maps it the same way) and all six slots agree; guess = indirect inference, needs a diff. Clawshot (MIT, github.com/hiKareeem/Clawshot) re-verified against tag v0.2.2 (commit 8c1682b, 2026-11-17) on 2026-11-18: all 100 object ids cited in this file are present in their data/locations.toml unchanged (0 dropped, 0 changed), and their save-reader key model (IsGet / PouchData / DungeonInfo.IsGet* / Bool64bitKey) matches ours 1:1. Per the maintainer's ruling, the 105 entries with Clawshot evidence are treated as accurate locations pending an in-game diff to promote them to confirmed. 2026-11-18 live-key-catalog cross-check (6688 keys from local/names.json): 6 named detects are absent - DungeonInfo.WaterTemple.IsGetBossKey (entry downgraded to guess; 12 of 16 dungeons have the flag), Step_SubEvent_GetStormSong (dry-well windmill quest), and 4 IsTreasureBoxOpen.<hash> heart-piece flags (016/030/033/035). Also confirmed: bean-soil flags are 12 area-named Gimmick_MagicBeanSoil_<area> plots, and no small-key count field (DungeonInfo.<D>.SmallKeyNum) exists in the live table - a key grant needs a diff to find the real field.\" Lazy-materialization caveat (2026-11-18): the GameData key table only materializes keys that have been touched (the 12 present IsGetBossKey flags track visited dungeons), so \"absent from the live catalog\" is NOT the same as \"removed in the remake\" - for WaterTemple.IsGetBossKey, the 4 IsTreasureBoxOpen chest flags, and Step_SubEvent_GetStormSong the flag may simply not have materialized yet. The in-game diff (docs/t12-diff-checklist.md rows 1 and 5) is decisive.",
+ "notes": "Keyed by data/checklist.json ids. confidence: confirmed = seen changing in a diff at the right moment; likely = the flag name says what it is (or an MIT editor maps it the same way) and all six slots agree; guess = indirect inference, needs a diff. Clawshot (MIT, github.com/hiKareeem/Clawshot) re-verified against tag v0.2.2 (commit 8c1682b, 2026-11-17) on 2026-11-18: all 100 object ids cited in this file are present in their data/locations.toml unchanged (0 dropped, 0 changed), and their save-reader key model (IsGet / PouchData / DungeonInfo.IsGet* / Bool64bitKey) matches ours 1:1. Per the maintainer's ruling, the 105 entries with Clawshot evidence are treated as accurate locations pending an in-game diff to promote them to confirmed. 2026-11-18 live-key-catalog cross-check (6688 keys from local/names.json): 6 named detects are absent - DungeonInfo.WaterTemple.IsGetBossKey (entry downgraded to guess; 12 of 16 dungeons have the flag), Step_SubEvent_GetStormSong (dry-well windmill quest), and 4 IsTreasureBoxOpen.<hash> heart-piece flags (016/030/033/035). Also confirmed: bean-soil flags are 12 area-named Gimmick_MagicBeanSoil_<area> plots, and no small-key count field (DungeonInfo.<D>.SmallKeyNum) exists in the live table - a key grant needs a diff to find the real field.\" Lazy-materialization caveat (2026-11-18): the GameData key table only materializes keys that have been touched (the 12 present IsGetBossKey flags track visited dungeons), so \"absent from the live catalog\" is NOT the same as \"removed in the remake\" - for WaterTemple.IsGetBossKey, the 4 IsTreasureBoxOpen chest flags, and Step_SubEvent_GetStormSong the flag may simply not have materialized yet. The in-game diff (docs/t12-diff-checklist.md rows 1 and 5) is decisive. 2026-11-21 zootr-nx cross-reference (MIT, docs/zootr-crossref.md): the save has TWO key spaces - u32 entries key=Murmur3 x86_32(seed 0) of the field name, u64 Bool64bitKey flags key=FNV-1a64 (offset 0xcbf29ce484222325) of the field name; FNV-1a64 verified both ways for the 32 shared names and 508 zootr-only flags. Our 122 observed raw b64 values are not FNV-1a64 of any of our 227 referenced names and have 0 overlap with zootr's 1480 FNV constants - the two projects track disjoint u64 flag sets, and no name->key function is known for our 122 yet. Four zootr u32 constants are hash-only even in the game dump (0x008d7f0c tunic, 0x1ea93bd8 Link yaw, 0xe573f564 play time, 0xf80f8077 bombchu CAPS); four more u32 names zootr uses are hash-verified but absent from local/names.json (PlayerStatus.EquipOcarina, PlayerStatus.EquipBoot, PlayerStatus.EquipHeadArmor, PouchData) - likely a harvest gap or lazy materialization. Extract: local/zootr-extract.json. hyrule-tracker (MIT, github.com/jv-prado/hyrule-tracker @ 5aa4239, v1.5.0, fork of this data) cross-referenced 2026-11-21: all 122 b64 values are raw actor Hash values from romfs Banc actor files (100 GS + 14 HP + 8 boss HCs resolved), their placement-ID XOR 0x2 dual-flag (GS seen vs collected) is documented and consistent with this file, and all 16 named heart-piece anchors from the romfs are present here; open in-game verification leads in docs/hyrule-crossref.md. Extract: local/hyrule-tracker/crossref.json. 2026-11-21 Links-Toolbox cross-reference (MIT, github.com/losava/Links-Toolbox @ b8c635c, v1.6.1, docs/links-toolbox-crossref.md): a fourth independent source. Their 104 item ids resolve in the game key table (101/104 as IsGet.<id> / PouchData.<id>.StockNum / HavePlayedGetEvent.<id>); the 3 exceptions (Pouch_Range_BowAndArrow_Fire/Ice/Light) are UI composites, not save fields. Named fields verified in the table: PlayerStatus.Life/MaxLife/MP/MPMax, CaptionData.Life/MPMax/CurrentRupee, PlayerStatus.CurrentRupee, Sequence_CurrentBanc, PlayerStatus.EquipWeapon/EquipShield/AnotherEraEquipWeapon/AnotherEraEquipShield, all 5 bag + 5 bottle StockNums, and the 5 BottleInfo.Bottle<X>.BottleItem fields. NOT in the table (their save-diff labels, treat as guess): DungeonInfo.<D>.SmallKeyNum x9 (concrete candidates for the small-key field open since 2026-11-18), PlayerStatus.RupeeLimit, PouchData.SUAx, CaptionData.MaxLife/MP (caption.sav, not progress), plus ~20 hash-only runtime fields (bag holds x8, bottles-in-use x5, wallet current item, rupee cap, is-child, caption map, picture, progress id) - so 'absent from the live catalog' can mean unnamed-in-key-table as well as not-yet-materialized. 13 of 14 bottle-content values re-hash to the name (the Ruto's Letter value is murmur3('Letter') = 0x0F24E808); Milk 0x73356827 unresolved. New items present in the game schema but untracked here (in-game verification leads): Armor_Child_Mask_Goron (Goron Mask), Weapon_Sword_BrokenGiant (Broken Giant's Knife), Item_ScrubBusinessSeed (Business Scrub Seed, cap 30). Extract: local/links-toolbox/crossref.json. Longshot Mod API cross-reference (2026-11-21, docs/longshot-modapi-crossref.md; draft PR #1958, branch mod-api): a fifth independent source whose flag names come from the game's own recompiled code, with function addresses. It names the small-key field DungeonInfo.<D>.SmallKeyNum (held now) + DungeonInfo.<D>.SmallKeyTotalNum (got ever), reader QueryDungeonGetSmallKeyNum (f_82a0bb10) - the Links-Toolbox candidate confirmed in shape, still pending a diff - and the age flag Sequence_IsChildhood (in the key table; supersedes Links-Toolbox's PlayerStatus.IsChild guess). All 14 other named flags (PlayerStatus.Life/MaxLife/CurrentRupee, Sequence_CurrentBanc/IsLoadingBanc, the open-forest/Door-of-Time/Kakariko-gate/Gerudo-card/castle-gate/trial-barrier/boss-key world-state flags) resolve in the key table; OptionData.VoiceLanguage is the only one absent (options.sav side). Its dungeon list adds GerudoTrainingGround to the 13 known. Also documents the in-memory GameDataMgr layout (container table headers at fixed offsets; Bool64bitKey table at +0xc58) and the game's own write rules (rupee cap 999; Life 0..MaxLife; five write-dangerous flags; Bool writes queue the save copy via the game's setter; Int writes in place, save persistence unverified). Extract: local/longshot-modapi/.",
  "entries": {
   "heart_pieces.001": {
    "label": "Kakariko Village",
@@ -750,8 +750,8 @@
     "name": "Step_SubEvent_GhostShop",
     "eq": "Complete"
    },
-   "confidence": "likely",
-   "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot): the Poe Collector's bottle is given when quest SubEvent_GhostShop completes (five Big Poes in the remake); its saved step is Step_SubEvent_GhostShop."
+   "confidence": "confirmed",
+   "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot): the Poe Collector's bottle is tied to quest SubEvent_GhostShop; its saved step is Step_SubEvent_GhostShop. 2026-11-20 in-game diff: Step_SubEvent_GhostShop stayed \"Playing\" while Poes were sold and flipped to \"Complete\" in the snapshot after the 10th sale; the bottle was already held before the first snapshot, so the sale count that grants it was not separately observed."
   },
   "great_fairies.death_mountain_summit_magic_meter_dins_fire": {
    "label": "Death Mountain summit: Magic Meter + Din's Fire",
@@ -2963,15 +2963,165 @@
    },
    "confidence": "likely",
    "evidence": "name from the key catalog; pending in-game diff (G8.a). Key is present (false) in all 6 fixture saves"
+  },
+  "big_poes.001": {
+   "label": "Ruined bridge entrance (by the sign)",
+   "detect": {
+    "key": "0x40772671",
+    "index": 1,
+    "eq": true
+   },
+   "confidence": "confirmed",
+   "evidence": "2026-11-20 in-game snapshot diff (the maintainer's run; all 10 Big Poes killed and sold in one session): the sold flag 0x40772671[index 1] flips true in the snapshot taken after the Poe here was sold (2026-11-20_211747-slot_01-Killed-and-bottled-big-poe-just-beside-the-sign-between-hyru.sav); the still-alive flag 0xec52c09a[index 1] flipped false at the kill."
+  },
+  "big_poes.002": {
+   "label": "Between Lon Lon Ranch and Hyrule Castle",
+   "detect": {
+    "key": "0x40772671",
+    "index": 0,
+    "eq": true
+   },
+   "confidence": "confirmed",
+   "evidence": "2026-11-20 in-game snapshot diff (the maintainer's run; all 10 Big Poes killed and sold in one session): the sold flag 0x40772671[index 0] flips true in the snapshot taken after the Poe here was sold (2026-11-20_211647-slot_01-Killed-and-bottled-big-poe-just-outside-hyrule-castle-gate-t.sav); the still-alive flag 0xec52c09a[index 0] flipped false at the kill."
+  },
+  "big_poes.003": {
+   "label": "Lon Lon Ranch entrance (by a tree)",
+   "detect": {
+    "key": "0x40772671",
+    "index": 2,
+    "eq": true
+   },
+   "confidence": "confirmed",
+   "evidence": "2026-11-20 in-game snapshot diff (the maintainer's run; all 10 Big Poes killed and sold in one session): the sold flag 0x40772671[index 2] flips true in the snapshot taken after the Poe here was sold (2026-11-20_211842-slot_01-Killed-and-bottled-poe-just-outside-lon-lon-entrance.sav); the still-alive flag 0xec52c09a[index 2] flipped false at the kill."
+  },
+  "big_poes.004": {
+   "label": "Behind Lon Lon Ranch",
+   "detect": {
+    "key": "0x40772671",
+    "index": 3,
+    "eq": true
+   },
+   "confidence": "confirmed",
+   "evidence": "2026-11-20 in-game snapshot diff (the maintainer's run; all 10 Big Poes killed and sold in one session): the sold flag 0x40772671[index 3] flips true in the snapshot taken after the Poe here was sold (2026-11-20_212031-slot_01-Killed-and-bottled-poe-behind-lon-lon.sav); the still-alive flag 0xec52c09a[index 3] flipped false at the kill."
+  },
+  "big_poes.005": {
+   "label": "Base of the hill to Gerudo Valley",
+   "detect": {
+    "key": "0x40772671",
+    "index": 6,
+    "eq": true
+   },
+   "confidence": "confirmed",
+   "evidence": "2026-11-20 in-game snapshot diff (the maintainer's run; all 10 Big Poes killed and sold in one session): the sold flag 0x40772671[index 6] flips true in the snapshot taken after the Poe here was sold (2026-11-20_213356-slot_01-Base-of-Gerudo-hill-poe.sav); the still-alive flag 0xec52c09a[index 6] flipped false at the kill."
+  },
+  "big_poes.006": {
+   "label": "Hill to Gerudo Valley (closer to the ranch)",
+   "detect": {
+    "key": "0x40772671",
+    "index": 8,
+    "eq": true
+   },
+   "confidence": "confirmed",
+   "evidence": "2026-11-20 in-game snapshot diff (the maintainer's run; all 10 Big Poes killed and sold in one session): the sold flag 0x40772671[index 8] flips true in the snapshot taken after the Poe here was sold (2026-11-20_213312-slot_01-Poe-hill-leading-to-gerudo.sav); the still-alive flag 0xec52c09a[index 8] flipped false at the kill."
+  },
+  "big_poes.007": {
+   "label": "Woods south of Lon Lon Ranch",
+   "detect": {
+    "key": "0x40772671",
+    "index": 7,
+    "eq": true
+   },
+   "confidence": "confirmed",
+   "evidence": "2026-11-20 in-game snapshot diff (the maintainer's run; all 10 Big Poes killed and sold in one session): the sold flag 0x40772671[index 7] flips true in the snapshot taken after the Poe here was sold (2026-11-20_213223-slot_01-Poe-Next-to-lon-lon-between-gerudo.sav); the still-alive flag 0xec52c09a[index 7] flipped false at the kill."
+  },
+  "big_poes.008": {
+   "label": "South of the crab-shaped watering hole",
+   "detect": {
+    "key": "0x40772671",
+    "index": 5,
+    "eq": true
+   },
+   "confidence": "confirmed",
+   "evidence": "2026-11-20 in-game snapshot diff (the maintainer's run; all 10 Big Poes killed and sold in one session): the sold flag 0x40772671[index 5] flips true in the snapshot taken after the Poe here was sold (2026-11-20_212440-slot_01-Poe-south-crab-bottled.sav); the still-alive flag 0xec52c09a[index 5] flipped false at the kill."
+  },
+  "big_poes.009": {
+   "label": "Left/south of the Kokiri entrance",
+   "detect": {
+    "key": "0x40772671",
+    "index": 4,
+    "eq": true
+   },
+   "confidence": "confirmed",
+   "evidence": "2026-11-20 in-game snapshot diff (the maintainer's run; all 10 Big Poes killed and sold in one session): the sold flag 0x40772671[index 4] flips true in the snapshot taken after the Poe here was sold (2026-11-20_212346-slot_01-Killed-and-bottled-poe-just-outside-kokiri.sav); the still-alive flag 0xec52c09a[index 4] flipped false at the kill."
+  },
+  "big_poes.010": {
+   "label": "Field between Lon Lon Ranch and Kokiri Forest",
+   "detect": {
+    "key": "0x40772671",
+    "index": 9,
+    "eq": true
+   },
+   "confidence": "confirmed",
+   "evidence": "2026-11-20 in-game snapshot diff (the maintainer's run; all 10 Big Poes killed and sold in one session): the sold flag 0x40772671[index 9] flips true in the snapshot taken after the Poe here was sold (2026-11-20_213458-slot_01-Poe-east-of-lon-lon.sav); the still-alive flag 0xec52c09a[index 9] flipped false at the kill."
   }
  },
  "counters": {
   "big_poes": {
-   "value": {
-    "name": "GhostShop_CouponNum"
-   },
-   "confidence": "guess",
-   "evidence": "GhostShop_CouponNum, the Poe buyer's count. 0 in every slot so far; its unit (Poes or points) needs a diff. HyruleField_Defeat_BigPoe_01\u201310 track Poes defeated, not sold."
+   "countOf": [
+    {
+     "key": "0x40772671",
+     "index": 0,
+     "eq": true
+    },
+    {
+     "key": "0x40772671",
+     "index": 1,
+     "eq": true
+    },
+    {
+     "key": "0x40772671",
+     "index": 2,
+     "eq": true
+    },
+    {
+     "key": "0x40772671",
+     "index": 3,
+     "eq": true
+    },
+    {
+     "key": "0x40772671",
+     "index": 4,
+     "eq": true
+    },
+    {
+     "key": "0x40772671",
+     "index": 5,
+     "eq": true
+    },
+    {
+     "key": "0x40772671",
+     "index": 6,
+     "eq": true
+    },
+    {
+     "key": "0x40772671",
+     "index": 7,
+     "eq": true
+    },
+    {
+     "key": "0x40772671",
+     "index": 8,
+     "eq": true
+    },
+    {
+     "key": "0x40772671",
+     "index": 9,
+     "eq": true
+    }
+   ],
+   "cap": 10,
+   "confidence": "confirmed",
+   "evidence": "2026-11-20 in-game snapshot diff (11 labeled snapshots, the maintainer's Rekarina run: one snapshot per Poe kill, final one after all 10 were sold). 0x40772671 is a 10-entry sold-flags array: entry i flips true in the snapshot taken after the Poe at location i is sold (sales came in batches of 4, 2 and 4; all true after the 10th sale). 0xec52c09a is the complementary still-alive array: entry i flips false at the kill, one entry per snapshot in kill order. GhostShop_CouponNum exists in this build and is 100 points per sold Poe (0 -> 1000), so its raw value is points, not a Poe count. The named keys HyruleField_Defeat_BigPoe_01-09 exist but stayed false through the whole session (_010 is absent); in this build the per-location state lives in the two arrays."
   },
   "magic_beans_planted": {
    "countOf": [

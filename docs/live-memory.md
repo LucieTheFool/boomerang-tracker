@@ -97,6 +97,12 @@ stays 0 outside the map menu, so neither helps.)
 Checked against a save: 10,205 of 10,212 Bools, 1,138 of 1,144 Ints, 101 of 101 Enums
 and every permanent 64-bit key agreed; the rest had changed since the save was written.
 
+Independent confirmation: the Longshot host (which recompiles the game) documents the
+same store from the game's own code — the six typed containers at the same
+GameDataMgr offsets, the same record strides and value offsets as the table above,
+plus the 64-bit key table at `+0xc58` (16-byte entries, key `+0`, value `+0xC`) —
+reference/crossref/longshot-crossref.md and reference/crossref/longshot-modapi-crossref.md.
+
 ## Locating the tables
 
 Addresses aren't hard-coded beyond a starting hint. `locate()` reads a window of memory,

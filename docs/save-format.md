@@ -67,7 +67,7 @@ save. Holds `CaptionData.*` keys: `BancScenePath` / `LocationName` (String64, e.
 `"Market/Market_Child"` / `"Market"`), `Date.*` (Int), `Life`/`MaxLife` (quarter hearts),
 `MP`/`MPMax`, `CurrentRupee`, `GoldToken`, `Pos` (Vector3), `Dir` (Float), `IsAutoSave`, a JPEG
 thumbnail (`ScreenShot`, Binary) and 22 mirror bools of learned songs/medals/stones. Verified key
-table and hashes: `docs/longshot-crossref.md`, "Caption.sav layout".
+table and hashes: `reference/crossref/longshot-crossref.md`, "Caption.sav layout".
 
 ## Linux save locations
 
@@ -91,10 +91,31 @@ those folders automatically; with one, choose the save folder by hand in Setting
   It's decoded as-is and shown with a leading `\0`. Its meaning is unknown.
 - BinaryArray elements: only empty ones seen, so the per-element layout is a guess
   (but consistent with the layout check).
-- The 64-bit keys (Bool64bitKey) can't be named yet. In TotK these are per-object
-  flags (hash of map/object ids). They change when collecting things (for example
-  `0x3F93661D8E17C1D0` was set together with getting Prelude of Light), so they'll be
-  mapped by diffing.
+- The 64-bit keys (Bool64bitKey) are **half-named** (2026-11-21 zootr-nx
+  cross-reference, reference/crossref/zootr-crossref.md): they are FNV-1a 64-bit hashes of
+  field names — verified for 32 shared + 508 zootr flags. But our 122 observed
+  raw values are not FNV-1a64 of any name we know and do not overlap zootr's
+  1,480 constants. Example from before the scheme was known:
+  `0x3F93661D8E17C1D0` was set together with getting Prelude of Light — that
+  class of key stays diff-mapped (Clawshot re-verification note in
+  `data/save-mapping.json`).
+  2026-11-21: all 122 observed values are resolved as raw actor Hash values from the
+  romfs Banc actor files — 100 Gold Skulltulas + 14 world heart pieces + 8 boss heart
+  containers (reference/crossref/hyrule-crossref.md) — consistent with the placement-id model in
+  docs/save-mapping.md; only the pooled tiles stay diff-mapped.
+- Many save fields are **hash-only**: their key's name is absent from the key table
+  (local/names.json). Links-Toolbox cross-reference (2026-11-21,
+  reference/crossref/links-toolbox-crossref.md): the bag-holds counters, the wallet current item, the
+  rupee cap, the is-child flag, the in-use bottle, the caption map and the per-dungeon
+  small-key counts are all absent — so "absent from the live catalog" can also mean
+  "unnamed in the key table", not only "not materialized yet". Their catalog supplies
+  candidate names (e.g. `DungeonInfo.<D>.SmallKeyNum`); each needs a diff before trust.
+  Longshot's host (2026-11-21, reference/crossref/longshot-modapi-crossref.md) — which recompiles
+  the game's code — names the small-key fields `DungeonInfo.<D>.SmallKeyNum` /
+  `SmallKeyTotalNum` (reader `QueryDungeonGetSmallKeyNum`) and the age flag
+  `Sequence_IsChildhood`, and documents the in-memory twin of this container:
+  per-kind table headers at fixed GameDataMgr offsets, and the Bool64bitKey table
+  at `+0xc58` (16-byte entries, placement id `+0`, value `+12`).
 
 ## Names
 
