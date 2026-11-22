@@ -1,10 +1,10 @@
 # Ocarina of Time (Switch 2) GameData reference
 
-Generated 2026-11-22 from commit 6b01630 (format 1). Do not edit by hand: regenerate with `npm run reference`. The same facts, machine-readable, are in `oot-switch2-gamedata.json`.
+Generated 2026-11-22 (format 1). Do not edit by hand: the maintainer regenerates it after data changes. The same facts, machine-readable, are in `oot-switch2-gamedata.json`.
 
 This is what we have mapped of the game's GameData store: key hashes, names, types, what they mean, and grant recipes (the exact writes that give an item). It is meant for anyone building their own tools or mods for the Switch 2 recomps. Everything here was found by observing saves and the running game.
 
-Counts: 405 keys, 122 64-bit keys, 184 grant recipes, 24 checklist recipe classes, 6 game processes, 58 stages.
+Counts: 404 keys, 122 64-bit keys, 184 grant recipes, 24 checklist recipe classes, 6 game processes, 58 stages.
 
 ## Confidence levels
 
@@ -1463,7 +1463,7 @@ Status: pending, confidence: likely. Bottle IsGet flags per save-mapping v2 (4 n
 |---|---|---|---|
 | Cucco Lady bottle (bottles.cucco_lady_bottle) | all | MiniGame_CatchCucco_IsCompleted | likely |
 | Lon Lon Milk bottle (Talon) (bottles.lon_lon_milk_bottle_talon) | all | IsClear_Minigame_FindOutCucco | confirmed |
-| Poe Collector bottle (bottles.poe_collector_bottle) | all | Step_SubEvent_GhostShop set "Complete" | confirmed |
+| Poe Collector bottle (bottles.poe_collector_bottle) | all | Step_SubEvent_GhostShop set "Complete" | likely |
 | Potion Shop bottle (bottles.potion_shop_bottle) | all | Market_Item_Bottle_TutorialEvent_Cleared | likely |
 | Ruto's Letter bottle (bottles.rutos_letter_bottle) | all | IsGet.Item_Bottle_Letter | likely |
 
@@ -1589,19 +1589,6 @@ Status: pending, confidence: guess. Defeat flags HyruleField_Defeat_BigPoe_01..1
 
 Related keys (not yet confirmed): GhostShop_CouponNum, HyruleField_Defeat_BigPoe_01, HyruleField_Defeat_BigPoe_02, HyruleField_Defeat_BigPoe_03, HyruleField_Defeat_BigPoe_04, HyruleField_Defeat_BigPoe_05, HyruleField_Defeat_BigPoe_06, HyruleField_Defeat_BigPoe_07, HyruleField_Defeat_BigPoe_08, HyruleField_Defeat_BigPoe_09, HyruleField_Defeat_BigPoe_10
 
-| Entry | Rule | Keys | Confidence |
-|---|---|---|---|
-| Ruined bridge entrance (by the sign) (big_poes.001) | all | 0x40772671 | confirmed |
-| Between Lon Lon Ranch and Hyrule Castle (big_poes.002) | all | 0x40772671 | confirmed |
-| Lon Lon Ranch entrance (by a tree) (big_poes.003) | all | 0x40772671 | confirmed |
-| Behind Lon Lon Ranch (big_poes.004) | all | 0x40772671 | confirmed |
-| Base of the hill to Gerudo Valley (big_poes.005) | all | 0x40772671 | confirmed |
-| Hill to Gerudo Valley (closer to the ranch) (big_poes.006) | all | 0x40772671 | confirmed |
-| Woods south of Lon Lon Ranch (big_poes.007) | all | 0x40772671 | confirmed |
-| South of the crab-shaped watering hole (big_poes.008) | all | 0x40772671 | confirmed |
-| Left/south of the Kokiri entrance (big_poes.009) | all | 0x40772671 | confirmed |
-| Field between Lon Lon Ranch and Kokiri Forest (big_poes.010) | all | 0x40772671 | confirmed |
-
 ### Skulltula rewards
 
 Status: pending, confidence: likely. GetReward flag per save-mapping v2 (6 thresholds); Clawshot: the reward item also gets its own IsGet (e.g. Item_Wallet_Medium at 10) - verify both land.
@@ -1722,8 +1709,8 @@ Status: pending, confidence: likely. IsGet flags from the in-game amiibo session
 
 | Entry | Rule | Keys | Confidence |
 |---|---|---|---|
-| Young Link amiibo mask (amiibo_masks.young_link) | all | IsGet.Armor_Child_Mask_Amiibo0 | confirmed |
-| Young Zelda amiibo mask (amiibo_masks.young_zelda) | all | IsGet.Armor_Child_Mask_Amiibo1 | confirmed |
+| Young Link amiibo mask (amiibo_masks.young_link) | all | IsGet.Armor_Child_Mask_Amiibo0 | guess |
+| Young Zelda amiibo mask (amiibo_masks.young_zelda) | all | IsGet.Armor_Child_Mask_Amiibo1 | guess |
 
 ## Keys
 
@@ -2010,7 +1997,6 @@ Every key we know something about, grouped by kind. Unnamed keys show our own la
 | Npc_SkullKid_Child_IsGetHeartPiece | 0x5FF7AA30 | Bool | heart_pieces.009 | likely |
 | *CurrentStage* | 0x1D6189DA | String64 | current stage name, e.g. "LostWood_Child" (also in the save) | confirmed |
 | ** | 0x3339DF55 | Binary | created on a real learn: Scarecrow's Song |  |
-| ** | 0x40772671 | array element | big_poes.001, big_poes.002, big_poes.003 +8 | confirmed |
 | *Capacity.Arrow* | 0x418DB791 | Int | Arrow capacity | likely |
 | *Capacity.DekuStick* | 0x457616B0 | Int | Deku Stick capacity | confirmed |
 | ** | 0x59979321 | Enum |  |  |
@@ -2129,7 +2115,7 @@ Every key we know something about, grouped by kind. Unnamed keys show our own la
 | Step_SubEvent_GetScarecrow | 0x9472302B | Enum | side_quests.stir_the_scarecrows_soul | likely |
 | Step_SubEvent_GetStormSong | 0x7A5B9537 | Enum | side_quests.broken_windmill_dry_well | likely |
 | Step_SubEvent_GetSwordBigGoron | 0x26A2E01C | Enum | side_quests.from_a_pocket_egg_comes | likely |
-| Step_SubEvent_GhostShop | 0x6E9B2539 | Enum | bottles.poe_collector_bottle | confirmed |
+| Step_SubEvent_GhostShop | 0x6E9B2539 | Enum | bottles.poe_collector_bottle | likely |
 | Step_SubEvent_MaskSalesman | 0xEA010310 | Enum | side_quests.happy_mask_shopkeeper | likely |
 | SubEvent_FindRichard_GetHeartPiece | 0xF2FAB510 | Bool | heart_pieces.007 | likely |
 
@@ -2178,7 +2164,7 @@ Every key we know something about, grouped by kind. Unnamed keys show our own la
 
 | Name | Hash | Type | Meaning | Confidence |
 |---|---|---|---|---|
-| GhostShop_CouponNum | 0xE3407CEE |  |  |  |
+| GhostShop_CouponNum | 0xE3407CEE | Int | counter big_poes | guess |
 
 ### Where you got it
 
