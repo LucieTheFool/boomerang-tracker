@@ -1,9 +1,12 @@
 # Area names: game stage names → checklist regions
 
 The tracker shows "Remaining here" by mapping the game's current-area string to a region
-from `data/logic.json`. This document lists every adult/child area name the game reports
-and where it belongs, so gaps like `IngoRanch` (adult Lon Lon Ranch) are findable in one
+from `data/logic.json`. This document lists the adult/child area names the game reports
+and where they belong, so gaps like `IngoRanch` (adult Lon Lon Ranch) are findable in one
 place.
+
+Manually maintained — updated 2026-11-22 from the key catalog, live stage reads
+(2026-11-17/18), and `caption.sav` area strings from reference saves.
 
 ## How the area string is formed
 
@@ -15,35 +18,44 @@ place.
   tracker appends `/<last entry>` (`src/gamedata/live.ts areaFrom`):
   `HyruleField_Adult/IngoRanch`, `Market/TimeTemple`.
 - The string is stored in `caption.sav` per slot (e.g. `"Market/TimeTemple"`) and read
-  live from the location list while the emulator runs.
+  live from the location list while the game runs.
 - **Resolution** (`src/core/areas.ts regionsForArea`): strip a trailing `_Child`/`_Adult`,
-  lowercase, then exact slug match against the logic regions, then the `ALIASES` table
-  (e.g. `market` → Hyrule Castle Town, `ingoranch` → Lon Lon Ranch), then region-slug
-  prefix match. Anything unmatched leaves "Remaining here" empty — that was the
-  IngoRanch bug (fixed in `a611262` with the `ingoranch` alias).
+  lowercase, then the `ALIASES` table (e.g. `market` → Hyrule Castle Town, `ingoranch` →
+  Lon Lon Ranch), then exact slug or prefix match against the region slugs. Anything
+  unmatched leaves "Remaining here" empty — that was the IngoRanch bug (fixed in
+  `a611262` with the `ingoranch` alias).
 
 **Verified** by running `regionsForArea` over every name below (probe kept at
 `local/probe/area-check.ts`). Evidence sources:
 
-- Stage vocabulary: `Dm_SY_BancChangeArrive_*` events in the key catalog
-  (`local/names.json`) plus its `IsVisitLocation.*` and `data/stage-names.json`
-  (observed stages and sub-locations from live reads).
-- Observed area strings: `caption.sav` of the rekarina-era saves (2026-11-20), dumped
-  with `npm run sav -- dump`.
+- Stage vocabulary: `Dm_SY_BancChangeArrive_*` events in the game's full key catalog
+  (kept in the maintainer's local probes), plus its `IsVisitLocation.*` entries.
+- Observed stages: live stage reads during in-game sessions (2026-11-17/18; the
+  maintainer keeps a stage registry of observed stages, sub-locations, and predicted
+  era variants derived from these reads).
+- Observed area strings: `caption.sav` of the reference saves, dumped with
+  `npm run sav -- dump`.
 
 ## Stage names (the area string without a sub)
 
+The catalog contains 46 raw `BancChangeArrive` event names; they collapse to 27 unique
+base areas. The numeric suffixes some catalog names carry (e.g.
+`DeathMountainTrail01_02_Child`, `InsideGanonCastle02_Child`) are internal scene
+identifiers — at runtime the banc name is the bare base area plus its era suffix, so
+`DeathMountainTrail_Child` is the real stage, not `DeathMountainTrail01_02_Child`.
+
 | Game stage name | Region (data/logic.json) | Resolves via | Child era | Adult era |
 |---|---|---|---|---|
-| `KokiriForest` | Kokiri Forest | exact | observed (`KokiriForest_Child`) | — (adult Kokiri is `SacredForestMeadow`) |
+| `KokiriForest` | Kokiri Forest | exact | observed | — (adult Kokiri is `SacredForestMeadow`) |
 | `Kokiri` | Kokiri Forest | exact (banc variant) | banc name | — |
-| `SacredForestMeadow` | Sacred Forest Meadow | exact | — (child uses `KokiriForest`) | adult-era name, expected |
+| `SacredForestMeadow` | Kokiri Forest | exact | observed (live 2026-11-18) | expected |
 | `HyruleField` | Hyrule Field | exact | observed | observed |
 | `HyruleCastle` | Hyrule Castle | exact | observed (no era suffix seen) | expected |
 | `Market` | Hyrule Castle Town | alias `market` | observed | observed |
 | `KakarikoVillage` | Kakariko Village | exact | observed | expected |
 | `DeathMountainTrail` | Death Mountain Trail | exact | observed | expected |
 | `DeathMountainCrater` | Death Mountain Crater | exact | observed | expected |
+| `InsideDeathMountainCrater` | Death Mountain Crater | exact | expected (catalog, `_Child`/`_Adult` present) | expected (catalog) |
 | `GoronCity` | Goron City | exact | observed | expected |
 | `Graveyard` | Graveyard | exact | observed | expected |
 | `UnderTheGrave` | Bottom of the Well | **alias needed** | child dungeon; banc `…_UnderTheGrave_02` | — |
@@ -52,39 +64,51 @@ place.
 | `IceCavern` | Ice Cavern | exact | — | — |
 | `IceCaven` | Ice Cavern | **alias needed** | banc names `…_IceCaven_01/_02` (no "r"; the rest of the catalog spells it `IceCavern`) | — |
 | `LostWood` | Lost Woods | alias `lostwood` | observed | expected |
-| `ZoraFountain` | Zora's Fountain | exact | — | — |
-| `ZoraDomain` | Zora's Domain | exact | — | — |
-| `ZoraRiver` | Zora's River | exact | — | — |
-| `GerudoValley` | Gerudo Valley | exact | — | — |
-| `GerudoFortress` | Gerudo Fortress | exact | — | observed (sub `GerudoFortress_Adult`) |
+| `ZoraFountain` | Zora's Fountain | exact | expected (catalog) | expected (catalog) |
+| `ZoraDomain` | Zora's Domain | exact | expected (catalog) | expected (catalog) |
+| `ZoraRiver` | Zora's River | exact | expected (catalog) | expected (catalog) |
+| `GerudoValley` | Gerudo Valley | exact | expected (catalog) | expected (catalog) |
+| `GerudoFortress` | Gerudo Fortress | exact | expected | observed (live + caption.sav) |
 | `GerudoTrainingGround` | Gerudo Training Ground | exact | — | — (rooms in key catalog) |
-| `DesertColossus` | Desert Colossus | exact | observed | — |
-| `GanonCastle` | Ganon's Castle | exact | — | — |
-| `InsideGanonCastle` | Ganon's Castle | alias `insideganoncastle` | — | — |
+| `DesertColossus` | Desert Colossus | exact | observed | expected (catalog) |
+| `GanonCastle` | Ganon's Castle | alias `ganoncastle` | — | — |
+| `InsideGanonCastle` | Ganon's Castle | alias `insideganoncastle` | expected (catalog) | expected (catalog; a `…02` scene variant also appears in the catalog) |
 | `InsideTheDekuTree` | Great Deku Tree | alias `insidethedekutree` | — | — |
-| `DodongoCavern` | Dodongo's Cavern | exact | — | — |
+| `DodongoCavern` | Dodongo's Cavern | alias `dodongocavern` | — | — |
 | `FireTemple` | Fire Temple | exact | — | — |
 | `WaterTemple` | Water Temple | exact | — | — |
 | `ForestTemple` | Forest Temple | exact | — | — |
 | `ShadowTemple` | Shadow Temple | exact | — | — |
 | `SpiritTemple` | Spirit Temple | exact | — | — |
-| `InsideJabuJabuBelly` | Lord Jabu-Jabu's Belly | alias `insidejabujabubelly` | — | — |
-| `LakeHylia` | Lake Hylia | exact | — | — |
+| `InsideJabuJabuBelly` | Lord Jabu-Jabu's Belly | alias `insidejabujabubelly` | expected (catalog) | expected (catalog) |
+| `LakeHylia` | Lake Hylia | exact | expected (catalog) | expected (catalog) |
 
 "observed" = seen live or in `caption.sav`; "expected" = follows from the game's era
-suffixes (`_Child`/`_Adult`/none) but not yet seen; "—" = not an area for that era.
+suffixes (`_Child`/`_Adult`/none) or the catalog's `_Child`/`_Adult` variants but not
+yet seen; "—" = not an area for that era.
+
+Notes on the era suffix:
+
+- Era-dependent stages carry `_Child`/`_Adult`; era-independent stages are bare.
+  `HyruleCastle` was observed bare — consistent.
+- `SacredForestMeadow_Child` was observed live, so the child-era name is direct rather
+  than falling back to `KokiriForest` (both are real, separate stages: `KokiriForest`
+  is the child's starting home, `SacredForestMeadow` its later form — mirroring the
+  original game's naming).
 
 ## Sub-locations (the part after the slash)
 
 Location-list entries; can themselves carry era suffixes, which the resolution strips.
+Inside a stage, sub-locations are told apart by a per-position zone id (e.g.
+`0x46920F1B`) plus coordinates; the location list the tracker reads is a separate table.
 
 | Game name | Region | Resolves via | Era | Evidence |
 |---|---|---|---|---|
-| `LonLonRanch` | Lon Lon Ranch | exact | child (list of `HyruleField`) | `stage-names.json` subLocations; `LocationName` in caption.sav |
+| `LonLonRanch` | Lon Lon Ranch | exact | child (list of `HyruleField`) | stage registry sub-locations; `LocationName` in caption.sav |
 | `IngoRanch` | Lon Lon Ranch | alias `ingoranch` (`a611262`) | adult (list of `HyruleField`) | live report `HyruleField_Adult/IngoRanch` |
-| `LakeHylia` | Lake Hylia | exact | child list; expected same adult name | `stage-names.json` subLocations |
+| `LakeHylia` | Lake Hylia | exact | child list; expected same adult name | stage registry sub-locations |
 | `TimeTemple` | Hyrule Castle Town | exact | both (list of `Market`) | caption.sav `Market/TimeTemple` (child and adult saves) |
-| `GoronCity` | Goron City | exact | both (list of `GoronCity`) | `stage-names.json` subLocations |
+| `GoronCity` | Goron City | exact | both (list of `GoronCity`) | stage registry sub-locations |
 | `Market_Child` / `Market_Adult` | Hyrule Castle Town | era strip + alias `market` | both | caption.sav `Market/Market_Child` |
 | `KokiriForest_Child` | Kokiri Forest | era strip + exact | child | caption.sav `KokiriForest/KokiriForest_Child` |
 | `GerudoFortress_Adult` | Gerudo Fortress | era strip + exact | adult | caption.sav `GerudoFortress/GerudoFortress_Adult` |

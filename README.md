@@ -168,6 +168,9 @@ dungeon routes). Every Gold Skulltula and heart piece has its own exact check, m
 checklist number from published guides. Rules marked `likely` in `data/save-mapping.json` haven't
 been seen in play yet; corrections are welcome.
 
+The full mapping of the game's data — key tables, flag table, grant recipes, area names, and
+cross-checks against other tools for the same game — is in [reference/](reference/README.md).
+
 ### Optional: a more detailed local checklist
 
 The public checklist names Gold Skulltulas and heart pieces by area only. If you have your own
