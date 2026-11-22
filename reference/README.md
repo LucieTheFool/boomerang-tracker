@@ -15,8 +15,8 @@ Triforce / NX2navi ports), this is where the evidence lives.
 
 ## GAME-DATA.md
 
-Generated — do not edit by hand; `npm run reference` regenerates it and the JSON
-together (see the generated header in each for the source commit). Sections:
+Generated from the data files — do not edit by hand (the maintainer regenerates
+it and the JSON together after data changes). Sections:
 
 - [Confidence levels](GAME-DATA.md#confidence-levels) — how to read the `confirmed` / `inferred` / `hypothesis` / `untested` markers
 - [Reading vs writing](GAME-DATA.md#reading-vs-writing) — what this project reads, and what writing means elsewhere
@@ -51,8 +51,8 @@ External data checks, each pinned to a source repo + commit with license noted.
 
 ## Keeping this section current
 
-- GAME-DATA.md and the JSON: regenerate after any data change (`npm run reference`);
-  the header records the generation date and source commit.
+- GAME-DATA.md and the JSON: the maintainer regenerates them after any data
+  change; the header records the generation date.
 - area-names.md: update by hand when a new stage/sub-location is observed or a new
   alias lands in `src/core/areas.ts`.
 - Cross-references: re-run the comparison when an upstream project moves past the
