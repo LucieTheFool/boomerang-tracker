@@ -3,10 +3,10 @@
     "title": "Ocarina of Time (Switch 2) GameData reference",
     "formatVersion": 1,
     "generatedAt": "2026-11-22",
-    "sourceCommit": "6b01630",
+    "sourceCommit": null,
     "howToRead": "Every key the game keeps in its GameData store is a 32-bit Murmur3 hash of its name (see hashing). keys: what we know per key; keys64: 64-bit placed-object flags; grants: the exact writes that give an item or value; checklistRecipes: per kind of checklist entry, the keys a real pickup sets; enums: value names for Enum/String64 keys; areas: stage ids with readable names. confidence: confirmed = seen in game or in a save diff at the right moment; likely = name and saves agree, not checked in game; guess = indirect, needs a diff.",
     "counts": {
-      "keys": 405,
+      "keys": 404,
       "keys64": 122,
       "grants": 184,
       "checklistRecipeClasses": 24,
@@ -1416,7 +1416,15 @@
       "hash": "0xE3407CEE",
       "name": "GhostShop_CouponNum",
       "category": "Shop",
+      "type": "Int",
+      "meaning": "counter big_poes",
+      "confidence": "guess",
+      "evidence": "GhostShop_CouponNum, the Poe buyer's count. 0 in every slot so far; its unit (Poes or points) needs a diff. HyruleField_Defeat_BigPoe_01–10 track Poes defeated, not sold.",
+      "drives": [
+        "counter:big_poes"
+      ],
       "usedBy": [
+        "counter",
         "recipe-candidate:big_poes"
       ]
     },
@@ -2257,7 +2265,7 @@
       "group": "Items, gear & songs (IsGet.*)",
       "type": "Bool",
       "confidence": "confirmed",
-      "evidence": "In-game (grant session on Hookshot, 2026-11-18, user-verified): granting IsGet.Armor_Child_Mask_Amiibo0 puts the Fairy Kid Mask in the inventory - the mask the Young Link amiibo grants; flag written and read back in the same session",
+      "evidence": "In game (0.3.1, Hookshot, child era, 2026-11-18, user): the grant put the fairy kid mask in the inventory (user: \"It was the fairy kid mask\") - obtainable/appears confirmed; equip/effect was not reported separately. Keys verified by hash in slot_05/progress.sav: IsGet.Armor_Child_Mask_Amiibo0 (Bool), PouchData.Armor_Child_Mask_Amiibo0.StockNum (Int - the leaf record; the bare PouchData.Armor_Child_Mask_Amiibo0 is only a key prefix) and HavePlayedGetEvent.Armor_Child_Mask_Amiibo0 (Bool); the pickup event is written in also[]. Relabelled from the user's in-game description; not mapped to an unconfirmed amiibo name.",
       "drives": [
         "amiibo_masks.young_link"
       ],
@@ -2274,7 +2282,7 @@
       "group": "Items, gear & songs (IsGet.*)",
       "type": "Bool",
       "confidence": "confirmed",
-      "evidence": "In-game (grant session on Hookshot, 2026-11-18, user-verified): granting IsGet.Armor_Child_Mask_Amiibo1 puts the Young Zelda Mask in the inventory (mask identity from online sources, confirmed in-game; the Young Zelda amiibo's mask); flag written and read back in the same session",
+      "evidence": "In game (0.3.1, Hookshot, child era, 2026-11-18, user): the grant gave her the mask - obtainable via grant confirmed. Per the user (from online sources) this is the Young Zelda mask, wearable as a child; relabelled from that identification (not mapped to an amiibo figure name). First-grant quirk (unexplained): in the same session, granted right after slot A (Fairy Kid) with identical live values (IsGet/StockNum/HavePlayedGetEvent all true) it did NOT appear; it appeared after reloading a save / granting on a file that did not already have the other amiibo mask. Untested idea (note, not a finding): the mask menu may only refresh on load. Keys verified by hash in slot_05/progress.sav: IsGet.Armor_Child_Mask_Amiibo1 (Bool), PouchData.Armor_Child_Mask_Amiibo1.StockNum (Int - leaf record) and HavePlayedGetEvent.Armor_Child_Mask_Amiibo1 (Bool); the pickup event is written in also[]. Row kept and confirmed.",
       "drives": [
         "amiibo_masks.young_zelda"
       ],
@@ -2307,16 +2315,12 @@
       "category": "Item owned",
       "group": "Items, gear & songs (IsGet.*)",
       "type": "Bool",
+      "meaning": "owned: Gerudo Mask",
       "confidence": "likely",
-      "evidence": "In-game (grant session on Hookshot, 2026-11-17, user-verified): granting IsGet.Armor_Child_Mask_Gerudo together with its PouchData stock and HavePlayedGetEvent keys put the Gerudo Mask in the inventory; which of those keys the inventory reads is not yet isolated",
-      "drives": [
-        "extra_masks.gerudo_mask"
-      ],
+      "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies) and read back. Individually checked in game 2026-11-17 (user): granting fills the inventory screen but does not equip to the D-pad - the previously equipped mask stays until equipped manually. The equipped-mask state is a separate record (RE pending, P5 equipment objects). [2026-11-17] The grant also writes the pickup event listed in also[] — the event that grants the item's in-game effect, not just the inventory flag. Added after in-game testing showed the item flag alone leaves it in the inventory without its effect. Event key confirmed in the save catalog and the Cross-Platform Cheat Tools crossref. [pending: in-game]",
       "usedBy": [
-        "checklist",
         "grant"
-      ],
-      "meaning": "owned: Gerudo Mask"
+      ]
     },
     {
       "hash": "0xADFCCD91",
@@ -2405,16 +2409,12 @@
       "category": "Item owned",
       "group": "Items, gear & songs (IsGet.*)",
       "type": "Bool",
+      "meaning": "owned: Zora Mask",
       "confidence": "likely",
-      "evidence": "In-game (grant session on Hookshot, 2026-11-17, user-verified): granting IsGet.Armor_Child_Mask_Zora together with its PouchData stock and HavePlayedGetEvent keys put the Zora Mask in the inventory; which of those keys the inventory reads is not yet isolated",
-      "drives": [
-        "extra_masks.zora_mask"
-      ],
+      "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies) and read back. Individually checked in game 2026-11-17 (user): granting fills the inventory screen but does not equip to the D-pad - the previously equipped mask stays until equipped manually. The equipped-mask state is a separate record (RE pending, P5 equipment objects). [2026-11-17] The grant also writes the pickup event listed in also[] — the event that grants the item's in-game effect, not just the inventory flag. Added after in-game testing showed the item flag alone leaves it in the inventory without its effect. Event key confirmed in the save catalog and the Cross-Platform Cheat Tools crossref. [pending: in-game]",
       "usedBy": [
-        "checklist",
         "grant"
-      ],
-      "meaning": "owned: Zora Mask"
+      ]
     },
     {
       "hash": "0x7FE2A5B2",
@@ -5782,8 +5782,8 @@
       "category": "Quest / story progress",
       "group": "Story steps (Step_*)",
       "type": "Enum",
-      "confidence": "confirmed",
-      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot): the Poe Collector's bottle is tied to quest SubEvent_GhostShop; its saved step is Step_SubEvent_GhostShop. 2026-11-20 in-game diff: Step_SubEvent_GhostShop stayed \"Playing\" while Poes were sold and flipped to \"Complete\" in the snapshot after the 10th sale; the bottle was already held before the first snapshot, so the sale count that grants it was not separately observed.",
+      "confidence": "likely",
+      "evidence": "Clawshot (MIT, github.com/hiKareeem/Clawshot): the Poe Collector's bottle is given when quest SubEvent_GhostShop completes (five Big Poes in the remake); its saved step is Step_SubEvent_GhostShop.",
       "drives": [
         "bottles.poe_collector_bottle"
       ],
@@ -5971,29 +5971,6 @@
       "meaning": "created on a real learn: Scarecrow's Song",
       "usedBy": [
         "grant"
-      ]
-    },
-    {
-      "hash": "0x40772671",
-      "type": "array element",
-      "confidence": "confirmed",
-      "evidence": "2026-11-20 in-game snapshot diff (the maintainer's run; all 10 Big Poes killed and sold in one session): the sold flag 0x40772671[index 1] flips true in the snapshot taken after the Poe here was sold (2026-11-20_211747-slot_01-Killed-and-bottled-big-poe-just-beside-the-sign-between-hyru.sav); the still-alive flag 0xec52c09a[index 1] flipped false at the kill.",
-      "drives": [
-        "big_poes.001",
-        "big_poes.002",
-        "big_poes.003",
-        "big_poes.004",
-        "big_poes.005",
-        "big_poes.006",
-        "big_poes.007",
-        "big_poes.008",
-        "big_poes.009",
-        "big_poes.010",
-        "counter:big_poes"
-      ],
-      "usedBy": [
-        "checklist",
-        "counter"
       ]
     },
     {
@@ -14898,7 +14875,7 @@
           "id": "bottles.poe_collector_bottle",
           "label": "Poe Collector bottle",
           "combine": "all",
-          "confidence": "confirmed",
+          "confidence": "likely",
           "writes": [
             {
               "key": "Step_SubEvent_GhostShop",
@@ -16153,158 +16130,7 @@
         "HyruleField_Defeat_BigPoe_09",
         "HyruleField_Defeat_BigPoe_10"
       ],
-      "entries": [
-        {
-          "id": "big_poes.001",
-          "label": "Ruined bridge entrance (by the sign)",
-          "combine": "all",
-          "confidence": "confirmed",
-          "writes": [
-            {
-              "hash": "0x40772671",
-              "type": "array element",
-              "op": "set",
-              "value": true,
-              "note": "element 1"
-            }
-          ]
-        },
-        {
-          "id": "big_poes.002",
-          "label": "Between Lon Lon Ranch and Hyrule Castle",
-          "combine": "all",
-          "confidence": "confirmed",
-          "writes": [
-            {
-              "hash": "0x40772671",
-              "type": "array element",
-              "op": "set",
-              "value": true,
-              "note": "element 0"
-            }
-          ]
-        },
-        {
-          "id": "big_poes.003",
-          "label": "Lon Lon Ranch entrance (by a tree)",
-          "combine": "all",
-          "confidence": "confirmed",
-          "writes": [
-            {
-              "hash": "0x40772671",
-              "type": "array element",
-              "op": "set",
-              "value": true,
-              "note": "element 2"
-            }
-          ]
-        },
-        {
-          "id": "big_poes.004",
-          "label": "Behind Lon Lon Ranch",
-          "combine": "all",
-          "confidence": "confirmed",
-          "writes": [
-            {
-              "hash": "0x40772671",
-              "type": "array element",
-              "op": "set",
-              "value": true,
-              "note": "element 3"
-            }
-          ]
-        },
-        {
-          "id": "big_poes.005",
-          "label": "Base of the hill to Gerudo Valley",
-          "combine": "all",
-          "confidence": "confirmed",
-          "writes": [
-            {
-              "hash": "0x40772671",
-              "type": "array element",
-              "op": "set",
-              "value": true,
-              "note": "element 6"
-            }
-          ]
-        },
-        {
-          "id": "big_poes.006",
-          "label": "Hill to Gerudo Valley (closer to the ranch)",
-          "combine": "all",
-          "confidence": "confirmed",
-          "writes": [
-            {
-              "hash": "0x40772671",
-              "type": "array element",
-              "op": "set",
-              "value": true,
-              "note": "element 8"
-            }
-          ]
-        },
-        {
-          "id": "big_poes.007",
-          "label": "Woods south of Lon Lon Ranch",
-          "combine": "all",
-          "confidence": "confirmed",
-          "writes": [
-            {
-              "hash": "0x40772671",
-              "type": "array element",
-              "op": "set",
-              "value": true,
-              "note": "element 7"
-            }
-          ]
-        },
-        {
-          "id": "big_poes.008",
-          "label": "South of the crab-shaped watering hole",
-          "combine": "all",
-          "confidence": "confirmed",
-          "writes": [
-            {
-              "hash": "0x40772671",
-              "type": "array element",
-              "op": "set",
-              "value": true,
-              "note": "element 5"
-            }
-          ]
-        },
-        {
-          "id": "big_poes.009",
-          "label": "Left/south of the Kokiri entrance",
-          "combine": "all",
-          "confidence": "confirmed",
-          "writes": [
-            {
-              "hash": "0x40772671",
-              "type": "array element",
-              "op": "set",
-              "value": true,
-              "note": "element 4"
-            }
-          ]
-        },
-        {
-          "id": "big_poes.010",
-          "label": "Field between Lon Lon Ranch and Kokiri Forest",
-          "combine": "all",
-          "confidence": "confirmed",
-          "writes": [
-            {
-              "hash": "0x40772671",
-              "type": "array element",
-              "op": "set",
-              "value": true,
-              "note": "element 9"
-            }
-          ]
-        }
-      ]
+      "entries": []
     },
     {
       "id": "skulltula_rewards",
@@ -17503,7 +17329,7 @@
           "id": "amiibo_masks.young_link",
           "label": "Young Link amiibo mask",
           "combine": "all",
-          "confidence": "confirmed",
+          "confidence": "guess",
           "writes": [
             {
               "key": "IsGet.Armor_Child_Mask_Amiibo0",
@@ -17518,7 +17344,7 @@
           "id": "amiibo_masks.young_zelda",
           "label": "Young Zelda amiibo mask",
           "combine": "all",
-          "confidence": "confirmed",
+          "confidence": "guess",
           "writes": [
             {
               "key": "IsGet.Armor_Child_Mask_Amiibo1",
@@ -18012,7 +17838,5 @@
       "count": 4
     }
   ],
-  "notPlaced": [
-    "checklist category extra_masks: no grant recipe class"
-  ]
+  "notPlaced": []
 }
