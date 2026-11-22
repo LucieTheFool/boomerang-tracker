@@ -3,39 +3,34 @@
 Documentation for everything this project has mapped about the game's data, plus
 checks against other projects that work on the same game. If you're building your
 own tools, mods, or a randomizer for the OoT Switch 2 remake (Hookshot / Longshot /
-Triforce / NX2navi ports), this is where the evidence lives.
+Triforce / NX2navi ports), the general game data lives in the standalone
+reference repo:
+
+**[LucieTheFool/oot-switch2-reference](https://github.com/LucieTheFool/oot-switch2-reference)**
+— save file format, key hashes, the full key table (by category), 64-bit flags,
+enums, areas and stages, live process memory. Start with its README.
+
+What stays here is what's specific to this tracker.
 
 ## Start here
 
 | I want to know… | Read |
 |---|---|
-| What is in the save files — key hashes, flag table, items, music, options, grant recipes, live process reading | [GAME-DATA.md](GAME-DATA.md) (prose) or [oot-switch2-gamedata.json](oot-switch2-gamedata.json) (the same facts, machine-readable) |
-| How the game's area names (adult/child, sub-locations) map to the tracker's checklist regions, and which gaps are still open | [area-names.md](area-names.md) |
+| Save format, the 404 identified keys, 64-bit flags, enums, areas, live memory | [oot-switch2-reference](https://github.com/LucieTheFool/oot-switch2-reference) (new repo, start with its README) |
+| The exact writes that give each item/equipment/song | [grants.md](grants.md) (prose) or [grants.json](grants.json) (the same facts, machine-readable) |
+| Per-location checklist requirements and the keys a real pickup sets | [checklist-entries.md](checklist-entries.md) (prose) or [checklist-recipes.json](checklist-recipes.json) (the same facts, machine-readable) |
 | What other projects (trackers, randomizers, mod tools) say about the same data, and whether it matches | [crossref/](crossref/README.md) |
 
-## GAME-DATA.md
+## grants.md / checklist-entries.md
 
-Generated from the data files — do not edit by hand (the maintainer regenerates
-it and the JSON together after data changes). Sections:
+Generated — do not edit by hand (regenerated after data changes, together with the
+reference repo files).
 
-- [Confidence levels](GAME-DATA.md#confidence-levels) — how to read the `confirmed` / `inferred` / `hypothesis` / `untested` markers
-- [Reading vs writing](GAME-DATA.md#reading-vs-writing) — what this project reads, and what writing means elsewhere
-- [Key hashes](GAME-DATA.md#key-hashes) — how a save key's hash is computed (Murmur3 x86_32)
-- [Finding the tables in a save](GAME-DATA.md#finding-the-tables-in-a-save) — per-file layout (`caption.sav`, `progress.sav`, …)
-- [Finding the tables in memory](GAME-DATA.md#finding-the-tables-in-memory) — the live read path, per process
-- [Grant recipes](GAME-DATA.md#grant-recipes) — the exact writes that give each item/equipment/song
-- [Checklist entries (per location)](GAME-DATA.md#checklist-entries-per-location) — per-location requirements and their data sources
-- [Keys](GAME-DATA.md#keys) — the full key table (name, hash, type, meaning, confidence)
-- [Enum and text values](GAME-DATA.md#enum-and-text-values) — what the integer fields' values mean
-- [Areas](GAME-DATA.md#areas) — stage names and the region mapping (see also [area-names.md](area-names.md))
-- [How to contribute corrections](GAME-DATA.md#how-to-contribute-corrections)
-
-## area-names.md
-
-Manually maintained. The complete adult/child stage-name vocabulary (46 raw catalog
-names → 27 base areas), which sub-locations are known, the era-suffix rules, the
-current alias table, and the three stage names that still need aliases. Every row is
-tagged observed (live or `caption.sav`) vs expected (catalog-derived).
+- [Grant recipes](grants.md) — Ammo, Capacities, Consumables, Equipment, Health,
+  Items, Magic, Masks, Quest, Rupees, Songs, Tokens: the write that sets each one
+- [Checklist entries (per location)](checklist-entries.md) — heart pieces,
+  skulltulas, songs, equipment, items, keys, masks, bottles, fairies, upgrades,
+  trades, dungeon clears, boss defeats and the rest
 
 ## crossref/
 
@@ -45,15 +40,13 @@ External data checks, each pinned to a source repo + commit with license noted.
 - [Longshot](crossref/longshot-crossref.md) — the native recompilation (same house as this port family)
 - [Longshot Mod API](crossref/longshot-modapi-crossref.md) — the modding API draft PR, cross-checked against our tables
 - [OOTRR](crossref/ootrr-crossref.md) — Rust randomizer, 15,348-name save-key catalog
-- [zootr-nx](crossref/zootr-crossref.md) — randomizer for the same remake
+- [zootr-nx](crossref/zootr-nx-crossref.md) — randomizer for the same remake
 - [hyrule-tracker](crossref/hyrule-crossref.md) — tracker for the original N64 Hyrule version
 - [Links-Toolbox](crossref/links-toolbox-crossref.md) — mod loader + save editor for the same game install
 
 ## Keeping this section current
 
-- GAME-DATA.md and the JSON: the maintainer regenerates them after any data
-  change; the header records the generation date.
-- area-names.md: update by hand when a new stage/sub-location is observed or a new
-  alias lands in `src/core/areas.ts`.
+- grants.* / checklist-*: the maintainer regenerates them after any data change,
+  together with the reference repo files.
 - Cross-references: re-run the comparison when an upstream project moves past the
   pinned commit; record the new commit in the document.

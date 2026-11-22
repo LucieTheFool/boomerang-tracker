@@ -1,0 +1,4017 @@
+{
+  "grants": [
+    {
+      "group": "Ammo",
+      "items": [
+        {
+          "id": "PouchData.Item_Arrow_Fire.StockNum",
+          "label": "Fire arrows (count)",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "PouchData.Item_Arrow_Fire.StockNum",
+              "hash": "0x5E529AB9",
+              "type": "Int",
+              "op": "setValue",
+              "value": {
+                "min": 0
+              },
+              "where": "store record (every copy)"
+            }
+          ]
+        },
+        {
+          "id": "PouchData.Item_Arrow_Ice.StockNum",
+          "label": "Ice arrows (count)",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "PouchData.Item_Arrow_Ice.StockNum",
+              "hash": "0x40735A8D",
+              "type": "Int",
+              "op": "setValue",
+              "value": {
+                "min": 0
+              },
+              "where": "store record (every copy)"
+            }
+          ]
+        },
+        {
+          "id": "PouchData.Item_Arrow_Light.StockNum",
+          "label": "Light arrows (count)",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "PouchData.Item_Arrow_Light.StockNum",
+              "hash": "0xBFB285C8",
+              "type": "Int",
+              "op": "setValue",
+              "value": {
+                "min": 0
+              },
+              "where": "store record (every copy)"
+            }
+          ]
+        },
+        {
+          "id": "PouchData.Item_Arrow_Normal.StockNum",
+          "label": "Arrows (count)",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "PouchData.Item_Arrow_Normal.StockNum",
+              "hash": "0x518EC74B",
+              "type": "Int",
+              "op": "setValue",
+              "value": {
+                "min": 0,
+                "maxFrom": "Capacity.Arrow"
+              },
+              "where": "store record (every copy)"
+            }
+          ],
+          "caveats": [
+            "Damage or use lowers it again; re-write on a timer to hold it."
+          ]
+        },
+        {
+          "id": "PouchData.Item_Bomb.StockNum",
+          "label": "Bombs (count)",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "PouchData.Item_Bomb.StockNum",
+              "hash": "0xDB1BCD4F",
+              "type": "Int",
+              "op": "setValue",
+              "value": {
+                "min": 0,
+                "maxFrom": "Capacity.Bomb"
+              },
+              "where": "store record (every copy)"
+            }
+          ],
+          "caveats": [
+            "Damage or use lowers it again; re-write on a timer to hold it."
+          ]
+        },
+        {
+          "id": "PouchData.Item_Bombchu.StockNum",
+          "label": "Bombchus (count)",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "PouchData.Item_Bombchu.StockNum",
+              "hash": "0xDF7C517A",
+              "type": "Int",
+              "op": "setValue",
+              "value": {
+                "min": 0,
+                "maxFrom": "Capacity.Bomb"
+              },
+              "where": "store record (every copy)"
+            }
+          ],
+          "caveats": [
+            "Damage or use lowers it again; re-write on a timer to hold it."
+          ]
+        },
+        {
+          "id": "PouchData.Item_ScrubBusinessSeed.StockNum",
+          "label": "Scrub business seed (count)",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "PouchData.Item_ScrubBusinessSeed.StockNum",
+              "hash": "0x600E29EB",
+              "type": "Int",
+              "op": "setValue",
+              "value": {
+                "min": 0,
+                "max": 50
+              },
+              "where": "store record (every copy)"
+            }
+          ],
+          "caveats": [
+            "Damage or use lowers it again; re-write on a timer to hold it."
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Capacities",
+      "items": [
+        {
+          "id": "Capacity.Arrow",
+          "label": "Arrow capacity",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "hash": "0x418DB791",
+              "type": "Int",
+              "op": "setValue",
+              "value": {
+                "min": 0,
+                "max": 50
+              },
+              "where": "store record (every copy)"
+            }
+          ]
+        },
+        {
+          "id": "Capacity.Bomb",
+          "label": "Bomb capacity",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "hash": "0xE753508B",
+              "type": "Int",
+              "op": "setValue",
+              "value": {
+                "min": 0,
+                "max": 40
+              },
+              "where": "store record (every copy)"
+            }
+          ]
+        },
+        {
+          "id": "Capacity.DekuNut",
+          "label": "Deku Nut capacity",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "hash": "0x735B00F7",
+              "type": "Int",
+              "op": "setValue",
+              "value": {
+                "min": 0,
+                "max": 40
+              },
+              "where": "store record (every copy)"
+            }
+          ]
+        },
+        {
+          "id": "Capacity.DekuSeed",
+          "label": "Deku Seed capacity",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "hash": "0xAE8CC742",
+              "type": "Int",
+              "op": "setValue",
+              "value": {
+                "min": 0,
+                "max": 50
+              },
+              "where": "store record (every copy)"
+            }
+          ]
+        },
+        {
+          "id": "Capacity.DekuStick",
+          "label": "Deku Stick capacity",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "hash": "0x457616B0",
+              "type": "Int",
+              "op": "setValue",
+              "value": {
+                "min": 0,
+                "max": 30
+              },
+              "where": "store record (every copy)"
+            }
+          ]
+        },
+        {
+          "id": "Capacity.Wallet",
+          "label": "Wallet size",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "hash": "0xE0010A50",
+              "type": "Int",
+              "op": "setValue",
+              "value": {
+                "min": 0,
+                "max": 999
+              },
+              "where": "store record (every copy)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Consumables",
+      "items": [
+        {
+          "id": "Animal_Fish_Blue",
+          "label": "Blue Fish",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Animal_Fish_Blue",
+              "hash": "0x40B68073",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0x40B68073 (murmur3 verified); Bool present in 24/24 saves (false×24); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Animal_Insect",
+          "label": "Insect",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Animal_Insect",
+              "hash": "0x4506012D",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0x4506012D (murmur3 verified); Bool present in 24/24 saves (false×24); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Item_Bomb",
+          "label": "Bombs",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_Bomb",
+              "hash": "0x2BB00768",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Item_Bomb.StockNum",
+              "hash": "0xDB1BCD4F",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 20,
+              "where": "store record (every copy)"
+            }
+          ],
+          "caveats": [
+            "defaultCount 20 is the N64 small-bag full capacity (assumption)."
+          ],
+          "evidence": "Longshot 9af4808f (2026-11-17): the game's own cheat menu grants exactly this flag, and the ootrr flag table carries the same name (docs/longshot-crossref.md). Flag and stock record (0xDB1BCD4F) both present in the 11,925-entry reference save (stock 0 in the fresh save). Grant not yet tested in game."
+        },
+        {
+          "id": "Item_Bombchu",
+          "label": "Bombchus",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_Bombchu",
+              "hash": "0x5AB49C8E",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Item_Bombchu.StockNum",
+              "hash": "0xDF7C517A",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 10,
+              "where": "store record (every copy)"
+            }
+          ],
+          "caveats": [
+            "defaultCount 10 is the N64 small-bag full capacity (assumption)."
+          ],
+          "evidence": "Longshot 9af4808f (2026-11-17): the game's own cheat menu grants exactly this flag, and the ootrr flag table carries the same name (docs/longshot-crossref.md). Flag and stock record (0xDF7C517A) both present in the 11,925-entry reference save (stock 0 in the fresh save). Grant not yet tested in game."
+        },
+        {
+          "id": "Item_Bottle_BigPoe",
+          "label": "Big Poe Bottle",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_Bottle_BigPoe",
+              "hash": "0x03463AB6",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0x03463AB6 (murmur3 verified); Bool present in 24/24 saves (false×24); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Item_Bottle_BlueFire",
+          "label": "Blue Fire Bottle",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_Bottle_BlueFire",
+              "hash": "0x53DB16A6",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0x53DB16A6 (murmur3 verified); Bool present in 24/24 saves (false×24); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Item_Bottle_BluePotion",
+          "label": "Blue Potion Bottle",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_Bottle_BluePotion",
+              "hash": "0xEA0729FE",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0xEA0729FE (murmur3 verified); Bool present in 24/24 saves (false×24); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Item_Bottle_Bug",
+          "label": "Bug Bottle",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_Bottle_Bug",
+              "hash": "0xCF2D3DB4",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0xCF2D3DB4 (murmur3 verified); Bool present in 24/24 saves (true×21, false×3); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Item_Bottle_Fairy",
+          "label": "Fairy Bottle",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_Bottle_Fairy",
+              "hash": "0x124C4D3A",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0x124C4D3A (murmur3 verified); Bool present in 24/24 saves (false×24); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Item_Bottle_Fish",
+          "label": "Fish Bottle",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_Bottle_Fish",
+              "hash": "0xB46A0394",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0xB46A0394 (murmur3 verified); Bool present in 24/24 saves (false×24); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Item_Bottle_GreenPotion",
+          "label": "Green Potion Bottle",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_Bottle_GreenPotion",
+              "hash": "0x75ABC14B",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0x75ABC14B (murmur3 verified); Bool present in 24/24 saves (false×24); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Item_Bottle_HalfMilk",
+          "label": "Half-Milk Bottle",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_Bottle_HalfMilk",
+              "hash": "0x21FE9FFA",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0x21FE9FFA (murmur3 verified); Bool present in 24/24 saves (true×21, false×3); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Item_Bottle_Letter",
+          "label": "Letter Bottle",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_Bottle_Letter",
+              "hash": "0x170B5DF2",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0x170B5DF2 (murmur3 verified); Bool present in 24/24 saves (false×24); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Item_Bottle_Milk",
+          "label": "Milk Bottle",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_Bottle_Milk",
+              "hash": "0xF1232980",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0xF1232980 (murmur3 verified); Bool present in 24/24 saves (true×21, false×3); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Item_Bottle_Poe",
+          "label": "Poe Bottle",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_Bottle_Poe",
+              "hash": "0xF2001CFD",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0xF2001CFD (murmur3 verified); Bool present in 24/24 saves (false×24); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Item_Bottle_RedPotion",
+          "label": "Red Potion Bottle",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_Bottle_RedPotion",
+              "hash": "0xD8FFAFD1",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0xD8FFAFD1 (murmur3 verified); Bool present in 24/24 saves (true×21, false×3); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Item_DekuNut",
+          "label": "Deku Nuts",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Item_DekuNut",
+              "hash": "0x00C2EE37",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Item_DekuNut.StockNum",
+              "hash": "0xF30D9F54",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 40,
+              "where": "store record (every copy)",
+              "note": "capped by Capacity.DekuNut (0x735B00F7)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); the count showed and went down with use (then capped by the nut capacity)."
+        },
+        {
+          "id": "Item_DekuSeed",
+          "label": "Deku Seeds",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Item_DekuSeed",
+              "hash": "0x29888E1E",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Item_DekuSeed.StockNum",
+              "hash": "0x5FADF7FC",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 50,
+              "where": "store record (every copy)",
+              "note": "capped by Capacity.DekuSeed (0xAE8CC742)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); the count showed and went down with use (then capped by the seed capacity)."
+        },
+        {
+          "id": "Item_DekuStick",
+          "label": "Deku Sticks",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Item_DekuStick",
+              "hash": "0xC4E21AC2",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Item_DekuStick.StockNum",
+              "hash": "0xB9494411",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 30,
+              "where": "store record (every copy)",
+              "note": "capped by Capacity.DekuStick (0x457616B0)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); the count showed in game."
+        },
+        {
+          "id": "Item_EyeDrop",
+          "label": "Eyedropper",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_EyeDrop",
+              "hash": "0xB7BDD577",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0xB7BDD577 (murmur3 verified); Bool present in 24/24 saves (false×23, true×1); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Item_EyeballFrog",
+          "label": "Eyeball Frog",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_EyeballFrog",
+              "hash": "0x8E02D1CA",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0x8E02D1CA (murmur3 verified); Bool present in 24/24 saves (false×23, true×1); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Item_MagicBean",
+          "label": "Magic Beans",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Item_MagicBean",
+              "hash": "0x6D39C600",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Item_MagicBean.StockNum",
+              "hash": "0xB003124D",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 10,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); 10 showed on the Items screen."
+        },
+        {
+          "id": "Item_OddMushroom",
+          "label": "Odd Mushroom",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_OddMushroom",
+              "hash": "0xCBD7852A",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0xCBD7852A (murmur3 verified); Bool present in 24/24 saves (false×23, true×1); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Item_OddPowder",
+          "label": "Odd Powder",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_OddPowder",
+              "hash": "0xB75ACAAD",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0xB75ACAAD (murmur3 verified); Bool present in 24/24 saves (false×23, true×1); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Item_PocketCucco",
+          "label": "Pocket Cucco",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_PocketCucco",
+              "hash": "0xE82E6413",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0xE82E6413 (murmur3 verified); Bool present in 24/24 saves (false×23, true×1); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Item_PocketEgg",
+          "label": "Pocket Egg",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_PocketEgg",
+              "hash": "0xEC9C3136",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0xEC9C3136 (murmur3 verified); Bool present in 24/24 saves (false×23, true×1); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Item_Prescription",
+          "label": "Prescription",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_Prescription",
+              "hash": "0xD8F1521E",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0xD8F1521E (murmur3 verified); Bool present in 24/24 saves (false×23, true×1); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Item_ScrubBusinessSeed",
+          "label": "Scrub Seeds",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_ScrubBusinessSeed",
+              "hash": "0xCFBB16F6",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Item_ScrubBusinessSeed.StockNum",
+              "hash": "0x600E29EB",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 5,
+              "where": "store record (every copy)"
+            }
+          ],
+          "caveats": [
+            "defaultCount 5 is the N64 starting seed count (assumption)."
+          ],
+          "evidence": "Longshot 9af4808f (2026-11-17): the game's own cheat menu grants exactly this flag, and the ootrr flag table carries the same name (docs/longshot-crossref.md). Flag and stock record (0x600E29EB) both present in the 11,925-entry reference save (stock 0 in the fresh save). Grant not yet tested in game."
+        },
+        {
+          "id": "Item_WeirdEgg",
+          "label": "Weird Egg",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_WeirdEgg",
+              "hash": "0x44AB1487",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0x44AB1487 (murmur3 verified); Bool present in 24/24 saves (true×21, false×3); grant effect [pending: in-game]"
+        }
+      ]
+    },
+    {
+      "group": "Equipment",
+      "items": [
+        {
+          "id": "Armor_Adult_Gauntlet_Gold",
+          "label": "Golden Gauntlets",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Armor_Adult_Gauntlet_Gold",
+              "hash": "0x3EF15EC4",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Armor_Adult_Gauntlet_Gold.StockNum",
+              "hash": "0x40AE1183",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            },
+            {
+              "hash": "0x59979321",
+              "type": "Enum",
+              "op": "raiseTo",
+              "value": "High",
+              "where": "store record (every copy)",
+              "note": "value = murmur3(\"High\") = 0x165AF889; order low→high: None < Low < Middle < High (never lower it)"
+            }
+          ],
+          "caveats": [
+            "Adult only"
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); written and read back; not individually checked in the menus. [2026-11-18] The also[] write sets the strength enum (0x59979321, confirmed for the bracelet) to High. Silver/Golden Gauntlets presumably Middle/High (untested; adult). Grant via trainer pending the build."
+        },
+        {
+          "id": "Armor_Adult_Gauntlet_Silver",
+          "label": "Silver Gauntlets",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Armor_Adult_Gauntlet_Silver",
+              "hash": "0x87E58DE3",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Armor_Adult_Gauntlet_Silver.StockNum",
+              "hash": "0x0012B8C0",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            },
+            {
+              "hash": "0x59979321",
+              "type": "Enum",
+              "op": "raiseTo",
+              "value": "Middle",
+              "where": "store record (every copy)",
+              "note": "value = murmur3(\"Middle\") = 0xB6A1CCDF; order low→high: None < Low < Middle < High (never lower it)"
+            }
+          ],
+          "caveats": [
+            "Adult only"
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); written and read back; not individually checked in the menus. [2026-11-18] The also[] write sets the strength enum (0x59979321, confirmed for the bracelet) to Middle. Silver/Golden Gauntlets presumably Middle/High (untested; adult). Grant via trainer pending the build."
+        },
+        {
+          "id": "Armor_Adult_Goron",
+          "label": "Goron Tunic",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Armor_Adult_Goron",
+              "hash": "0xAE5611AF",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Armor_Adult_Goron.StockNum",
+              "hash": "0x21ECBD19",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            }
+          ],
+          "caveats": [
+            "Adult only"
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); shown on the Equipment screen."
+        },
+        {
+          "id": "Armor_Adult_HeavyBoot",
+          "label": "Iron Boots",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Armor_Adult_HeavyBoot",
+              "hash": "0x5FA190E6",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Armor_Adult_HeavyBoot.StockNum",
+              "hash": "0x2BAD189A",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            }
+          ],
+          "caveats": [
+            "Adult only"
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); shown on the Equipment screen."
+        },
+        {
+          "id": "Armor_Adult_HoverBoot",
+          "label": "Hover Boots",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Armor_Adult_HoverBoot",
+              "hash": "0x1109C920",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Armor_Adult_HoverBoot.StockNum",
+              "hash": "0xC9220366",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            }
+          ],
+          "caveats": [
+            "Adult only"
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); shown on the Equipment screen."
+        },
+        {
+          "id": "Armor_Adult_Normal",
+          "label": "Adult Tunic",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Armor_Adult_Normal",
+              "hash": "0xDE513ABD",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0xDE513ABD (murmur3 verified); Bool present in 24/24 saves (true×24); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Armor_Adult_Zora",
+          "label": "Zora Tunic",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Armor_Adult_Zora",
+              "hash": "0x4F5A929C",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Armor_Adult_Zora.StockNum",
+              "hash": "0xB816AF94",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            }
+          ],
+          "caveats": [
+            "Adult only"
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); shown on the Equipment screen."
+        },
+        {
+          "id": "Armor_Child_Gauntlet_Goron",
+          "label": "Goron’s Bracelet",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Armor_Child_Gauntlet_Goron",
+              "hash": "0x9880707E",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Armor_Child_Gauntlet_Goron.StockNum",
+              "hash": "0xD1317941",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "HavePlayedGetEvent.Armor_Child_Gauntlet_Goron",
+              "hash": "0x6FD3DD83",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "hash": "0x59979321",
+              "type": "Enum",
+              "op": "raiseTo",
+              "value": "Low",
+              "where": "store record (every copy)",
+              "note": "value = murmur3(\"Low\") = 0xD9E40095; order low→high: None < Low < Middle < High (never lower it)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); written and read back; individually checked in game 2026-11-17 (user): shown in the inventory screen but the ability was not granted. [2026-11-18] STRENGTH MECHANISM CONFIRMED: the separate record is the unnamed live Enum 0x59979321 (values None/Low/Middle/High, from the GameDataList). Getting Goron's Bracelet normally set None→Low. Setting it to None live made bombs unholdable (pulled out, then put away) and bomb flowers unliftable, even with the bracelet owned. Setting it back to Low restored both. So holding a bomb needs strength ≥ Low. The also[] write grants the enum. Grant via trainer pending the build."
+        },
+        {
+          "id": "Armor_GlassTruth",
+          "label": "Lens of Truth",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Armor_GlassTruth",
+              "hash": "0x7FE2A5B2",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Armor_GlassTruth.StockNum",
+              "hash": "0x49D1C374",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); shown on the Equipment screen."
+        },
+        {
+          "id": "Item_BrokenSword",
+          "label": "Broken Sword",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_BrokenSword",
+              "hash": "0x645A8175",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0x645A8175 (murmur3 verified); Bool present in 24/24 saves (false×23, true×1); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Item_FishingRod",
+          "label": "Fishing Rod",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_FishingRod",
+              "hash": "0x10C5B9BF",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0x10C5B9BF (murmur3 verified); Bool present in 24/24 saves (false×24); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Item_Hat_FishingPondOwner",
+          "label": "Fishing Hat",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_Hat_FishingPondOwner",
+              "hash": "0xAF176AB2",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0xAF176AB2 (murmur3 verified); Bool present in 24/24 saves (false×24); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Item_NormalBoot",
+          "label": "Kokiri Boots",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_NormalBoot",
+              "hash": "0x7215060C",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0x7215060C (murmur3 verified); Bool present in 24/24 saves (false×24); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Item_PoacherSaw",
+          "label": "Poacher's Saw",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_PoacherSaw",
+              "hash": "0x888D5059",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0x888D5059 (murmur3 verified); Bool present in 24/24 saves (false×23, true×1); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Item_Scale_Gold",
+          "label": "Golden Scale",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_Scale_Gold",
+              "hash": "0xCCC1909A",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Item_Scale_Gold.StockNum",
+              "hash": "0x4AEB140A",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "HavePlayedGetEvent.Item_Scale_Gold",
+              "hash": "0x99394E23",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); written and read back; individually checked in game 2026-11-17 (user): shown in the inventory screen but the weighing ability is not granted (same as Goron's Bracelet). The equipment/ability state is a separate record (RE pending). [2026-11-17] The grant also writes the pickup event listed in also[] — the event that grants the item's in-game effect, not just the inventory flag. Added after in-game testing showed the item flag alone leaves it in the inventory without its effect. Event key confirmed in the save catalog and the Cross-Platform Cheat Tools crossref. [pending: in-game]"
+        },
+        {
+          "id": "Item_Scale_Silver",
+          "label": "Silver Scale",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_Scale_Silver",
+              "hash": "0x1208FB3E",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Item_Scale_Silver.StockNum",
+              "hash": "0x1240044B",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "HavePlayedGetEvent.Item_Scale_Silver",
+              "hash": "0x131029C2",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); written and read back; individually checked in game 2026-11-17 (user): shown in the inventory screen but the weighing ability is not granted (same as Goron's Bracelet). The equipment/ability state is a separate record (RE pending). [2026-11-17] The grant also writes the pickup event listed in also[] — the event that grants the item's in-game effect, not just the inventory flag. Added after in-game testing showed the item flag alone leaves it in the inventory without its effect. Event key confirmed in the save catalog and the Cross-Platform Cheat Tools crossref. [pending: in-game]"
+        },
+        {
+          "id": "Weapon_Shield_DarkLinkShield",
+          "label": "Dark Link's Shield",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Weapon_Shield_DarkLinkShield",
+              "hash": "0x24570B07",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0x24570B07 (murmur3 verified); Bool present in 24/24 saves (false×24); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Weapon_Shield_Deku",
+          "label": "Deku Shield",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Weapon_Shield_Deku",
+              "hash": "0x5217DA1E",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Weapon_Shield_Deku.StockNum",
+              "hash": "0x7CA64F23",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Longshot 9af4808f (2026-11-17): the game's own cheat menu grants exactly this flag, and the ootrr flag table carries the same name (docs/longshot-crossref.md). Flag and stock record (0x7CA64F23) both present in the 11,925-entry reference save (stock 0 in the fresh save). Grant not yet tested in game. In game (0.3.2, Hookshot, child): \"take away\" clears the item from the menu, but NOT from what Link has equipped — the live store keys PlayerStatus.EquipWeapon (0xA95A3521) and PlayerStatus.EquipShield (0xEE463235) are String64 copies holding the item id; writing \"\" to them live did NOT unequip Link even after a loading zone (engine-side state). Saves made afterwards still hold the item ids. Follow-up tests: (save-file edit with the game closed may work; pending in-game)."
+        },
+        {
+          "id": "Weapon_Shield_Hylian",
+          "label": "Hylian Shield",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Weapon_Shield_Hylian",
+              "hash": "0x2F817D54",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Weapon_Shield_Hylian.StockNum",
+              "hash": "0x08BEFD3A",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); shown on the Equipment screen."
+        },
+        {
+          "id": "Weapon_Shield_Mirror",
+          "label": "Mirror Shield",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Weapon_Shield_Mirror",
+              "hash": "0x75E94E42",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Weapon_Shield_Mirror.StockNum",
+              "hash": "0xF58E0E2F",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            }
+          ],
+          "caveats": [
+            "Adult only"
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); shown on the Equipment screen."
+        },
+        {
+          "id": "Weapon_Sword_Biggoron",
+          "label": "Biggoron’s Sword",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Weapon_Sword_Biggoron",
+              "hash": "0x33466812",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Weapon_Sword_Biggoron.StockNum",
+              "hash": "0xB0B3E399",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            }
+          ],
+          "caveats": [
+            "Adult only"
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); shown on the Equipment screen."
+        },
+        {
+          "id": "Weapon_Sword_BrokenGiant",
+          "label": "Giant's Sword (broken)",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Weapon_Sword_BrokenGiant",
+              "hash": "0x720DF203",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0x720DF203 (murmur3 verified); Bool present in 24/24 saves (false×24); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Weapon_Sword_DarkLinkSword",
+          "label": "Dark Link's Sword",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Weapon_Sword_DarkLinkSword",
+              "hash": "0xA54698C9",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0xA54698C9 (murmur3 verified); Bool present in 24/24 saves (false×24); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Weapon_Sword_Giant",
+          "label": "Giant's Knife",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Weapon_Sword_Giant",
+              "hash": "0x1E824EFA",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Weapon_Sword_Giant.StockNum",
+              "hash": "0x396A5C02",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            }
+          ],
+          "caveats": [
+            "Adult only"
+          ],
+          "evidence": "Longshot 9af4808f (2026-11-17): the game's own cheat menu grants exactly this flag, and the ootrr flag table carries the same name (docs/longshot-crossref.md). Flag and stock record (0x396A5C02) both present in the 11,925-entry reference save (stock 0 in the fresh save). Grant not yet tested in game."
+        },
+        {
+          "id": "Weapon_Sword_Kokiri",
+          "label": "Kokiri Sword",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Weapon_Sword_Kokiri",
+              "hash": "0x405D8A0F",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Weapon_Sword_Kokiri.StockNum",
+              "hash": "0xEEB495B9",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Longshot 9af4808f (2026-11-17): the game's own cheat menu grants exactly this flag, and the ootrr flag table carries the same name (docs/longshot-crossref.md). Flag and stock record (0xEEB495B9) both present in the 11,925-entry reference save (stock 0 in the fresh save). Grant not yet tested in game. In game (0.3.2, Hookshot, child): \"take away\" clears the item from the menu, but NOT from what Link has equipped — the live store keys PlayerStatus.EquipWeapon (0xA95A3521) and PlayerStatus.EquipShield (0xEE463235) are String64 copies holding the item id; writing \"\" to them live did NOT unequip Link even after a loading zone (engine-side state). Saves made afterwards still hold the item ids. Follow-up tests: (save-file edit with the game closed may work; pending in-game)."
+        },
+        {
+          "id": "Weapon_Sword_Master",
+          "label": "Master Sword",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Weapon_Sword_Master",
+              "hash": "0x7AE38E5B",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Weapon_Sword_Master.StockNum",
+              "hash": "0xF1C45294",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            }
+          ],
+          "caveats": [
+            "Adult only"
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); shown on the Equipment screen."
+        }
+      ]
+    },
+    {
+      "group": "Health",
+      "items": [
+        {
+          "id": "PlayerStatus.Life",
+          "label": "Hearts",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "PlayerStatus.Life",
+              "hash": "0x31AB5580",
+              "type": "Int",
+              "op": "setValue",
+              "value": {
+                "min": 1,
+                "maxFrom": "PlayerStatus.MaxLife"
+              },
+              "where": "engine value object"
+            }
+          ],
+          "caveats": [
+            "The store record is only a copy the game refreshes every frame: write the engine value object (16 bytes: vtable, i32 value at +0x8, murmur3(key) at +0xC).",
+            "Damage or use lowers it again; re-write on a timer to hold it."
+          ]
+        },
+        {
+          "id": "PlayerStatus.MaxLife",
+          "label": "Heart containers",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "PlayerStatus.MaxLife",
+              "hash": "0xFBE01DA1",
+              "type": "Int",
+              "op": "setValue",
+              "value": {
+                "min": 4,
+                "max": 80
+              },
+              "where": "engine value object"
+            }
+          ],
+          "caveats": [
+            "The store record is only a copy the game refreshes every frame: write the engine value object (16 bytes: vtable, i32 value at +0x8, murmur3(key) at +0xC).",
+            "Damage or use lowers it again; re-write on a timer to hold it."
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Items",
+      "items": [
+        {
+          "id": "Item_AlarmCucco",
+          "label": "Alarm Cucco",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_AlarmCucco",
+              "hash": "0x14909166",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0x14909166 (murmur3 verified); Bool present in 24/24 saves (true×21, false×3); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Item_Arrow_Fire",
+          "label": "Fire Arrows",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Item_Arrow_Fire",
+              "hash": "0x4DB7EAE0",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Item_Arrow_Fire.StockNum",
+              "hash": "0x5E529AB9",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            }
+          ],
+          "caveats": [
+            "Adult only"
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); shown on the Items screen."
+        },
+        {
+          "id": "Item_Arrow_Ice",
+          "label": "Ice Arrows",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Item_Arrow_Ice",
+              "hash": "0x5C8F3099",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Item_Arrow_Ice.StockNum",
+              "hash": "0x40735A8D",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            }
+          ],
+          "caveats": [
+            "Adult only"
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); shown on the Items screen."
+        },
+        {
+          "id": "Item_Arrow_Light",
+          "label": "Light Arrows",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Item_Arrow_Light",
+              "hash": "0x8637BAB4",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Item_Arrow_Light.StockNum",
+              "hash": "0xBFB285C8",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            }
+          ],
+          "caveats": [
+            "Adult only"
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); shown on the Items screen."
+        },
+        {
+          "id": "Item_Arrow_Normal",
+          "label": "Normal Arrows",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_Arrow_Normal",
+              "hash": "0x572701EA",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Item_Arrow_Normal.StockNum",
+              "hash": "0x518EC74B",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Longshot 9af4808f (2026-11-17): the game's own cheat menu grants exactly this flag, and the ootrr flag table carries the same name (docs/longshot-crossref.md). Flag and stock record (0x518EC74B) both present in the 11,925-entry reference save (stock 0 in the fresh save). Grant not yet tested in game."
+        },
+        {
+          "id": "Item_BombBag_Large",
+          "label": "Large Bomb Bag",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_BombBag_Large",
+              "hash": "0x968A5A79",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "hash": "0xE753508B",
+              "type": "Int",
+              "op": "atLeast",
+              "value": 40,
+              "where": "store record (every copy)"
+            }
+          ],
+          "caveats": [
+            "Bomb bag tier — bomb capacity is set by the also[] write (40). No stock record."
+          ],
+          "evidence": "Longshot 9af4808f (2026-11-17): the game's own cheat menu grants exactly this tier flag, and the ootrr flag table carries the same name (docs/longshot-crossref.md). Flag present in the 11,925-entry reference save. [2026-11-18] The also[] write sets Capacity.Bomb to 40 — confirmed in a real save (20 with the small bag). Grant via trainer pending the build."
+        },
+        {
+          "id": "Item_BombBag_Medium",
+          "label": "Medium Bomb Bag",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_BombBag_Medium",
+              "hash": "0xB2C478DA",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "hash": "0xE753508B",
+              "type": "Int",
+              "op": "atLeast",
+              "value": 30,
+              "where": "store record (every copy)"
+            }
+          ],
+          "caveats": [
+            "Bomb bag tier — bomb capacity is set by the also[] write (30). No stock record."
+          ],
+          "evidence": "Longshot 9af4808f (2026-11-17): the game's own cheat menu grants exactly this tier flag, and the ootrr flag table carries the same name (docs/longshot-crossref.md). Flag present in the 11,925-entry reference save. [2026-11-18] The also[] write sets Capacity.Bomb to 30 — confirmed in a real save (20 with the small bag). Grant via trainer pending the build."
+        },
+        {
+          "id": "Item_BombBag_Small",
+          "label": "Small Bomb Bag",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_BombBag_Small",
+              "hash": "0xA63F1E2D",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "hash": "0xE753508B",
+              "type": "Int",
+              "op": "atLeast",
+              "value": 20,
+              "where": "store record (every copy)"
+            }
+          ],
+          "caveats": [
+            "Bomb bag tier — bomb capacity is set by the also[] write (20). No stock record."
+          ],
+          "evidence": "Longshot 9af4808f (2026-11-17): the game's own cheat menu grants exactly this tier flag, and the ootrr flag table carries the same name (docs/longshot-crossref.md). Flag present in the 11,925-entry reference save. [2026-11-18] The also[] write sets Capacity.Bomb to 20 — confirmed in a real save (20 with the small bag). Grant via trainer pending the build."
+        },
+        {
+          "id": "Item_Boomerang",
+          "label": "Boomerang",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Item_Boomerang",
+              "hash": "0x7F4CE38D",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Item_Boomerang.StockNum",
+              "hash": "0xA1D76D31",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); used in game."
+        },
+        {
+          "id": "Item_Bottle",
+          "label": "Empty Bottle",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_Bottle",
+              "hash": "0x1106B082",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "caveats": [
+            "No single count record exists: bottle contents are five named slots (PouchData.BottleA–E.StockNum, all present in the reference save). Grant writes the flag only."
+          ],
+          "evidence": "Longshot 9af4808f (2026-11-17): the game's own cheat menu grants exactly this flag, and the ootrr flag table carries the same name (docs/longshot-crossref.md). Flag (0x36B5156A) present in the 11,925-entry reference save. PouchData.Item_Bottle.StockNum does NOT exist in the reference save — bottles use the five BottleA–E slot records (all present, 0). Grant not yet tested in game."
+        },
+        {
+          "id": "Item_BulletBag_Large",
+          "label": "Large Bullet Bag",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_BulletBag_Large",
+              "hash": "0xB669F025",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "caveats": [
+            "Deku Seed (slingshot) bag tier — slingshot seed capacity follows the tier (50; see the Deku Seed capacity value). No stock record."
+          ],
+          "evidence": "Longshot 9af4808f (2026-11-17): the game's own cheat menu grants exactly this tier flag, and the ootrr flag table carries the same name (docs/longshot-crossref.md). Flag present in the 11,925-entry reference save. Grant not yet tested in game."
+        },
+        {
+          "id": "Item_BulletBag_Medium",
+          "label": "Medium Bullet Bag",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_BulletBag_Medium",
+              "hash": "0xE6CD55D2",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "caveats": [
+            "Deku Seed (slingshot) bag tier — slingshot seed capacity follows the tier (40; see the Deku Seed capacity value). No stock record."
+          ],
+          "evidence": "Longshot 9af4808f (2026-11-17): the game's own cheat menu grants exactly this tier flag, and the ootrr flag table carries the same name (docs/longshot-crossref.md). Flag present in the 11,925-entry reference save. Grant not yet tested in game."
+        },
+        {
+          "id": "Item_BulletBag_Small",
+          "label": "Small Bullet Bag",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_BulletBag_Small",
+              "hash": "0x488CA1BE",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "caveats": [
+            "Deku Seed (slingshot) bag tier — slingshot seed capacity follows the tier (30; see the Deku Seed capacity value). No stock record."
+          ],
+          "evidence": "Longshot 9af4808f (2026-11-17): the game's own cheat menu grants exactly this tier flag, and the ootrr flag table carries the same name (docs/longshot-crossref.md). Flag present in the 11,925-entry reference save. Grant not yet tested in game."
+        },
+        {
+          "id": "Item_ClaimCheck",
+          "label": "Claim Check",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_ClaimCheck",
+              "hash": "0x8B54E680",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0x8B54E680 (murmur3 verified); Bool present in 24/24 saves (false×23, true×1); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Item_CojiroCucco",
+          "label": "Cojiro",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_CojiroCucco",
+              "hash": "0xFB4442DE",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0xFB4442DE (murmur3 verified); Bool present in 24/24 saves (false×23, true×1); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Item_DinFire",
+          "label": "Din’s Fire",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Item_DinFire",
+              "hash": "0xFA04E611",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Item_DinFire.StockNum",
+              "hash": "0xB796C16D",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            }
+          ],
+          "caveats": [
+            "Needs magic - now settable via the Magic value (likely; live write pending in-game)"
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); shown on the Items screen; can’t be used without magic."
+        },
+        {
+          "id": "Item_FairyBless_DefenseDouble",
+          "label": "Double Defense",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_FairyBless_DefenseDouble",
+              "hash": "0x944B78BE",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "caveats": [
+            "Ability flag only; no stock record."
+          ],
+          "evidence": "Longshot 9af4808f (2026-11-17): the game's own cheat menu grants exactly this flag, and the ootrr flag table carries the same name (docs/longshot-crossref.md). Flag (0x0F687C8B) present in the 11,925-entry reference save. Grant not yet tested in game."
+        },
+        {
+          "id": "Item_FairyBless_MP",
+          "label": "Magic Meter",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_FairyBless_MP",
+              "hash": "0xB1309073",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "caveats": [
+            "Ability flag only; no stock record."
+          ],
+          "evidence": "Longshot 9af4808f (2026-11-17): the game's own cheat menu grants exactly this flag, and the ootrr flag table carries the same name (docs/longshot-crossref.md). Flag (0x690F28E3) present in the 11,925-entry reference save. Grant not yet tested in game."
+        },
+        {
+          "id": "Item_FairyBless_MPDouble",
+          "label": "Double Magic",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_FairyBless_MPDouble",
+              "hash": "0x87CA4826",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "caveats": [
+            "Ability flag only; no stock record. Requires the Magic Meter to matter."
+          ],
+          "evidence": "Longshot 9af4808f (2026-11-17): the game's own cheat menu grants exactly this flag, and the ootrr flag table carries the same name (docs/longshot-crossref.md). Flag (0x0B046E72) present in the 11,925-entry reference save. Grant not yet tested in game."
+        },
+        {
+          "id": "Item_FaroreWind",
+          "label": "Farore’s Wind",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Item_FaroreWind",
+              "hash": "0xFFABF058",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Item_FaroreWind.StockNum",
+              "hash": "0x47F2CA87",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            }
+          ],
+          "caveats": [
+            "Needs magic - now settable via the Magic value (likely; live write pending in-game)"
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); shown on the Items screen; can’t be used without magic."
+        },
+        {
+          "id": "Item_Hammer",
+          "label": "Megaton Hammer",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Item_Hammer",
+              "hash": "0x7227EFD8",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Item_Hammer.StockNum",
+              "hash": "0x1AAFDB66",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            }
+          ],
+          "caveats": [
+            "Adult only"
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); shown on the Items screen."
+        },
+        {
+          "id": "Item_Hookshot",
+          "label": "Hookshot",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Item_Hookshot",
+              "hash": "0xFF98ED58",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Item_Hookshot.StockNum",
+              "hash": "0x8573D2CD",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            }
+          ],
+          "caveats": [
+            "Adult only"
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); shown on the Items screen."
+        },
+        {
+          "id": "Item_Longshot",
+          "label": "Longshot",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_Longshot",
+              "hash": "0x38AEA3BB",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Item_Longshot.StockNum",
+              "hash": "0x8499EA34",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            }
+          ],
+          "caveats": [
+            "Adult only"
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies) and read back. Not individually confirmed in game: the Longshot slot on the Items screen showed the Hookshot icon (give-all test, user-confirmed observation). Shares the Hookshot slot on the Items screen."
+        },
+        {
+          "id": "Item_NayruLove",
+          "label": "Nayru’s Love",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Item_NayruLove",
+              "hash": "0x00B44241",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Item_NayruLove.StockNum",
+              "hash": "0xF0828CD0",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            }
+          ],
+          "caveats": [
+            "Needs magic - now settable via the Magic value (likely; live write pending in-game)"
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); shown on the Items screen; can’t be used without magic."
+        },
+        {
+          "id": "Item_Ocarina_Fairy",
+          "label": "Fairy Ocarina",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_Ocarina_Fairy",
+              "hash": "0x42BD296F",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Item_Ocarina_Fairy.StockNum",
+              "hash": "0xB7DF60F1",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Longshot 9af4808f (2026-11-17): the game's own cheat menu grants exactly this flag, and the ootrr flag table carries the same name (docs/longshot-crossref.md). Flag and stock record (0xB7DF60F1) both present in the 11,925-entry reference save (stock 0 in the fresh save). Grant not yet tested in game. In game (0.3.2, Hookshot, child): \"take away\" clears the item from the menu, but the Fairy Ocarina stays on D-pad left and can be played — it's a fixed default binding. Clearing IsGet/StockNum/HavePlayedGetEvent live did not disable it; unnamed String64 0xB72CD3FC = \"Item_Ocarina_Fairy\" is the D-pad ICON (clearing it hid the icon but the button still worked; the game rewrote it on next save, so it's derived). A save + reload with every known ocarina value off still had the ocarina on the D-pad and playable. Hypothesis: tied to story progress (e.g. the Saria gift event). Follow-up tests: (diff a save before/after Fairy Ocarina received to find the story key; pending in-game)."
+        },
+        {
+          "id": "Item_Ocarina_Time",
+          "label": "Ocarina of Time",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Item_Ocarina_Time",
+              "hash": "0x1DA2C511",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Item_Ocarina_Time.StockNum",
+              "hash": "0x54E2A3D1",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); shown in the Collection screen."
+        },
+        {
+          "id": "Item_Quiver_Large",
+          "label": "Large Quiver",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_Quiver_Large",
+              "hash": "0x21985B09",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "hash": "0x418DB791",
+              "type": "Int",
+              "op": "atLeast",
+              "value": 50,
+              "where": "store record (every copy)"
+            }
+          ],
+          "caveats": [
+            "Quiver tier — arrow capacity is set by the also[] write (50). No stock record."
+          ],
+          "evidence": "Longshot 9af4808f (2026-11-17): the game's own cheat menu grants exactly this tier flag, and the ootrr flag table carries the same name (docs/longshot-crossref.md). Flag present in the 11,925-entry reference save. [2026-11-18] The also[] write sets Capacity.Arrow to 50 — confirmed in a real save (30 with the small quiver). Grant via trainer pending the build."
+        },
+        {
+          "id": "Item_Quiver_Medium",
+          "label": "Medium Quiver",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_Quiver_Medium",
+              "hash": "0x9D872202",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "hash": "0x418DB791",
+              "type": "Int",
+              "op": "atLeast",
+              "value": 40,
+              "where": "store record (every copy)"
+            }
+          ],
+          "caveats": [
+            "Quiver tier — arrow capacity is set by the also[] write (40). No stock record."
+          ],
+          "evidence": "Longshot 9af4808f (2026-11-17): the game's own cheat menu grants exactly this tier flag, and the ootrr flag table carries the same name (docs/longshot-crossref.md). Flag present in the 11,925-entry reference save. [2026-11-18] The also[] write sets Capacity.Arrow to 40 — confirmed in a real save (30 with the small quiver). Grant via trainer pending the build."
+        },
+        {
+          "id": "Item_Quiver_Small",
+          "label": "Small Quiver",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_Quiver_Small",
+              "hash": "0x0A550531",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "hash": "0x418DB791",
+              "type": "Int",
+              "op": "atLeast",
+              "value": 30,
+              "where": "store record (every copy)"
+            }
+          ],
+          "caveats": [
+            "Quiver tier — arrow capacity is set by the also[] write (30). No stock record."
+          ],
+          "evidence": "Longshot 9af4808f (2026-11-17): the game's own cheat menu grants exactly this tier flag, and the ootrr flag table carries the same name (docs/longshot-crossref.md). Flag present in the 11,925-entry reference save. [2026-11-18] The also[] write sets Capacity.Arrow to 30 — confirmed in a real save (30 with the small quiver). Grant via trainer pending the build."
+        },
+        {
+          "id": "Item_Wallet_Large",
+          "label": "Large Wallet",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_Wallet_Large",
+              "hash": "0xB5031190",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0xB5031190 (murmur3 verified); Bool present in 24/24 saves (false×23, true×1); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Item_Wallet_Medium",
+          "label": "Medium Wallet",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_Wallet_Medium",
+              "hash": "0xD1360DE8",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0xD1360DE8 (murmur3 verified); Bool present in 24/24 saves (true×21, false×3); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Item_Wallet_Small",
+          "label": "Small Wallet",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_Wallet_Small",
+              "hash": "0xB6E5A3A5",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0xB6E5A3A5 (murmur3 verified); Bool present in 24/24 saves (true×24); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Obj_MiniGame_SmallKey",
+          "label": "Small Key (Treasure Chest)",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Obj_MiniGame_SmallKey",
+              "hash": "0x8F7916A0",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "OOTRR cross-ref candidate (actor Obj_MiniGame_SmallKey). MURMUR3(IsGet.Obj_MiniGame_SmallKey)=0x8F7916A0 recomputed+verified; present in 24/24 local/backup saves as a Bool (IsGet possession flag), all off. Distinct from Item_Dungeon_SmallKey (the dungeon small key). [pending: in-game] Grant not yet confirmed to hand over the Treasure Chest minigame key in the running game."
+        },
+        {
+          "id": "Weapon_Lure",
+          "label": "Lure",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Weapon_Lure",
+              "hash": "0xE044B44F",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0xE044B44F (murmur3 verified); Bool present in 24/24 saves (false×24); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Weapon_Range_Bow",
+          "label": "Fairy Bow",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Weapon_Range_Bow",
+              "hash": "0x69EC28BE",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Weapon_Range_Bow.StockNum",
+              "hash": "0x938D56BF",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            }
+          ],
+          "caveats": [
+            "Adult only"
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); shown on the Items screen (arrow count needs the quiver size, which isn’t known yet)."
+        },
+        {
+          "id": "Weapon_Range_SlingShot",
+          "label": "Fairy Slingshot",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Weapon_Range_SlingShot",
+              "hash": "0x0EC22EE1",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Weapon_Range_SlingShot.StockNum",
+              "hash": "0x80D34CE9",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); used in game."
+        },
+        {
+          "id": "Weapon_SinkingLure",
+          "label": "Sinking Lure",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Weapon_SinkingLure",
+              "hash": "0x474F9EB9",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0x474F9EB9 (murmur3 verified); Bool present in 24/24 saves (false×24); grant effect [pending: in-game]"
+        }
+      ]
+    },
+    {
+      "group": "Magic",
+      "items": [
+        {
+          "id": "PlayerStatus.MP",
+          "label": "Magic",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "PlayerStatus.MP",
+              "hash": "0x76B18200",
+              "type": "Int",
+              "op": "setValue",
+              "value": {
+                "min": 0,
+                "maxFrom": "PlayerStatus.MPMax"
+              },
+              "where": "store record (every copy)"
+            }
+          ],
+          "caveats": [
+            "Damage or use lowers it again; re-write on a timer to hold it."
+          ]
+        },
+        {
+          "id": "PlayerStatus.MPMax",
+          "label": "Magic meter",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "PlayerStatus.MPMax",
+              "hash": "0x12D63A97",
+              "type": "Int",
+              "op": "setValue",
+              "value": {
+                "min": 0
+              },
+              "where": "store record (every copy)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Masks",
+      "items": [
+        {
+          "id": "Armor_Child_Mask_Amiibo0",
+          "label": "Fairy Kid Mask (amiibo A)",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Armor_Child_Mask_Amiibo0",
+              "hash": "0x06F13BB2",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Armor_Child_Mask_Amiibo0.StockNum",
+              "hash": "0xF5E647DA",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "HavePlayedGetEvent.Armor_Child_Mask_Amiibo0",
+              "hash": "0x826DB2F9",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "In game (0.3.1, Hookshot, child era, 2026-11-18, user): the grant put the fairy kid mask in the inventory (user: \"It was the fairy kid mask\") - obtainable/appears confirmed; equip/effect was not reported separately. Keys verified by hash in slot_05/progress.sav: IsGet.Armor_Child_Mask_Amiibo0 (Bool), PouchData.Armor_Child_Mask_Amiibo0.StockNum (Int - the leaf record; the bare PouchData.Armor_Child_Mask_Amiibo0 is only a key prefix) and HavePlayedGetEvent.Armor_Child_Mask_Amiibo0 (Bool); the pickup event is written in also[]. Relabelled from the user's in-game description; not mapped to an unconfirmed amiibo name."
+        },
+        {
+          "id": "Armor_Child_Mask_Amiibo1",
+          "label": "Young Zelda Mask (amiibo B)",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Armor_Child_Mask_Amiibo1",
+              "hash": "0x09DF9D25",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Armor_Child_Mask_Amiibo1.StockNum",
+              "hash": "0x486C59A4",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "HavePlayedGetEvent.Armor_Child_Mask_Amiibo1",
+              "hash": "0x62B873A9",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "In game (0.3.1, Hookshot, child era, 2026-11-18, user): the grant gave her the mask - obtainable via grant confirmed. Per the user (from online sources) this is the Young Zelda mask, wearable as a child; relabelled from that identification (not mapped to an amiibo figure name). First-grant quirk (unexplained): in the same session, granted right after slot A (Fairy Kid) with identical live values (IsGet/StockNum/HavePlayedGetEvent all true) it did NOT appear; it appeared after reloading a save / granting on a file that did not already have the other amiibo mask. Untested idea (note, not a finding): the mask menu may only refresh on load. Keys verified by hash in slot_05/progress.sav: IsGet.Armor_Child_Mask_Amiibo1 (Bool), PouchData.Armor_Child_Mask_Amiibo1.StockNum (Int - leaf record) and HavePlayedGetEvent.Armor_Child_Mask_Amiibo1 (Bool); the pickup event is written in also[]. Row kept and confirmed."
+        },
+        {
+          "id": "Armor_Child_Mask_Bunny",
+          "label": "Bunny Hood",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Armor_Child_Mask_Bunny",
+              "hash": "0x65AEBE17",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Armor_Child_Mask_Bunny.StockNum",
+              "hash": "0x7E607033",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "HavePlayedGetEvent.Armor_Child_Mask_Bunny",
+              "hash": "0x4641175C",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies) and read back. Individually checked in game 2026-11-17 (user): granting fills the inventory screen but does not equip to the D-pad - the previously equipped mask stays until equipped manually. The equipped-mask state is a separate record (RE pending, P5 equipment objects). [2026-11-17] The grant also writes the pickup event listed in also[] — the event that grants the item's in-game effect, not just the inventory flag. Added after in-game testing showed the item flag alone leaves it in the inventory without its effect. Event key confirmed in the save catalog and the Cross-Platform Cheat Tools crossref. [pending: in-game]"
+        },
+        {
+          "id": "Armor_Child_Mask_Gerudo",
+          "label": "Gerudo Mask",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Armor_Child_Mask_Gerudo",
+              "hash": "0xB1FC4C1D",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Armor_Child_Mask_Gerudo.StockNum",
+              "hash": "0x0E94A8DF",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "HavePlayedGetEvent.Armor_Child_Mask_Gerudo",
+              "hash": "0xDE002422",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies) and read back. Individually checked in game 2026-11-17 (user): granting fills the inventory screen but does not equip to the D-pad - the previously equipped mask stays until equipped manually. The equipped-mask state is a separate record (RE pending, P5 equipment objects). [2026-11-17] The grant also writes the pickup event listed in also[] — the event that grants the item's in-game effect, not just the inventory flag. Added after in-game testing showed the item flag alone leaves it in the inventory without its effect. Event key confirmed in the save catalog and the Cross-Platform Cheat Tools crossref. [pending: in-game]"
+        },
+        {
+          "id": "Armor_Child_Mask_Goron",
+          "label": "Goron Mask",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Armor_Child_Mask_Goron",
+              "hash": "0xADFCCD91",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Armor_Child_Mask_Goron.StockNum",
+              "hash": "0xFC508DA7",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "HavePlayedGetEvent.Armor_Child_Mask_Goron",
+              "hash": "0x006614D5",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies) and read back. Individually checked in game 2026-11-17 (user): granting fills the inventory screen but does not equip to the D-pad - the previously equipped mask stays until equipped manually. The equipped-mask state is a separate record (RE pending, P5 equipment objects). [2026-11-17] The grant also writes the pickup event listed in also[] — the event that grants the item's in-game effect, not just the inventory flag. Added after in-game testing showed the item flag alone leaves it in the inventory without its effect. Event key confirmed in the save catalog and the Cross-Platform Cheat Tools crossref. [pending: in-game]"
+        },
+        {
+          "id": "Armor_Child_Mask_Keaton",
+          "label": "Keaton Mask",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Armor_Child_Mask_Keaton",
+              "hash": "0x35C60E1D",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Armor_Child_Mask_Keaton.StockNum",
+              "hash": "0xB5C10899",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "HavePlayedGetEvent.Armor_Child_Mask_Keaton",
+              "hash": "0xBCC6E7EE",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies) and read back. Individually checked in game 2026-11-17 (user): granting fills the inventory screen but does not equip to the D-pad - the previously equipped mask stays until equipped manually. The equipped-mask state is a separate record (RE pending, P5 equipment objects). [2026-11-17] The grant also writes the pickup event listed in also[] — the event that grants the item's in-game effect, not just the inventory flag. Added after in-game testing showed the item flag alone leaves it in the inventory without its effect. Event key confirmed in the save catalog and the Cross-Platform Cheat Tools crossref. [pending: in-game]"
+        },
+        {
+          "id": "Armor_Child_Mask_Skull",
+          "label": "Skull Mask",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Armor_Child_Mask_Skull",
+              "hash": "0xD097482A",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Armor_Child_Mask_Skull.StockNum",
+              "hash": "0x47B2D775",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "HavePlayedGetEvent.Armor_Child_Mask_Skull",
+              "hash": "0x52AD260A",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies) and read back. Individually checked in game 2026-11-17 (user): granting fills the inventory screen but does not equip to the D-pad - the previously equipped mask stays until equipped manually. The equipped-mask state is a separate record (RE pending, P5 equipment objects). [2026-11-17] The grant also writes the pickup event listed in also[] — the event that grants the item's in-game effect, not just the inventory flag. Added after in-game testing showed the item flag alone leaves it in the inventory without its effect. Event key confirmed in the save catalog and the Cross-Platform Cheat Tools crossref. [pending: in-game]"
+        },
+        {
+          "id": "Armor_Child_Mask_Spooky",
+          "label": "Spooky Mask",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Armor_Child_Mask_Spooky",
+              "hash": "0xC0CF68A7",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Armor_Child_Mask_Spooky.StockNum",
+              "hash": "0xF046629E",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "HavePlayedGetEvent.Armor_Child_Mask_Spooky",
+              "hash": "0xEBD0F400",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies) and read back. Individually checked in game 2026-11-17 (user): granting fills the inventory screen but does not equip to the D-pad - the previously equipped mask stays until equipped manually. The equipped-mask state is a separate record (RE pending, P5 equipment objects). [2026-11-17] The grant also writes the pickup event listed in also[] — the event that grants the item's in-game effect, not just the inventory flag. Added after in-game testing showed the item flag alone leaves it in the inventory without its effect. Event key confirmed in the save catalog and the Cross-Platform Cheat Tools crossref. [pending: in-game]"
+        },
+        {
+          "id": "Armor_Child_Mask_Truth",
+          "label": "Mask of Truth",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Armor_Child_Mask_Truth",
+              "hash": "0xF7D5BD9C",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Armor_Child_Mask_Truth.StockNum",
+              "hash": "0x96459CD3",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "HavePlayedGetEvent.Armor_Child_Mask_Truth",
+              "hash": "0x7B320777",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies) and read back. Individually checked in game 2026-11-17 (user): granting fills the inventory screen but does not equip to the D-pad - the previously equipped mask stays until equipped manually. The equipped-mask state is a separate record (RE pending, P5 equipment objects). [2026-11-17] The grant also writes the pickup event listed in also[] — the event that grants the item's in-game effect, not just the inventory flag. Added after in-game testing showed the item flag alone leaves it in the inventory without its effect. Event key confirmed in the save catalog and the Cross-Platform Cheat Tools crossref. [pending: in-game]"
+        },
+        {
+          "id": "Armor_Child_Mask_Zora",
+          "label": "Zora Mask",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Armor_Child_Mask_Zora",
+              "hash": "0x280EB00E",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Armor_Child_Mask_Zora.StockNum",
+              "hash": "0x924E9A46",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "HavePlayedGetEvent.Armor_Child_Mask_Zora",
+              "hash": "0xE47CE994",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies) and read back. Individually checked in game 2026-11-17 (user): granting fills the inventory screen but does not equip to the D-pad - the previously equipped mask stays until equipped manually. The equipped-mask state is a separate record (RE pending, P5 equipment objects). [2026-11-17] The grant also writes the pickup event listed in also[] — the event that grants the item's in-game effect, not just the inventory flag. Added after in-game testing showed the item flag alone leaves it in the inventory without its effect. Event key confirmed in the save catalog and the Cross-Platform Cheat Tools crossref. [pending: in-game]"
+        }
+      ]
+    },
+    {
+      "group": "Quest",
+      "items": [
+        {
+          "id": "BossKey_FireTemple",
+          "label": "Boss Key (Fire Temple)",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "DungeonInfo.FireTemple.IsGetBossKey",
+              "hash": "0xB72D73DF",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Per-dungeon boss-key flag (name also used by the tracker save-mapping). MURMUR3(DungeonInfo.FireTemple.IsGetBossKey)=0xB72D73DF recomputed+verified; Bool present in 24/24 local/backup saves (false×24). [pending: in-game] grant not yet confirmed to open the boss door; take-away not yet confirmed to clear it."
+        },
+        {
+          "id": "BossKey_ForestTemple",
+          "label": "Boss Key (Forest Temple)",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "DungeonInfo.ForestTemple.IsGetBossKey",
+              "hash": "0x427333A0",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Per-dungeon boss-key flag (name also used by the tracker save-mapping). MURMUR3(DungeonInfo.ForestTemple.IsGetBossKey)=0x427333A0 recomputed+verified; Bool present in 24/24 local/backup saves (false×24). [pending: in-game] grant not yet confirmed to open the boss door; take-away not yet confirmed to clear it."
+        },
+        {
+          "id": "BossKey_InsideGanonCastle",
+          "label": "Boss Key (Ganon's Castle)",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "DungeonInfo.InsideGanonCastle.IsGetBossKey",
+              "hash": "0x2FD59293",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Per-dungeon boss-key flag (name also used by the tracker save-mapping). MURMUR3(DungeonInfo.InsideGanonCastle.IsGetBossKey)=0x2FD59293 recomputed+verified; Bool present in 24/24 local/backup saves (false×24). [pending: in-game] grant not yet confirmed to open the boss door; take-away not yet confirmed to clear it."
+        },
+        {
+          "id": "BossKey_ShadowTemple",
+          "label": "Boss Key (Shadow Temple)",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "DungeonInfo.ShadowTemple.IsGetBossKey",
+              "hash": "0xC33C66CF",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Per-dungeon boss-key flag (name also used by the tracker save-mapping). MURMUR3(DungeonInfo.ShadowTemple.IsGetBossKey)=0xC33C66CF recomputed+verified; Bool present in 24/24 local/backup saves (false×24). [pending: in-game] grant not yet confirmed to open the boss door; take-away not yet confirmed to clear it."
+        },
+        {
+          "id": "BossKey_SpiritTemple",
+          "label": "Boss Key (Spirit Temple)",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "DungeonInfo.SpiritTemple.IsGetBossKey",
+              "hash": "0x1984C03F",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Per-dungeon boss-key flag (name also used by the tracker save-mapping). MURMUR3(DungeonInfo.SpiritTemple.IsGetBossKey)=0x1984C03F recomputed+verified; Bool present in 24/24 local/backup saves (false×24). [pending: in-game] grant not yet confirmed to open the boss door; take-away not yet confirmed to clear it."
+        },
+        {
+          "id": "BossKey_WaterTemple",
+          "label": "Boss Key (Water Temple)",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "DungeonInfo.WaterTemple.IsGetBossKey",
+              "hash": "0x79DAF80A",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Per-dungeon boss-key flag (name also used by the tracker save-mapping). MURMUR3(DungeonInfo.WaterTemple.IsGetBossKey)=0x79DAF80A recomputed+verified; Bool present in 24/24 local/backup saves (false×24). [pending: in-game] grant not yet confirmed to open the boss door; take-away not yet confirmed to clear it."
+        },
+        {
+          "id": "Item_AgonyStone",
+          "label": "Echo Gem (Stone of Agony)",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Item_AgonyStone",
+              "hash": "0xDD587ED8",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Item_AgonyStone.StockNum",
+              "hash": "0xF3B14CE2",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); written and read back. In game 2026-11-17 (user): works - the remake names it the Echo Gem."
+        },
+        {
+          "id": "Item_Dungeon_BossKey",
+          "label": "Boss Key",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_Dungeon_BossKey",
+              "hash": "0x6AC27606",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0x6AC27606 (murmur3 verified); Bool present in 24/24 saves (false×24); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Item_Dungeon_Compass",
+          "label": "Compass",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_Dungeon_Compass",
+              "hash": "0x14FCC563",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0x14FCC563 (murmur3 verified); Bool present in 24/24 saves (false×24); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Item_Dungeon_Map",
+          "label": "Dungeon Map",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_Dungeon_Map",
+              "hash": "0xFFE25805",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0xFFE25805 (murmur3 verified); Bool present in 24/24 saves (false×24); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Item_Dungeon_SmallKey",
+          "label": "Small Key",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_Dungeon_SmallKey",
+              "hash": "0x154EF588",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0x154EF588 (murmur3 verified); Bool present in 24/24 saves (false×24); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Item_Medal_Fire",
+          "label": "Fire Medallion",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Item_Medal_Fire",
+              "hash": "0x103A0DC7",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Item_Medal_Fire.StockNum",
+              "hash": "0x5CE254A6",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); shown in the Collection screen. Doesn’t advance the story (the Door of Time stays shut)."
+        },
+        {
+          "id": "Item_Medal_Forest",
+          "label": "Forest Medallion",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Item_Medal_Forest",
+              "hash": "0xFCD8D653",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Item_Medal_Forest.StockNum",
+              "hash": "0x692D57CB",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); shown in the Collection screen. Doesn’t advance the story (the Door of Time stays shut)."
+        },
+        {
+          "id": "Item_Medal_Light",
+          "label": "Light Medallion",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Item_Medal_Light",
+              "hash": "0x9026C187",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Item_Medal_Light.StockNum",
+              "hash": "0x235C7D9A",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); shown in the Collection screen. Doesn’t advance the story (the Door of Time stays shut)."
+        },
+        {
+          "id": "Item_Medal_Shadow",
+          "label": "Shadow Medallion",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Item_Medal_Shadow",
+              "hash": "0x12D63AC6",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Item_Medal_Shadow.StockNum",
+              "hash": "0x204D2063",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); shown in the Collection screen. Doesn’t advance the story (the Door of Time stays shut)."
+        },
+        {
+          "id": "Item_Medal_Spirit",
+          "label": "Spirit Medallion",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Item_Medal_Spirit",
+              "hash": "0xE269DF38",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Item_Medal_Spirit.StockNum",
+              "hash": "0x0C7A5FD0",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); shown in the Collection screen. Doesn’t advance the story (the Door of Time stays shut)."
+        },
+        {
+          "id": "Item_Medal_Water",
+          "label": "Water Medallion",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Item_Medal_Water",
+              "hash": "0xCF64E780",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Item_Medal_Water.StockNum",
+              "hash": "0x0151A68F",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); shown in the Collection screen. Doesn’t advance the story (the Door of Time stays shut)."
+        },
+        {
+          "id": "Item_Stone_Fire",
+          "label": "Goron’s Ruby",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Item_Stone_Fire",
+              "hash": "0x8908D6AD",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Item_Stone_Fire.StockNum",
+              "hash": "0x7D69AD47",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); shown in the Collection screen. Doesn’t advance the story (the Door of Time stays shut)."
+        },
+        {
+          "id": "Item_Stone_Forest",
+          "label": "Kokiri’s Emerald",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Item_Stone_Forest",
+              "hash": "0x110B83EC",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Item_Stone_Forest.StockNum",
+              "hash": "0xCBD1E58C",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); shown in the Collection screen. Doesn’t advance the story (the Door of Time stays shut)."
+        },
+        {
+          "id": "Item_Stone_Water",
+          "label": "Zora’s Sapphire",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Item_Stone_Water",
+              "hash": "0xEEC383F5",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Item_Stone_Water.StockNum",
+              "hash": "0xB8E3BF45",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); shown in the Collection screen. Doesn’t advance the story (the Door of Time stays shut)."
+        },
+        {
+          "id": "Item_Token_Gerudo",
+          "label": "Gerudo Pass (Gerudo’s Card)",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Item_Token_Gerudo",
+              "hash": "0x0E6264C7",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "key": "PouchData.Item_Token_Gerudo.StockNum",
+              "hash": "0xFEB4D56B",
+              "type": "Int",
+              "op": "raiseTo",
+              "value": 1,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); written and read back. In game 2026-11-17 (user): works - the remake names it the Gerudo Pass."
+        },
+        {
+          "id": "Item_Token_Gold",
+          "label": "Skulltula Token",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_Token_Gold",
+              "hash": "0x6BA394FE",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0x6BA394FE (murmur3 verified); Bool present in 24/24 saves (true×21, false×3); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Item_ZeldaLetter",
+          "label": "Letter from Zelda",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Item_ZeldaLetter",
+              "hash": "0xF19393B5",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0xF19393B5 (murmur3 verified); Bool present in 24/24 saves (true×21, false×3); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Obj_Heart_Container",
+          "label": "Heart Container",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Obj_Heart_Container",
+              "hash": "0xBB4E20C9",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0xBB4E20C9 (murmur3 verified); Bool present in 24/24 saves (true×21, false×3); grant effect [pending: in-game]"
+        },
+        {
+          "id": "Obj_Heart_Piece",
+          "label": "Heart Piece",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet.Obj_Heart_Piece",
+              "hash": "0xE6AAAB65",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Catalog key 0xE6AAAB65 (murmur3 verified); Bool present in 24/24 saves (true×21, false×3); grant effect [pending: in-game]"
+        },
+        {
+          "id": "SmallKey_BottomOfTheWell_1",
+          "label": "Small Key 1 (Bottom of the Well)",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "BottomOfTheWell_Level_Room_03_Get_SmallKey",
+              "hash": "0x8028323F",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Per-chest small-key pickup flag, key 1 of Bottom of the Well (name also used by the save-mapping room_keys rows). MURMUR3(BottomOfTheWell_Level_Room_03_Get_SmallKey)=0x8028323F recomputed+verified; Bool present in 24/24 local/backup saves (false×24). No per-dungeon held-count key exists in the live table, so the grant sets only this flag. [pending: in-game] not yet confirmed that a door opens with it (diff checklist #4); take-away not yet confirmed."
+        },
+        {
+          "id": "SmallKey_FireTemple_1",
+          "label": "Small Key 1 (Fire Temple)",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "FireTemple_GetSmallKey_01",
+              "hash": "0x57771BBD",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Per-chest small-key pickup flag, key 1 of Fire Temple (name also used by the save-mapping room_keys rows). MURMUR3(FireTemple_GetSmallKey_01)=0x57771BBD recomputed+verified; Bool present in 24/24 local/backup saves (false×24). No per-dungeon held-count key exists in the live table, so the grant sets only this flag. [pending: in-game] not yet confirmed that a door opens with it (diff checklist #4); take-away not yet confirmed."
+        },
+        {
+          "id": "SmallKey_FireTemple_2",
+          "label": "Small Key 2 (Fire Temple)",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "FireTemple_GetSmallKey_02",
+              "hash": "0xF6544FD0",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Per-chest small-key pickup flag, key 2 of Fire Temple (name also used by the save-mapping room_keys rows). MURMUR3(FireTemple_GetSmallKey_02)=0xF6544FD0 recomputed+verified; Bool present in 24/24 local/backup saves (false×24). No per-dungeon held-count key exists in the live table, so the grant sets only this flag. [pending: in-game] not yet confirmed that a door opens with it (diff checklist #4); take-away not yet confirmed."
+        },
+        {
+          "id": "SmallKey_FireTemple_3",
+          "label": "Small Key 3 (Fire Temple)",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "FireTemple_GetSmallKey_03",
+              "hash": "0x6669C4EB",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Per-chest small-key pickup flag, key 3 of Fire Temple (name also used by the save-mapping room_keys rows). MURMUR3(FireTemple_GetSmallKey_03)=0x6669C4EB recomputed+verified; Bool present in 24/24 local/backup saves (false×24). No per-dungeon held-count key exists in the live table, so the grant sets only this flag. [pending: in-game] not yet confirmed that a door opens with it (diff checklist #4); take-away not yet confirmed."
+        },
+        {
+          "id": "SmallKey_FireTemple_4",
+          "label": "Small Key 4 (Fire Temple)",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "FireTemple_GetSmallKey_04",
+              "hash": "0x24EF10FF",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Per-chest small-key pickup flag, key 4 of Fire Temple (name also used by the save-mapping room_keys rows). MURMUR3(FireTemple_GetSmallKey_04)=0x24EF10FF recomputed+verified; Bool present in 24/24 local/backup saves (false×24). No per-dungeon held-count key exists in the live table, so the grant sets only this flag. [pending: in-game] not yet confirmed that a door opens with it (diff checklist #4); take-away not yet confirmed."
+        },
+        {
+          "id": "SmallKey_FireTemple_5",
+          "label": "Small Key 5 (Fire Temple)",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "FireTemple_GetSmallKey_05",
+              "hash": "0xBE0BE4F3",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Per-chest small-key pickup flag, key 5 of Fire Temple (name also used by the save-mapping room_keys rows). MURMUR3(FireTemple_GetSmallKey_05)=0xBE0BE4F3 recomputed+verified; Bool present in 24/24 local/backup saves (false×24). No per-dungeon held-count key exists in the live table, so the grant sets only this flag. [pending: in-game] not yet confirmed that a door opens with it (diff checklist #4); take-away not yet confirmed."
+        },
+        {
+          "id": "SmallKey_FireTemple_6",
+          "label": "Small Key 6 (Fire Temple)",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "FireTemple_GetSmallKey_06",
+              "hash": "0xF37FA0B2",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Per-chest small-key pickup flag, key 6 of Fire Temple (name also used by the save-mapping room_keys rows). MURMUR3(FireTemple_GetSmallKey_06)=0xF37FA0B2 recomputed+verified; Bool present in 24/24 local/backup saves (false×24). No per-dungeon held-count key exists in the live table, so the grant sets only this flag. [pending: in-game] not yet confirmed that a door opens with it (diff checklist #4); take-away not yet confirmed."
+        },
+        {
+          "id": "SmallKey_FireTemple_7",
+          "label": "Small Key 7 (Fire Temple)",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "FireTemple_GetSmallKey_07",
+              "hash": "0x49EE141A",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Per-chest small-key pickup flag, key 7 of Fire Temple (name also used by the save-mapping room_keys rows). MURMUR3(FireTemple_GetSmallKey_07)=0x49EE141A recomputed+verified; Bool present in 24/24 local/backup saves (false×24). No per-dungeon held-count key exists in the live table, so the grant sets only this flag. [pending: in-game] not yet confirmed that a door opens with it (diff checklist #4); take-away not yet confirmed."
+        },
+        {
+          "id": "SmallKey_FireTemple_8",
+          "label": "Small Key 8 (Fire Temple)",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "FireTemple_GetSmallKey_08",
+              "hash": "0x7BA3C368",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Per-chest small-key pickup flag, key 8 of Fire Temple (name also used by the save-mapping room_keys rows). MURMUR3(FireTemple_GetSmallKey_08)=0x7BA3C368 recomputed+verified; Bool present in 24/24 local/backup saves (false×24). No per-dungeon held-count key exists in the live table, so the grant sets only this flag. [pending: in-game] not yet confirmed that a door opens with it (diff checklist #4); take-away not yet confirmed."
+        },
+        {
+          "id": "SmallKey_ForestTemple_1",
+          "label": "Small Key 1 (Forest Temple)",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "ForestTemple_Room00_GetSmallKey",
+              "hash": "0xDAF141E8",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Per-chest small-key pickup flag, key 1 of Forest Temple (name also used by the save-mapping room_keys rows). MURMUR3(ForestTemple_Room00_GetSmallKey)=0xDAF141E8 recomputed+verified; Bool present in 24/24 local/backup saves (false×24). No per-dungeon held-count key exists in the live table, so the grant sets only this flag. [pending: in-game] not yet confirmed that a door opens with it (diff checklist #4); take-away not yet confirmed."
+        },
+        {
+          "id": "SmallKey_ForestTemple_2",
+          "label": "Small Key 2 (Forest Temple)",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "ForestTemple_Room06_GetSmallKey",
+              "hash": "0xA31DB95B",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Per-chest small-key pickup flag, key 2 of Forest Temple (name also used by the save-mapping room_keys rows). MURMUR3(ForestTemple_Room06_GetSmallKey)=0xA31DB95B recomputed+verified; Bool present in 24/24 local/backup saves (false×24). No per-dungeon held-count key exists in the live table, so the grant sets only this flag. [pending: in-game] not yet confirmed that a door opens with it (diff checklist #4); take-away not yet confirmed."
+        },
+        {
+          "id": "SmallKey_ForestTemple_3",
+          "label": "Small Key 3 (Forest Temple)",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "ForestTemple_Room09_GetSmallKey",
+              "hash": "0x5CB887DC",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Per-chest small-key pickup flag, key 3 of Forest Temple (name also used by the save-mapping room_keys rows). MURMUR3(ForestTemple_Room09_GetSmallKey)=0x5CB887DC recomputed+verified; Bool present in 24/24 local/backup saves (false×24). No per-dungeon held-count key exists in the live table, so the grant sets only this flag. [pending: in-game] not yet confirmed that a door opens with it (diff checklist #4); take-away not yet confirmed."
+        },
+        {
+          "id": "SmallKey_ForestTemple_4",
+          "label": "Small Key 4 (Forest Temple)",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "ForestTemple_Room12_GetSmallKey",
+              "hash": "0x21B0BD71",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Per-chest small-key pickup flag, key 4 of Forest Temple (name also used by the save-mapping room_keys rows). MURMUR3(ForestTemple_Room12_GetSmallKey)=0x21B0BD71 recomputed+verified; Bool present in 24/24 local/backup saves (false×24). No per-dungeon held-count key exists in the live table, so the grant sets only this flag. [pending: in-game] not yet confirmed that a door opens with it (diff checklist #4); take-away not yet confirmed."
+        },
+        {
+          "id": "SmallKey_ForestTemple_5",
+          "label": "Small Key 5 (Forest Temple)",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "ForestTemple_Room18_GetSmallKey",
+              "hash": "0xFBFD2CCC",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Per-chest small-key pickup flag, key 5 of Forest Temple (name also used by the save-mapping room_keys rows). MURMUR3(ForestTemple_Room18_GetSmallKey)=0xFBFD2CCC recomputed+verified; Bool present in 24/24 local/backup saves (false×24). No per-dungeon held-count key exists in the live table, so the grant sets only this flag. [pending: in-game] not yet confirmed that a door opens with it (diff checklist #4); take-away not yet confirmed."
+        },
+        {
+          "id": "SmallKey_GerudoFortress_1",
+          "label": "Small Key 1 (Gerudo Fortress)",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet_SmallKey_GerudoFortress.SmallKey01",
+              "hash": "0xDC0010F6",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Per-chest small-key pickup flag, key 1 of Gerudo Fortress (name also used by the save-mapping room_keys rows). MURMUR3(IsGet_SmallKey_GerudoFortress.SmallKey01)=0xDC0010F6 recomputed+verified; Bool present in 24/24 local/backup saves (false×24). No per-dungeon held-count key exists in the live table, so the grant sets only this flag. [pending: in-game] not yet confirmed that a door opens with it (diff checklist #4); take-away not yet confirmed."
+        },
+        {
+          "id": "SmallKey_GerudoFortress_2",
+          "label": "Small Key 2 (Gerudo Fortress)",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet_SmallKey_GerudoFortress.SmallKey02",
+              "hash": "0x1EE8E249",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Per-chest small-key pickup flag, key 2 of Gerudo Fortress (name also used by the save-mapping room_keys rows). MURMUR3(IsGet_SmallKey_GerudoFortress.SmallKey02)=0x1EE8E249 recomputed+verified; Bool present in 24/24 local/backup saves (false×24). No per-dungeon held-count key exists in the live table, so the grant sets only this flag. [pending: in-game] not yet confirmed that a door opens with it (diff checklist #4); take-away not yet confirmed."
+        },
+        {
+          "id": "SmallKey_GerudoFortress_3",
+          "label": "Small Key 3 (Gerudo Fortress)",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet_SmallKey_GerudoFortress.SmallKey03",
+              "hash": "0x2815A352",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Per-chest small-key pickup flag, key 3 of Gerudo Fortress (name also used by the save-mapping room_keys rows). MURMUR3(IsGet_SmallKey_GerudoFortress.SmallKey03)=0x2815A352 recomputed+verified; Bool present in 24/24 local/backup saves (false×24). No per-dungeon held-count key exists in the live table, so the grant sets only this flag. [pending: in-game] not yet confirmed that a door opens with it (diff checklist #4); take-away not yet confirmed."
+        },
+        {
+          "id": "SmallKey_GerudoFortress_4",
+          "label": "Small Key 4 (Gerudo Fortress)",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "IsGet_SmallKey_GerudoFortress.SmallKey04",
+              "hash": "0x397957CA",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Per-chest small-key pickup flag, key 4 of Gerudo Fortress (name also used by the save-mapping room_keys rows). MURMUR3(IsGet_SmallKey_GerudoFortress.SmallKey04)=0x397957CA recomputed+verified; Bool present in 24/24 local/backup saves (false×24). No per-dungeon held-count key exists in the live table, so the grant sets only this flag. [pending: in-game] not yet confirmed that a door opens with it (diff checklist #4); take-away not yet confirmed."
+        },
+        {
+          "id": "SmallKey_WaterTemple_1",
+          "label": "Small Key 1 (Water Temple)",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "WaterTemple_Room02_GetSmallKey",
+              "hash": "0xC56265F6",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Per-chest small-key pickup flag, key 1 of Water Temple (name also used by the save-mapping room_keys rows). MURMUR3(WaterTemple_Room02_GetSmallKey)=0xC56265F6 recomputed+verified; Bool present in 24/24 local/backup saves (false×24). No per-dungeon held-count key exists in the live table, so the grant sets only this flag. [pending: in-game] not yet confirmed that a door opens with it (diff checklist #4); take-away not yet confirmed."
+        },
+        {
+          "id": "SmallKey_WaterTemple_2",
+          "label": "Small Key 2 (Water Temple)",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "WaterTemple_Room08_GetSmallKey",
+              "hash": "0xD492A7AF",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Per-chest small-key pickup flag, key 2 of Water Temple (name also used by the save-mapping room_keys rows). MURMUR3(WaterTemple_Room08_GetSmallKey)=0xD492A7AF recomputed+verified; Bool present in 24/24 local/backup saves (false×24). No per-dungeon held-count key exists in the live table, so the grant sets only this flag. [pending: in-game] not yet confirmed that a door opens with it (diff checklist #4); take-away not yet confirmed."
+        },
+        {
+          "id": "SmallKey_WaterTemple_3",
+          "label": "Small Key 3 (Water Temple)",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "WaterTemple_Room16_GetSmallKey",
+              "hash": "0xE331F321",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Per-chest small-key pickup flag, key 3 of Water Temple (name also used by the save-mapping room_keys rows). MURMUR3(WaterTemple_Room16_GetSmallKey)=0xE331F321 recomputed+verified; Bool present in 24/24 local/backup saves (false×24). No per-dungeon held-count key exists in the live table, so the grant sets only this flag. [pending: in-game] not yet confirmed that a door opens with it (diff checklist #4); take-away not yet confirmed."
+        },
+        {
+          "id": "SmallKey_WaterTemple_4",
+          "label": "Small Key 4 (Water Temple)",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "WaterTemple_Room17_GetSmallKey",
+              "hash": "0x24D15EA2",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Per-chest small-key pickup flag, key 4 of Water Temple (name also used by the save-mapping room_keys rows). MURMUR3(WaterTemple_Room17_GetSmallKey)=0x24D15EA2 recomputed+verified; Bool present in 24/24 local/backup saves (false×24). No per-dungeon held-count key exists in the live table, so the grant sets only this flag. [pending: in-game] not yet confirmed that a door opens with it (diff checklist #4); take-away not yet confirmed."
+        },
+        {
+          "id": "SmallKey_WaterTemple_5",
+          "label": "Small Key 5 (Water Temple)",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "WaterTemple_Room18_GetSmallKey",
+              "hash": "0x588AB25F",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Per-chest small-key pickup flag, key 5 of Water Temple (name also used by the save-mapping room_keys rows). MURMUR3(WaterTemple_Room18_GetSmallKey)=0x588AB25F recomputed+verified; Bool present in 24/24 local/backup saves (false×24). No per-dungeon held-count key exists in the live table, so the grant sets only this flag. [pending: in-game] not yet confirmed that a door opens with it (diff checklist #4); take-away not yet confirmed."
+        },
+        {
+          "id": "SmallKey_WaterTemple_6",
+          "label": "Small Key 6 (Water Temple)",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "WaterTemple_Room20_GetSmallKey",
+              "hash": "0x0EC96F6D",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Per-chest small-key pickup flag, key 6 of Water Temple (name also used by the save-mapping room_keys rows). MURMUR3(WaterTemple_Room20_GetSmallKey)=0x0EC96F6D recomputed+verified; Bool present in 24/24 local/backup saves (false×24). No per-dungeon held-count key exists in the live table, so the grant sets only this flag. [pending: in-game] not yet confirmed that a door opens with it (diff checklist #4); take-away not yet confirmed."
+        },
+        {
+          "id": "SmallKey_WaterTemple_7",
+          "label": "Small Key 7 (Water Temple)",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "WaterTemple_Room21_GetSmallKey",
+              "hash": "0x177ADC78",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Per-chest small-key pickup flag, key 7 of Water Temple (name also used by the save-mapping room_keys rows). MURMUR3(WaterTemple_Room21_GetSmallKey)=0x177ADC78 recomputed+verified; Bool present in 24/24 local/backup saves (false×24). No per-dungeon held-count key exists in the live table, so the grant sets only this flag. [pending: in-game] not yet confirmed that a door opens with it (diff checklist #4); take-away not yet confirmed."
+        }
+      ]
+    },
+    {
+      "group": "Rupees",
+      "items": [
+        {
+          "id": "PlayerStatus.CurrentRupee",
+          "label": "Rupees",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "PlayerStatus.CurrentRupee",
+              "hash": "0xA77921D7",
+              "type": "Int",
+              "op": "setValue",
+              "value": {
+                "maxFrom": "Capacity.Wallet"
+              },
+              "where": "store record (every copy)"
+            }
+          ],
+          "caveats": [
+            "Damage or use lowers it again; re-write on a timer to hold it."
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Songs",
+      "items": [
+        {
+          "id": "Item_Melody_EponaSong",
+          "label": "Epona’s Song",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Item_Melody_EponaSong",
+              "hash": "0xB492AC33",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); shown in the Collection screen."
+        },
+        {
+          "id": "Item_Melody_FireBolero",
+          "label": "Bolero of Fire",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Item_Melody_FireBolero",
+              "hash": "0x49041AB9",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); shown in the Collection screen."
+        },
+        {
+          "id": "Item_Melody_ForestMinuet",
+          "label": "Minuet of Forest",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Item_Melody_ForestMinuet",
+              "hash": "0xDC0A0B54",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); shown in the Collection screen."
+        },
+        {
+          "id": "Item_Melody_LightPrelude",
+          "label": "Prelude of Light",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Item_Melody_LightPrelude",
+              "hash": "0xD6320BA4",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); shown in the Collection screen."
+        },
+        {
+          "id": "Item_Melody_SariaSong",
+          "label": "Saria’s Song",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Item_Melody_SariaSong",
+              "hash": "0xD3F8BFCC",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); shown in the Collection screen."
+        },
+        {
+          "id": "Item_Melody_ScarecrowSong",
+          "label": "Scarecrow's Song",
+          "confidence": "guess",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "AskBonooru_listentothesong",
+              "hash": "0xFDF0F4B8",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            },
+            {
+              "hash": "0xCC535536",
+              "type": "UIntArray",
+              "op": "set",
+              "value": [],
+              "where": "save file only (game closed)",
+              "note": "button ids of the learned notes"
+            }
+          ],
+          "caveats": [
+            "A real learn also creates a Binary key 0x3339DF55 (not reproduced)."
+          ],
+          "evidence": "UNCONFIRMED / ON HOLD (2026-11-18): the flag field below is the WRONG songbook key - do not trust it. Save-diff on a legitimate learn (slot_05, 2026-11-17): AskBonooru_listentothesong (0xFDF0F4B8) flipped false→true; note array 0xCC535536 (UIntArray[8]) populated (button values A=11, Y=13, X=16, L=4, R=7; the real learn used [4,4,7,7,4,4,7,7]); timing blob 0x3339DF55 (Binary, 376 bytes) created. In game (2026-11-17): the songbook flag is IsGet.Item_Melody_ScarecrowSong (0x5E86FB4D) — setting it put the song in the songbook immediately, and every other learned song in the save has IsGet.Item_Melody_<song> = true; AskBonooru_listentothesong is only a Bonooru conversation step (with it on, saved, plus the notes, the song was NOT in the songbook). So the flag field (currently AskBonooru) is the wrong key — left as-is while the Scarecrow fix is on hold. The save-file note write is likely [pending: in-game]: a notes + timing-blob write loads cleanly in game (only 2 of 11,925 keys changed); the blob is a resize write (+376 bytes) the trainer's same-size-only writer doesn't do yet, so the trainer writes the notes only. Full grant unconfirmed: playing the song as a child (IsGet on) froze the game (process exited, nothing saved) — cause unknown (progress values like Step_SubEvent_GetScarecrow not advanced, or the child path is unhandled — in the original only adults use it); adult play untested."
+        },
+        {
+          "id": "Item_Melody_ShadowNocturne",
+          "label": "Nocturne of Shadow",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Item_Melody_ShadowNocturne",
+              "hash": "0xC2FB95F4",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); shown in the Collection screen."
+        },
+        {
+          "id": "Item_Melody_SpiritRequiem",
+          "label": "Requiem of Spirit",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Item_Melody_SpiritRequiem",
+              "hash": "0x802A36A8",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); shown in the Collection screen."
+        },
+        {
+          "id": "Item_Melody_StormSong",
+          "label": "Song of Storms",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Item_Melody_StormSong",
+              "hash": "0x2B39DD4F",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); shown in the Collection screen."
+        },
+        {
+          "id": "Item_Melody_SunSong",
+          "label": "Sun’s Song",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Item_Melody_SunSong",
+              "hash": "0x165DD1AD",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); shown in the Collection screen."
+        },
+        {
+          "id": "Item_Melody_TimeSong",
+          "label": "Song of Time",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Item_Melody_TimeSong",
+              "hash": "0x03B3450E",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); shown in the Collection screen."
+        },
+        {
+          "id": "Item_Melody_WaterSerenade",
+          "label": "Serenade of Water",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Item_Melody_WaterSerenade",
+              "hash": "0x3FA63986",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); shown in the Collection screen."
+        },
+        {
+          "id": "Item_Melody_ZeldaLullaby",
+          "label": "Zelda’s Lullaby",
+          "confidence": "confirmed",
+          "verifiedInGame": true,
+          "writes": [
+            {
+              "key": "IsGet.Item_Melody_ZeldaLullaby",
+              "hash": "0x01C20002",
+              "type": "Bool",
+              "op": "set",
+              "value": true,
+              "where": "store record (every copy)"
+            }
+          ],
+          "evidence": "Give-all test on Hookshot, 2026-11-17: written live through the store (both copies); shown in the Collection screen."
+        }
+      ]
+    },
+    {
+      "group": "Tokens",
+      "items": [
+        {
+          "id": "PouchData.Item_Token_Gold.StockNum",
+          "label": "Gold Skulltula tokens (count)",
+          "confidence": "likely",
+          "verifiedInGame": false,
+          "writes": [
+            {
+              "key": "PouchData.Item_Token_Gold.StockNum",
+              "hash": "0x04735978",
+              "type": "Int",
+              "op": "setValue",
+              "value": {
+                "min": 0,
+                "max": 100
+              },
+              "where": "store record (every copy)"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

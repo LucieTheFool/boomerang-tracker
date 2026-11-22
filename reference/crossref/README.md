@@ -25,7 +25,7 @@ what was confirmed. Sources are cloned or fetched read-only into a gitignored
 | [Links-Toolbox](links-toolbox-crossref.md) | `losava/Links-Toolbox` @ `b8c635c` v1.6.1, MIT (2026-11-21) | item IDs, named fields, bottle-contents enum | their item IDs *are* our key table (strongest result); named fields verified; 13 of 14 bottle-contents values re-verified; 27 display-name diffs, labels only; same murmur3 x86_32 seed 0 — direct hash lookups |
 | [OOTRR](ootrr-crossref.md) | `REALAZK/ootrr` @ `efc5841`, GPL-3.0 (2026-11-17) | 15,348-name save-key catalog, item-level data | all 15,348 simple flag hashes re-verified the same day (reproducible); 7 Beehives confirmed as Kakariko collectibles on 64-bit keys; per-GS location evidence explicitly not imported |
 
-The derived area-name table lives in [../area-names.md](../area-names.md)
+The derived area-name table lives in [the reference repo](https://github.com/LucieTheFool/oot-switch2-reference/blob/main/docs/area-names.md)
 (checklist stage names → readable region names).
 
 Machine-readable diffs per source (where produced) live in the gitignored
