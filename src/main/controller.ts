@@ -5,10 +5,11 @@ import path from 'node:path';
 import { parseGameData, GameDataFile, GameDataError } from '../gamedata/parser.js';
 import { autoDetectUserFolder, resolveUserFolders, listSlots, mostRecentSlot, readSaveStable, userFolderForExe, isMissing, SlotInfo } from '../gamedata/saves.js';
 import { loadNames } from '../gamedata/names.js';
-import { Tracker, ChecklistFile, MappingFile, DescriptionsFile, applyDescriptions } from '../core/tracker.js';
+import { Tracker, ChecklistFile, MappingFile, DescriptionsFile, applyDescriptions, withCounterSpots } from '../core/tracker.js';
 import { regionsForArea } from '../core/areas.js';
 import { evaluateLogic, Logic, LogicFile } from '../core/logic.js';
-import type { AvailableEntry } from '../shared/types.js';
+import { reachableSpots } from '../core/spots.js';
+import type { AvailableEntry, ItemLogic, TrackedCategory, TrackedItem } from '../shared/types.js';
 import { SaveWatcher } from './watcher.js';
 import { LiveSource, liveUnavailableReason } from './live.js';
 import { ChangeLog } from './changelog.js';
@@ -16,6 +17,7 @@ import { STAGE_KEY, LOCATION_KEY, areaFrom } from '../gamedata/live.js';
 import { keyOf } from '../gamedata/detect.js';
 import { CaptionCache, prettyArea, slotSummaryFromCaption } from './slot-summary.js';
 import { SettingsStore } from './settings.js';
+import { NO_PADS, padState } from './gamepad-logic.js';
 import type { AppState, Toast, SlotSummary } from '../shared/types.js';
 
 export interface ControllerPaths {
@@ -66,7 +68,8 @@ export class Controller {
     // A detailed local checklist (built from your own guide text, never published) wins
     // over the public one; both use the same ids.
     const local = path.join(paths.appDir, 'data', 'checklist.local.json');
-    let checklist = (fs.existsSync(local) ? JSON.parse(fs.readFileSync(local, 'utf8')) : read('checklist.json')) as ChecklistFile;
+    let checklist = read('checklist.json') as ChecklistFile;
+    if (fs.existsSync(local)) checklist = withCounterSpots(JSON.parse(fs.readFileSync(local, 'utf8')) as ChecklistFile, checklist);
     try { checklist = applyDescriptions(checklist, read('descriptions.json') as DescriptionsFile); } catch (e) { console.error('descriptions', e); }
     this.tracker = new Tracker(checklist, read('save-mapping.json') as MappingFile, settings.data.learned);
     try { this.logic = read('logic.json') as LogicFile; } catch { this.logic = undefined; }
@@ -84,8 +87,10 @@ export class Controller {
       learnedCount: settings.data.learned.length,
       overlay: { visible: false, locked: o.locked, opacity: o.opacity, mode: o.mode },
       hotkeys: { ...settings.data.hotkeys, errors: [] },
+      pad: padState(settings.data.padToggle, this.platform === 'win32' ? NO_PADS : { ...NO_PADS, supported: false, detail: 'Windows only for now' }),
       live: this.liveState(),
       changeLog: { enabled: settings.data.changeLog, dir: path.join(paths.userData, 'logs') },
+      wipFeatures: settings.data.wipFeatures,
     };
     this.log = new ChangeLog(path.join(paths.userData, 'logs'));
     this.log.enabled = settings.data.changeLog;
@@ -102,15 +107,20 @@ export class Controller {
     try { statuses = evaluateLogic(this.logic, save, this.logicRows); } catch (e) { console.error('logic', e); return { available: [], canBeAdult: false }; }
     const L = new Logic(this.logic, save);
     const here = new Set(areaRegions.map(r => L.resolveRegion(r) ?? r));
+    const currentRegion = areaRegions.length > 0 ? L.resolveRegion(areaRegions[0]) : undefined;
+    const distances = L.nearestDistances(currentRegion);
     const available: AvailableEntry[] = [];
-    for (const c of categories) for (const it of c.items) {
-      const s = statuses.get(it.id);
-      if (!s) continue;
-      it.logic = s;
-      if (c.part === 'A' && !it.done && s.ages.length) {
-        available.push({ id: it.id, categoryId: c.id, categoryLabel: c.label, number: it.number, name: it.name, region: s.region, ages: s.ages, night: s.night, unsure: s.unsure, here: here.has(s.region) });
+    const entry = (c: TrackedCategory, it: TrackedItem, s: ItemLogic): AvailableEntry =>
+      ({ id: it.id, categoryId: c.id, categoryLabel: c.label, number: it.number, name: it.name, region: s.region, ages: s.ages, night: s.night, unsure: s.unsure, here: here.has(s.region), distance: distances.get(s.region) });
+    for (const c of categories) {
+      for (const it of [...c.items, ...(c.spots ?? [])]) {
+        const s = statuses.get(it.id);
+        if (s) it.logic = s;
       }
+      for (const it of c.items) if (c.part === 'A' && !it.done && it.logic?.ages.length) available.push(entry(c, it, it.logic));
     }
+    // Counter spots (bean planting) as reminders, whatever their part.
+    for (const { c, i } of reachableSpots(categories)) available.push(entry(c, i, i.logic!));
     available.sort((a, b) => Number(b.here) - Number(a.here) || a.region.localeCompare(b.region));
     return { available, canBeAdult: L.canBeAdult() };
   }
@@ -489,6 +499,12 @@ export class Controller {
   setDevPanel(on: boolean) {
     this.settings.update(s => (s.devPanel = on));
     this.state = { ...this.state, devPanel: on };
+    this.emit();
+  }
+
+  setWipFeatures(on: boolean) {
+    this.settings.update(s => (s.wipFeatures = on));
+    this.state = { ...this.state, wipFeatures: on };
     this.emit();
   }
 

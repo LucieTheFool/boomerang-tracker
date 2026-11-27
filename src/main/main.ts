@@ -5,6 +5,9 @@ import fs from 'node:fs';
 import { Controller } from './controller.js';
 import type { OverlayMode } from '../shared/types.js';
 import { SettingsStore } from './settings.js';
+import { Updater } from './updater.js';
+import { PadWatcher } from './gamepad.js';
+import { NO_PADS, cleanPadToggle, padState, type PadStatus } from './gamepad-logic.js';
 
 const isDev = !app.isPackaged;
 const appDir = app.getAppPath();
@@ -18,6 +21,7 @@ const windowIcon = fs.existsSync(path.join(appDir, 'build', 'icon.png')) ? { ico
 let main: BrowserWindow | null = null;
 let controller: Controller;
 let settings: SettingsStore;
+let updates: Updater;
 
 function rendererUrl(page: string) {
   const dev = process.env.VITE_DEV_SERVER_URL;
@@ -74,6 +78,28 @@ function createOverlay() {
   overlay.once('ready-to-show', () => { applyOverlaySettings(); overlay?.showInactive(); });
 }
 
+let settingsWin: BrowserWindow | null = null;
+
+/** Settings live in their own window, so the panel is never clipped by the app's edges. */
+function openSettingsWindow() {
+  if (settingsWin && !settingsWin.isDestroyed()) {
+    settingsWin.focus();
+    return;
+  }
+  settingsWin = new BrowserWindow({
+    width: 440, height: 780, useContentSize: true,
+    title: 'Boomerang Tracker — Settings',
+    autoHideMenuBar: true,
+    backgroundColor: '#11131a',
+    ...windowIcon,
+    webPreferences: { preload: path.join(appDir, 'dist-electron', 'preload.cjs'), contextIsolation: true, sandbox: true, nodeIntegration: false },
+  });
+  settingsWin.setMenuBarVisibility(false);
+  void settingsWin.loadURL(rendererUrl('index.html') + '?settings=1');
+  settingsWin.center();
+  settingsWin.on('closed', () => { settingsWin = null; });
+}
+
 function applyOverlaySettings() {
   if (!overlay) return;
   const o = settings.data.overlay;
@@ -118,6 +144,28 @@ function registerHotkeys() {
   controller.patch({ hotkeys: { ...hk, errors } });
 }
 
+// ---------------- Controller toggle ----------------
+// The same show/hide as the hotkey, from a controller button (Windows; see gamepad.ts).
+let pad: PadWatcher | null = null;
+let padStatus: PadStatus = NO_PADS;
+
+function publishPad() {
+  controller.patch({ pad: padState(settings.data.padToggle, padStatus) });
+}
+
+function startPad() {
+  if (process.platform !== 'win32') return; // Settings says "Windows only for now"
+  pad = new PadWatcher(settings.data.padToggle, {
+    fire: () => toggleOverlay(),
+    status: s => { padStatus = s; publishPad(); },
+    learned: b => {
+      settings.update(s => (s.padToggle = { ...s.padToggle, binding: b }));
+      pad?.apply(settings.data.padToggle);
+      publishPad();
+    },
+  });
+}
+
 /** The folder picker's title: where the saves are on this system. */
 function browseTitle() {
   if (process.platform === 'linux') return "Choose your game folder, Hookshot's ~/.local/share/hookshot/save/<id> folder, or the emulator's data folder";
@@ -158,6 +206,9 @@ function migrateOldUserData() {
 app.whenReady().then(async () => {
   if (!process.env.OOT_USER_DATA) migrateOldUserData();
   settings = new SettingsStore(path.join(app.getPath('userData'), 'settings.json'));
+  // In-app updates: the mode is detected once (off from source, full or check-only in the builds).
+  updates = new Updater(settings, s => { for (const w of BrowserWindow.getAllWindows()) w.webContents.send('updates:state', s); });
+  console.log('updates: mode', updates.mode);
   try {
     controller = new Controller({
       appDir,
@@ -191,6 +242,7 @@ app.whenReady().then(async () => {
   ipcMain.handle('slot:pin', (_e, name: string | null) => controller.pinSlot(name));
   ipcMain.handle('manual:toggle', (_e, id: string) => controller.toggleManual(id));
   ipcMain.handle('dev:set', (_e, on: boolean) => controller.setDevPanel(on));
+  ipcMain.handle('wip:set', (_e, on: boolean) => controller.setWipFeatures(on));
   ipcMain.handle('live:set', (_e, on: boolean) => controller.setLiveEnabled(on));
   ipcMain.handle('log:set', (_e, on: boolean) => controller.setChangeLog(on));
   ipcMain.handle('log:open', () => shell.openPath(controller.logDir()));
@@ -202,6 +254,7 @@ app.whenReady().then(async () => {
   ipcMain.handle('identify:export', () => (isDev ? controller.exportLearned() : 'Only available when running from source'));
   ipcMain.handle('overlay:toggle', () => toggleOverlay());
   ipcMain.handle('overlay:lock', () => toggleOverlayLock());
+  ipcMain.handle('settings:open', () => openSettingsWindow());
   ipcMain.handle('overlay:set', (_e, p: { opacity?: number; mode?: OverlayMode }) => {
     settings.update(s => {
       if (p.opacity !== undefined) s.overlay.opacity = Math.min(1, Math.max(0.2, p.opacity));
@@ -214,6 +267,20 @@ app.whenReady().then(async () => {
     settings.update(s => (s.hotkeys = { toggleOverlay: hk.toggleOverlay.trim(), lockOverlay: hk.lockOverlay.trim() }));
     registerHotkeys();
   });
+  ipcMain.handle('pad:set', (_e, p: { enabled?: boolean; mode?: string; holdMs?: number; resetButton?: boolean }) => {
+    settings.update(s => {
+      const next = { ...s.padToggle };
+      if (typeof p.enabled === 'boolean') next.enabled = p.enabled;
+      if (p.mode !== undefined) next.mode = p.mode as typeof next.mode;
+      if (p.holdMs !== undefined) next.holdMs = p.holdMs;
+      if (p.resetButton) next.binding = null;
+      s.padToggle = cleanPadToggle(next); // repairs a bad mode or hold time
+    });
+    pad?.apply(settings.data.padToggle);
+    publishPad();
+  });
+  ipcMain.handle('pad:learn', () => pad?.learn());
+  ipcMain.handle('pad:cancel-learn', () => pad?.cancelLearn());
   ipcMain.handle('folder:browse', async () => {
     const r = await dialog.showOpenDialog(main!, {
       title: browseTitle(),
@@ -223,11 +290,23 @@ app.whenReady().then(async () => {
     if (!r.canceled && r.filePaths[0]) await controller.useFolder(r.filePaths[0]);
     return controller.state;
   });
+  ipcMain.handle('updates:get-state', () => updates.currentState);
+  ipcMain.handle('updates:set', (_e, p: { check?: boolean; autoDownload?: boolean }) => {
+    const check = typeof p?.check === 'boolean' ? p.check : settings.data.updates.check;
+    const autoDownload = typeof p?.autoDownload === 'boolean' ? p.autoDownload : settings.data.updates.autoDownload;
+    return updates.set(check, autoDownload);
+  });
+  ipcMain.handle('updates:check', () => updates.checkNow());
+  ipcMain.handle('updates:download', () => updates.download());
+  ipcMain.handle('updates:install', () => updates.install());
+  ipcMain.handle('updates:skip', (_e, version: string) => updates.skip(version));
 
   createMain();
   if (isDev && process.env.OOT_SAVE_DIR) settings.data.saveDir = process.env.OOT_SAVE_DIR;
   if (isDev && process.env.OOT_DEV_PANEL) settings.data.devPanel = true;
   registerHotkeys();
+  startPad();
+  updates.start();
   await controller.start();
   if (isDev && process.env.OOT_OVERLAY) {
     if (process.env.OOT_OVERLAY_MODE) settings.data.overlay.mode = process.env.OOT_OVERLAY_MODE as OverlayMode;
@@ -251,5 +330,5 @@ app.whenReady().then(async () => {
   }
 });
 
-app.on('will-quit', () => globalShortcut.unregisterAll());
+app.on('will-quit', () => { globalShortcut.unregisterAll(); pad?.stop(); updates?.dispose(); });
 app.on('window-all-closed', () => { controller?.stop(); app.quit(); });

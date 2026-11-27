@@ -14,6 +14,22 @@ export interface ChecklistFile {
   }[];
 }
 
+/**
+ * A local checklist built before a counter got its spots (e.g. the Magic Bean planting
+ * spots) would hide them, since it wins over the public one. Borrow the public spots
+ * for any counter the local file leaves empty; both files share the same ids.
+ */
+export function withCounterSpots(local: ChecklistFile, pub: ChecklistFile): ChecklistFile {
+  const byId = new Map(pub.categories.map(c => [c.id, c]));
+  return {
+    ...local,
+    categories: local.categories.map(c => {
+      const p = byId.get(c.id);
+      return c.kind === 'counter' && !c.items.length && p?.kind === 'counter' && p.items.length ? { ...c, items: p.items } : c;
+    }),
+  };
+}
+
 /** data/descriptions.json: where each entry is, keyed by row id. `title` names a spot within its area. */
 export interface DescriptionsFile {
   rows: Record<string, { title?: string; where: string }>;
@@ -129,7 +145,15 @@ export class Tracker {
         if (c.countsToward100) { doneA += Math.min(value ?? 0, max); totalA += max; }
         categories.push({ id: c.id, label: c.label, part: c.part, countsToward100: c.countsToward100, kind: 'counter', note: c.note,
           items: [], done: Math.min(value ?? 0, max), total: max, value, max, counterConfidence: ctr?.confidence,
-          ...(c.items.length ? { spots: c.items.map(it => ({ ...it, state: 'unmapped' as const, manual: false, done: false })) } : {}) });
+          // One display row per known location: save-driven state like a list item, so
+          // unmapped spots can be ticked by hand. Never counted (the head count is the save count).
+          ...(c.items.length ? { spots: c.items.map(it => {
+            const m = this.mapping.entries[it.id];
+            const state = m?.detect ? evaluate(m.detect, save) : 'unmapped';
+            const isManual = !!manual[it.id];
+            return { ...it, state, manual: isManual && state !== 'yes', done: state === 'yes' || isManual,
+              confidence: m?.detect ? m.confidence : undefined, evidence: m?.evidence };
+          }) } : {}) });
         continue;
       }
       const pooled = new Set(this.pools.flatMap(p => p.rows));
@@ -224,7 +248,7 @@ export class Tracker {
 
 function show(c: Change, which: 'old' | 'new'): string {
   const v = c[which];
-  if (v === undefined) return '—';
+  if (v === undefined) return '?';
   if (Array.isArray(v)) {
     const idx = c.indices ?? [];
     return `[${idx.slice(0, 6).map(i => `${i}=${fmt(v[i])}`).join(' ')}${idx.length > 6 ? ' …' : ''}]`;

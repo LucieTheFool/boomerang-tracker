@@ -49,6 +49,7 @@ export interface AvailableEntry {
   night?: boolean;
   unsure?: boolean;
   here: boolean; // in the area you last saved in
+  distance?: number; // hops from current region (undefined when unknown or unreachable)
 }
 
 export interface TrackedCategory {
@@ -162,10 +163,14 @@ export interface AppState {
   learnedCount: number;
   overlay: OverlayState;
   hotkeys: { toggleOverlay: string; lockOverlay: string; errors: string[] };
+  /** Show/hide the overlay with a controller button */
+  pad: PadState;
   /** Reading progress straight from the running game (read-only) */
   live: LiveInfo & { enabled: boolean; using: boolean };
   /** Local log of tracked changes */
   changeLog: { enabled: boolean; dir: string };
+  /** Settings → Developer options: show the WIP 100% sections */
+  wipFeatures: boolean;
 }
 
 /**
@@ -193,6 +198,26 @@ export interface IdentifyRequest {
 
 export type OverlayMode = 'counters' | 'remaining' | 'available';
 
+/** The controller toggle, as Settings shows it. */
+export interface PadState {
+  /** false: not on this system (Windows only for now); `status` says why */
+  supported: boolean;
+  enabled: boolean;
+  mode: 'hold' | 'press';
+  holdMs: number;
+  /** The button, in words ("Left stick click (L3)") */
+  button: string;
+  /** A button was chosen (otherwise the default, L3) */
+  custom: boolean;
+  learning: boolean;
+  /** "DualSense connected", "No controller found", "Press a button on your controller (10 s)…" */
+  status: string;
+  /** A controller is connected, but there's no default button for it: choose one */
+  needsChoose: boolean;
+  /** Result of the last "Choose button…" */
+  note?: string;
+}
+
 export interface OverlayState {
   visible: boolean;
   locked: boolean;
@@ -213,6 +238,9 @@ export interface AvailableFilters {
 
 export const NO_FILTERS: AvailableFilters = { search: '', area: null, category: null, age: null, nightOnly: false, hereOnly: false };
 
+/** How the main checklist cards flow: fit (sized to tiles), masonry (packed columns), or stack (one card per row). */
+export type ChecklistLayout = 'fit' | 'masonry' | 'stack';
+
 export interface UiPrefs {
   hideCollected: boolean;
   hiddenCategories: string[];
@@ -221,5 +249,58 @@ export interface UiPrefs {
   showParts: { B: boolean; C: boolean };
   /** Height of the "Can get now" panel in pixels (user-resized) */
   availableHeight?: number;
+  /** Sidebar checklist focus: 'all' (full checklist) or a card id */
+  checklistFocus?: 'all' | string;
+  /** Display selector: when false, only categories NOT in hiddenCategories show (default true = all) */
+  checklistAll?: boolean;
+  /** Categories hidden from the left bar entirely (Settings -> Left bar). Empty/absent = all shown. */
+  sidebarHidden?: string[];
+  /** Advanced surfaces (live read, change log, dev tools) — off by default */
+  advanced?: boolean;
+  /** Checklist card flow; defaults to 'masonry' */
+  layout?: ChecklistLayout;
   availableFilters?: AvailableFilters;
+  /** Show the category sidebar (default true) */
+  showSidebar?: boolean;
+  /** Show the "Can get now" column (default true) */
+  showCanGetNow?: boolean;
+  /** First-run guide finished (or skipped); shown until then */
+  guideSeen?: boolean;
+}
+
+/**
+ * Which in-app update path a build uses.
+ * off: running from source (dev) — no update feature at all.
+ * full: can download and install (Windows NSIS installer, Linux AppImage).
+ * check-only: can only say a newer version exists (portable exe, Linux tar.gz).
+ */
+export type UpdateMode = 'off' | 'full' | 'check-only';
+
+export type UpdateStatus =
+  | 'idle'
+  | 'checking'
+  | 'available'
+  | 'up-to-date'
+  | 'downloading'
+  | 'downloaded'
+  | 'error';
+
+/** In-app update state, pushed to the UI with `updates:state`. */
+export interface UpdateState {
+  mode: UpdateMode;
+  status: UpdateStatus;
+  /** The user's switch settings; the main process rides them on every push so the
+   *  Settings window reads them back instead of falling back to off (e.g. after a restart). */
+  check?: boolean;
+  autoDownload?: boolean;
+  /** Newest release version found (check-only) or the available update (full) */
+  version?: string;
+  /** Download progress 0–100 (full mode only) */
+  progress?: number;
+  /** Error message, in plain words (no raw stack) */
+  error?: string;
+  /** Release notes of the newer version */
+  notes?: string;
+  /** Link to the release page (check-only) */
+  url?: string;
 }

@@ -3,6 +3,7 @@ import path from 'node:path';
 import { describe, it, expect } from 'vitest';
 import { parseGameData } from '../src/gamedata/parser.js';
 import { evaluate, evaluateCounter, Rule, CounterRule, ruleKeys } from '../src/gamedata/detect.js';
+import { murmur3 } from '../src/gamedata/murmur3.js';
 import { cleanName, slug } from '../scripts/build-checklist.js';
 
 const mapping = JSON.parse(fs.readFileSync('data/save-mapping.json', 'utf8')) as {
@@ -19,7 +20,7 @@ describe('checklist.json', () => {
     const n = (id: string) => checklist.categories.find(c => c.id === id)!.items.length;
     expect([n('heart_pieces'), n('heart_containers'), n('gold_skulltulas'), n('songs'), n('equipment'), n('items'), n('masks'),
       n('bottles'), n('great_fairies'), n('capacity'), n('stones_medallions'), n('dungeons'), n('bosses'), n('mini_bosses'), n('side_quests')])
-      .toEqual([36, 8, 100, 13, 12, 27, 5, 5, 6, 14, 9, 12, 10, 10, 6]);
+      .toEqual([36, 8, 100, 13, 12, 27, 9, 8, 6, 14, 9, 12, 10, 10, 6]);
   });
   it('cleans doubled alt-text names', () => {
     expect(cleanName('Kokiri Sword Kokiri Sword')).toBe('Kokiri Sword');
@@ -54,5 +55,10 @@ describe('save-mapping.json', () => {
 
   it('matches enum values by name', () => {
     expect(ruleKeys({ any: [{ name: 'IsGet.Item_Hookshot' }, { b64: '0x3F93661D8E17C1D0' }] }).size).toBe(2);
+  });
+
+  it('pins the amiibo mask flag hashes (key table in oot-switch2-reference)', () => {
+    expect(murmur3('IsGet.Armor_Child_Mask_Amiibo0')).toBe(0x06f13bb2);
+    expect(murmur3('IsGet.Armor_Child_Mask_Amiibo1')).toBe(0x09df9d25);
   });
 });

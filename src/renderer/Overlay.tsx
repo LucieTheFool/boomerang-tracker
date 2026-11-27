@@ -3,6 +3,7 @@ import type { AppState, TrackedCategory, OverlayMode } from '../shared/types';
 import { api } from './api';
 import { categoryColor } from './icons';
 import { buildCards } from './view';
+import { reachableSpotsHere } from '../core/spots';
 
 /** Compact always-on-top view. Locked = click-through; unlocked = drag/resize + controls. */
 export function Overlay() {
@@ -133,6 +134,8 @@ function Remaining({ state }: { state: AppState }) {
   const rows = state.categories
     .filter(c => c.part !== 'C')
     .flatMap(c => c.items.filter(i => !i.done && i.chapter && regions.has(i.chapter)).map(i => ({ c, i, later: laterReason(i.logic) })))
+    // Counter spots (bean planting) only as reminders once they're reachable.
+    .concat(reachableSpotsHere(state.categories, regions).map(r => ({ ...r, later: undefined })))
     // What you can get now first, then the rest.
     .sort((a, b) => Number(!!a.later) - Number(!!b.later));
   const later = rows.filter(r => r.later).length;
@@ -144,7 +147,7 @@ function Remaining({ state }: { state: AppState }) {
       </div>
       {rows.length === 0 && regions.size > 0 && <div className="ov-row muted">Nothing left here 🎉</div>}
       {rows.slice(0, 40).map(({ c, i, later }) => (
-        <div key={i.id} className={`ov-row ${i.state === 'unmapped' ? 'unmapped' : ''} ${later ? 'later' : ''}`}>
+        <div key={i.id} className={`ov-row ${later ? 'later' : ''}`}>
           <span className="dot" style={{ background: categoryColor(c.id) }} />
           <span className="ov-label">{c.id === 'gold_skulltulas' ? `GS ${i.number}: ` : ''}{i.name.replace(/^[^:]+: /, '')}</span>
           {later ? <span className="ov-why" title={later}>{later}</span> : i.logic?.night && <span className="age night">☾</span>}

@@ -1,0 +1,202 @@
+{
+  "$schema": "threads-of-time-quests-v1",
+  "version": "1.0.0",
+  "source": "Multiple guides (Zelda Central, Game-Secret, IGN, GameRant) 2026-11-24",
+  "game": "The Legend of Zelda: Ocarina of Time (Switch 2 Remake)",
+  "total_threads": 13,
+  "main_story_quests": {
+    "total": 8,
+    "quests": [
+      {
+        "id": "link_wakes_up",
+        "name": "Link Wakes Up",
+        "order": 1,
+        "description": "Beginning of Link's adventure in Kokiri Forest",
+        "optional": false
+      },
+      {
+        "id": "great_deku_tree",
+        "name": "The Great Deku Tree",
+        "order": 2,
+        "description": "Explore the Great Deku Tree dungeon",
+        "optional": false
+      },
+      {
+        "id": "princess_of_hyrule_castle",
+        "name": "Princess of Hyrule Castle",
+        "order": 3,
+        "description": "Meet Princess Zelda at Hyrule Castle",
+        "optional": false
+      },
+      {
+        "id": "three_spiritual_stones",
+        "name": "Three Spiritual Stones",
+        "order": 4,
+        "description": "Collect the three Spiritual Stones",
+        "optional": false,
+        "sub_quests": [
+          {
+            "id": "spiritual_stone_fire",
+            "name": "Spiritual Stone of Fire",
+            "description": "Complete Dodongo's Cavern and obtain Goron's Ruby"
+          },
+          {
+            "id": "spiritual_stone_water",
+            "name": "Spiritual Stone of Water",
+            "description": "Complete Jabu-Jabu's Belly and obtain Zora's Sapphire"
+          }
+        ],
+        "notes": "Kokiri's Emerald obtained from Great Deku Tree (quest 2)"
+      },
+      {
+        "id": "awakening_five_sages",
+        "name": "Awakening the Five Sages",
+        "order": 9,
+        "description": "Complete the five Sage Temples as Adult Link",
+        "optional": false,
+        "sub_quests": [
+          {
+            "id": "forest_temple_mysteries",
+            "name": "Forest Temple Mysteries",
+            "description": "Complete the Forest Temple and awaken Saria as the Forest Sage"
+          },
+          {
+            "id": "disaster_goron_city",
+            "name": "Disaster in Goron City",
+            "description": "Complete the Fire Temple and awaken Darunia as the Fire Sage"
+          },
+          {
+            "id": "disaster_zora_domain",
+            "name": "Disaster in Zora Domain",
+            "description": "Complete the Water Temple and awaken Ruto as the Water Sage"
+          },
+          {
+            "id": "creature_of_darkness",
+            "name": "Creature of Darkness",
+            "description": "Complete the Shadow Temple and awaken Impa as the Shadow Sage"
+          },
+          {
+            "id": "missing_in_desert",
+            "name": "Missing in the Desert",
+            "description": "Complete the Spirit Temple and awaken Nabooru as the Spirit Sage"
+          }
+        ],
+        "notes": "Temple order is flexible; Forest Temple typically done first"
+      },
+      {
+        "id": "broken_windmill_dry_well",
+        "name": "Broken Windmill, Dry Well",
+        "order": 11,
+        "description": "Learn Song of Storms from Music Man in Windmill, explore Bottom of the Well",
+        "optional": false,
+        "notes": "Required for Shadow Temple access (Lens of Truth from Bottom of the Well)"
+      },
+      {
+        "id": "light_and_darkness",
+        "name": "Light and Darkness",
+        "order": 13,
+        "description": "Final story chapter - Ganon's Castle and final battles",
+        "optional": false
+      }
+    ]
+  },
+  "side_quests": {
+    "total": 7,
+    "quests": [
+      {
+        "id": "malons_friend",
+        "name": "Malon's Friend",
+        "order": 5,
+        "description": "Befriend Malon at Lon Lon Ranch, learn Epona's Song",
+        "optional": true,
+        "recommended": true,
+        "notes": "Required to obtain Epona as Adult Link; technically optional but highly recommended"
+      },
+      {
+        "id": "song_royal_family",
+        "name": "A Song of the Royal Family",
+        "order": 6,
+        "description": "Learn Zelda's Lullaby and Sun's Song",
+        "optional": true,
+        "recommended": true,
+        "notes": "Zelda's Lullaby from Princess Zelda; Sun's Song from Royal Family's Tomb in Graveyard"
+      },
+      {
+        "id": "happy_mask_shopkeeper",
+        "name": "Happy Mask Shopkeeper",
+        "order": 7,
+        "description": "Complete the Happy Mask Trading Quest",
+        "optional": true,
+        "recommended": false,
+        "reward": "Mask of Truth (read Gossip Stones)",
+        "steps": [
+          "Obtain Keaton Mask → sell to Kakariko Village Guard",
+          "Obtain Skull Mask → sell to Skull Kid in Lost Woods",
+          "Obtain Spooky Mask → sell to graveyard child in Hyrule Field",
+          "Obtain Bunny Hood → sell to Running Man in Hyrule Field"
+        ],
+        "notes": "Must sell each mask for specified price before next mask unlocks. Final reward: access to Mask of Truth + 3 other masks (Goron, Zora, Gerudo)"
+      },
+      {
+        "id": "to_great_fairy",
+        "name": "To the Great Fairy",
+        "order": 8,
+        "description": "Find and visit Great Fairy Fountains",
+        "optional": true,
+        "recommended": true,
+        "notes": "6 Great Fairy Fountains total; some give essential upgrades (Magic Meter, Double Magic, Double Defense)"
+      },
+      {
+        "id": "stir_scarecrows_soul",
+        "name": "Stir the Scarecrow's Soul",
+        "order": 10,
+        "description": "Teach Bonooru the Scarecrow a custom song as Child, summon Pierre as Adult",
+        "optional": true,
+        "recommended": true,
+        "reward": "Pierre (scarecrow hookshot target) at 13 locations",
+        "notes": "Required for some Gold Skulltulas and Heart Pieces"
+      },
+      {
+        "id": "from_pocket_egg",
+        "name": "From a Pocket Egg Comes...",
+        "order": 12,
+        "description": "Complete the Biggoron Trading Sequence",
+        "optional": true,
+        "recommended": true,
+        "reward": "Biggoron's Sword (strongest weapon)",
+        "steps": [
+          "Pocket Egg",
+          "Pocket Cucco",
+          "Cojiro",
+          "Odd Mushroom",
+          "Odd Potion",
+          "Poacher's Saw",
+          "Broken Goron's Sword",
+          "Prescription",
+          "Eyeball Frog",
+          "Eyedrops",
+          "Claim Check",
+          "Biggoron's Sword"
+        ],
+        "notes": "11-step trading sequence; some steps are timed (Odd Mushroom, Eyeball Frog)"
+      }
+    ],
+    "notes": "Side quests appear in Threads of Time menu alongside main story quests. 'Broken Windmill, Dry Well' is listed as order 11 and is required for 100% (Bottom of the Well dungeon, Lens of Truth)"
+  },
+  "quest_tracking": {
+    "menu_location": "Pause menu - tab between Key Items and Map",
+    "features": [
+      "Story text for each quest",
+      "Current objective with location hint",
+      "COMPLETE mark for finished quests",
+      "??? entries for unreached quests",
+      "Tapestry view (press Y) for visual quest overview"
+    ]
+  },
+  "notes": {
+    "total_count_clarification": "13 total Threads of Time entries: 8 main story quests (some with sub-quests) + 5-7 side quests depending on how they're counted. 'Broken Windmill, Dry Well' is sometimes listed as side quest, sometimes as main story.",
+    "optional_definition": "To the Great Fairy, Happy Mask Shopkeeper, Stir the Scarecrow's Soul, and From a Pocket Egg Comes... are entirely optional for game completion but recommended for 100%",
+    "flexible_order": "Temple order in 'Awakening the Five Sages' is flexible; Forest Temple is typically first but not required",
+    "quest_challenger_medal": "Quest Challenger medal in Zelda Notes requires all events completed (all main + side quests)"
+  }
+}

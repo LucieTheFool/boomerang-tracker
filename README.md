@@ -13,7 +13,11 @@ compatible Switch 2 emulator (saves only). It reads your
 progress from the running game (or from your save files), shows what you've collected and what
 you can get next, and updates as you play.
 
-![Main window: the summary, the can-get-now list, the keys, and the 100% checklist](docs/screenshots/tracker-main.png)
+![Main window: the summary, the can-get-now list and the 100% checklist](docs/screenshots/tracker-main.png)
+
+**New in 0.6.0:** opt-in in-app updates with a Windows installer, quest turn-ins with logic that
+follows each chain, logic for every map and compass, per-patch Magic Bean tracking, an overlay toggle
+on your controller, a first-run tour and a new look. See the [changelog](CHANGELOG.md).
 
 - **Read-only.** Saves are only ever read, never written. Live tracking reads the game's memory
   but never writes to it, and can be turned off in Settings.
@@ -24,9 +28,15 @@ you can get next, and updates as you play.
 
 ## Download
 
-Get the latest release from the [Releases page](../../releases): a portable exe for Windows, an
-AppImage (or a `.tar.gz`) for Linux. Nothing is installed and no admin rights are needed — run
-it and it's ready.
+Get the latest release from the [Releases page](../../releases): an
+installer or a portable exe for Windows, an AppImage (or a `.tar.gz`) for Linux. No admin rights
+are needed: the installer installs for your user only, and the portable exe and the Linux builds
+just run.
+
+**Updates and privacy.** The installer and the AppImage can update themselves; the portable exe
+and the `.tar.gz` only tell you when a new version is out. The app contacts GitHub only to check
+for updates, and only while *Check for updates* is on (Settings → Updates, off by default) or
+when you press **Check now**. It sends no data about you or your saves.
 
 ### Linux (saves only)
 
@@ -50,7 +60,7 @@ so the tracker doesn't pick those up automatically — choose that save folder b
 npm install
 npm start          # build and run
 npm run dev        # run with live reload
-npm run dist       # build the portable exe into release\
+npm run dist       # build the Windows installer + portable exe into release\
 npm run dist:linux # AppImage + tar.gz (scripts/dist-linux-wsl.sh, WSL with Node 24)
 npm test
 ```
@@ -92,6 +102,15 @@ npm test
 - **Change log:** every tracked change, with time, save slot and area, plus your answers and hand
   ticks, kept as monthly files on your PC. Useful for checking what the tracker saw.
 - **Hand ticks:** double-click any entry to tick it yourself.
+- **Quests to the end:** every quest object shows both the pickup and the turn-in (trading
+  sequences, mask sales, Ruto's Letter, the Cucco Lady, the Poe Collector), and the next step of a
+  chain only shows up once the previous one is handed in.
+- **Magic Beans:** each of the ten planting spots, planted or not. Reachable empty patches show up
+  in "can get now" and the overlay as a reminder.
+- **Controller toggle (Windows):** show or hide the overlay with a controller button (L3 by
+  default), as a tap or a hold.
+- **Updates:** Settings → Updates checks GitHub for a new version when you ask, or by itself if you
+  turn that on. See *Updates and privacy* above.
 
 ## Supported games
 
@@ -142,6 +161,10 @@ Everything the app writes goes to `%APPDATA%\Boomerang Tracker\`: `settings.json
 hand ticks, answers, layout, overlay, hotkeys), `logs\changes-YYYY-MM.jsonl` (the change log: every
 tracked change with time and area; can be turned off in Settings), `snapshots\` (developer tools),
 and `error.log`.
+
+The installer puts the app in `%LOCALAPPDATA%\Programs\Boomerang Tracker\` (uninstall it from
+Windows' *Installed apps*). Downloaded updates wait in `%LOCALAPPDATA%\boomerang-tracker-updater\`
+until they're installed. The installer and the portable exe share the same settings.
 
 ## How detection works
 

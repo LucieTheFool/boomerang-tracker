@@ -4,6 +4,9 @@
 
 - **koffi** by Niels Martignène, MIT License (https://github.com/Koromix/koffi). Used to
   read the running game's memory through Windows' `ReadProcessMemory` (read-only).
+- **electron-updater** (electron-builder project), MIT License
+  (https://github.com/electron-userland/electron-builder). Used for in-app updates in the
+  installer and AppImage builds.
 - Electron, React and the build tools listed in `package.json`, under their own licenses.
 
 ## References

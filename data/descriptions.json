@@ -1,384 +1,1311 @@
 {
   "note": "Where each checklist entry is, written for this project (no guide text). title: a short name for Gold Skulltula and heart piece rows (shown as '<area>: <title>'). where: one or two sentences. Keyed by checklist id.",
   "rows": {
-    "heart_pieces.001": { "title": "Man on the roof", "where": "A man lying on a rooftop gives it to you. As a child, carry a Cucco up to the ledge behind the windmill and glide over; as an adult, Hookshot up." },
-    "heart_pieces.002": { "title": "Dampé's gravedigging tour", "where": "As a child at night, pay Dampé to dig in the graveyard's soft ground. Keep paying for digs until the piece turns up." },
-    "heart_pieces.003": { "title": "Inside the stone tower", "where": "As a child, push the crates aside in the ranch's stone tower and crawl through to the round room behind them." },
-    "heart_pieces.004": { "title": "Chest on the Cucco ledge", "where": "In a chest on a ledge partway down the valley. Glide there with a Cucco as a child, or Longshot over as an adult." },
-    "heart_pieces.005": { "title": "Behind the waterfall", "where": "On a ledge behind the waterfall near the valley's entrance. Drop down to it from the path above." },
-    "heart_pieces.006": { "title": "Fishing pond (child prize)", "where": "Catch a big enough fish as a child at the fishing pond by Lake Hylia." },
-    "heart_pieces.007": { "title": "Richard the lost dog", "where": "As a child at night, find the dog Richard running around the back alley and lead him home to his owner." },
-    "heart_pieces.008": { "title": "Skull Kid's ocarina game", "where": "As a child, stand on the stump near the entrance to the Lost Woods and repeat the Skull Kid's tunes. Win three rounds." },
-    "heart_pieces.009": { "title": "Skull Kid's song", "where": "As a child, play Saria's Song for the Skull Kid sitting on a stump in the Lost Woods." },
-    "heart_pieces.010": { "title": "Spinning pot", "where": "As a child, light every torch on Goron City's bottom floor, then drop a Bomb (or a Bomb Flower) into the big spinning pot." },
-    "heart_pieces.011": { "title": "Ledge below the crater entrance", "where": "From the summit entrance, climb down the wall to a hidden ledge. A child can grab it before the heat gets too much; as an adult, wear the Goron Tunic." },
-    "heart_pieces.012": { "title": "Rooftop behind Impa's house", "where": "On the roof above Impa's cow pen. As a child, let Kaepora Gaebora carry you down from the Death Mountain summit (he only offers once you have Din's Fire); as an adult, Hookshot up." },
-    "heart_pieces.013": { "title": "Bombchu Bowling", "where": "One of the prizes at the Bombchu Bowling Alley. The alley opens after you defeat King Dodongo." },
-    "heart_pieces.014": { "title": "Raised platform", "where": "On top of a pillar near the start of the river. Glide there with a Cucco as a child, or use the Hover Boots as an adult." },
-    "heart_pieces.015": { "title": "Ledge by the waterfall", "where": "On a ledge near the waterfall to Zora's Domain. Glide there with a Cucco as a child, or use the Hover Boots as an adult." },
-    "heart_pieces.016": { "title": "Torch chest", "where": "Light every torch around Zora's Domain with a burning Deku Stick to make a chest appear." },
-    "heart_pieces.017": { "title": "Magic Bean platform", "where": "Plant a Magic Bean in the soft soil by the graveyard wall as a child, then ride the plant as an adult to the platform with the piece." },
-    "heart_pieces.018": { "title": "Inside the windmill", "where": "On a ledge high inside the windmill. As a child, the Boomerang can fetch it; as an adult, come up through the tunnel from Dampé's grave." },
-    "heart_pieces.019": { "title": "Dampé's race", "where": "As an adult, race Dampé's ghost through his tomb in under a minute. The chest at the end holds the piece." },
-    "heart_pieces.020": { "title": "House of Skulltula: 50 tokens", "where": "The reward for bringing 50 Gold Skulltula tokens to the House of Skulltula." },
-    "heart_pieces.021": { "title": "Laboratory roof", "where": "On the roof of the Lakeside Laboratory. Ride the Magic Bean planted beside the lab as an adult, or use the Scarecrow's Song with the Hookshot." },
-    "heart_pieces.022": { "title": "Laboratory diving game", "where": "Reach the bottom of the laboratory's deep pool for the scientist. You'll need the Golden Scale." },
-    "heart_pieces.023": { "title": "Above Dodongo's Cavern", "where": "On a ledge above the cavern entrance. Plant a Magic Bean in the soil there as a child and ride it as an adult." },
-    "heart_pieces.024": { "title": "Bean pillar", "where": "On a tall pillar in the middle of the crater. Plant a Magic Bean in the crater's soil as a child (warp in with the Bolero of Fire), then ride it as an adult." },
-    "heart_pieces.025": { "title": "Iceberg", "where": "As an adult, hop across the floating ice to the farthest iceberg in Zora's Fountain." },
-    "heart_pieces.026": { "title": "Bottom of the fountain", "where": "As an adult, sink to the bottom of Zora's Fountain with the Iron Boots, wearing the Zora Tunic." },
-    "heart_pieces.027": { "title": "Frogs: Song of Storms", "where": "As a child, play the Song of Storms to the frogs on the log in Zora's River." },
-    "heart_pieces.028": { "title": "Frogs: bug-catching game", "where": "As a child, play all six of the frogs' songs, then win their bug-catching game." },
-    "heart_pieces.029": { "title": "Treasure Chest Shop", "where": "As a child at night, win the Treasure Chest Shop's game. The Lenses of Truth show which chests to open." },
-    "heart_pieces.030": { "title": "Rooftop chest", "where": "In a chest on a high rooftop of the fortress. Get there with the Scarecrow's Song and Hookshot, the Longshot or the Hover Boots." },
-    "heart_pieces.031": { "title": "Horseback archery", "where": "Score 1,000 points at the Gerudo horseback archery range, riding Epona." },
-    "heart_pieces.032": { "title": "Bean platform", "where": "Plant a Magic Bean in the soil by the Spirit Temple as a child (warp in with the Requiem of Spirit), then ride it as an adult to the piece." },
-    "heart_pieces.033": { "title": "Hidden grave chest", "where": "Pull back one of the graveyard's gravestones (as a child, only at night) and drop into the grave. The chest is at the end." },
-    "heart_pieces.034": { "title": "Password Business Scrub", "where": "As an adult, read the Fairy Note on the tree near the castle drawbridge for a password. Then, as a child, bomb the cracked ground nearby and buy the piece from the scrub for 100 Rupees." },
-    "heart_pieces.035": { "title": "Chest by the Gerudo Valley road", "where": "As an adult, read the Fairy Note beside the chest under the red cliffs near Gerudo Valley. Then open the chest as a child." },
-    "heart_pieces.036": { "title": "Business Scrub", "where": "As a child, from the summit entrance go left and drop down to the ledge below. The scrub there sells the piece for 100 Rupees." },
-
-    "gold_skulltulas.001": { "title": "Compass room alcove", "where": "On the third floor, in the alcove the raised platforms lead to, near the Compass chest." },
-    "gold_skulltulas.002": { "title": "Basement vines", "where": "On the vine wall in the basement. Knock it down with the Slingshot or the Boomerang." },
-    "gold_skulltulas.003": { "title": "By the webbed grate", "where": "In the basement, next to the grate covered by a spider web." },
-    "gold_skulltulas.004": { "title": "Back room", "where": "In the basement's back room: burn the web, bomb the wall behind it and fetch the token with the Boomerang." },
-    "gold_skulltulas.005": { "title": "Guard house crate", "where": "As a child, roll into the crate in the guard house storeroom by the town gate." },
-    "gold_skulltulas.006": { "title": "Garden palm tree", "where": "As a child, roll into the palm tree in the garden at the foot of the castle wall." },
-    "gold_skulltulas.007": { "title": "House under construction", "where": "As a child at night, on the brick wall of the unfinished house." },
-    "gold_skulltulas.008": { "title": "House of Skulltula wall", "where": "As a child at night, on the wall beside the House of Skulltula's door." },
-    "gold_skulltulas.009": { "title": "Village square tree", "where": "As a child at night, roll into the tall tree in the village square." },
-    "gold_skulltulas.010": { "title": "Watchtower ladder", "where": "As a child at night, near the top of the watchtower ladder. Shoot it down with the Slingshot, then climb up." },
-    "gold_skulltulas.011": { "title": "Soft soil", "where": "As a child, drop bugs on the soft soil by the graveyard wall." },
-    "gold_skulltulas.012": { "title": "Wall by the gate", "where": "As a child at night, under the eaves of the house near the gate to Death Mountain." },
-    "gold_skulltulas.013": { "title": "Tree near the silo", "where": "As a child, roll into the tree by the stone wall near the ranch's silo." },
-    "gold_skulltulas.014": { "title": "Soft soil", "where": "As a child, drop bugs on the soft soil by the barrels at the lakeside house." },
-    "gold_skulltulas.015": { "title": "Soft soil by the waterfall", "where": "As a child, glide with a Cucco into the cave beside the waterfall and drop bugs on the soil there." },
-    "gold_skulltulas.016": { "title": "Tree by the Know-It-All house", "where": "As a child at night, on the big tree trunk beside the houses." },
-    "gold_skulltulas.017": { "title": "Soft soil by the bridge", "where": "As a child, drop bugs on the soft soil near the first Business Scrub." },
-    "gold_skulltulas.018": { "title": "Soft soil by the theater", "where": "As a child, drop bugs on the soft soil by the second Business Scrub, near the Deku Theater." },
-    "gold_skulltulas.019": { "title": "Soft soil by the shop", "where": "As a child, drop bugs on the soft soil behind the Kokiri Shop." },
-    "gold_skulltulas.020": { "title": "Soft soil by Dodongo's Cavern", "where": "As a child, drop bugs on the soil in the little cave by the cavern entrance. The boulder in front of it breaks with a Bomb Flower, which needs the Goron's Bracelet." },
-    "gold_skulltulas.021": { "title": "Vine wall above the stairs", "where": "On the climbing net above the stone stairs. Kill it with a ranged weapon, then climb up for the token." },
-    "gold_skulltulas.022": { "title": "Side room in the south-east", "where": "In the small side room off the first floor's south-east corner." },
-    "gold_skulltulas.023": { "title": "Behind a bombable wall", "where": "On the upper floor, in a side room with Dodongos behind a cracked wall. Bomb the wall to get in." },
-    "gold_skulltulas.024": { "title": "Room behind the block", "where": "On the first floor: push the block away from the cracked wall, bomb it open and find the Skulltula on the back wall." },
-    "gold_skulltulas.025": { "title": "Entrance alcove crate", "where": "As a child, in the first alcove on the right inside the crater, by a crate." },
-    "gold_skulltulas.026": { "title": "Cave behind a cracked rock", "where": "Bomb the cracked rock by the trail above Kakariko to open a small cave." },
-    "gold_skulltulas.027": { "title": "Boulder maze crate", "where": "As a child, bomb your way into the side cave in Goron City's boulder maze and break the crate." },
-    "gold_skulltulas.028": { "title": "Soft soil by the Bean Seller", "where": "As a child, drop bugs on the soft soil next to the Bean Seller." },
-    "gold_skulltulas.029": { "title": "Below the crest stone", "where": "As a child at night, under the overhang near the river's crest stone, by the vines." },
-    "gold_skulltulas.030": { "title": "Big tree", "where": "As a child, roll into the big tree by the path in the south-east of the fountain." },
-    "gold_skulltulas.031": { "title": "Above the pot room", "where": "On the first basement floor, at the top of the vine wall leading to a room with three pots." },
-    "gold_skulltulas.032": { "title": "Cavern ceiling", "where": "On the ceiling of the first basement's dripping cavern. Bring it down with the Boomerang." },
-    "gold_skulltulas.033": { "title": "Dark archway", "where": "Past the cavern ceiling one, in the dark passage towards Big Octo's room. Boomerang." },
-    "gold_skulltulas.034": { "title": "Vine pillar", "where": "On top of a vine-wrapped pillar in a passage on the second floor." },
-    "gold_skulltulas.035": { "title": "Cliff above the log", "where": "As a child at night, on the mossy cliff wall. Stand on the slanted ruin south-west of Jabu-Jabu and use the Boomerang." },
-    "gold_skulltulas.036": { "title": "Laboratory wall", "where": "As a child at night, on the stone wall of the Lakeside Laboratory. Boomerang." },
-    "gold_skulltulas.037": { "title": "House window", "where": "As a child at night, on the ranch house wall beside the entrance arch. Boomerang." },
-    "gold_skulltulas.038": { "title": "Stone tower vines", "where": "At night, in the vines inside the stone tower near the roof. Boomerang as a child, Hookshot as an adult." },
-    "gold_skulltulas.039": { "title": "Grotto in the southern woods", "where": "In a grotto in the woods south of Lon Lon Ranch. Blow open its entrance, deal with the big Skulltula, then fetch the gold one with the Boomerang or Hookshot." },
-    "gold_skulltulas.040": { "title": "Under the small bridge", "where": "As a child at night, on the stone wall by the river channel under the wooden bridge. Boomerang." },
-    "gold_skulltulas.041": { "title": "Behind Dampé's hut", "where": "As a child at night, on the wall behind Dampé's hut. Boomerang." },
-    "gold_skulltulas.042": { "title": "Lone tree", "where": "Roll into the lone tree where the river ends, west of the Kokiri Forest entrance." },
-    "gold_skulltulas.043": { "title": "Ruined archway", "where": "As an adult, on the ruined archway along the road to the castle. Hookshot." },
-    "gold_skulltulas.044": { "title": "Behind the House of the Twins", "where": "As an adult at night, on the big tree behind the House of the Twins. Hookshot." },
-    "gold_skulltulas.045": { "title": "Ledge above the bean plant", "where": "As an adult at night, on a high ledge. Ride the Magic Bean plant from the soil by the second Business Scrub." },
-    "gold_skulltulas.046": { "title": "Maze dead end", "where": "As an adult at night, high on the wall at a dead end of the meadow's maze. Hookshot." },
-    "gold_skulltulas.047": { "title": "First room vines", "where": "On the vines in the temple's first room. Hookshot it from the branch before the tunnel." },
-    "gold_skulltulas.048": { "title": "Main hall landing", "where": "High on the wall above the landing off the main hall. Hookshot." },
-    "gold_skulltulas.049": { "title": "Ivy room", "where": "In the ivy-covered room after the pool room. Hookshot." },
-    "gold_skulltulas.050": { "title": "Basement web corridor", "where": "In the basement, behind a web in a dusty passage. Burn the web to reach it." },
-    "gold_skulltulas.051": { "title": "Courtyard scarecrow ledge", "where": "On a high ledge in the east courtyard. Play the Scarecrow's Song and Hookshot to the scarecrow." },
-    "gold_skulltulas.052": { "title": "Cave above the scarecrow", "where": "As an adult, in a small cave above the scarecrow. Play the Scarecrow's Song and Hookshot up, or use the Longshot." },
-    "gold_skulltulas.053": { "title": "Mesh walkway", "where": "As an adult, high on the lava cave wall seen from the metal walkway. Hookshot." },
-    "gold_skulltulas.054": { "title": "Soft soil on the lava rim", "where": "As a child, warp in with the Bolero of Fire and drop bugs on the soil by the lava." },
-    "gold_skulltulas.055": { "title": "Tile room idol", "where": "Behind the Song of Time block, in the square-tiled room. Bomb the stone idol on the back wall." },
-    "gold_skulltulas.056": { "title": "Boulder maze wall", "where": "In the boulder maze: bomb the cracked wall and the Skulltula is behind it." },
-    "gold_skulltulas.057": { "title": "Boulder pile", "where": "Smash the pile of rocks with the Megaton Hammer." },
-    "gold_skulltulas.058": { "title": "Top of the scarecrow climb", "where": "Play the Scarecrow's Song, Hookshot up to the scarecrow and climb to the corridor at the top." },
-    "gold_skulltulas.059": { "title": "Lava room wall", "where": "Past the scarecrow climb, on the wall at the edge of the lava room. Hookshot." },
-    "gold_skulltulas.060": { "title": "Cave past the net slope", "where": "As an adult at night, in the cave past the net slope near the summit. Break the rock with the Megaton Hammer." },
-    "gold_skulltulas.061": { "title": "Dark tunnel", "where": "As an adult at night, in the dark tunnel towards Goron City. Break the rock with the Megaton Hammer." },
-    "gold_skulltulas.062": { "title": "Rocky ledge", "where": "As an adult at night, on the cliff above a rocky ledge over the water. Hookshot." },
-    "gold_skulltulas.063": { "title": "Frozen bridge pillar", "where": "As an adult at night, on a pillar by the frozen bridge. Hookshot." },
-    "gold_skulltulas.064": { "title": "First room", "where": "High on the wall of the cavern's first big room, with the spinning blade. Hookshot." },
-    "gold_skulltulas.065": { "title": "Sliding block room", "where": "On the ceiling of the room with the sliding ice-block puzzle. Hookshot." },
-    "gold_skulltulas.066": { "title": "Past the Compass chest", "where": "High on the ice wall just past the Compass chest. Hookshot." },
-    "gold_skulltulas.067": { "title": "Rock arch", "where": "As an adult at night, under the rock arch by the canyon path. Hookshot." },
-    "gold_skulltulas.068": { "title": "Laboratory cellar", "where": "As an adult, in the laboratory's deep pool. Sink with the Iron Boots and Hookshot it." },
-    "gold_skulltulas.069": { "title": "Flooded cave", "where": "Past the Longshot chest, follow the water passage to a dark flooded cave. Longshot." },
-    "gold_skulltulas.070": { "title": "Central pillar", "where": "Up in the chamber inside the central pillar. Longshot." },
-    "gold_skulltulas.071": { "title": "Behind the waterfall", "where": "In the boulder corridor by the Boss Key room, hidden behind a small waterfall. Longshot." },
-    "gold_skulltulas.072": { "title": "Basement hall", "where": "In the flooded basement under the central room. Sink there with the Iron Boots." },
-    "gold_skulltulas.073": { "title": "Shell Blade room", "where": "On the middle floor, in the room behind a cracked wall where the Shell Blades are. Break the wall to get in." },
-    "gold_skulltulas.074": { "title": "Big tree hollow", "where": "As an adult at night, in the hollow of the big dead tree on the lake's island. Longshot." },
-    "gold_skulltulas.075": { "title": "Song of Storms grotto", "where": "As a child, play the Song of Storms by the tree near Talon's dead end to open a grotto, bomb the wall inside and use the Boomerang." },
-    "gold_skulltulas.076": { "title": "Like Like room", "where": "On the wall of the torch-lit room with the Like Like. Boomerang." },
-    "gold_skulltulas.077": { "title": "Dark corridor", "where": "Behind the first locked door, at the far end of a dark corridor. The Lenses of Truth show it; the Boomerang fetches it." },
-    "gold_skulltulas.078": { "title": "Skull niche crypt", "where": "Behind the second locked door, above the skull niches in the crypt. Lenses of Truth and Boomerang." },
-    "gold_skulltulas.079": { "title": "Chest room past the eye door", "where": "Above the chest in the room behind an eye door." },
-    "gold_skulltulas.080": { "title": "Falling spikes room", "where": "Beside the bars in the room with the falling spiked ceilings." },
-    "gold_skulltulas.081": { "title": "Fan corridor", "where": "At the end of the dark corridor with fans in the ceiling. Longshot." },
-    "gold_skulltulas.082": { "title": "Scarecrow before the boat", "where": "Before boarding the boat: play the Scarecrow's Song and Longshot up to the scarecrow." },
-    "gold_skulltulas.083": { "title": "Skull pots after the boat", "where": "After the boat ride: blow up the three skull pots with Bombs and the last one releases it." },
-    "gold_skulltulas.084": { "title": "Ruin by the tents", "where": "As an adult at night, on the ruined wall beside the carpenters' tents. Hookshot." },
-    "gold_skulltulas.085": { "title": "Rooftop tower", "where": "As an adult at night, on a tower wall reached across the fortress rooftops." },
-    "gold_skulltulas.086": { "title": "Underground ruin", "where": "As an adult, in the red-lit room under the desert's ruined building. Hookshot." },
-    "gold_skulltulas.087": { "title": "Cliff past the temple", "where": "At night, on the rock face north-west of the Spirit Temple. Longshot as an adult, Boomerang as a child." },
-    "gold_skulltulas.088": { "title": "Soft soil by the temple", "where": "As a child, drop bugs on the soft soil by the Spirit Temple wall." },
-    "gold_skulltulas.089": { "title": "Archery range target", "where": "As an adult at night, on a target pole at the horseback archery range. Hookshot." },
-    "gold_skulltulas.090": { "title": "Rock pillar", "where": "As an adult at night, on top of a rock pillar across the sand. Ride the Magic Bean plant, or Longshot it." },
-    "gold_skulltulas.091": { "title": "Metal fence", "where": "Child side: on the metal fence in the first-floor room with the grating. Boomerang." },
-    "gold_skulltulas.092": { "title": "Stair passage ceiling", "where": "Child side: on the ceiling of the passage above the stairs, after the small key chest. Boomerang." },
-    "gold_skulltulas.093": { "title": "Statue room corner", "where": "In a corner of the giant statue room, beside the statue." },
-    "gold_skulltulas.094": { "title": "Song of Time alcove", "where": "Adult side: play the Song of Time at the blue block in the boulder room to reveal an alcove." },
-    "gold_skulltulas.095": { "title": "Statue's hand", "where": "Adult side: on the giant statue's hand. Play the Scarecrow's Song and Longshot to the scarecrow." },
-    "gold_skulltulas.096": { "title": "Roof of Impa's house", "where": "As an adult at night, on the wall above Impa's house roof. Hookshot." },
-    "gold_skulltulas.097": { "title": "Footbridge overlook", "where": "As an adult at night, seen from the mossy overlook by the stone footbridge. Hookshot." },
-    "gold_skulltulas.098": { "title": "Tunnel on the south-west shore", "where": "As a child, at the end of a low tunnel on the lake's south-west shore." },
-    "gold_skulltulas.099": { "title": "Marsh grotto crate", "where": "Bomb open the grotto by the marsh south-east of Lon Lon Ranch. Kill the Skulltula there as a child; as an adult, break the crate inside for the gold one." },
-    "gold_skulltulas.100": { "title": "Snowfield cave", "where": "As an adult at night, lift the silver boulder, cross the snowfield and enter the second cave. The Lenses of Truth show the way; Hookshot the token." },
-
-    "heart_containers.heart_container_gohma": { "where": "Left behind by Gohma, the boss of the Great Deku Tree." },
-    "heart_containers.heart_container_king_dodongo": { "where": "Left behind by King Dodongo, the boss of Dodongo's Cavern." },
-    "heart_containers.heart_container_barinade": { "where": "Left behind by Barinade, the boss of Lord Jabu-Jabu's Belly." },
-    "heart_containers.heart_container_phantom_ganon": { "where": "Left behind by Phantom Ganon, the boss of the Forest Temple." },
-    "heart_containers.heart_container_volvagia": { "where": "Left behind by Volvagia, the boss of the Fire Temple." },
-    "heart_containers.heart_container_morpha": { "where": "Left behind by Morpha, the boss of the Water Temple." },
-    "heart_containers.heart_container_bongo": { "where": "Left behind by Bongo Bongo, the boss of the Shadow Temple." },
-    "heart_containers.heart_container_twinrova": { "where": "Left behind by Twinrova, the boss of the Spirit Temple." },
-
-    "songs.zeldas_lullaby": { "where": "Impa teaches it in Hyrule Castle's courtyard after you meet Princess Zelda." },
-    "songs.suns_song": { "where": "Carved on the wall at the end of the Royal Family's Tomb in the graveyard. Zelda's Lullaby opens the tomb." },
-    "songs.eponas_song": { "where": "Malon teaches it at Lon Lon Ranch once Talon is back home." },
-    "songs.sarias_song": { "where": "Saria teaches it in the Sacred Forest Meadow, after you've met Zelda." },
-    "songs.song_of_time": { "where": "Zelda teaches it at the castle moat as she flees, once you have all three Spiritual Stones." },
-    "songs.song_of_storms": { "where": "The man in the Kakariko windmill teaches it to you as an adult." },
-    "songs.minuet_of_forest": { "where": "Sheik teaches it in the Sacred Forest Meadow." },
-    "songs.prelude_of_light": { "where": "Sheik teaches it in the Temple of Time after the Forest Temple." },
-    "songs.bolero_of_fire": { "where": "Sheik teaches it in Death Mountain Crater." },
-    "songs.serenade_of_water": { "where": "Sheik teaches it at the end of the Ice Cavern." },
-    "songs.nocturne_of_shadow": { "where": "Sheik teaches it in Kakariko Village after the Forest, Fire and Water Temples." },
-    "songs.requiem_of_spirit": { "where": "Sheik teaches it at the entrance of the Spirit Temple in the Desert Colossus." },
-    "songs.scarecrows_song": { "where": "Play a tune of your own for the scarecrow at Lake Hylia as a child, then play it back to him as an adult." },
-
-    "equipment.kokiri_sword": { "where": "In a chest in Kokiri Forest's training area, through the small crawlspace." },
-    "equipment.master_sword": { "where": "In the Temple of Time, behind the Door of Time. Opening it needs the three Spiritual Stones and the Song of Time." },
-    "equipment.giants_knife": { "where": "Sold by Medigoron in Goron City to an adult." },
-    "equipment.biggorons_sword": { "where": "Biggoron on the Death Mountain summit forges it at the end of the adult trading quest." },
-    "equipment.deku_shield": { "where": "Sold in the Kokiri Shop." },
-    "equipment.hylian_shield": { "where": "In a chest in one of the graveyard's graves, or sold in Castle Town." },
-    "equipment.mirror_shield": { "where": "In the Spirit Temple, on the adult side." },
-    "equipment.kokiri_tunic_heros_clothes": { "where": "You start the game wearing it." },
-    "equipment.goron_tunic": { "where": "Given or sold in Goron City once you've stopped the rolling Goron as an adult." },
-    "equipment.zora_tunic": { "where": "King Zora gives it as an adult once you thaw him with Blue Fire." },
-    "equipment.iron_boots": { "where": "In the Ice Cavern, after defeating the White Wolfos." },
-    "equipment.hover_boots": { "where": "In the Shadow Temple." },
-
-    "items.fairy_slingshot": { "where": "In the Great Deku Tree." },
-    "items.fairy_bow": { "where": "In the Forest Temple." },
-    "items.fire_arrow": { "where": "After the Water Temple, shoot an arrow into the rising sun from Lake Hylia's island." },
-    "items.ice_arrow": { "where": "At the end of the Gerudo Training Ground." },
-    "items.light_arrow": { "where": "Zelda gives them in the Temple of Time once you have the Shadow and Spirit Medallions." },
-    "items.boomerang": { "where": "In Lord Jabu-Jabu's Belly." },
-    "items.hookshot": { "where": "In the chest at the end of Dampé's race through his tomb, as an adult." },
-    "items.longshot": { "where": "In the Water Temple, after Dark Link." },
-    "items.megaton_hammer": { "where": "In the Fire Temple." },
-    "items.gorons_bracelet": { "where": "Darunia gives it in Goron City after you play Saria's Song for him." },
-    "items.silver_gauntlets": { "where": "In the Spirit Temple, found by young Link on the child side." },
-    "items.golden_gauntlets": { "where": "In Ganon's Castle, in the Shadow trial area. The Lenses of Truth show the way." },
-    "items.bomb_bag": { "where": "In Dodongo's Cavern." },
-    "items.bombchus": { "where": "From the Bombchu Shop in Castle Town (open at night after King Dodongo), Bombchu Bowling, or the 40-token Skulltula reward." },
-    "items.deku_sticks": { "where": "From the Deku Babas around Kokiri Forest, or the Kokiri Shop." },
-    "items.deku_nuts": { "where": "Around Kokiri Forest and the Great Deku Tree, or the Kokiri Shop." },
-    "items.dins_fire": { "where": "The Great Fairy on the Death Mountain summit gives it. She's the first fairy you can meet." },
-    "items.farores_wind": { "where": "The Great Fairy at Zora's Fountain gives it." },
-    "items.nayrus_love": { "where": "The Great Fairy at the Desert Colossus gives it." },
-    "items.double_magic": { "where": "The Great Fairy in Death Mountain Crater doubles your magic." },
-    "items.lenses_of_truth": { "where": "At the bottom of the Bottom of the Well, after defeating Dead Hand." },
-    "items.silver_scale": { "where": "The prize of the diving game in Zora's Domain, as a child." },
-    "items.golden_scale": { "where": "The adult prize at the fishing pond by Lake Hylia." },
-    "items.echo_gem": { "where": "The reward for 20 Gold Skulltula tokens at the House of Skulltula. It helps you find Gold Skulltulas." },
-    "items.fairy_ocarina": { "where": "Saria gives it to you on the bridge as you leave Kokiri Forest." },
-    "items.ocarina_of_time": { "where": "Zelda leaves it in the castle moat as she flees, once you have all three Spiritual Stones." },
-    "items.magic_bean": { "where": "Sold by the Bean Seller in Zora's River." },
-
-    "key_items.gerudo_membership_card": { "where": "Given at Gerudo Fortress once you've freed all four carpenters." },
-
-    "masks.keaton_mask": { "where": "Borrow it from the Happy Mask Shop and sell it to the guard at Kakariko's gate to Death Mountain." },
-    "masks.skull_mask": { "where": "Borrow it from the Happy Mask Shop and sell it to the Skull Kid in the Lost Woods." },
-    "masks.spooky_mask": { "where": "Borrow it from the Happy Mask Shop and sell it to the boy in the graveyard." },
-    "masks.bunny_hood": { "where": "Borrow it from the Happy Mask Shop and sell it to the running man in Hyrule Field." },
-    "masks.mask_of_truth": { "where": "The Happy Mask Shop lends it once you've paid for the Bunny Hood." },
-
-    "bottles.potion_shop_bottle": { "where": "In Castle Town, catch the bug that got away from the Potion Shop. New in the remake." },
-    "bottles.cucco_lady_bottle": { "where": "The Cucco Lady in Kakariko gives it once you've brought all seven Cuccos back to her pen." },
-    "bottles.lon_lon_milk_bottle_talon": { "where": "Talon's prize at Lon Lon Ranch for winning his Cucco game, once he's back home." },
-    "bottles.rutos_letter_bottle": { "where": "Found underwater at Lake Hylia as a child. Show the letter to King Zora." },
-    "bottles.poe_collector_bottle": { "where": "The Poe Collector in Castle Town's ruins gives it once you've sold him five Big Poes." },
-
-    "great_fairies.death_mountain_summit_magic_meter_dins_fire": { "where": "In the fountain behind the cracked wall on the Death Mountain summit. Play Zelda's Lullaby. She gives magic and Din's Fire. Her fee is 25 Rupees." },
-    "great_fairies.hyrule_castle_grounds_child_enhanced_charged_spin_attack": { "where": "In the fountain behind a boulder near Hyrule Castle, as a child. Play Zelda's Lullaby. She only appears once you have Din's Fire. Her fee is 50 Rupees." },
-    "great_fairies.zoras_fountain_farores_wind": { "where": "In the fountain behind a cracked wall in Zora's Fountain. Play Zelda's Lullaby. She only appears once you have Din's Fire. Her fee is 100 Rupees." },
-    "great_fairies.death_mountain_crater_double_magic": { "where": "In the fountain behind a wall in Death Mountain Crater that the Megaton Hammer breaks. Play Zelda's Lullaby. She only appears once you have Din's Fire. Her fee is 200 Rupees." },
-    "great_fairies.desert_colossus_nayrus_love": { "where": "In the fountain behind a cracked wall at the Desert Colossus. Play Zelda's Lullaby. She only appears once you have Din's Fire. Her fee is 300 Rupees." },
-    "great_fairies.outside_ganons_castle_adult_double_defense_halved_damage": { "where": "In the fountain outside Ganon's Castle, behind a huge rock the Golden Gauntlets lift. Play Zelda's Lullaby. She only appears once you have Din's Fire. Her fee is 500 Rupees." },
-
-    "capacity.kokiri_wallet": { "where": "You start with it. It holds 200 Rupees." },
-    "capacity.adults_wallet": { "where": "The reward for 10 Gold Skulltula tokens. It holds 500 Rupees." },
-    "capacity.giants_wallet": { "where": "The reward for 30 Gold Skulltula tokens. It holds 1,000 Rupees." },
-    "capacity.bomb_bag": { "where": "Your first Bomb Bag, found in Dodongo's Cavern." },
-    "capacity.bigger_bomb_bag": { "where": "Stop the rolling Goron in Goron City with a Bomb, as a child. If you've already won the Bombchu Bowling bag, this one is the biggest instead." },
-    "capacity.biggest_bomb_bag": { "where": "A Bombchu Bowling prize. Whichever bag upgrade you get second is the biggest." },
-    "capacity.bigger_deku_seed_bag": { "where": "Hit every target in the Lost Woods slingshot game, as a child." },
-    "capacity.biggest_deku_seed_bag": { "where": "Win the Castle Town shooting gallery, as a child. Whichever seed bag upgrade you get second is the biggest." },
-    "capacity.bigger_quiver": { "where": "Win the Kakariko shooting gallery, as an adult." },
-    "capacity.biggest_quiver": { "where": "Score high at the Gerudo horseback archery range. Whichever quiver upgrade you get second is the biggest." },
-    "capacity.deku_stick_capacity_20": { "where": "Buy it from the Business Scrub near the Lost Woods bridge, as a child." },
-    "capacity.deku_stick_capacity_30": { "where": "Wear the Skull Mask on the Deku Theater stage in the Lost Woods." },
-    "capacity.deku_nut_capacity_30": { "where": "Buy it from the Business Scrub in the Sacred Forest Meadow grotto that the Song of Storms opens." },
-    "capacity.deku_nut_capacity_40": { "where": "Wear the Mask of Truth on the Deku Theater stage in the Lost Woods." },
-
-    "stones_medallions.kokiris_emerald": { "where": "The Great Deku Tree gives it after you defeat Gohma." },
-    "stones_medallions.gorons_ruby": { "where": "Darunia gives it after you defeat King Dodongo." },
-    "stones_medallions.zoras_sapphire": { "where": "Princess Ruto gives it after you defeat Barinade." },
-    "stones_medallions.light_medallion": { "where": "Rauru gives it in the Chamber of Sages when you first become an adult." },
-    "stones_medallions.forest_medallion": { "where": "Saria gives it after you defeat Phantom Ganon." },
-    "stones_medallions.fire_medallion": { "where": "Darunia gives it after you defeat Volvagia." },
-    "stones_medallions.water_medallion": { "where": "Ruto gives it after you defeat Morpha." },
-    "stones_medallions.shadow_medallion": { "where": "Impa gives it after you defeat Bongo Bongo." },
-    "stones_medallions.spirit_medallion": { "where": "Nabooru gives it after you defeat Twinrova." },
-
-    "dungeons.great_deku_tree": { "where": "Inside the Great Deku Tree, in Kokiri Forest." },
-    "dungeons.dodongos_cavern": { "where": "On Death Mountain Trail." },
-    "dungeons.lord_jabu_jabus_belly": { "where": "Inside Lord Jabu-Jabu, in Zora's Fountain. Give him a fish to get in." },
-    "dungeons.forest_temple": { "where": "Beyond the Sacred Forest Meadow, as an adult." },
-    "dungeons.fire_temple": { "where": "Inside Death Mountain Crater, as an adult." },
-    "dungeons.ice_cavern": { "where": "In the frozen Zora's Fountain, as an adult. Finished when you get the Iron Boots." },
-    "dungeons.water_temple": { "where": "At the bottom of Lake Hylia, as an adult." },
-    "dungeons.bottom_of_the_well": { "where": "Under Kakariko's well, as a child, once the well is drained. Finished when you get the Lenses of Truth." },
-    "dungeons.shadow_temple": { "where": "Below the graveyard, as an adult." },
-    "dungeons.spirit_temple": { "where": "At the Desert Colossus, with parts for both ages." },
-    "dungeons.gerudo_training_ground": { "where": "In Gerudo Fortress, as an adult with the Gerudo Membership Card. Finished when you get the Ice Arrows." },
-    "dungeons.ganons_castle": { "where": "Where Hyrule Castle stood, as an adult with the Shadow and Spirit Medallions." },
-
-    "bosses.gohma": { "where": "At the bottom of the Great Deku Tree." },
-    "bosses.king_dodongo": { "where": "At the end of Dodongo's Cavern." },
-    "bosses.barinade": { "where": "At the end of Lord Jabu-Jabu's Belly." },
-    "bosses.phantom_ganon": { "where": "At the end of the Forest Temple." },
-    "bosses.volvagia": { "where": "At the end of the Fire Temple." },
-    "bosses.morpha": { "where": "At the end of the Water Temple." },
-    "bosses.bongo": { "where": "At the end of the Shadow Temple." },
-    "bosses.twinrova": { "where": "At the end of the Spirit Temple." },
-    "bosses.ganondorf": { "where": "At the top of Ganon's Castle." },
-    "bosses.ganon": { "where": "In the ruins of Ganon's Castle, the final battle." },
-
-    "mini_bosses.big_octo": { "where": "In Lord Jabu-Jabu's Belly." },
-    "mini_bosses.great_moblin": { "where": "In the Sacred Forest Meadow, as an adult." },
-    "mini_bosses.poe_sisters": { "where": "In the Forest Temple: the four sisters who took the torches' flames." },
-    "mini_bosses.flare_dancer": { "where": "In the Fire Temple." },
-    "mini_bosses.white_wolfos": { "where": "In the Ice Cavern, guarding the Iron Boots." },
-    "mini_bosses.dark_link": { "where": "In the Water Temple." },
-    "mini_bosses.dead_hand": { "where": "At the bottom of the Bottom of the Well." },
-    "mini_bosses.gerudo_guards_carpenter_cells": { "where": "The Gerudo guards at each carpenter's cell in Gerudo Fortress." },
-    "mini_bosses.iron_knuckle": { "where": "In the Spirit Temple." },
-    "mini_bosses.iron_knuckle_nabooru": { "where": "In the Spirit Temple: the Iron Knuckle that turns out to be Nabooru." },
-
-    "side_quests.malons_friend": { "where": "At Lon Lon Ranch: learn Epona's Song from Malon as a child, then win Epona from Ingo as an adult." },
-    "side_quests.happy_mask_shopkeeper": { "where": "In Castle Town: borrow masks from the Happy Mask Shop, sell them to their buyers and pay the shop back." },
-    "side_quests.to_the_great_fairy": { "where": "Find the Great Fairy on the Death Mountain summit and receive magic and Din's Fire." },
-    "side_quests.stir_the_scarecrows_soul": { "where": "At Lake Hylia: teach the scarecrow a tune as a child and play it back to him as an adult." },
-    "side_quests.from_a_pocket_egg_comes": { "where": "The adult trading quest, from the Cucco Lady's Pocket Egg to Biggoron's Sword." },
-    "side_quests.broken_windmill_dry_well": { "where": "In Kakariko: learn the Song of Storms in the windmill as an adult, then play it there as a child to drain the well." },
-    "big_poes.001": { "where": "By the sign at the entrance of the ruined bridge in Hyrule Field." },
-    "big_poes.002": { "where": "In the open field between Lon Lon Ranch and Hyrule Castle." },
-    "big_poes.003": { "where": "At the entrance of Lon Lon Ranch, by the tree standing on the path." },
-    "big_poes.004": { "where": "Behind Lon Lon Ranch." },
-    "big_poes.005": { "where": "At the base of the hill that climbs up to Gerudo Valley." },
-    "big_poes.006": { "where": "On the hill toward Gerudo Valley, at the spot closest to Lon Lon Ranch." },
-    "big_poes.007": { "where": "In the woods just south of Lon Lon Ranch." },
-    "big_poes.008": { "where": "In the field south of the crab-shaped watering hole." },
-    "big_poes.009": { "where": "Just left (south) of the path leading into Kokiri Forest." },
-    "big_poes.010": { "where": "In the field between Lon Lon Ranch and Kokiri Forest." },
-
-    "skulltula_rewards.10_tokens_adults_wallet": { "where": "At the House of Skulltula in Kakariko, for 10 tokens." },
-    "skulltula_rewards.20_tokens_echo_gem": { "where": "At the House of Skulltula in Kakariko, for 20 tokens." },
-    "skulltula_rewards.30_tokens_giants_wallet": { "where": "At the House of Skulltula in Kakariko, for 30 tokens." },
-    "skulltula_rewards.40_tokens_bombchus_20": { "where": "At the House of Skulltula in Kakariko, for 40 tokens." },
-    "skulltula_rewards.50_tokens_piece_of_heart": { "where": "At the House of Skulltula in Kakariko, for 50 tokens." },
-    "skulltula_rewards.100_tokens_gold_rupee_200_rupees_repeatable": { "where": "At the House of Skulltula in Kakariko, once all 100 tokens are in. Come back for more Rupees any time." },
-
-    "child_trade.weird_egg": { "where": "Malon gives it outside Hyrule Castle. It hatches into a Cucco." },
-    "child_trade.wake_up_cucco": { "where": "The Weird Egg's Cucco. Use it to wake Talon by the castle." },
-    "child_trade.zeldas_letter": { "where": "Princess Zelda gives it in the castle courtyard. Show it to the guard at Kakariko's gate to Death Mountain." },
-
-    "adult_trade.pocket_egg": { "where": "From the Cucco Lady in Kakariko, as an adult. It hatches overnight." },
-    "adult_trade.pocket_cucco": { "where": "Hatched from the Pocket Egg. Wake Talon with it in Kakariko, then return it to the Cucco Lady." },
-    "adult_trade.cojiro": { "where": "From the Cucco Lady. Take it to the man in the Lost Woods." },
-    "adult_trade.odd_mushroom": { "where": "From the man in the Lost Woods. Take it to the old woman in Kakariko's Potion Shop before it spoils." },
-    "adult_trade.odd_potion": { "where": "From the old woman in the Potion Shop. Take it to the girl in the Lost Woods." },
-    "adult_trade.poachers_saw": { "where": "From the girl in the Lost Woods. Take it to the head carpenter in Gerudo Valley." },
-    "adult_trade.broken_gorons_sword": { "where": "From the head carpenter in Gerudo Valley. Take it to Biggoron on the Death Mountain summit." },
-    "adult_trade.prescription": { "where": "From Biggoron. Take it to King Zora in Zora's Domain." },
-    "adult_trade.eyeball_frog": { "where": "From King Zora. Take it to the scientist at the Lakeside Laboratory before time runs out." },
-    "adult_trade.worlds_finest_eye_drops": { "where": "From the Lakeside Laboratory scientist. Take them to Biggoron before time runs out." },
-    "adult_trade.claim_check": { "where": "From Biggoron. Come back after a few days to collect his sword." },
-
-    "dungeon_items.great_deku_tree_map": { "where": "In a chest in the Great Deku Tree." },
-    "dungeon_items.great_deku_tree_compass": { "where": "In a chest in the Great Deku Tree." },
-    "dungeon_items.dodongos_cavern_map": { "where": "In a chest in Dodongo's Cavern." },
-    "dungeon_items.dodongos_cavern_compass": { "where": "In a chest in Dodongo's Cavern." },
-    "dungeon_items.lord_jabu_jabus_belly_map": { "where": "In Lord Jabu-Jabu's Belly." },
-    "dungeon_items.lord_jabu_jabus_belly_compass": { "where": "In Lord Jabu-Jabu's Belly." },
-    "dungeon_items.forest_temple_map": { "where": "In a chest in the Forest Temple." },
-    "dungeon_items.forest_temple_compass": { "where": "In a chest in the Forest Temple." },
-    "dungeon_items.fire_temple_map": { "where": "In a chest in the Fire Temple." },
-    "dungeon_items.fire_temple_compass": { "where": "In a chest in the Fire Temple." },
-    "dungeon_items.water_temple_map": { "where": "In a chest in the Water Temple." },
-    "dungeon_items.water_temple_compass": { "where": "In a chest in the Water Temple." },
-    "dungeon_items.shadow_temple_map": { "where": "In a chest in the Shadow Temple." },
-    "dungeon_items.shadow_temple_compass": { "where": "In a chest in the Shadow Temple." },
-    "dungeon_items.spirit_temple_map": { "where": "In a chest in the Spirit Temple." },
-    "dungeon_items.spirit_temple_compass": { "where": "In a chest in the Spirit Temple." },
-    "dungeon_items.ice_cavern_map": { "where": "In a chest in the Ice Cavern, behind red ice that Blue Fire melts." },
-    "dungeon_items.ice_cavern_compass": { "where": "In a chest in the Ice Cavern." },
-    "dungeon_items.bottom_of_the_well_map": { "where": "In the Bottom of the Well." },
-    "dungeon_items.bottom_of_the_well_compass": { "where": "In the Bottom of the Well. The Lenses of Truth help find it." },
-    "dungeon_items.forest_temple_boss_key": { "where": "In the Forest Temple's big chest." },
-    "dungeon_items.fire_temple_boss_key": { "where": "In the Fire Temple's big chest." },
-    "dungeon_items.water_temple_boss_key": { "where": "In the Water Temple's big chest, past the boulder corridor." },
-    "dungeon_items.shadow_temple_boss_key": { "where": "In the Shadow Temple's big chest." },
-    "dungeon_items.spirit_temple_boss_key": { "where": "In the Spirit Temple's big chest." },
-    "dungeon_items.ganons_castle_boss_key": { "where": "In Ganon's Castle, on the way up the tower." },
-
-    "amiibo_masks.young_link": { "where": "Scan the matching amiibo. Not needed for 100%." },
-    "amiibo_masks.young_zelda": { "where": "Scan the matching amiibo. Not needed for 100%." },
-    "extra_masks.zora_mask": { "where": "Cosmetic remake extra; where to get it is not recorded yet. Not needed for 100%." },
-    "extra_masks.gerudo_mask": { "where": "Cosmetic remake extra; where to get it is not recorded yet. Not needed for 100%." },
-    "room_keys.forest_temple_1": { "where": "A small key in a room of the Forest Temple." },
-    "room_keys.forest_temple_2": { "where": "A small key in a room of the Forest Temple." },
-    "room_keys.forest_temple_3": { "where": "A small key in a room of the Forest Temple." },
-    "room_keys.forest_temple_4": { "where": "A small key in a room of the Forest Temple." },
-    "room_keys.forest_temple_5": { "where": "A small key in a room of the Forest Temple." },
-    "room_keys.fire_temple_1": { "where": "A small key in a room of the Fire Temple." },
-    "room_keys.fire_temple_2": { "where": "A small key in a room of the Fire Temple." },
-    "room_keys.fire_temple_3": { "where": "A small key in a room of the Fire Temple." },
-    "room_keys.fire_temple_4": { "where": "A small key in a room of the Fire Temple." },
-    "room_keys.fire_temple_5": { "where": "A small key in a room of the Fire Temple." },
-    "room_keys.fire_temple_6": { "where": "A small key in a room of the Fire Temple." },
-    "room_keys.fire_temple_7": { "where": "A small key in a room of the Fire Temple." },
-    "room_keys.fire_temple_8": { "where": "A small key in a room of the Fire Temple." },
-    "room_keys.water_temple_1": { "where": "A small key in a room of the Water Temple." },
-    "room_keys.water_temple_2": { "where": "A small key in a room of the Water Temple." },
-    "room_keys.water_temple_3": { "where": "A small key in a room of the Water Temple." },
-    "room_keys.water_temple_4": { "where": "A small key in a room of the Water Temple." },
-    "room_keys.water_temple_5": { "where": "A small key in a room of the Water Temple." },
-    "room_keys.water_temple_6": { "where": "A small key in a room of the Water Temple." },
-    "room_keys.water_temple_7": { "where": "A small key in a room of the Water Temple." },
-    "room_keys.bottom_of_the_well_1": { "where": "The small key in the Bottom of the Well that has its own pickup flag." },
-    "room_keys.gerudo_fortress_1": { "where": "A small key in the Gerudo Fortress." },
-    "room_keys.gerudo_fortress_2": { "where": "A small key in the Gerudo Fortress." },
-    "room_keys.gerudo_fortress_3": { "where": "A small key in the Gerudo Fortress." },
-    "room_keys.gerudo_fortress_4": { "where": "A small key in the Gerudo Fortress." }
+    "heart_pieces.001": {
+      "title": "Man on the roof",
+      "where": "A man lying on a rooftop gives it to you. As a child, carry a Cucco up to the ledge behind the windmill and glide over; as an adult, Hookshot up."
+    },
+    "heart_pieces.002": {
+      "title": "Dampé's gravedigging tour",
+      "where": "As a child at night, pay Dampé to dig in the graveyard's soft ground. Keep paying for digs until the piece turns up."
+    },
+    "heart_pieces.003": {
+      "title": "Inside the stone tower",
+      "where": "As a child, push the crates aside in the ranch's stone tower and crawl through to the round room behind them."
+    },
+    "heart_pieces.004": {
+      "title": "Chest on the Cucco ledge",
+      "where": "In a chest on a ledge partway down the valley. Glide there with a Cucco as a child, or Longshot over as an adult."
+    },
+    "heart_pieces.005": {
+      "title": "Behind the waterfall",
+      "where": "On a ledge behind the waterfall near the valley's entrance. Drop down to it from the path above."
+    },
+    "heart_pieces.006": {
+      "title": "Fishing pond (child prize)",
+      "where": "Catch a big enough fish as a child at the fishing pond by Lake Hylia."
+    },
+    "heart_pieces.007": {
+      "title": "Richard the lost dog",
+      "where": "As a child at night, find the dog Richard running around the back alley and lead him home to his owner."
+    },
+    "heart_pieces.008": {
+      "title": "Skull Kid's ocarina game",
+      "where": "As a child, stand on the stump near the entrance to the Lost Woods and repeat the Skull Kid's tunes. Win three rounds."
+    },
+    "heart_pieces.009": {
+      "title": "Skull Kid's song",
+      "where": "As a child, play Saria's Song for the Skull Kid sitting on a stump in the Lost Woods."
+    },
+    "heart_pieces.010": {
+      "title": "Spinning pot",
+      "where": "As a child, light every torch on Goron City's bottom floor, then drop a Bomb (or a Bomb Flower) into the big spinning pot."
+    },
+    "heart_pieces.011": {
+      "title": "Ledge below the crater entrance",
+      "where": "From the summit entrance, climb down the wall to a hidden ledge. A child can grab it before the heat gets too much; as an adult, wear the Goron Tunic."
+    },
+    "heart_pieces.012": {
+      "title": "Rooftop behind Impa's house",
+      "where": "On the roof above Impa's cow pen. As a child, let Kaepora Gaebora carry you down from the Death Mountain summit (he only offers once you have Din's Fire); as an adult, Hookshot up."
+    },
+    "heart_pieces.013": {
+      "title": "Bombchu Bowling",
+      "where": "One of the prizes at the Bombchu Bowling Alley. The alley opens after you defeat King Dodongo."
+    },
+    "heart_pieces.014": {
+      "title": "Raised platform",
+      "where": "On top of a pillar near the start of the river. Glide there with a Cucco as a child, or use the Hover Boots as an adult."
+    },
+    "heart_pieces.015": {
+      "title": "Ledge by the waterfall",
+      "where": "On a ledge near the waterfall to Zora's Domain. Glide there with a Cucco as a child, or use the Hover Boots as an adult."
+    },
+    "heart_pieces.016": {
+      "title": "Torch chest",
+      "where": "Light every torch around Zora's Domain with a burning Deku Stick to make a chest appear."
+    },
+    "heart_pieces.017": {
+      "title": "Magic Bean platform",
+      "where": "Plant a Magic Bean in the soft soil by the graveyard wall as a child, then ride the plant as an adult to the platform with the piece."
+    },
+    "heart_pieces.018": {
+      "title": "Inside the windmill",
+      "where": "On a ledge high inside the windmill. As a child, the Boomerang can fetch it; as an adult, come up through the tunnel from Dampé's grave."
+    },
+    "heart_pieces.019": {
+      "title": "Dampé's race",
+      "where": "As an adult, race Dampé's ghost through his tomb in under a minute. The chest at the end holds the piece."
+    },
+    "heart_pieces.020": {
+      "title": "House of Skulltula: 50 tokens",
+      "where": "The reward for bringing 50 Gold Skulltula tokens to the House of Skulltula."
+    },
+    "heart_pieces.021": {
+      "title": "Laboratory roof",
+      "where": "On the roof of the Lakeside Laboratory. Ride the Magic Bean planted beside the lab as an adult, or use the Scarecrow's Song with the Hookshot."
+    },
+    "heart_pieces.022": {
+      "title": "Laboratory diving game",
+      "where": "Reach the bottom of the laboratory's deep pool for the scientist. You'll need the Golden Scale."
+    },
+    "heart_pieces.023": {
+      "title": "Above Dodongo's Cavern",
+      "where": "On a ledge above the cavern entrance. Plant a Magic Bean in the soil there as a child and ride it as an adult."
+    },
+    "heart_pieces.024": {
+      "title": "Bean pillar",
+      "where": "On a tall pillar in the middle of the crater. Plant a Magic Bean in the crater's soil as a child (warp in with the Bolero of Fire), then ride it as an adult."
+    },
+    "heart_pieces.025": {
+      "title": "Iceberg",
+      "where": "As an adult, hop across the floating ice to the farthest iceberg in Zora's Fountain."
+    },
+    "heart_pieces.026": {
+      "title": "Bottom of the fountain",
+      "where": "As an adult, sink to the bottom of Zora's Fountain with the Iron Boots, wearing the Zora Tunic."
+    },
+    "heart_pieces.027": {
+      "title": "Frogs: Song of Storms",
+      "where": "As a child, play the Song of Storms to the frogs on the log in Zora's River."
+    },
+    "heart_pieces.028": {
+      "title": "Frogs: bug-catching game",
+      "where": "As a child, play all six of the frogs' songs, then win their bug-catching game."
+    },
+    "heart_pieces.029": {
+      "title": "Treasure Chest Shop",
+      "where": "As a child at night, win the Treasure Chest Shop's game. The Lenses of Truth show which chests to open."
+    },
+    "heart_pieces.030": {
+      "title": "Rooftop chest",
+      "where": "In a chest on a high rooftop of the fortress. Get there with the Scarecrow's Song and Hookshot, the Longshot or the Hover Boots."
+    },
+    "heart_pieces.031": {
+      "title": "Horseback archery",
+      "where": "Score 1,000 points at the Gerudo horseback archery range, riding Epona."
+    },
+    "heart_pieces.032": {
+      "title": "Bean platform",
+      "where": "Plant a Magic Bean in the soil by the Spirit Temple as a child (warp in with the Requiem of Spirit), then ride it as an adult to the piece."
+    },
+    "heart_pieces.033": {
+      "title": "Hidden grave chest",
+      "where": "Pull back one of the graveyard's gravestones (as a child, only at night) and drop into the grave. The chest is at the end."
+    },
+    "heart_pieces.034": {
+      "title": "Password Business Scrub",
+      "where": "As an adult, read the Fairy Note on the tree near the castle drawbridge for a password. Then, as a child, bomb the cracked ground nearby and buy the piece from the scrub for 100 Rupees."
+    },
+    "heart_pieces.035": {
+      "title": "Chest by the Gerudo Valley road",
+      "where": "As an adult, read the Fairy Note beside the chest under the red cliffs near Gerudo Valley. Then open the chest as a child."
+    },
+    "heart_pieces.036": {
+      "title": "Business Scrub",
+      "where": "As a child, from the summit entrance go left and drop down to the ledge below. The scrub there sells the piece for 100 Rupees."
+    },
+    "gold_skulltulas.001": {
+      "title": "Compass room alcove",
+      "where": "On the third floor, in the alcove the raised platforms lead to, near the Compass chest."
+    },
+    "gold_skulltulas.002": {
+      "title": "Basement vines",
+      "where": "On the vine wall in the basement. Knock it down with the Slingshot or the Boomerang."
+    },
+    "gold_skulltulas.003": {
+      "title": "By the webbed grate",
+      "where": "In the basement, next to the grate covered by a spider web."
+    },
+    "gold_skulltulas.004": {
+      "title": "Back room",
+      "where": "In the basement's back room: burn the web, bomb the wall behind it and fetch the token with the Boomerang."
+    },
+    "gold_skulltulas.005": {
+      "title": "Guard house crate",
+      "where": "As a child, roll into the crate in the guard house storeroom by the town gate."
+    },
+    "gold_skulltulas.006": {
+      "title": "Garden palm tree",
+      "where": "As a child, roll into the palm tree in the garden at the foot of the castle wall."
+    },
+    "gold_skulltulas.007": {
+      "title": "House under construction",
+      "where": "As a child at night, on the brick wall of the unfinished house."
+    },
+    "gold_skulltulas.008": {
+      "title": "House of Skulltula wall",
+      "where": "As a child at night, on the wall beside the House of Skulltula's door."
+    },
+    "gold_skulltulas.009": {
+      "title": "Village square tree",
+      "where": "As a child at night, roll into the tall tree in the village square."
+    },
+    "gold_skulltulas.010": {
+      "title": "Watchtower ladder",
+      "where": "As a child at night, near the top of the watchtower ladder. Shoot it down with the Slingshot, then climb up."
+    },
+    "gold_skulltulas.011": {
+      "title": "Soft soil",
+      "where": "As a child, drop bugs on the soft soil by the graveyard wall."
+    },
+    "gold_skulltulas.012": {
+      "title": "Wall by the gate",
+      "where": "As a child at night, under the eaves of the house near the gate to Death Mountain."
+    },
+    "gold_skulltulas.013": {
+      "title": "Tree near the silo",
+      "where": "As a child, roll into the tree by the stone wall near the ranch's silo."
+    },
+    "gold_skulltulas.014": {
+      "title": "Soft soil",
+      "where": "As a child, drop bugs on the soft soil by the barrels at the lakeside house."
+    },
+    "gold_skulltulas.015": {
+      "title": "Soft soil by the waterfall",
+      "where": "As a child, glide with a Cucco into the cave beside the waterfall and drop bugs on the soil there."
+    },
+    "gold_skulltulas.016": {
+      "title": "Tree by the Know-It-All house",
+      "where": "As a child at night, on the big tree trunk beside the houses."
+    },
+    "gold_skulltulas.017": {
+      "title": "Soft soil by the bridge",
+      "where": "As a child, drop bugs on the soft soil near the first Business Scrub."
+    },
+    "gold_skulltulas.018": {
+      "title": "Soft soil by the theater",
+      "where": "As a child, drop bugs on the soft soil by the second Business Scrub, near the Deku Theater."
+    },
+    "gold_skulltulas.019": {
+      "title": "Soft soil by the shop",
+      "where": "As a child, drop bugs on the soft soil behind the Kokiri Shop."
+    },
+    "gold_skulltulas.020": {
+      "title": "Soft soil by Dodongo's Cavern",
+      "where": "As a child, drop bugs on the soil in the little cave by the cavern entrance. The boulder in front of it breaks with a Bomb Flower, which needs the Goron's Bracelet."
+    },
+    "gold_skulltulas.021": {
+      "title": "Vine wall above the stairs",
+      "where": "On the climbing net above the stone stairs. Kill it with a ranged weapon, then climb up for the token."
+    },
+    "gold_skulltulas.022": {
+      "title": "Side room in the south-east",
+      "where": "In the small side room off the first floor's south-east corner."
+    },
+    "gold_skulltulas.023": {
+      "title": "Behind a bombable wall",
+      "where": "On the upper floor, in a side room with Dodongos behind a cracked wall. Bomb the wall to get in."
+    },
+    "gold_skulltulas.024": {
+      "title": "Room behind the block",
+      "where": "On the first floor: push the block away from the cracked wall, bomb it open and find the Skulltula on the back wall."
+    },
+    "gold_skulltulas.025": {
+      "title": "Entrance alcove crate",
+      "where": "As a child, in the first alcove on the right inside the crater, by a crate."
+    },
+    "gold_skulltulas.026": {
+      "title": "Cave behind a cracked rock",
+      "where": "Bomb the cracked rock by the trail above Kakariko to open a small cave."
+    },
+    "gold_skulltulas.027": {
+      "title": "Boulder maze crate",
+      "where": "As a child, bomb your way into the side cave in Goron City's boulder maze and break the crate."
+    },
+    "gold_skulltulas.028": {
+      "title": "Soft soil by the Bean Seller",
+      "where": "As a child, drop bugs on the soft soil next to the Bean Seller."
+    },
+    "gold_skulltulas.029": {
+      "title": "Below the crest stone",
+      "where": "As a child at night, under the overhang near the river's crest stone, by the vines."
+    },
+    "gold_skulltulas.030": {
+      "title": "Big tree",
+      "where": "As a child, roll into the big tree by the path in the south-east of the fountain."
+    },
+    "gold_skulltulas.031": {
+      "title": "Above the pot room",
+      "where": "On the first basement floor, at the top of the vine wall leading to a room with three pots."
+    },
+    "gold_skulltulas.032": {
+      "title": "Cavern ceiling",
+      "where": "On the ceiling of the first basement's dripping cavern. Bring it down with the Boomerang."
+    },
+    "gold_skulltulas.033": {
+      "title": "Dark archway",
+      "where": "Past the cavern ceiling one, in the dark passage towards Big Octo's room. Boomerang."
+    },
+    "gold_skulltulas.034": {
+      "title": "Vine pillar",
+      "where": "On top of a vine-wrapped pillar in a passage on the second floor."
+    },
+    "gold_skulltulas.035": {
+      "title": "Cliff above the log",
+      "where": "As a child at night, on the mossy cliff wall. Stand on the slanted ruin south-west of Jabu-Jabu and use the Boomerang."
+    },
+    "gold_skulltulas.036": {
+      "title": "Laboratory wall",
+      "where": "As a child at night, on the stone wall of the Lakeside Laboratory. Boomerang."
+    },
+    "gold_skulltulas.037": {
+      "title": "House window",
+      "where": "As a child at night, on the ranch house wall beside the entrance arch. Boomerang."
+    },
+    "gold_skulltulas.038": {
+      "title": "Stone tower vines",
+      "where": "At night, in the vines inside the stone tower near the roof. Boomerang as a child, Hookshot as an adult."
+    },
+    "gold_skulltulas.039": {
+      "title": "Grotto in the southern woods",
+      "where": "In a grotto in the woods south of Lon Lon Ranch. Blow open its entrance, deal with the big Skulltula, then fetch the gold one with the Boomerang or Hookshot."
+    },
+    "gold_skulltulas.040": {
+      "title": "Under the small bridge",
+      "where": "As a child at night, on the stone wall by the river channel under the wooden bridge. Boomerang."
+    },
+    "gold_skulltulas.041": {
+      "title": "Behind Dampé's hut",
+      "where": "As a child at night, on the wall behind Dampé's hut. Boomerang."
+    },
+    "gold_skulltulas.042": {
+      "title": "Lone tree",
+      "where": "Roll into the lone tree where the river ends, west of the Kokiri Forest entrance."
+    },
+    "gold_skulltulas.043": {
+      "title": "Ruined archway",
+      "where": "As an adult, on the ruined archway along the road to the castle. Hookshot."
+    },
+    "gold_skulltulas.044": {
+      "title": "Behind the House of the Twins",
+      "where": "As an adult at night, on the big tree behind the House of the Twins. Hookshot."
+    },
+    "gold_skulltulas.045": {
+      "title": "Ledge above the bean plant",
+      "where": "As an adult at night, on a high ledge. Ride the Magic Bean plant from the soil by the second Business Scrub."
+    },
+    "gold_skulltulas.046": {
+      "title": "Maze dead end",
+      "where": "As an adult at night, high on the wall at a dead end of the meadow's maze. Hookshot."
+    },
+    "gold_skulltulas.047": {
+      "title": "First room vines",
+      "where": "On the vines in the temple's first room. Hookshot it from the branch before the tunnel."
+    },
+    "gold_skulltulas.048": {
+      "title": "Main hall landing",
+      "where": "High on the wall above the landing off the main hall. Hookshot."
+    },
+    "gold_skulltulas.049": {
+      "title": "Ivy room",
+      "where": "In the ivy-covered room after the pool room. Hookshot."
+    },
+    "gold_skulltulas.050": {
+      "title": "Basement web corridor",
+      "where": "In the basement, behind a web in a dusty passage. Burn the web to reach it."
+    },
+    "gold_skulltulas.051": {
+      "title": "Courtyard scarecrow ledge",
+      "where": "On a high ledge in the east courtyard. Play the Scarecrow's Song and Hookshot to the scarecrow."
+    },
+    "gold_skulltulas.052": {
+      "title": "Cave above the scarecrow",
+      "where": "As an adult, in a small cave above the scarecrow. Play the Scarecrow's Song and Hookshot up, or use the Longshot."
+    },
+    "gold_skulltulas.053": {
+      "title": "Mesh walkway",
+      "where": "As an adult, high on the lava cave wall seen from the metal walkway. Hookshot."
+    },
+    "gold_skulltulas.054": {
+      "title": "Soft soil on the lava rim",
+      "where": "As a child, warp in with the Bolero of Fire and drop bugs on the soil by the lava."
+    },
+    "gold_skulltulas.055": {
+      "title": "Tile room idol",
+      "where": "Behind the Song of Time block, in the square-tiled room. Bomb the stone idol on the back wall."
+    },
+    "gold_skulltulas.056": {
+      "title": "Boulder maze wall",
+      "where": "In the boulder maze: bomb the cracked wall and the Skulltula is behind it."
+    },
+    "gold_skulltulas.057": {
+      "title": "Boulder pile",
+      "where": "Smash the pile of rocks with the Megaton Hammer."
+    },
+    "gold_skulltulas.058": {
+      "title": "Top of the scarecrow climb",
+      "where": "Play the Scarecrow's Song, Hookshot up to the scarecrow and climb to the corridor at the top."
+    },
+    "gold_skulltulas.059": {
+      "title": "Lava room wall",
+      "where": "Past the scarecrow climb, on the wall at the edge of the lava room. Hookshot."
+    },
+    "gold_skulltulas.060": {
+      "title": "Cave past the net slope",
+      "where": "As an adult at night, in the cave past the net slope near the summit. Break the rock with the Megaton Hammer."
+    },
+    "gold_skulltulas.061": {
+      "title": "Dark tunnel",
+      "where": "As an adult at night, in the dark tunnel towards Goron City. Break the rock with the Megaton Hammer."
+    },
+    "gold_skulltulas.062": {
+      "title": "Rocky ledge",
+      "where": "As an adult at night, on the cliff above a rocky ledge over the water. Hookshot."
+    },
+    "gold_skulltulas.063": {
+      "title": "Frozen bridge pillar",
+      "where": "As an adult at night, on a pillar by the frozen bridge. Hookshot."
+    },
+    "gold_skulltulas.064": {
+      "title": "First room",
+      "where": "High on the wall of the cavern's first big room, with the spinning blade. Hookshot."
+    },
+    "gold_skulltulas.065": {
+      "title": "Sliding block room",
+      "where": "On the ceiling of the room with the sliding ice-block puzzle. Hookshot."
+    },
+    "gold_skulltulas.066": {
+      "title": "Past the Compass chest",
+      "where": "High on the ice wall just past the Compass chest. Hookshot."
+    },
+    "gold_skulltulas.067": {
+      "title": "Rock arch",
+      "where": "As an adult at night, under the rock arch by the canyon path. Hookshot."
+    },
+    "gold_skulltulas.068": {
+      "title": "Laboratory cellar",
+      "where": "As an adult, in the laboratory's deep pool. Sink with the Iron Boots and Hookshot it."
+    },
+    "gold_skulltulas.069": {
+      "title": "Flooded cave",
+      "where": "Past the Longshot chest, follow the water passage to a dark flooded cave. Longshot."
+    },
+    "gold_skulltulas.070": {
+      "title": "Central pillar",
+      "where": "Up in the chamber inside the central pillar. Longshot."
+    },
+    "gold_skulltulas.071": {
+      "title": "Behind the waterfall",
+      "where": "In the boulder corridor by the Boss Key room, hidden behind a small waterfall. Longshot."
+    },
+    "gold_skulltulas.072": {
+      "title": "Basement hall",
+      "where": "In the flooded basement under the central room. Sink there with the Iron Boots."
+    },
+    "gold_skulltulas.073": {
+      "title": "Shell Blade room",
+      "where": "On the middle floor, in the room behind a cracked wall where the Shell Blades are. Break the wall to get in."
+    },
+    "gold_skulltulas.074": {
+      "title": "Big tree hollow",
+      "where": "As an adult at night, in the hollow of the big dead tree on the lake's island. Longshot."
+    },
+    "gold_skulltulas.075": {
+      "title": "Song of Storms grotto",
+      "where": "As a child, play the Song of Storms by the tree near Talon's dead end to open a grotto, bomb the wall inside and use the Boomerang."
+    },
+    "gold_skulltulas.076": {
+      "title": "Like Like room",
+      "where": "On the wall of the torch-lit room with the Like Like. Boomerang."
+    },
+    "gold_skulltulas.077": {
+      "title": "Dark corridor",
+      "where": "Behind the first locked door, at the far end of a dark corridor. The Lenses of Truth show it; the Boomerang fetches it."
+    },
+    "gold_skulltulas.078": {
+      "title": "Skull niche crypt",
+      "where": "Behind the second locked door, above the skull niches in the crypt. Lenses of Truth and Boomerang."
+    },
+    "gold_skulltulas.079": {
+      "title": "Chest room past the eye door",
+      "where": "Above the chest in the room behind an eye door."
+    },
+    "gold_skulltulas.080": {
+      "title": "Falling spikes room",
+      "where": "Beside the bars in the room with the falling spiked ceilings."
+    },
+    "gold_skulltulas.081": {
+      "title": "Fan corridor",
+      "where": "At the end of the dark corridor with fans in the ceiling. Longshot."
+    },
+    "gold_skulltulas.082": {
+      "title": "Scarecrow before the boat",
+      "where": "Before boarding the boat: play the Scarecrow's Song and Longshot up to the scarecrow."
+    },
+    "gold_skulltulas.083": {
+      "title": "Skull pots after the boat",
+      "where": "After the boat ride: blow up the three skull pots with Bombs and the last one releases it."
+    },
+    "gold_skulltulas.084": {
+      "title": "Ruin by the tents",
+      "where": "As an adult at night, on the ruined wall beside the carpenters' tents. Hookshot."
+    },
+    "gold_skulltulas.085": {
+      "title": "Rooftop tower",
+      "where": "As an adult at night, on a tower wall reached across the fortress rooftops."
+    },
+    "gold_skulltulas.086": {
+      "title": "Underground ruin",
+      "where": "As an adult, in the red-lit room under the desert's ruined building. Hookshot."
+    },
+    "gold_skulltulas.087": {
+      "title": "Cliff past the temple",
+      "where": "At night, on the rock face north-west of the Spirit Temple. Longshot as an adult, Boomerang as a child."
+    },
+    "gold_skulltulas.088": {
+      "title": "Soft soil by the temple",
+      "where": "As a child, drop bugs on the soft soil by the Spirit Temple wall."
+    },
+    "gold_skulltulas.089": {
+      "title": "Archery range target",
+      "where": "As an adult at night, on a target pole at the horseback archery range. Hookshot."
+    },
+    "gold_skulltulas.090": {
+      "title": "Rock pillar",
+      "where": "As an adult at night, on top of a rock pillar across the sand. Ride the Magic Bean plant, or Longshot it."
+    },
+    "gold_skulltulas.091": {
+      "title": "Metal fence",
+      "where": "Child side: on the metal fence in the first-floor room with the grating. Boomerang."
+    },
+    "gold_skulltulas.092": {
+      "title": "Stair passage ceiling",
+      "where": "Child side: on the ceiling of the passage above the stairs, after the small key chest. Boomerang."
+    },
+    "gold_skulltulas.093": {
+      "title": "Statue room corner",
+      "where": "In a corner of the giant statue room, beside the statue."
+    },
+    "gold_skulltulas.094": {
+      "title": "Song of Time alcove",
+      "where": "Adult side: play the Song of Time at the blue block in the boulder room to reveal an alcove."
+    },
+    "gold_skulltulas.095": {
+      "title": "Statue's hand",
+      "where": "Adult side: on the giant statue's hand. Play the Scarecrow's Song and Longshot to the scarecrow."
+    },
+    "gold_skulltulas.096": {
+      "title": "Roof of Impa's house",
+      "where": "As an adult at night, on the wall above Impa's house roof. Hookshot."
+    },
+    "gold_skulltulas.097": {
+      "title": "Footbridge overlook",
+      "where": "As an adult at night, seen from the mossy overlook by the stone footbridge. Hookshot."
+    },
+    "gold_skulltulas.098": {
+      "title": "Tunnel on the south-west shore",
+      "where": "As a child, at the end of a low tunnel on the lake's south-west shore."
+    },
+    "gold_skulltulas.099": {
+      "title": "Marsh grotto crate",
+      "where": "Bomb open the grotto by the marsh south-east of Lon Lon Ranch. Kill the Skulltula there as a child; as an adult, break the crate inside for the gold one."
+    },
+    "gold_skulltulas.100": {
+      "title": "Snowfield cave",
+      "where": "As an adult at night, lift the silver boulder, cross the snowfield and enter the second cave. The Lenses of Truth show the way; Hookshot the token."
+    },
+    "heart_containers.heart_container_gohma": {
+      "where": "Left behind by Gohma, the boss of the Great Deku Tree."
+    },
+    "heart_containers.heart_container_king_dodongo": {
+      "where": "Left behind by King Dodongo, the boss of Dodongo's Cavern."
+    },
+    "heart_containers.heart_container_barinade": {
+      "where": "Left behind by Barinade, the boss of Lord Jabu-Jabu's Belly."
+    },
+    "heart_containers.heart_container_phantom_ganon": {
+      "where": "Left behind by Phantom Ganon, the boss of the Forest Temple."
+    },
+    "heart_containers.heart_container_volvagia": {
+      "where": "Left behind by Volvagia, the boss of the Fire Temple."
+    },
+    "heart_containers.heart_container_morpha": {
+      "where": "Left behind by Morpha, the boss of the Water Temple."
+    },
+    "heart_containers.heart_container_bongo": {
+      "where": "Left behind by Bongo Bongo, the boss of the Shadow Temple."
+    },
+    "heart_containers.heart_container_twinrova": {
+      "where": "Left behind by Twinrova, the boss of the Spirit Temple."
+    },
+    "songs.zeldas_lullaby": {
+      "where": "Impa teaches it in Hyrule Castle's courtyard after you meet Princess Zelda."
+    },
+    "songs.suns_song": {
+      "where": "Carved on the wall at the end of the Royal Family's Tomb in the graveyard. Zelda's Lullaby opens the tomb."
+    },
+    "songs.eponas_song": {
+      "where": "Malon teaches it at Lon Lon Ranch once Talon is back home."
+    },
+    "songs.sarias_song": {
+      "where": "Saria teaches it in the Sacred Forest Meadow, after you've met Zelda."
+    },
+    "songs.song_of_time": {
+      "where": "Zelda teaches it at the castle moat as she flees, once you have all three Spiritual Stones."
+    },
+    "songs.song_of_storms": {
+      "where": "The man in the Kakariko windmill teaches it to you as an adult."
+    },
+    "songs.minuet_of_forest": {
+      "where": "Sheik teaches it in the Sacred Forest Meadow."
+    },
+    "songs.prelude_of_light": {
+      "where": "Sheik teaches it in the Temple of Time after the Forest Temple."
+    },
+    "songs.bolero_of_fire": {
+      "where": "Sheik teaches it in Death Mountain Crater."
+    },
+    "songs.serenade_of_water": {
+      "where": "Sheik teaches it at the end of the Ice Cavern."
+    },
+    "songs.nocturne_of_shadow": {
+      "where": "Sheik teaches it in Kakariko Village after the Forest, Fire and Water Temples."
+    },
+    "songs.requiem_of_spirit": {
+      "where": "Sheik teaches it at the entrance of the Spirit Temple in the Desert Colossus."
+    },
+    "songs.scarecrows_song": {
+      "where": "Play a tune of your own for the scarecrow at Lake Hylia as a child, then play it back to him as an adult."
+    },
+    "equipment.kokiri_sword": {
+      "where": "In a chest in Kokiri Forest's training area, through the small crawlspace."
+    },
+    "equipment.master_sword": {
+      "where": "In the Temple of Time, behind the Door of Time. Opening it needs the three Spiritual Stones and the Song of Time."
+    },
+    "equipment.giants_knife": {
+      "where": "Sold by Medigoron in Goron City to an adult."
+    },
+    "equipment.biggorons_sword": {
+      "where": "Biggoron on the Death Mountain summit forges it at the end of the adult trading quest."
+    },
+    "equipment.deku_shield": {
+      "where": "Sold in the Kokiri Shop."
+    },
+    "equipment.hylian_shield": {
+      "where": "In a chest in one of the graveyard's graves, or sold in Castle Town."
+    },
+    "equipment.mirror_shield": {
+      "where": "In the Spirit Temple, on the adult side."
+    },
+    "equipment.kokiri_tunic_heros_clothes": {
+      "where": "You start the game wearing it."
+    },
+    "equipment.goron_tunic": {
+      "where": "Given or sold in Goron City once you've stopped the rolling Goron as an adult."
+    },
+    "equipment.zora_tunic": {
+      "where": "King Zora gives it as an adult once you thaw him with Blue Fire."
+    },
+    "equipment.iron_boots": {
+      "where": "In the Ice Cavern, after defeating the White Wolfos."
+    },
+    "equipment.hover_boots": {
+      "where": "In the Shadow Temple."
+    },
+    "items.fairy_slingshot": {
+      "where": "In the Great Deku Tree."
+    },
+    "items.fairy_bow": {
+      "where": "In the Forest Temple."
+    },
+    "items.fire_arrow": {
+      "where": "After the Water Temple, shoot an arrow into the rising sun from Lake Hylia's island."
+    },
+    "items.ice_arrow": {
+      "where": "At the end of the Gerudo Training Ground."
+    },
+    "items.light_arrow": {
+      "where": "Zelda gives them in the Temple of Time once you have the Shadow and Spirit Medallions."
+    },
+    "items.boomerang": {
+      "where": "In Lord Jabu-Jabu's Belly."
+    },
+    "items.hookshot": {
+      "where": "In the chest at the end of Dampé's race through his tomb, as an adult."
+    },
+    "items.longshot": {
+      "where": "In the Water Temple, after Dark Link."
+    },
+    "items.megaton_hammer": {
+      "where": "In the Fire Temple."
+    },
+    "items.gorons_bracelet": {
+      "where": "Darunia gives it in Goron City after you play Saria's Song for him."
+    },
+    "items.silver_gauntlets": {
+      "where": "In the Spirit Temple, found by young Link on the child side."
+    },
+    "items.golden_gauntlets": {
+      "where": "In Ganon's Castle, in the Shadow trial area. The Lenses of Truth show the way."
+    },
+    "items.bomb_bag": {
+      "where": "In Dodongo's Cavern."
+    },
+    "items.bombchus": {
+      "where": "From the Bombchu Shop in Castle Town (open at night after King Dodongo), Bombchu Bowling, or the 40-token Skulltula reward."
+    },
+    "items.deku_sticks": {
+      "where": "From the Deku Babas around Kokiri Forest, or the Kokiri Shop."
+    },
+    "items.deku_nuts": {
+      "where": "Around Kokiri Forest and the Great Deku Tree, or the Kokiri Shop."
+    },
+    "items.dins_fire": {
+      "where": "The Great Fairy on the Death Mountain summit gives it. She's the first fairy you can meet."
+    },
+    "items.farores_wind": {
+      "where": "The Great Fairy at Zora's Fountain gives it."
+    },
+    "items.nayrus_love": {
+      "where": "The Great Fairy at the Desert Colossus gives it."
+    },
+    "items.double_magic": {
+      "where": "The Great Fairy in Death Mountain Crater doubles your magic."
+    },
+    "items.lenses_of_truth": {
+      "where": "At the bottom of the Bottom of the Well, after defeating Dead Hand."
+    },
+    "items.silver_scale": {
+      "where": "The prize of the diving game in Zora's Domain, as a child."
+    },
+    "items.golden_scale": {
+      "where": "The adult prize at the fishing pond by Lake Hylia."
+    },
+    "items.echo_gem": {
+      "where": "The reward for 20 Gold Skulltula tokens at the House of Skulltula. It helps you find Gold Skulltulas."
+    },
+    "items.fairy_ocarina": {
+      "where": "Saria gives it to you on the bridge as you leave Kokiri Forest."
+    },
+    "items.ocarina_of_time": {
+      "where": "Zelda leaves it in the castle moat as she flees, once you have all three Spiritual Stones."
+    },
+    "items.magic_bean": {
+      "where": "Sold by the Bean Seller in Zora's River."
+    },
+    "magic_beans_planted.001": {
+      "where": "The plot sits right next to the bean seller's hut at Zora's River."
+    },
+    "magic_beans_planted.002": {
+      "where": "On the east side of the Kokiri Shop."
+    },
+    "magic_beans_planted.003": {
+      "where": "In the northwest corner of the graveyard."
+    },
+    "magic_beans_planted.004": {
+      "where": "Behind the rock that blocks Dodongo's Cavern entrance, once it is blown up."
+    },
+    "magic_beans_planted.005": {
+      "where": "Just past the Kokiri Forest entrance, on the first path - left, then left again."
+    },
+    "magic_beans_planted.006": {
+      "where": "Deep in the Lost Woods - right, left, right, left, left from the entrance."
+    },
+    "magic_beans_planted.007": {
+      "where": "Beside the laboratory on the lake shore."
+    },
+    "magic_beans_planted.008": {
+      "where": "Swim down the right side of the second bridge and follow the shore path to the left."
+    },
+    "magic_beans_planted.009": {
+      "where": "To the south where the Bolero of Fire opens the crater."
+    },
+    "magic_beans_planted.010": {
+      "where": "On the left side of the Spirit Temple entrance."
+    },
+    "key_items.gerudo_membership_card": {
+      "where": "Given at Gerudo Fortress once you've freed all four carpenters."
+    },
+    "masks.keaton_mask": {
+      "where": "Borrow it from the Happy Mask Shop and sell it to the guard at Kakariko's gate to Death Mountain."
+    },
+    "masks.keaton_mask_sold": {
+      "where": "Sell it to the guard at Kakariko's gate."
+    },
+    "masks.skull_mask": {
+      "where": "Borrow it from the Happy Mask Shop and sell it to the Skull Kid in the Lost Woods."
+    },
+    "masks.skull_mask_sold": {
+      "where": "Sell it to the Skull Kid in the Lost Woods."
+    },
+    "masks.spooky_mask": {
+      "where": "Borrow it from the Happy Mask Shop and sell it to the boy in the graveyard."
+    },
+    "masks.spooky_mask_sold": {
+      "where": "Sell it to the boy in the graveyard."
+    },
+    "masks.bunny_hood": {
+      "where": "Borrow it from the Happy Mask Shop and sell it to the running man in Hyrule Field."
+    },
+    "masks.bunny_hood_sold": {
+      "where": "Sell it to the running man in Hyrule Field."
+    },
+    "masks.mask_of_truth": {
+      "where": "The Happy Mask Shop lends it once you've paid for the Bunny Hood."
+    },
+    "bottles.potion_shop_bottle": {
+      "where": "In Castle Town, catch the bug that got away from the Potion Shop. New in the remake."
+    },
+    "bottles.cucco_lady_bottle": {
+      "where": "The Cucco Lady in Kakariko gives it once you've brought all seven Cuccos back to her pen."
+    },
+    "bottles.seven_cuccos_returned": {
+      "where": "Bring all seven Cuccos back to the pen at the Cucco Lady's house."
+    },
+    "bottles.lon_lon_milk_bottle_talon": {
+      "where": "Talon's prize at Lon Lon Ranch for winning his Cucco game, once he's back home."
+    },
+    "bottles.rutos_letter_bottle": {
+      "where": "Found underwater at Lake Hylia as a child. Show the letter to King Zora."
+    },
+    "bottles.rutos_letter_shown": {
+      "where": "Show the letter to King Zora."
+    },
+    "bottles.poe_collector_bottle": {
+      "where": "The Poe Collector in Castle Town's ruins gives it once you've sold him five Big Poes."
+    },
+    "bottles.five_poes_sold": {
+      "where": "Sell five Big Poes to the Poe Collector (500 points)."
+    },
+    "great_fairies.death_mountain_summit_magic_meter_dins_fire": {
+      "where": "In the fountain behind the cracked wall on the Death Mountain summit. Play Zelda's Lullaby. She gives magic and Din's Fire. Her fee is 25 Rupees."
+    },
+    "great_fairies.hyrule_castle_grounds_child_enhanced_charged_spin_attack": {
+      "where": "In the fountain behind a boulder near Hyrule Castle, as a child. Play Zelda's Lullaby. She only appears once you have Din's Fire. Her fee is 50 Rupees."
+    },
+    "great_fairies.zoras_fountain_farores_wind": {
+      "where": "In the fountain behind a cracked wall in Zora's Fountain. Play Zelda's Lullaby. She only appears once you have Din's Fire. Her fee is 100 Rupees."
+    },
+    "great_fairies.death_mountain_crater_double_magic": {
+      "where": "In the fountain behind a wall in Death Mountain Crater that the Megaton Hammer breaks. Play Zelda's Lullaby. She only appears once you have Din's Fire. Her fee is 200 Rupees."
+    },
+    "great_fairies.desert_colossus_nayrus_love": {
+      "where": "In the fountain behind a cracked wall at the Desert Colossus. Play Zelda's Lullaby. She only appears once you have Din's Fire. Her fee is 300 Rupees."
+    },
+    "great_fairies.outside_ganons_castle_adult_double_defense_halved_damage": {
+      "where": "In the fountain outside Ganon's Castle, behind a huge rock the Golden Gauntlets lift. Play Zelda's Lullaby. She only appears once you have Din's Fire. Her fee is 500 Rupees."
+    },
+    "capacity.kokiri_wallet": {
+      "where": "You start with it. It holds 200 Rupees."
+    },
+    "capacity.adults_wallet": {
+      "where": "The reward for 10 Gold Skulltula tokens. It holds 500 Rupees."
+    },
+    "capacity.giants_wallet": {
+      "where": "The reward for 30 Gold Skulltula tokens. It holds 1,000 Rupees."
+    },
+    "capacity.bomb_bag": {
+      "where": "Your first Bomb Bag, found in Dodongo's Cavern."
+    },
+    "capacity.bigger_bomb_bag": {
+      "where": "Stop the rolling Goron in Goron City with a Bomb, as a child. If you've already won the Bombchu Bowling bag, this one is the biggest instead."
+    },
+    "capacity.biggest_bomb_bag": {
+      "where": "A Bombchu Bowling prize. Whichever bag upgrade you get second is the biggest."
+    },
+    "capacity.bigger_deku_seed_bag": {
+      "where": "Hit every target in the Lost Woods slingshot game, as a child."
+    },
+    "capacity.biggest_deku_seed_bag": {
+      "where": "Win the Castle Town shooting gallery, as a child. Whichever seed bag upgrade you get second is the biggest."
+    },
+    "capacity.bigger_quiver": {
+      "where": "Win the Kakariko shooting gallery, as an adult."
+    },
+    "capacity.biggest_quiver": {
+      "where": "Score high at the Gerudo horseback archery range. Whichever quiver upgrade you get second is the biggest."
+    },
+    "capacity.deku_stick_capacity_20": {
+      "where": "Buy it from the Business Scrub near the Lost Woods bridge, as a child."
+    },
+    "capacity.deku_stick_capacity_30": {
+      "where": "Wear the Skull Mask on the Deku Theater stage in the Lost Woods."
+    },
+    "capacity.deku_nut_capacity_30": {
+      "where": "Buy it from the Business Scrub in the Sacred Forest Meadow grotto that the Song of Storms opens."
+    },
+    "capacity.deku_nut_capacity_40": {
+      "where": "Wear the Mask of Truth on the Deku Theater stage in the Lost Woods."
+    },
+    "stones_medallions.kokiris_emerald": {
+      "where": "The Great Deku Tree gives it after you defeat Gohma."
+    },
+    "stones_medallions.gorons_ruby": {
+      "where": "Darunia gives it after you defeat King Dodongo."
+    },
+    "stones_medallions.zoras_sapphire": {
+      "where": "Princess Ruto gives it after you defeat Barinade."
+    },
+    "stones_medallions.light_medallion": {
+      "where": "Rauru gives it in the Chamber of Sages when you first become an adult."
+    },
+    "stones_medallions.forest_medallion": {
+      "where": "Saria gives it after you defeat Phantom Ganon."
+    },
+    "stones_medallions.fire_medallion": {
+      "where": "Darunia gives it after you defeat Volvagia."
+    },
+    "stones_medallions.water_medallion": {
+      "where": "Ruto gives it after you defeat Morpha."
+    },
+    "stones_medallions.shadow_medallion": {
+      "where": "Impa gives it after you defeat Bongo Bongo."
+    },
+    "stones_medallions.spirit_medallion": {
+      "where": "Nabooru gives it after you defeat Twinrova."
+    },
+    "dungeons.great_deku_tree": {
+      "where": "Inside the Great Deku Tree, in Kokiri Forest."
+    },
+    "dungeons.dodongos_cavern": {
+      "where": "On Death Mountain Trail."
+    },
+    "dungeons.lord_jabu_jabus_belly": {
+      "where": "Inside Lord Jabu-Jabu, in Zora's Fountain. Give him a fish to get in."
+    },
+    "dungeons.forest_temple": {
+      "where": "Beyond the Sacred Forest Meadow, as an adult."
+    },
+    "dungeons.fire_temple": {
+      "where": "Inside Death Mountain Crater, as an adult."
+    },
+    "dungeons.ice_cavern": {
+      "where": "In the frozen Zora's Fountain, as an adult. Finished when you get the Iron Boots."
+    },
+    "dungeons.water_temple": {
+      "where": "At the bottom of Lake Hylia, as an adult."
+    },
+    "dungeons.bottom_of_the_well": {
+      "where": "Under Kakariko's well, as a child, once the well is drained. Finished when you get the Lenses of Truth."
+    },
+    "dungeons.shadow_temple": {
+      "where": "Below the graveyard, as an adult."
+    },
+    "dungeons.spirit_temple": {
+      "where": "At the Desert Colossus, with parts for both ages."
+    },
+    "dungeons.gerudo_training_ground": {
+      "where": "In Gerudo Fortress, as an adult with the Gerudo Membership Card. Finished when you get the Ice Arrows."
+    },
+    "dungeons.ganons_castle": {
+      "where": "Where Hyrule Castle stood, as an adult with the Shadow and Spirit Medallions."
+    },
+    "bosses.gohma": {
+      "where": "At the bottom of the Great Deku Tree."
+    },
+    "bosses.king_dodongo": {
+      "where": "At the end of Dodongo's Cavern."
+    },
+    "bosses.barinade": {
+      "where": "At the end of Lord Jabu-Jabu's Belly."
+    },
+    "bosses.phantom_ganon": {
+      "where": "At the end of the Forest Temple."
+    },
+    "bosses.volvagia": {
+      "where": "At the end of the Fire Temple."
+    },
+    "bosses.morpha": {
+      "where": "At the end of the Water Temple."
+    },
+    "bosses.bongo": {
+      "where": "At the end of the Shadow Temple."
+    },
+    "bosses.twinrova": {
+      "where": "At the end of the Spirit Temple."
+    },
+    "bosses.ganondorf": {
+      "where": "At the top of Ganon's Castle."
+    },
+    "bosses.ganon": {
+      "where": "In the ruins of Ganon's Castle, the final battle."
+    },
+    "mini_bosses.big_octo": {
+      "where": "In Lord Jabu-Jabu's Belly."
+    },
+    "mini_bosses.great_moblin": {
+      "where": "In the Sacred Forest Meadow, as an adult."
+    },
+    "mini_bosses.poe_sisters": {
+      "where": "In the Forest Temple: the four sisters who took the torches' flames."
+    },
+    "mini_bosses.flare_dancer": {
+      "where": "In the Fire Temple."
+    },
+    "mini_bosses.white_wolfos": {
+      "where": "In the Ice Cavern, guarding the Iron Boots."
+    },
+    "mini_bosses.dark_link": {
+      "where": "In the Water Temple."
+    },
+    "mini_bosses.dead_hand": {
+      "where": "At the bottom of the Bottom of the Well."
+    },
+    "mini_bosses.gerudo_guards_carpenter_cells": {
+      "where": "The Gerudo guards at each carpenter's cell in Gerudo Fortress."
+    },
+    "mini_bosses.iron_knuckle": {
+      "where": "In the Spirit Temple."
+    },
+    "mini_bosses.iron_knuckle_nabooru": {
+      "where": "In the Spirit Temple: the Iron Knuckle that turns out to be Nabooru."
+    },
+    "side_quests.malons_friend": {
+      "where": "At Lon Lon Ranch: learn Epona's Song from Malon as a child, then win Epona from Ingo as an adult."
+    },
+    "side_quests.happy_mask_shopkeeper": {
+      "where": "In Castle Town: borrow masks from the Happy Mask Shop, sell them to their buyers and pay the shop back."
+    },
+    "side_quests.to_the_great_fairy": {
+      "where": "Find the Great Fairy on the Death Mountain summit and receive magic and Din's Fire."
+    },
+    "side_quests.stir_the_scarecrows_soul": {
+      "where": "At Lake Hylia: teach the scarecrow a tune as a child and play it back to him as an adult."
+    },
+    "side_quests.from_a_pocket_egg_comes": {
+      "where": "The adult trading quest, from the Cucco Lady's Pocket Egg to Biggoron's Sword."
+    },
+    "side_quests.broken_windmill_dry_well": {
+      "where": "In Kakariko: learn the Song of Storms in the windmill as an adult, then play it there as a child to drain the well."
+    },
+    "big_poes.001": {
+      "where": "By the sign at the entrance of the ruined bridge in Hyrule Field."
+    },
+    "big_poes.002": {
+      "where": "In the open field between Lon Lon Ranch and Hyrule Castle."
+    },
+    "big_poes.003": {
+      "where": "At the entrance of Lon Lon Ranch, by the tree standing on the path."
+    },
+    "big_poes.004": {
+      "where": "Behind Lon Lon Ranch."
+    },
+    "big_poes.005": {
+      "where": "At the base of the hill that climbs up to Gerudo Valley."
+    },
+    "big_poes.006": {
+      "where": "On the hill toward Gerudo Valley, at the spot closest to Lon Lon Ranch."
+    },
+    "big_poes.007": {
+      "where": "In the woods just south of Lon Lon Ranch."
+    },
+    "big_poes.008": {
+      "where": "In the field south of the crab-shaped watering hole."
+    },
+    "big_poes.009": {
+      "where": "Just left (south) of the path leading into Kokiri Forest."
+    },
+    "big_poes.010": {
+      "where": "In the field between Lon Lon Ranch and Kokiri Forest."
+    },
+    "skulltula_rewards.10_tokens_adults_wallet": {
+      "where": "At the House of Skulltula in Kakariko, for 10 tokens."
+    },
+    "skulltula_rewards.20_tokens_echo_gem": {
+      "where": "At the House of Skulltula in Kakariko, for 20 tokens."
+    },
+    "skulltula_rewards.30_tokens_giants_wallet": {
+      "where": "At the House of Skulltula in Kakariko, for 30 tokens."
+    },
+    "skulltula_rewards.40_tokens_bombchus_20": {
+      "where": "At the House of Skulltula in Kakariko, for 40 tokens."
+    },
+    "skulltula_rewards.50_tokens_piece_of_heart": {
+      "where": "At the House of Skulltula in Kakariko, for 50 tokens."
+    },
+    "skulltula_rewards.100_tokens_gold_rupee_200_rupees_repeatable": {
+      "where": "At the House of Skulltula in Kakariko, once all 100 tokens are in. Come back for more Rupees any time."
+    },
+    "child_trade.weird_egg": {
+      "where": "Malon gives it outside Hyrule Castle. It hatches into a Cucco."
+    },
+    "child_trade.weird_egg_hatched": {
+      "where": "The night after you get it, the egg hatches into the Wake-up Cucco."
+    },
+    "child_trade.wake_up_cucco": {
+      "where": "The Weird Egg's Cucco. Use it to wake Talon by the castle."
+    },
+    "child_trade.wake_up_cucco_turned_in": {
+      "where": "Wake Talon by the castle: the cucco flies over to him, and Zelda gives you the letter afterwards."
+    },
+    "child_trade.zeldas_letter": {
+      "where": "Princess Zelda gives it in the castle courtyard. Show it to the guard at Kakariko's gate to Death Mountain."
+    },
+    "child_trade.zeldas_letter_turned_in": {
+      "where": "Show it to the guard at Kakariko's gate; he opens it."
+    },
+    "adult_trade.pocket_egg": {
+      "where": "From the Cucco Lady in Kakariko, as an adult. It hatches overnight."
+    },
+    "adult_trade.pocket_egg_hatched": {
+      "where": "The night after the Cucco Lady gives it to you, it hatches into the Pocket Cucco."
+    },
+    "adult_trade.pocket_cucco": {
+      "where": "Hatched from the Pocket Egg. Wake Talon with it in Kakariko, then return it to the Cucco Lady."
+    },
+    "adult_trade.pocket_cucco_turned_in": {
+      "where": "Return the Pocket Cucco to the Cucco Lady."
+    },
+    "adult_trade.cojiro": {
+      "where": "From the Cucco Lady. Take it to the man in the Lost Woods."
+    },
+    "adult_trade.cojiro_turned_in": {
+      "where": "Give him to the man in the Lost Woods."
+    },
+    "adult_trade.odd_mushroom": {
+      "where": "From the man in the Lost Woods. Take it to the old woman in Kakariko's Potion Shop before it spoils."
+    },
+    "adult_trade.odd_mushroom_turned_in": {
+      "where": "Give it to the old woman at the Kakariko Potion Shop."
+    },
+    "adult_trade.odd_potion": {
+      "where": "From the old woman in the Potion Shop. Take it to the girl in the Lost Woods."
+    },
+    "adult_trade.odd_potion_turned_in": {
+      "where": "Give it to the girl in the Lost Woods."
+    },
+    "adult_trade.poachers_saw": {
+      "where": "From the girl in the Lost Woods. Take it to the head carpenter in Gerudo Valley."
+    },
+    "adult_trade.poachers_saw_turned_in": {
+      "where": "Give it to the head carpenter in Gerudo Valley."
+    },
+    "adult_trade.broken_gorons_sword": {
+      "where": "From the head carpenter in Gerudo Valley. Take it to Biggoron on the Death Mountain summit."
+    },
+    "adult_trade.broken_gorons_sword_turned_in": {
+      "where": "Give it to Biggoron."
+    },
+    "adult_trade.prescription": {
+      "where": "From Biggoron. Take it to King Zora in Zora's Domain."
+    },
+    "adult_trade.prescription_turned_in": {
+      "where": "Give it to King Zora."
+    },
+    "adult_trade.eyeball_frog": {
+      "where": "From King Zora. Take it to the scientist at the Lakeside Laboratory before time runs out."
+    },
+    "adult_trade.eyeball_frog_turned_in": {
+      "where": "Give it to the scientist at the Lakeside Laboratory."
+    },
+    "adult_trade.worlds_finest_eye_drops": {
+      "where": "From the Lakeside Laboratory scientist. Take them to Biggoron before time runs out."
+    },
+    "adult_trade.worlds_finest_eye_drops_turned_in": {
+      "where": "Bring it to Biggoron."
+    },
+    "adult_trade.claim_check": {
+      "where": "From Biggoron. Come back after a few days to collect his sword."
+    },
+    "adult_trade.claim_check_turned_in": {
+      "where": "After the wait, Biggoron hands his sword over against the check."
+    },
+    "dungeon_items.great_deku_tree_map": {
+      "where": "In a chest in the Great Deku Tree."
+    },
+    "dungeon_items.great_deku_tree_compass": {
+      "where": "In a chest in the Great Deku Tree."
+    },
+    "dungeon_items.dodongos_cavern_map": {
+      "where": "In a chest in Dodongo's Cavern."
+    },
+    "dungeon_items.dodongos_cavern_compass": {
+      "where": "In a chest in Dodongo's Cavern."
+    },
+    "dungeon_items.lord_jabu_jabus_belly_map": {
+      "where": "In Lord Jabu-Jabu's Belly."
+    },
+    "dungeon_items.lord_jabu_jabus_belly_compass": {
+      "where": "In Lord Jabu-Jabu's Belly."
+    },
+    "dungeon_items.forest_temple_map": {
+      "where": "In a chest in the Forest Temple."
+    },
+    "dungeon_items.forest_temple_compass": {
+      "where": "In a chest in the Forest Temple."
+    },
+    "dungeon_items.fire_temple_map": {
+      "where": "In a chest in the Fire Temple."
+    },
+    "dungeon_items.fire_temple_compass": {
+      "where": "In a chest in the Fire Temple."
+    },
+    "dungeon_items.water_temple_map": {
+      "where": "In a chest in the Water Temple."
+    },
+    "dungeon_items.water_temple_compass": {
+      "where": "In a chest in the Water Temple."
+    },
+    "dungeon_items.shadow_temple_map": {
+      "where": "In a chest in the Shadow Temple."
+    },
+    "dungeon_items.shadow_temple_compass": {
+      "where": "In a chest in the Shadow Temple."
+    },
+    "dungeon_items.spirit_temple_map": {
+      "where": "In a chest in the Spirit Temple."
+    },
+    "dungeon_items.spirit_temple_compass": {
+      "where": "In a chest in the Spirit Temple."
+    },
+    "dungeon_items.ice_cavern_map": {
+      "where": "In a chest in the Ice Cavern, behind red ice that Blue Fire melts."
+    },
+    "dungeon_items.ice_cavern_compass": {
+      "where": "In a chest in the Ice Cavern."
+    },
+    "dungeon_items.bottom_of_the_well_map": {
+      "where": "In the Bottom of the Well."
+    },
+    "dungeon_items.bottom_of_the_well_compass": {
+      "where": "In the Bottom of the Well. The Lenses of Truth help find it."
+    },
+    "dungeon_items.forest_temple_boss_key": {
+      "where": "In the Forest Temple's big chest."
+    },
+    "dungeon_items.fire_temple_boss_key": {
+      "where": "In the Fire Temple's big chest."
+    },
+    "dungeon_items.water_temple_boss_key": {
+      "where": "In the Water Temple's big chest, past the boulder corridor."
+    },
+    "dungeon_items.shadow_temple_boss_key": {
+      "where": "In the Shadow Temple's big chest."
+    },
+    "dungeon_items.spirit_temple_boss_key": {
+      "where": "In the Spirit Temple's big chest."
+    },
+    "dungeon_items.ganons_castle_boss_key": {
+      "where": "In Ganon's Castle, on the way up the tower."
+    },
+    "amiibo_masks.young_link": {
+      "where": "Scan the matching amiibo. Not needed for 100%."
+    },
+    "amiibo_masks.young_zelda": {
+      "where": "Scan the matching amiibo. Not needed for 100%."
+    },
+    "extra_masks.zora_mask": {
+      "where": "Cosmetic remake extra; where to get it is not recorded yet. Not needed for 100%."
+    },
+    "extra_masks.gerudo_mask": {
+      "where": "Cosmetic remake extra; where to get it is not recorded yet. Not needed for 100%."
+    },
+    "room_keys.forest_temple_1": {
+      "where": "A small key in a room of the Forest Temple."
+    },
+    "room_keys.forest_temple_2": {
+      "where": "A small key in a room of the Forest Temple."
+    },
+    "room_keys.forest_temple_3": {
+      "where": "A small key in a room of the Forest Temple."
+    },
+    "room_keys.forest_temple_4": {
+      "where": "A small key in a room of the Forest Temple."
+    },
+    "room_keys.forest_temple_5": {
+      "where": "A small key in a room of the Forest Temple."
+    },
+    "room_keys.fire_temple_1": {
+      "where": "A small key in a room of the Fire Temple."
+    },
+    "room_keys.fire_temple_2": {
+      "where": "A small key in a room of the Fire Temple."
+    },
+    "room_keys.fire_temple_3": {
+      "where": "A small key in a room of the Fire Temple."
+    },
+    "room_keys.fire_temple_4": {
+      "where": "A small key in a room of the Fire Temple."
+    },
+    "room_keys.fire_temple_5": {
+      "where": "A small key in a room of the Fire Temple."
+    },
+    "room_keys.fire_temple_6": {
+      "where": "A small key in a room of the Fire Temple."
+    },
+    "room_keys.fire_temple_7": {
+      "where": "A small key in a room of the Fire Temple."
+    },
+    "room_keys.fire_temple_8": {
+      "where": "A small key in a room of the Fire Temple."
+    },
+    "room_keys.water_temple_1": {
+      "where": "A small key in a room of the Water Temple."
+    },
+    "room_keys.water_temple_2": {
+      "where": "A small key in a room of the Water Temple."
+    },
+    "room_keys.water_temple_3": {
+      "where": "A small key in a room of the Water Temple."
+    },
+    "room_keys.water_temple_4": {
+      "where": "A small key in a room of the Water Temple."
+    },
+    "room_keys.water_temple_5": {
+      "where": "A small key in a room of the Water Temple."
+    },
+    "room_keys.water_temple_6": {
+      "where": "A small key in a room of the Water Temple."
+    },
+    "room_keys.water_temple_7": {
+      "where": "A small key in a room of the Water Temple."
+    },
+    "room_keys.bottom_of_the_well_1": {
+      "where": "The small key in the Bottom of the Well that has its own pickup flag."
+    },
+    "room_keys.gerudo_fortress_1": {
+      "where": "A small key in the Gerudo Fortress."
+    },
+    "room_keys.gerudo_fortress_2": {
+      "where": "A small key in the Gerudo Fortress."
+    },
+    "room_keys.gerudo_fortress_3": {
+      "where": "A small key in the Gerudo Fortress."
+    },
+    "room_keys.gerudo_fortress_4": {
+      "where": "A small key in the Gerudo Fortress."
+    }
   }
 }

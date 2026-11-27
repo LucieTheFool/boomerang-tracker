@@ -1,0 +1,325 @@
+{
+  "$schema": "equipment-items-upgrades-v1",
+  "_note": "Reference only, not shown in the UI: every entry here is already a checklist row (categories bottles, songs, great_fairies, items, capacity, equipment). The WIP Equipment & Upgrades card was dropped as redundant.",
+  "version": "1.0.0",
+  "source": "Multiple guides (Polygon, Zelda Central, Game8, IGN) 2026-11-24",
+  "game": "The Legend of Zelda: Ocarina of Time (Switch 2 Remake)",
+  "bottles": {
+    "total": 5,
+    "items": [
+      {
+        "id": "bottle_potion_shop",
+        "name": "Empty Bottle (Potion Shop)",
+        "location": "Hyrule Castle Town - Potion Shop",
+        "requirement": "Catch the escaped bug",
+        "age": "Child",
+        "reward": "Red Potion + Empty Bottle"
+      },
+      {
+        "id": "bottle_lon_lon_ranch",
+        "name": "Lon Lon Milk Bottle",
+        "location": "Lon Lon Ranch - Talon's House",
+        "requirement": "Win Talon's Super Cucco game (find 3 Cuccos in 30 seconds, 10 rupees)",
+        "age": "Child",
+        "reward": "Lon Lon Milk + Bottle"
+      },
+      {
+        "id": "bottle_cucco_lady",
+        "name": "Empty Bottle (Cucco Lady)",
+        "location": "Kakariko Village - Cucco Pen",
+        "requirement": "Return all 7 Cuccos to the pen",
+        "age": "Child",
+        "reward": "Empty Bottle"
+      },
+      {
+        "id": "bottle_ruto_letter",
+        "name": "Bottle with Ruto's Letter",
+        "location": "Lake Hylia - Lake floor near underwater tunnel exit",
+        "requirement": "Silver Scale (dive deeper), show letter to King Zora",
+        "age": "Child",
+        "reward": "Empty Bottle (letter delivered to King Zora)"
+      },
+      {
+        "id": "bottle_poe_collector",
+        "name": "Empty Bottle (Poe Collector)",
+        "location": "Hyrule Castle Town - Poe Collector shop (old guard room)",
+        "requirement": "Capture and sell 5 Big Poes (100 points each = 500 points total)",
+        "age": "Adult",
+        "reward": "Empty Bottle",
+        "notes": "Requires Epona, Fairy Bow, and at least one empty bottle to start. 10 Big Poes total in Hyrule Field; selling all 10 (1000 points) gives Gold Rupee (200 rupees)"
+      }
+    ]
+  },
+  "ocarina_songs": {
+    "total": 13,
+    "songs": [
+      {
+        "id": "zeldas_lullaby",
+        "name": "Zelda's Lullaby",
+        "notes": "Y - X - A - Y - X - A",
+        "learned_from": "Princess Zelda at Hyrule Castle",
+        "use": "Play on or in front of any Triforce symbol to trigger events",
+        "age": "Child"
+      },
+      {
+        "id": "eponas_song",
+        "name": "Epona's Song",
+        "notes": "X - Y - A - X - Y - A",
+        "learned_from": "Malon at Lon Lon Ranch (after waking Talon)",
+        "use": "Call Epona (Adult), milk cows",
+        "age": "Child"
+      },
+      {
+        "id": "sarias_song",
+        "name": "Saria's Song",
+        "notes": "R - A - Y - R - A - Y",
+        "learned_from": "Saria in the Sacred Grove (Lost Woods)",
+        "use": "Talk to Saria anytime",
+        "age": "Child"
+      },
+      {
+        "id": "suns_song",
+        "name": "Sun's Song",
+        "notes": "A - R - X - A - R - X",
+        "learned_from": "Royal Family's Tomb (east end of Graveyard, play Zelda's Lullaby on Triforce)",
+        "use": "Change time of day (day/night)",
+        "age": "Child"
+      },
+      {
+        "id": "song_of_time",
+        "name": "Song of Time",
+        "notes": "A - L - R - A - L - R",
+        "learned_from": "Princess Zelda/Sheik (after collecting all 3 Spiritual Stones)",
+        "use": "Move Time Blocks, open Door of Time",
+        "age": "Child"
+      },
+      {
+        "id": "song_of_storms",
+        "name": "Song of Storms",
+        "notes": "L - R - X - L - R - X",
+        "learned_from": "Music Man in Kakariko Village Windmill (Adult Link)",
+        "use": "Summon rain and wind",
+        "age": "Adult"
+      },
+      {
+        "id": "minuet_of_forest",
+        "name": "Minuet of the Forest",
+        "notes": "L - X - Y - A - Y - A",
+        "learned_from": "Sheik at Forest Temple entrance",
+        "use": "Warp to Forest Temple entrance",
+        "age": "Adult"
+      },
+      {
+        "id": "bolero_of_fire",
+        "name": "Bolero of Fire",
+        "notes": "R - L - R - L - A - R - A - R",
+        "learned_from": "Sheik at Death Mountain Crater (before Fire Temple)",
+        "use": "Warp to Fire Temple entrance",
+        "age": "Adult"
+      },
+      {
+        "id": "serenade_of_water",
+        "name": "Serenade of Water",
+        "notes": "L - R - A - A - Y",
+        "learned_from": "Sheik at Lake Hylia (after getting Iron Boots in Ice Cavern)",
+        "use": "Warp to Water Temple entrance",
+        "age": "Adult"
+      },
+      {
+        "id": "nocturne_of_shadow",
+        "name": "Nocturne of Shadow",
+        "notes": "Y - A - A - L - Y - A - R",
+        "learned_from": "Sheik at Kakariko Village (after 3 temples completed, village on fire)",
+        "use": "Warp to Shadow Temple entrance",
+        "age": "Adult"
+      },
+      {
+        "id": "requiem_of_spirit",
+        "name": "Requiem of Spirit",
+        "notes": "L - R - L - A - R - L",
+        "learned_from": "Sheik at Desert Colossus (before Spirit Temple)",
+        "use": "Warp to Spirit Temple entrance",
+        "age": "Adult"
+      },
+      {
+        "id": "prelude_of_light",
+        "name": "Prelude of Light",
+        "notes": "X - A - X - A - Y - X",
+        "learned_from": "Sheik at Temple of Time (after completing a temple)",
+        "use": "Warp to Temple of Time",
+        "age": "Adult"
+      },
+      {
+        "id": "scarecrow_song",
+        "name": "Scarecrow Song",
+        "notes": "Custom (player-defined, 8 notes)",
+        "learned_from": "Bonooru at Lake Hylia (teach as Child, play again as Adult)",
+        "use": "Summon Pierre the scarecrow at 13 locations (hookshot targets)",
+        "age": "Child to teach, Adult to use"
+      }
+    ]
+  },
+  "great_fairy_fountains": {
+    "total": 6,
+    "cost_total": 1175,
+    "notes": "In remake, all Great Fairies require rupee offerings. Play Zelda's Lullaby on Triforce symbol to summon.",
+    "fountains": [
+      {
+        "id": "death_mountain_summit",
+        "name": "Great Fairy of Power (Death Mountain Summit)",
+        "location": "Death Mountain Trail summit, bomb cracked wall near Kaepora Gaebora",
+        "requirement": "Bombs",
+        "cost": 25,
+        "age": "Child or Adult",
+        "reward": "Magic Meter + Din's Fire",
+        "notes": "Most important fountain; magic meter required for all spells/magic items. Din's Fire needed for Shadow Temple entrance."
+      },
+      {
+        "id": "hyrule_castle",
+        "name": "Great Fairy of Power (Hyrule Castle)",
+        "location": "Hyrule Castle grounds, path to castle, bomb boulder at dead end",
+        "requirement": "Bombs",
+        "cost": 50,
+        "age": "Child only",
+        "reward": "Magic Spin Attack (enhanced range)",
+        "notes": "Child only - castle grounds inaccessible as Adult"
+      },
+      {
+        "id": "zoras_fountain",
+        "name": "Great Fairy of Magic (Zora's Fountain)",
+        "location": "Zora's Fountain, back wall near Jabu-Jabu, bomb cracked wall",
+        "requirement": "Bombs",
+        "cost": 100,
+        "age": "Child or Adult",
+        "reward": "Farore's Wind (set dungeon warp point)"
+      },
+      {
+        "id": "death_mountain_crater",
+        "name": "Great Fairy of Wisdom (Death Mountain Crater)",
+        "location": "Death Mountain Crater western side, smash boulders with Megaton Hammer",
+        "requirement": "Megaton Hammer, Goron Tunic (heat protection)",
+        "cost": 200,
+        "age": "Adult",
+        "reward": "Double Magic (magic meter doubled: 48 → 96)"
+      },
+      {
+        "id": "desert_colossus",
+        "name": "Great Fairy of Magic (Desert Colossus)",
+        "location": "Desert Colossus north side, bomb cracked wall near Spirit Temple",
+        "requirement": "Bombs, access to Desert Colossus",
+        "cost": 300,
+        "age": "Child or Adult",
+        "reward": "Nayru's Love (defensive spell, temporary invulnerability)"
+      },
+      {
+        "id": "ganons_castle",
+        "name": "Great Fairy of Courage (Outside Ganon's Castle)",
+        "location": "Road to Ganon's Castle, lift heavy pillar with Golden Gauntlets",
+        "requirement": "Golden Gauntlets (from inside Ganon's Castle Shadow Barrier)",
+        "cost": 500,
+        "age": "Adult",
+        "reward": "Double Defense (damage halved, white heart outline)"
+      }
+    ]
+  },
+  "gauntlets": {
+    "items": [
+      {
+        "id": "silver_gauntlets",
+        "name": "Silver Gauntlets",
+        "location": "Spirit Temple (Child Link section)",
+        "requirement": "Complete Child Link portion of Spirit Temple",
+        "age": "Adult (equipped)",
+        "ability": "Lift heavy silver rocks"
+      },
+      {
+        "id": "golden_gauntlets",
+        "name": "Golden Gauntlets",
+        "location": "Ganon's Castle - Shadow Barrier room",
+        "requirement": "Complete Shadow Barrier trial inside Ganon's Castle",
+        "age": "Adult",
+        "ability": "Lift extremely heavy black granite pillars"
+      }
+    ]
+  },
+  "capacity_upgrades": {
+    "notes": "Max capacity upgrades for Deku items and ammunition. Giant's Wallet from 100 Skulltulas.",
+    "items": [
+      {
+        "id": "deku_stick_capacity",
+        "name": "Deku Stick Capacity",
+        "tiers": [
+          {"capacity": 10, "source": "Default"},
+          {"capacity": 20, "source": "Lost Woods Business Scrub"},
+          {"capacity": 30, "source": "Lost Woods Business Scrub (second upgrade)"}
+        ]
+      },
+      {
+        "id": "deku_nut_capacity",
+        "name": "Deku Nut Capacity",
+        "tiers": [
+          {"capacity": 20, "source": "Default"},
+          {"capacity": 30, "source": "Lost Woods Business Scrub"},
+          {"capacity": 40, "source": "Lost Woods Business Scrub (second upgrade)"}
+        ]
+      },
+      {
+        "id": "deku_seed_capacity",
+        "name": "Deku Seed (Slingshot Ammo) Capacity",
+        "tiers": [
+          {"capacity": 30, "source": "Default with Slingshot"},
+          {"capacity": 40, "source": "Lost Woods Business Scrub"},
+          {"capacity": 50, "source": "Lost Woods Business Scrub (second upgrade)"}
+        ]
+      },
+      {
+        "id": "bomb_capacity",
+        "name": "Bomb Bag Capacity",
+        "tiers": [
+          {"capacity": 20, "source": "Default with Bomb Bag (Dodongo's Cavern)"},
+          {"capacity": 30, "source": "Goron City rolling game OR Hyrule Castle Town Bombchu Bowling"},
+          {"capacity": 40, "source": "Goron City rolling game OR Hyrule Castle Town Bombchu Bowling (second location)"}
+        ]
+      },
+      {
+        "id": "arrow_capacity",
+        "name": "Quiver (Arrow) Capacity",
+        "tiers": [
+          {"capacity": 30, "source": "Default with Fairy Bow"},
+          {"capacity": 40, "source": "Kakariko Village Shooting Gallery"},
+          {"capacity": 50, "source": "Gerudo Training Grounds (Adult, 1500 rupees entry fee)"}
+        ]
+      },
+      {
+        "id": "wallet_capacity",
+        "name": "Wallet (Rupee) Capacity",
+        "tiers": [
+          {"capacity": 99, "source": "Default Child's Wallet"},
+          {"capacity": 200, "source": "Adult's Wallet (from House of Skulltula after 10 Gold Skulltulas)"},
+          {"capacity": 500, "source": "Giant's Wallet (from House of Skulltula after 100 Gold Skulltulas)"}
+        ]
+      }
+    ]
+  },
+  "other_equipment": {
+    "items": [
+      {
+        "id": "golden_scale",
+        "name": "Golden Scale",
+        "location": "Lake Hylia Fishing Pond",
+        "requirement": "Catch a fish weighing 20+ pounds",
+        "age": "Adult",
+        "ability": "Dive to maximum depth (8 seconds underwater)"
+      },
+      {
+        "id": "biggoron_sword",
+        "name": "Biggoron's Sword",
+        "location": "Death Mountain Summit - Biggoron",
+        "requirement": "Complete Biggoron Trading Sequence (11-step quest)",
+        "age": "Adult",
+        "ability": "Two-handed sword with double Master Sword damage, never breaks",
+        "notes": "Trading sequence: Pocket Egg → Pocket Cucco → Cojiro → Odd Mushroom → Odd Potion → Poacher's Saw → Broken Goron's Sword → Prescription → Eyeball Frog → Eyedrops → Claim Check → Biggoron's Sword"
+      }
+    ]
+  }
+}

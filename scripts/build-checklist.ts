@@ -82,9 +82,22 @@ const SECTIONS: Record<string, { id: string; label?: string; icon: string | ((na
 // carry a location table whose rows become numbered display-only spots.
 // countsToward100 overrides the "part A => counts" default (Magic Beans is Part B
 // but currently counts toward 100% per the route sheet, pending an in-game check).
-const COUNTERS: Record<string, { id: string; label: string; max: number; icon: string; locations?: { column: string; chapter: string }; countsToward100?: boolean }> = {
+// `spots` are fixed locations in our own words (the source has no table for them).
+const COUNTERS: Record<string, { id: string; label: string; max: number; icon: string; locations?: { column: string; chapter: string }; spots?: [string, string][]; countsToward100?: boolean }> = {
   'Big Poes sold': { id: 'big_poes', label: 'Big Poes Sold', max: 10, icon: 'big_poe', locations: { column: 'Location', chapter: 'Hyrule Field' } },
-  'Magic Bean soft-soil spots planted': { id: 'magic_beans_planted', label: 'Magic Bean Spots Planted', max: 10, icon: 'magic_bean', countsToward100: true },
+  'Magic Bean soft-soil spots planted': { id: 'magic_beans_planted', label: 'Magic Bean Spots Planted', max: 10, icon: 'magic_bean', countsToward100: true,
+    spots: [
+      ["Zora's River (by the bean seller)", "Zora's River"],
+      ['Kokiri Forest (by the shop)', 'Kokiri Forest'],
+      ['Graveyard (northwest corner)', 'Graveyard'],
+      ["Death Mountain Trail (Dodongo's rock)", 'Death Mountain'],
+      ['Lost Woods (by the Skull Kid)', 'Lost Woods'],
+      ['Lost Woods (by the Deku Theater)', 'Lost Woods'],
+      ['Lake Hylia (by the laboratory)', 'Lake Hylia'],
+      ['Gerudo Valley (below the second bridge)', 'Gerudo Valley'],
+      ['Death Mountain Crater (Bolero of Fire)', 'Death Mountain'],
+      ['Desert Colossus (Spirit Temple)', 'Desert Colossus'],
+    ] },
 };
 
 export function slug(s: string): string {
@@ -172,7 +185,9 @@ function parse(text: string) {
         cats.push(cur);
         if (declared !== null) declaredCounts[sec.id] = declared;
       } else if (ctr) {
-        cur = { id: ctr.id, label: ctr.label, part, countsToward100: ctr.countsToward100 ?? (part === 'A'), kind: 'counter', max: ctr.max, items: [] };
+        cur = { id: ctr.id, label: ctr.label, part, countsToward100: ctr.countsToward100 ?? (part === 'A'), kind: 'counter', max: ctr.max,
+          items: (ctr.spots ?? []).map(([name, chapter], i) =>
+            ({ id: `${ctr.id}.${String(i + 1).padStart(3, '0')}`, number: i + 1, name, chapter, iconId: 'bean', detect: null })) };
         cats.push(cur);
       }
       continue;
@@ -263,7 +278,7 @@ function addExtras(cats: Category[]) {
 
 // Expected totals from the original brief (Part A list categories).
 const BRIEF: Record<string, number> = {
-  heart_pieces: 36, heart_containers: 8, gold_skulltulas: 100, songs: 13, equipment: 12, items: 27, masks: 5, bottles: 5,
+  heart_pieces: 36, heart_containers: 8, gold_skulltulas: 100, songs: 13, equipment: 12, items: 27, masks: 9, bottles: 8,
   great_fairies: 6, capacity: 14, stones_medallions: 9, dungeons: 12, bosses: 10, mini_bosses: 10, side_quests: 6,
 };
 

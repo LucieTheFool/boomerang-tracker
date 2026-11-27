@@ -3,6 +3,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { describe, it, expect } from 'vitest';
 import { DEFAULTS, SettingsStore, cleanFilters, cleanHotkeys, cleanLive, cleanOverlay, cleanUi } from '../src/main/settings';
+import { cleanPadToggle } from '../src/main/gamepad-logic';
 import { NO_FILTERS } from '../src/shared/types';
 import { NO_FILTERS as RENDERER_NO_FILTERS } from '../src/renderer/filter';
 
@@ -27,7 +28,7 @@ describe('cleanLive', () => {
 describe('cleanUi', () => {
   it('keeps good values and unknown fields', () => {
     const ui = {
-      hideCollected: true, hiddenCategories: ['a'], collapsed: ['b'], showParts: { B: false, C: true, D: 'kept' }, availableHeight: 240.5,
+      hideCollected: true, hiddenCategories: ['a'], sidebarHidden: ['s'], collapsed: ['b'], showParts: { B: false, C: true, D: 'kept' }, availableHeight: 240.5,
       availableFilters: { search: 'x', area: 'Kokiri Forest', category: 'Heart Pieces', age: 'adult', nightOnly: true, hereOnly: true, later: 1 },
       later: { nested: true },
     };
@@ -67,7 +68,7 @@ describe('cleanUi', () => {
   it('does not share lists with the defaults', () => {
     cleanUi({}).hiddenCategories.push('x');
     cleanUi({}).showParts.B = false;
-    expect(DEFAULTS.ui).toEqual({ hideCollected: false, hiddenCategories: [], collapsed: [], showParts: { B: true, C: false } });
+    expect(DEFAULTS.ui).toEqual({ hideCollected: false, hiddenCategories: [], sidebarHidden: [], collapsed: [], showParts: { B: true, C: false } });
   });
 });
 
@@ -124,6 +125,7 @@ describe.each(GARBAGE)('given %s', (_name, raw) => {
     expect(cleanFilters(raw)).toEqual(NO_FILTERS);
     expect(cleanOverlay(raw)).toEqual(DEFAULTS.overlay);
     expect(cleanHotkeys(raw)).toEqual(DEFAULTS.hotkeys);
+    expect(cleanPadToggle(raw)).toEqual(DEFAULTS.padToggle);
   });
 });
 
@@ -153,9 +155,51 @@ describe('SettingsStore load', () => {
     expect(s.overlay).toEqual({ ...DEFAULTS.overlay, mode: 'available' });
     expect(s.hotkeys).toEqual(DEFAULTS.hotkeys);
     expect(s.live).toEqual({ enabled: true, hints: ['abc'] });
+    expect(s.padToggle).toEqual(DEFAULTS.padToggle);
+  });
+
+  it('gives an older file the controller toggle defaults, and repairs a hand-edited one', () => {
+    expect(load(JSON.stringify({ devPanel: true })).padToggle).toEqual({ enabled: true, mode: 'hold', holdMs: 500, binding: null });
+    expect(load(JSON.stringify({ padToggle: { enabled: false, holdMs: 'long', binding: { kind: 'xinput', xinputMask: 0x1000 } } })).padToggle)
+      .toEqual({ enabled: false, mode: 'hold', holdMs: 500, binding: { kind: 'xinput', xinputMask: 0x1000 } });
+  });
+
+  it('keeps the WIP 100% features toggle (Developer options), off by default and when hand-edited wrong', () => {
+    expect(DEFAULTS.wipFeatures).toBe(false);
+    expect(load(JSON.stringify({ devPanel: true })).wipFeatures).toBe(false);
+    expect(load(JSON.stringify({ wipFeatures: true })).wipFeatures).toBe(true);
+    expect(load(JSON.stringify({ wipFeatures: 'yes' })).wipFeatures).toBe(false);
   });
 
   it.each(['null', '7', '"abc"', '[1,2]', '{broken'])('uses the defaults for %s', content => {
     expect(load(content)).toEqual(DEFAULTS);
+  });
+
+  it('keeps a valid checklist layout and drops anything else', () => {
+    expect(cleanUi({ layout: 'fit' }).layout).toBe('fit');
+    expect(cleanUi({ layout: 'masonry' }).layout).toBe('masonry');
+    expect(cleanUi({ layout: 'stack' }).layout).toBe('stack');
+    expect(cleanUi({ layout: 'bogus' })).not.toHaveProperty('layout');
+    expect(cleanUi({ layout: 5 })).not.toHaveProperty('layout');
+    expect(cleanUi({})).not.toHaveProperty('layout');
+  });
+
+  it('updates: default to off (no automatic check, no auto download)', () => {
+    expect(DEFAULTS.updates).toEqual({ check: false, autoDownload: false });
+  });
+  it('updates: an older file without the block gets the defaults', () => {
+    expect(load(JSON.stringify({ devPanel: true })).updates).toEqual({ check: false, autoDownload: false });
+  });
+  it('updates: keeps a valid block (with an optional skipVersion)', () => {
+    expect(load(JSON.stringify({ updates: { check: true, autoDownload: true, skipVersion: '0.6.0' } })).updates)
+      .toEqual({ check: true, autoDownload: true, skipVersion: '0.6.0' });
+  });
+  it('updates: repairs a hand-edited block of the wrong types back to defaults', () => {
+    expect(load(JSON.stringify({ updates: { check: 'yes', autoDownload: 1, skipVersion: 6 } })).updates)
+      .toEqual({ check: false, autoDownload: false });
+  });
+  it('updates: keeps only real booleans', () => {
+    expect(load(JSON.stringify({ updates: { check: true } })).updates).toEqual({ check: true, autoDownload: false });
+    expect(load(JSON.stringify({ updates: { autoDownload: true } })).updates).toEqual({ check: false, autoDownload: true });
   });
 });

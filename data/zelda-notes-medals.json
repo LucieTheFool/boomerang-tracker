@@ -1,0 +1,321 @@
+{
+  "$schema": "zelda-notes-medals-schema",
+  "version": "1.0.0",
+  "source": "Nintendo Everything 100% guide + YouTube transcript (2026-11-24)",
+  "game": "The Legend of Zelda: Ocarina of Time (Switch 2 Remake)",
+  "medals": [
+    {
+      "id": "citizen_of_hyrule",
+      "name": "Citizen of Hyrule",
+      "description": "Earned by increasing your playtime stat",
+      "stat": "playtime",
+      "tiers": {
+        "bronze": {"threshold": null, "unit": "hours"},
+        "silver": {"threshold": null, "unit": "hours"},
+        "gold": {"threshold": null, "unit": "hours"},
+        "master": {"threshold": 60, "unit": "hours"}
+      },
+      "notes": "Natural progression takes ~30-35 hours for in-game 100%; AFK time counts toward this medal"
+    },
+    {
+      "id": "monsters_bane",
+      "name": "Monster's Bane",
+      "description": "Earned by increasing your enemies defeated stat",
+      "stat": "enemies_defeated",
+      "tiers": {
+        "bronze": {"threshold": null, "unit": "enemies"},
+        "silver": {"threshold": null, "unit": "enemies"},
+        "gold": {"threshold": null, "unit": "enemies"},
+        "master": {"threshold": 1000, "unit": "enemies"}
+      },
+      "notes": "Comes naturally by Hall of Fallen Foes completion"
+    },
+    {
+      "id": "wealthy",
+      "name": "Wealthy",
+      "description": "Earned by increasing your rupees collected stat",
+      "stat": "rupees_collected_lifetime",
+      "tiers": {
+        "bronze": {"threshold": null, "unit": "rupees"},
+        "silver": {"threshold": null, "unit": "rupees"},
+        "gold": {"threshold": null, "unit": "rupees"},
+        "master": {"threshold": 3000, "unit": "rupees"}
+      },
+      "notes": "With 100 Skulltulas, talk to the guy in Kakariko house for 200 rupees indefinitely"
+    },
+    {
+      "id": "distance_tracker",
+      "name": "Distance Tracker",
+      "description": "Earned by increasing your distance traveled stat",
+      "stat": "distance_traveled",
+      "tiers": {
+        "bronze": {"threshold": null, "unit": "km"},
+        "silver": {"threshold": null, "unit": "km"},
+        "gold": {"threshold": null, "unit": "km"},
+        "master": {"threshold": 150, "unit": "km"}
+      },
+      "notes": "Comes naturally during 100% completion"
+    },
+    {
+      "id": "lover_of_luxury",
+      "name": "Lover of Luxury",
+      "description": "Earned by increasing your consumable items used stat",
+      "stat": "consumables_used",
+      "tiers": {
+        "bronze": {"threshold": null, "unit": "items"},
+        "silver": {"threshold": null, "unit": "items"},
+        "gold": {"threshold": null, "unit": "items"},
+        "master": {"threshold": 700, "unit": "items"}
+      },
+      "notes": "Consumables include: recovery hearts, Deku Nuts, bombs, Deku Seeds, arrows"
+    },
+    {
+      "id": "economizer",
+      "name": "Economizer",
+      "description": "Earned by increasing your special item uses stat",
+      "stat": "special_items_used",
+      "tiers": {
+        "bronze": {"threshold": null, "unit": "uses"},
+        "silver": {"threshold": null, "unit": "uses"},
+        "gold": {"threshold": null, "unit": "uses"},
+        "master": {"threshold": null, "unit": "uses"}
+      },
+      "notes": "Special items: boomerang, hookshot, bow and arrow, etc. (non-magic, non-consumable)"
+    },
+    {
+      "id": "magic_user",
+      "name": "Magic User",
+      "description": "Earned by increasing your magic power use stat",
+      "stat": "magic_power_used",
+      "tiers": {
+        "bronze": {"threshold": null, "unit": "magic"},
+        "silver": {"threshold": null, "unit": "magic"},
+        "gold": {"threshold": null, "unit": "magic"},
+        "master": {"threshold": null, "unit": "magic"}
+      },
+      "notes": "Magic-using items: Lens of Truth, Din's Fire, Farore's Wind, Nayru's Love, Fire/Ice/Light Arrows"
+    },
+    {
+      "id": "treasure_hunter",
+      "name": "Treasure Hunter",
+      "description": "Earned by increasing your treasure chests opened stat",
+      "stat": "chests_opened",
+      "tiers": {
+        "bronze": {"threshold": null, "unit": "chests"},
+        "silver": {"threshold": null, "unit": "chests"},
+        "gold": {"threshold": null, "unit": "chests"},
+        "master": {"threshold": null, "unit": "chests"}
+      },
+      "notes": "For true 100%, open every single treasure chest in the game (map shows all chest locations)"
+    },
+    {
+      "id": "quest_challenger",
+      "name": "Quest Challenger",
+      "description": "Earned by increasing your events completed stat",
+      "stat": "events_completed",
+      "tiers": {
+        "bronze": {"threshold": null, "unit": "events"},
+        "silver": {"threshold": null, "unit": "events"},
+        "gold": {"threshold": null, "unit": "events"},
+        "master": {"threshold": null, "unit": "events"}
+      },
+      "notes": "Complete all side quests and events to max this stat"
+    },
+    {
+      "id": "token_collector",
+      "name": "Token Collector",
+      "display": false,
+      "description": "Earned by collecting Gold Skulltulas",
+      "stat": "gold_skulltulas",
+      "tiers": {
+        "bronze": {"threshold": null, "unit": "tokens"},
+        "silver": {"threshold": null, "unit": "tokens"},
+        "gold": {"threshold": null, "unit": "tokens"},
+        "master": {"threshold": 100, "unit": "tokens"}
+      },
+      "notes": "Already tracked in existing checklist.json (100 Gold Skulltulas); display: false keeps it out of the WIP My Play Data card"
+    },
+    {
+      "id": "traveler",
+      "name": "Traveler",
+      "description": "Earned by visiting locations",
+      "stat": "locations_visited",
+      "tiers": {
+        "bronze": {"threshold": null, "unit": "locations"},
+        "silver": {"threshold": null, "unit": "locations"},
+        "gold": {"threshold": null, "unit": "locations"},
+        "master": {"threshold": null, "unit": "locations"}
+      },
+      "notes": "Visit everywhere you can; comes naturally during 100% completion"
+    },
+    {
+      "id": "social_butterfly",
+      "name": "Social Butterfly",
+      "description": "Earned by talking to NPCs",
+      "stat": "npcs_talked_to",
+      "tiers": {
+        "bronze": {"threshold": null, "unit": "NPCs"},
+        "silver": {"threshold": null, "unit": "NPCs"},
+        "gold": {"threshold": null, "unit": "NPCs"},
+        "master": {"threshold": 150, "unit": "NPCs"}
+      },
+      "notes": "Talk to every NPC as Young Link AND Adult Link (many move from Castle Town to Kakariko Village)"
+    },
+    {
+      "id": "hero_of_historic_battles",
+      "name": "Hero of Historic Battles",
+      "description": "Earned by fighting battles in the Hall of Fallen Foes",
+      "stat": "hall_battles_fought",
+      "tiers": {
+        "bronze": {"threshold": null, "unit": "battles"},
+        "silver": {"threshold": null, "unit": "battles"},
+        "gold": {"threshold": null, "unit": "battles"},
+        "master": {"threshold": null, "unit": "battles"}
+      },
+      "notes": "Doesn't require winning; just attempt the battles. Naturally earned when going for Hall Master Medals"
+    },
+    {
+      "id": "game_player",
+      "name": "Game Player",
+      "description": "Earned by playing mini-games",
+      "stat": "mini_games_played",
+      "tiers": {
+        "bronze": {"threshold": null, "unit": "games"},
+        "silver": {"threshold": null, "unit": "games"},
+        "gold": {"threshold": null, "unit": "games"},
+        "master": {"threshold": null, "unit": "games"}
+      },
+      "notes": "Doesn't require winning; can fail to go quicker. Bomb Chu Alley is fastest for grinding. 20-25 plays after in-game 100%"
+    },
+    {
+      "id": "angler",
+      "name": "Angler",
+      "description": "Earned by catching fish",
+      "stat": "fish_caught",
+      "tiers": {
+        "bronze": {"threshold": null, "unit": "fish"},
+        "silver": {"threshold": null, "unit": "fish"},
+        "gold": {"threshold": null, "unit": "fish"},
+        "master": {"threshold": 50, "unit": "fish"}
+      },
+      "notes": "Catch-and-release counts; just catch small fish. 5→50 takes ~30-45 minutes"
+    },
+    {
+      "id": "grass_slasher",
+      "name": "Grass Slasher",
+      "description": "Earned by cutting grass with your sword",
+      "stat": "grass_cut",
+      "tiers": {
+        "bronze": {"threshold": null, "unit": "grass"},
+        "silver": {"threshold": null, "unit": "grass"},
+        "gold": {"threshold": null, "unit": "grass"},
+        "master": {"threshold": null, "unit": "grass"}
+      },
+      "notes": "Comes naturally if you hack away at grass regularly"
+    },
+    {
+      "id": "crusher",
+      "name": "Crusher",
+      "description": "Earned by destroying pots",
+      "stat": "pots_destroyed",
+      "tiers": {
+        "bronze": {"threshold": null, "unit": "pots"},
+        "silver": {"threshold": null, "unit": "pots"},
+        "gold": {"threshold": null, "unit": "pots"},
+        "master": {"threshold": 300, "unit": "pots"}
+      },
+      "notes": "Pots respawn in guard tower in Hyrule Castle Town (Child Link); no way to trigger spawn manually"
+    },
+    {
+      "id": "musician",
+      "name": "Musician",
+      "description": "Earned by playing the Ocarina",
+      "stat": "ocarina_plays",
+      "tiers": {
+        "bronze": {"threshold": null, "unit": "songs"},
+        "silver": {"threshold": null, "unit": "songs"},
+        "gold": {"threshold": null, "unit": "songs"},
+        "master": {"threshold": 100, "unit": "songs"}
+      },
+      "notes": "Play 100 songs; comes naturally during gameplay"
+    },
+    {
+      "id": "explorer",
+      "name": "Explorer",
+      "description": "Earned by increasing your map completion stat",
+      "stat": "map_completion",
+      "tiers": {
+        "bronze": {"threshold": null, "unit": "percent"},
+        "silver": {"threshold": null, "unit": "percent"},
+        "gold": {"threshold": null, "unit": "percent"},
+        "master": {"threshold": 100, "unit": "percent"}
+      },
+      "notes": "100% the Zelda Notes map (all locations, chests, hidden holes, etc.)"
+    },
+    {
+      "id": "amiibo_enthusiast",
+      "name": "amiibo Enthusiast",
+      "description": "Earned by scanning amiibo",
+      "stat": "amiibo_scans",
+      "tiers": {
+        "bronze": {"threshold": null, "unit": "scans"},
+        "silver": {"threshold": null, "unit": "scans"},
+        "gold": {"threshold": null, "unit": "scans"},
+        "master": {"threshold": 50, "unit": "scans"}
+      },
+      "notes": "Only Zelda amiibo work; can scan same one daily (50 days minimum if you have one amiibo). 33/35 available as of 2026-11-24 (2 OoT amiibo release 2027)"
+    },
+    {
+      "id": "hall_conqueror",
+      "name": "Hall Conqueror",
+      "description": "Earned by getting every Master Medal in the Hall of Fallen Foes",
+      "stat": "hall_master_medals",
+      "tiers": {
+        "bronze": {"threshold": null, "unit": "medals"},
+        "silver": {"threshold": null, "unit": "medals"},
+        "gold": {"threshold": null, "unit": "medals"},
+        "master": {"threshold": null, "unit": "medals"}
+      },
+      "notes": "Very difficult; some (like King Dodongo) are especially hard. Requires Master Medal clear times on all Hall battles"
+    },
+    {
+      "id": "quiz_enthusiast",
+      "name": "Quiz Enthusiast",
+      "description": "Earned by completing the Ocarina of Time Quiz",
+      "stat": "quiz_completion",
+      "tiers": {
+        "egg": {"threshold": 20, "unit": "consecutive_correct"},
+        "cucco": {"threshold": 30, "unit": "consecutive_correct"}
+      },
+      "notes": "APP-ONLY: Complete Cucco level (30 consecutive correct answers). Once per 24 hours OR spend rupees (20/60/100) for retries. Unlocks Cojiro Challenge after, but Cojiro is NOT required for Master Medal. OUT OF SCOPE for tracker (no in-game stat)"
+    }
+  ],
+  "notes": {
+    "out_of_scope": [
+      "Quiz Enthusiast — app-only quiz with no in-game stat counter"
+    ],
+    "already_tracked": [
+      "Token Collector (100 Gold Skulltulas) — already in checklist.json as heart_pieces/gold_skulltulas categories"
+    ],
+    "in_game_requirements": [
+      "Complete story mode",
+      "36 Heart Pieces (20 hearts total)",
+      "100 Gold Skulltulas",
+      "Every treasure chest (map 100%)",
+      "6 Great Fairy Fountains",
+      "All capacity upgrades (Giant's Wallet, max Deku Stick/Nut/Seed/Bomb bags, max Quiver)",
+      "Golden Scale, Gold Gauntlets",
+      "Biggoron's Sword, Fire/Ice/Light Arrows",
+      "Din's Fire, Farore's Wind, Nayru's Love",
+      "Happy Mask Salesman quest + Mask of Truth",
+      "Hall of Fallen Foes: all battles + all Master Medals"
+    ],
+    "zelda_notes_app_features": [
+      "Transfer rupees from in-game to Zelda Notes (20/60/100 per 24 hours) for quiz retries",
+      "Map view with treasure chests, hidden holes, completion tracking",
+      "My Play Data shows all medals with progress",
+      "Photo Studio to decorate screenshots with medals/stamps",
+      "Ocarina of Time Quiz (Egg → Cucco levels)"
+    ]
+  }
+}

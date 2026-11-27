@@ -6,6 +6,10 @@ const norm = (s: string) => s.toLowerCase().normalize('NFKD').replace(/[^a-z]/g,
 /** Save area base name (without _Adult/_Child) -> checklist regions it covers. */
 const ALIASES: Record<string, string[]> = {
   market: ['Hyrule Castle Town'],
+  ingoranch: ['Lon Lon Ranch'], // adult name of the ranch
+  underthegrave: ['Bottom of the Well'],
+  undetthegrave: ['Bottom of the Well'], // the game uses both spellings
+  icecaven: ['Ice Cavern'], // the game spells the stage without the r
   timetemple: ['Hyrule Castle Town'], // Temple of Time sits in the town; no checklist region of its own
   hyrulecastle: ['Hyrule Castle', 'Hyrule Castle (outside Ganon\'s Castle)'],
   hrlcastle: ['Hyrule Castle'],

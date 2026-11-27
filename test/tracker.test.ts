@@ -10,13 +10,20 @@ const slot = (n: string) => `fixtures/save/slot_${n}/progress.sav`;
 const have = fs.existsSync(slot('05')) && fs.existsSync(slot('02'));
 
 describe.skipIf(!have)('Tracker on real saves', () => {
-  it('passes Big Poe spots as unmapped display rows, outside items', () => {
+  it('passes Big Poe and bean spots as display rows with save-driven state', () => {
     const { categories } = tracker.evaluate(parseGameData(fs.readFileSync(slot('05'))));
     const poes = categories.find(c => c.id === 'big_poes')!;
     expect(poes.items).toEqual([]);
     expect(poes.spots).toHaveLength(10);
-    expect(poes.spots!.every(s => s.state === 'unmapped' && !s.done && s.chapter === 'Hyrule Field')).toBe(true);
-    expect(categories.find(c => c.id === 'magic_beans_planted')!.spots).toBeUndefined();
+    // All ten poe fields have confirmed mappings, so the spots are read from the save.
+    expect(poes.spots!.every(s => s.state !== 'unmapped' && s.confidence === 'confirmed' && s.chapter === 'Hyrule Field')).toBe(true);
+    // Bean spots: 10 display rows, one per known planting spot. The two unpaired soil flags
+    // still count in the save counter, so the count may exceed the mapped-spot tally.
+    const beans = categories.find(c => c.id === 'magic_beans_planted')!;
+    expect(beans.spots).toHaveLength(10);
+    const done = beans.spots!.filter(s => s.done).length;
+    expect(beans.value ?? 0).toBeGreaterThanOrEqual(done);
+    expect(beans.value ?? 0).toBeLessThanOrEqual(10);
   });
 
   it('reads the summary for slot_05', () => {
@@ -69,6 +76,11 @@ describe('area matching', () => {
     expect(regionsForArea('Market/Market_Child', [])).toEqual(['Hyrule Castle Town']);
     expect(regionsForArea('GoronCity', ['Goron City', 'Graveyard'])).toEqual(['Goron City']);
     expect(regionsForArea(undefined, ['Goron City'])).toEqual([]);
+    expect(regionsForArea('HyruleField_Adult/IngoRanch', ['Lon Lon Ranch', 'Hyrule Field'])).toContain('Lon Lon Ranch');
+    expect(regionsForArea('HyruleField_Child/LonLonRanch', ['Lon Lon Ranch', 'Hyrule Field'])).toContain('Lon Lon Ranch');
+    expect(regionsForArea('UnderTheGrave', ['Bottom of the Well', 'Graveyard'])).toContain('Bottom of the Well');
+    expect(regionsForArea('UndetTheGrave', ['Bottom of the Well', 'Graveyard'])).toContain('Bottom of the Well');
+    expect(regionsForArea('IceCaven', ['Ice Cavern', "Zora's Fountain"])).toContain('Ice Cavern');
   });
 });
 

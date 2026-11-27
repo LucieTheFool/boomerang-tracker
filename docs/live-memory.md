@@ -142,7 +142,6 @@ jump to 6:00 or 18:00 with Sun's Song. Probe scripts for this are in the gitigno
 
 ## If a Hookshot, Longshot, NX2navi, ReLink, Fritchii, Rekarina or game update breaks it
 
-The tracker falls back to saves and shows "○ Saves". To re-derive the layout: take a
-memory copy, do one thing in game that sets a known flag (for example collect a heart
-piece), take another copy and diff them (the probe scripts used for this live in the
-gitignored `local/probe/`).
+The tracker falls back to saves and shows "○ Saves". See **[rederive-layout.md](rederive-layout.md)**
+for a step-by-step walkthrough: symptoms, what to collect, the method (native ports vs
+emulators), recording the new offsets, and testing.

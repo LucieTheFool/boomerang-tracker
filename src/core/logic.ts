@@ -215,6 +215,48 @@ export class Logic {
     if (!name) return undefined;
     return this.data.regions[name] ? name : this.data.regionAliases[name];
   }
+
+  /** BFS distance in hops from one region to all others for an age. Held warp songs add edges from anywhere. */
+  distances(age: Age, from: string | undefined): Map<string, number> {
+    const result = new Map<string, number>();
+    const resolved = this.resolveRegion(from);
+    if (!resolved || !this.data.regions[resolved]) return result;
+    if (age === 'adult' && !this.canBeAdult()) return result;
+
+    const availableWarps = this.data.warps.filter(w => this.test(w.needs, age));
+    const queue: [string, number][] = [[resolved, 0]];
+    result.set(resolved, 0);
+
+    while (queue.length) {
+      const [region, dist] = queue.shift()!;
+      for (const [to, needs] of Object.entries(this.data.regions[region]?.exits ?? {})) {
+        if (!result.has(to) && this.test(needs, age)) {
+          result.set(to, dist + 1);
+          queue.push([to, dist + 1]);
+        }
+      }
+      for (const w of availableWarps) {
+        if (!result.has(w.to)) {
+          result.set(w.to, dist + 1);
+          queue.push([w.to, dist + 1]);
+        }
+      }
+    }
+    return result;
+  }
+
+  /** Nearest distance to each region as either child or adult (whichever is closer). */
+  nearestDistances(from: string | undefined): Map<string, number> {
+    const child = this.distances('child', from);
+    const adult = this.distances('adult', from);
+    const result = new Map<string, number>();
+    for (const [r, d] of child) result.set(r, d);
+    for (const [r, d] of adult) {
+      const existing = result.get(r);
+      if (existing === undefined || d < existing) result.set(r, d);
+    }
+    return result;
+  }
 }
 
 export interface RowRef { id: string; key: string; chapter?: string }

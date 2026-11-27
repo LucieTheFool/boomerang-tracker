@@ -3,7 +3,7 @@
 import type { SlotSummary } from '../shared/types';
 
 export function timeAgo(ms: number | undefined, now = Date.now()): string {
-  if (!ms) return '—';
+  if (!ms) return '?';
   const s = Math.max(0, Math.round((now - ms) / 1000));
   if (s < 10) return 'just now';
   if (s < 60) return `${s}s ago`;

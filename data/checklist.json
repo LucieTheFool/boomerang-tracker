@@ -1631,6 +1631,34 @@
           "name": "Mask of Truth",
           "iconId": "mask_of_truth",
           "detect": null
+        },
+        {
+          "id": "masks.keaton_mask_sold",
+          "number": 6,
+          "name": "Keaton Mask sold",
+          "iconId": "keaton_mask",
+          "detect": null
+        },
+        {
+          "id": "masks.skull_mask_sold",
+          "number": 7,
+          "name": "Skull Mask sold",
+          "iconId": "skull_mask",
+          "detect": null
+        },
+        {
+          "id": "masks.spooky_mask_sold",
+          "number": 8,
+          "name": "Spooky Mask sold",
+          "iconId": "spooky_mask",
+          "detect": null
+        },
+        {
+          "id": "masks.bunny_hood_sold",
+          "number": 9,
+          "name": "Bunny Hood sold",
+          "iconId": "bunny_hood",
+          "detect": null
         }
       ]
     },
@@ -1674,6 +1702,27 @@
           "id": "bottles.poe_collector_bottle",
           "number": 5,
           "name": "Poe Collector bottle",
+          "iconId": "bottle",
+          "detect": null
+        },
+        {
+          "id": "bottles.rutos_letter_shown",
+          "number": 6,
+          "name": "Ruto's Letter shown to King Zora",
+          "iconId": "bottle",
+          "detect": null
+        },
+        {
+          "id": "bottles.seven_cuccos_returned",
+          "number": 7,
+          "name": "All seven Cuccos returned",
+          "iconId": "bottle",
+          "detect": null
+        },
+        {
+          "id": "bottles.five_poes_sold",
+          "number": 8,
+          "name": "Five Big Poes sold",
           "iconId": "bottle",
           "detect": null
         }
@@ -2379,6 +2428,27 @@
           "name": "Zelda's Letter",
           "iconId": "zeldas_letter",
           "detect": null
+        },
+        {
+          "id": "child_trade.weird_egg_hatched",
+          "number": 4,
+          "name": "Weird Egg hatched",
+          "iconId": "weird_egg",
+          "detect": null
+        },
+        {
+          "id": "child_trade.wake_up_cucco_turned_in",
+          "number": 5,
+          "name": "Wake-up Cucco turned in",
+          "iconId": "wake_up_cucco",
+          "detect": null
+        },
+        {
+          "id": "child_trade.zeldas_letter_turned_in",
+          "number": 6,
+          "name": "Zelda's Letter turned in",
+          "iconId": "zeldas_letter",
+          "detect": null
         }
       ]
     },
@@ -2465,6 +2535,83 @@
           "name": "Claim Check",
           "iconId": "claim_check",
           "detect": null
+        },
+        {
+          "id": "adult_trade.pocket_egg_hatched",
+          "number": 12,
+          "name": "Pocket Egg hatched",
+          "iconId": "pocket_egg",
+          "detect": null
+        },
+        {
+          "id": "adult_trade.pocket_cucco_turned_in",
+          "number": 13,
+          "name": "Pocket Cucco turned in",
+          "iconId": "pocket_cucco",
+          "detect": null
+        },
+        {
+          "id": "adult_trade.cojiro_turned_in",
+          "number": 14,
+          "name": "Cojiro turned in",
+          "iconId": "cojiro",
+          "detect": null
+        },
+        {
+          "id": "adult_trade.odd_mushroom_turned_in",
+          "number": 15,
+          "name": "Odd Mushroom turned in",
+          "iconId": "odd_mushroom",
+          "detect": null
+        },
+        {
+          "id": "adult_trade.odd_potion_turned_in",
+          "number": 16,
+          "name": "Odd Potion turned in",
+          "iconId": "odd_potion",
+          "detect": null
+        },
+        {
+          "id": "adult_trade.poachers_saw_turned_in",
+          "number": 17,
+          "name": "Poacher's Saw turned in",
+          "iconId": "poachers_saw",
+          "detect": null
+        },
+        {
+          "id": "adult_trade.broken_gorons_sword_turned_in",
+          "number": 18,
+          "name": "Broken Goron's Sword turned in",
+          "iconId": "broken_gorons_sword",
+          "detect": null
+        },
+        {
+          "id": "adult_trade.prescription_turned_in",
+          "number": 19,
+          "name": "Prescription turned in",
+          "iconId": "prescription",
+          "detect": null
+        },
+        {
+          "id": "adult_trade.eyeball_frog_turned_in",
+          "number": 20,
+          "name": "Eyeball Frog turned in",
+          "iconId": "eyeball_frog",
+          "detect": null
+        },
+        {
+          "id": "adult_trade.worlds_finest_eye_drops_turned_in",
+          "number": 21,
+          "name": "World's Finest Eye Drops turned in",
+          "iconId": "worlds_finest_eye_drops",
+          "detect": null
+        },
+        {
+          "id": "adult_trade.claim_check_turned_in",
+          "number": 22,
+          "name": "Claim Check turned in",
+          "iconId": "claim_check",
+          "detect": null
         }
       ]
     },
@@ -2475,7 +2622,88 @@
       "countsToward100": true,
       "kind": "counter",
       "max": 10,
-      "items": []
+      "items": [
+        {
+          "id": "magic_beans_planted.001",
+          "number": 1,
+          "name": "Zora's River (by the bean seller)",
+          "chapter": "Zora's River",
+          "iconId": "bean",
+          "detect": null
+        },
+        {
+          "id": "magic_beans_planted.002",
+          "number": 2,
+          "name": "Kokiri Forest (by the shop)",
+          "chapter": "Kokiri Forest",
+          "iconId": "bean",
+          "detect": null
+        },
+        {
+          "id": "magic_beans_planted.003",
+          "number": 3,
+          "name": "Graveyard (northwest corner)",
+          "chapter": "Graveyard",
+          "iconId": "bean",
+          "detect": null
+        },
+        {
+          "id": "magic_beans_planted.004",
+          "number": 4,
+          "name": "Death Mountain Trail (Dodongo's rock)",
+          "chapter": "Death Mountain",
+          "iconId": "bean",
+          "detect": null
+        },
+        {
+          "id": "magic_beans_planted.005",
+          "number": 5,
+          "name": "Lost Woods (by the Skull Kid)",
+          "chapter": "Lost Woods",
+          "iconId": "bean",
+          "detect": null
+        },
+        {
+          "id": "magic_beans_planted.006",
+          "number": 6,
+          "name": "Lost Woods (by the Deku Theater)",
+          "chapter": "Lost Woods",
+          "iconId": "bean",
+          "detect": null
+        },
+        {
+          "id": "magic_beans_planted.007",
+          "number": 7,
+          "name": "Lake Hylia (by the laboratory)",
+          "chapter": "Lake Hylia",
+          "iconId": "bean",
+          "detect": null
+        },
+        {
+          "id": "magic_beans_planted.008",
+          "number": 8,
+          "name": "Gerudo Valley (below the second bridge)",
+          "chapter": "Gerudo Valley",
+          "iconId": "bean",
+          "detect": null
+        },
+        {
+          "id": "magic_beans_planted.009",
+          "number": 9,
+          "name": "Death Mountain Crater (Bolero of Fire)",
+          "chapter": "Death Mountain",
+          "iconId": "bean",
+          "detect": null
+        },
+        {
+          "id": "magic_beans_planted.010",
+          "number": 10,
+          "name": "Desert Colossus (Spirit Temple)",
+          "chapter": "Desert Colossus",
+          "iconId": "bean",
+          "detect": null
+        }
+      ]
     },
     {
       "id": "dungeon_items",

@@ -1,24 +1,36 @@
 import { ReactNode, useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 /**
- * Masonry layout: as many columns as fit, each card placed into the currently
- * shortest column (in order), so opening a tall card doesn't leave empty space
- * beside it. Card heights are measured and re-measured when they change.
+ * Column-fill layout: as many columns as fit, cards placed in order filling
+ * the left column top-to-bottom; when a card would run past the visible
+ * height of the checklist area, it continues in the next column to the right.
+ * Card heights are measured and re-measured when they change.
  */
 export function Masonry({ items, minColumn = 320, gap = 14 }: { items: { key: string; node: ReactNode }[]; minColumn?: number; gap?: number }) {
   const wrap = useRef<HTMLDivElement>(null);
   const [cols, setCols] = useState(1);
+  const [viewH, setViewH] = useState(0);
   const [heights, setHeights] = useState<Record<string, number>>({});
   const observers = useRef(new Map<string, ResizeObserver>());
+  // The card fade-in plays only on the first paint; once it settles, re-mounts
+  // (filter changes, hide-collected) don't replay it.
+  const [settled, setSettled] = useState(false);
+  useEffect(() => { const t = setTimeout(() => setSettled(true), 320); return () => clearTimeout(t); }, []);
 
-  // Column count from the available width.
+  // Column count from the available width; visible height from the scroll container.
   useLayoutEffect(() => {
     const el = wrap.current;
-    if (!el) return;
-    const update = () => setCols(Math.max(1, Math.floor((el.clientWidth + gap) / (minColumn + gap))));
+    const parent = el?.parentElement;
+    if (!el || !parent) return;
+    const update = () => {
+      setCols(Math.max(1, Math.floor((el.clientWidth + gap) / (minColumn + gap))));
+      const cs = getComputedStyle(parent);
+      setViewH(parent.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom));
+    };
     update();
     const ro = new ResizeObserver(update);
     ro.observe(el);
+    ro.observe(parent);
     return () => ro.disconnect();
   }, [minColumn, gap]);
 
@@ -37,18 +49,20 @@ export function Masonry({ items, minColumn = 320, gap = 14 }: { items: { key: st
     observers.current.set(key, ro);
   };
 
-  // Greedy placement into the shortest column, in order.
+  // Fill the left column top-to-bottom; a card that would run past the visible
+  // height continues in the next column to the right.
   const columns: { key: string; node: ReactNode }[][] = Array.from({ length: cols }, () => []);
   const colH = new Array(cols).fill(0);
+  let target = 0;
   for (const it of items) {
-    let best = 0;
-    for (let i = 1; i < cols; i++) if (colH[i] < colH[best] - 1) best = i;
-    columns[best].push(it);
-    colH[best] += (heights[it.key] ?? 120) + gap;
+    const h = heights[it.key] ?? 120;
+    if (target < cols - 1 && colH[target] + gap + h > viewH) target++;
+    columns[target].push(it);
+    colH[target] += h + gap;
   }
 
   return (
-    <div ref={wrap} className="masonry" style={{ gap }}>
+    <div ref={wrap} className={settled ? 'masonry settled' : 'masonry'} style={{ gap }}>
       {columns.map((col, i) => (
         <div key={i} className="masonry-col" style={{ gap }}>
           {col.map(it => <div key={it.key} ref={measure(it.key)} className="masonry-item">{it.node}</div>)}

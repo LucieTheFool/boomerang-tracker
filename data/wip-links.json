@@ -1,0 +1,12 @@
+{
+  "_note": "WIP 100% sections (Settings > Advanced > Developer options): entries of the three reference files shown there (zelda-notes-medals, hall-of-fallen-foes, threads-of-time-quests) that the checklist already tracks. A linked entry shows the checklist row's status instead of 'not mapped'. entries: reference id -> checklist item id (same entity only, no proxies). stats: medal id -> checklist category whose collected count is the stat (none today: Token Collector, the only one, is hidden as redundant). Ids are checked by test/wip-sections.test.ts.",
+  "entries": {
+    "broken_windmill_dry_well": "side_quests.broken_windmill_dry_well",
+    "malons_friend": "side_quests.malons_friend",
+    "happy_mask_shopkeeper": "side_quests.happy_mask_shopkeeper",
+    "to_great_fairy": "side_quests.to_the_great_fairy",
+    "stir_scarecrows_soul": "side_quests.stir_the_scarecrows_soul",
+    "from_pocket_egg": "side_quests.from_a_pocket_egg_comes"
+  },
+  "stats": {}
+}

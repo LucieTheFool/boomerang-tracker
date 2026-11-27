@@ -1,0 +1,168 @@
+{
+  "$schema": "hall-of-fallen-foes-schema",
+  "version": "1.0.0",
+  "source": "IGN Ocarina of Time Remake Hall of Fallen Foes Guide (2026-11-23)",
+  "game": "The Legend of Zelda: Ocarina of Time (Switch 2 Remake)",
+  "total_statues": 84,
+  "unlock_condition": "Beat Forest Temple as Adult Link, then return to Temple of Time as Young Link",
+  "access_method": "Sleep in a green-glowing bed (Link's House, Kakariko Village Grand Lodge, Castle Town NW alley, Lon Lon Ranch, Goron City top walkway, Lake Hylia Laboratory shed, Gerudo Valley Carpenter's Tent)",
+  "gauntlet_trials": [
+    {
+      "id": "trial_spiritual_stones",
+      "name": "Trial of the Spiritual Stones",
+      "bosses": ["Gohma", "King Dodongo", "Barinade"],
+      "count": 3
+    },
+    {
+      "id": "trial_five_sages",
+      "name": "Trial of the Five Sages",
+      "bosses": ["Phantom Ganon", "Volvagia", "Morpha", "Bongo Bongo", "Twinrova"],
+      "count": 5
+    },
+    {
+      "id": "trial_hero_of_time",
+      "name": "Trial of the Hero of Time",
+      "bosses": ["Gohma", "King Dodongo", "Barinade", "Phantom Ganon", "Volvagia", "Morpha", "Bongo Bongo", "Twinrova", "Ganondorf", "Ganon"],
+      "count": 10
+    }
+  ],
+  "categories": [
+    {
+      "id": "forest",
+      "name": "Forest",
+      "description": "Forest-dwelling monsters from Kokiri Forest, Lost Woods, Great Deku Tree, and Forest Temple",
+      "enemies": [
+        {"id": "skull_kid", "name": "Skull Kid", "first_encounter": "Lost Woods (Battle as Adult)", "pedestal": "round"},
+        {"id": "deku_scrub", "name": "Deku Scrub", "first_encounter": "Great Deku Tree", "pedestal": "round"},
+        {"id": "gohma_larva", "name": "Gohma Larva", "first_encounter": "Great Deku Tree", "pedestal": "round"},
+        {"id": "mad_scrub", "name": "Mad Scrub", "first_encounter": "Lost Woods", "pedestal": "round"},
+        {"id": "deku_baba", "name": "Deku Baba", "first_encounter": "Kokiri Forest", "pedestal": "round"},
+        {"id": "floormaster", "name": "Floormaster", "first_encounter": "Forest Temple", "pedestal": "round"},
+        {"id": "jo_second_born", "name": "Jo, Second Born", "first_encounter": "Forest Temple", "pedestal": "rectangular", "mini_boss": true, "unique": true},
+        {"id": "beth_third_born", "name": "Beth, Third Born", "first_encounter": "Forest Temple", "pedestal": "rectangular", "mini_boss": true, "unique": true},
+        {"id": "amy_fourth_born", "name": "Amy, Fourth Born", "first_encounter": "Forest Temple", "pedestal": "rectangular", "mini_boss": true, "unique": true},
+        {"id": "wallmaster", "name": "Wallmaster", "first_encounter": "Forest Temple", "pedestal": "round"},
+        {"id": "wolfos", "name": "Wolfos", "first_encounter": "Spiritual Stone of Fire quest", "pedestal": "round"},
+        {"id": "meg_firstborn", "name": "Meg, Firstborn", "first_encounter": "Forest Temple", "pedestal": "rectangular", "mini_boss": true, "unique": true},
+        {"id": "stalfos_warrior", "name": "Stalfos (Warrior)", "first_encounter": "Forest Temple", "pedestal": "rectangular", "mini_boss": false, "variant": "warrior"},
+        {"id": "gohma", "name": "Gohma", "first_encounter": "Great Deku Tree", "pedestal": "rectangular", "boss": true},
+        {"id": "phantom_ganon", "name": "Phantom Ganon", "first_encounter": "Forest Temple", "pedestal": "rectangular", "boss": true}
+      ]
+    },
+    {
+      "id": "mountain",
+      "name": "Mountain",
+      "description": "Enemies from Death Mountain, Dodongo Cavern, and Fire Temple",
+      "enemies": [
+        {"id": "octorok_red", "name": "Octorok (Red)", "first_encounter": "Death Mountain Trail", "pedestal": "round"},
+        {"id": "tektite_red", "name": "Tektite (Red)", "first_encounter": "Death Mountain Crater", "pedestal": "round"},
+        {"id": "dodongo_baby", "name": "Dodongo (Baby)", "first_encounter": "Dodongo Cavern", "pedestal": "round"},
+        {"id": "beamos", "name": "Beamos", "first_encounter": "Dodongo Cavern", "pedestal": "round"},
+        {"id": "armos", "name": "Armos", "first_encounter": "Dodongo Cavern", "pedestal": "round"},
+        {"id": "fire_keese", "name": "Fire Keese", "first_encounter": "Dodongo Cavern", "pedestal": "round"},
+        {"id": "lizalfos", "name": "Lizalfos", "first_encounter": "Dodongo Cavern", "pedestal": "rectangular", "mini_boss": false},
+        {"id": "flare_dancer", "name": "Flare Dancer", "first_encounter": "Fire Temple", "pedestal": "rectangular", "mini_boss": true},
+        {"id": "torch_slug", "name": "Torch Slug", "first_encounter": "Fire Temple", "pedestal": "round"},
+        {"id": "red_bubble", "name": "Red Bubble", "first_encounter": "Fire Temple", "pedestal": "round"},
+        {"id": "false_door_fire", "name": "False Door (Fire Temple)", "first_encounter": "Fire Temple", "pedestal": "round", "variant": "fire_temple"},
+        {"id": "king_dodongo", "name": "King Dodongo", "first_encounter": "Dodongo Cavern", "pedestal": "rectangular", "boss": true},
+        {"id": "volvagia", "name": "Volvagia", "first_encounter": "Fire Temple", "pedestal": "rectangular", "boss": true}
+      ]
+    },
+    {
+      "id": "water",
+      "name": "Water",
+      "description": "Aquatic enemies from Lake Hylia, Zora's Domain, Jabu-Jabu's Belly, Ice Cavern, and Water Temple",
+      "enemies": [
+        {"id": "octorok_blue", "name": "Octorok (Blue)", "first_encounter": "Lake Hylia", "pedestal": "round"},
+        {"id": "tektite_blue", "name": "Tektite (Blue)", "first_encounter": "Lake Hylia", "pedestal": "round"},
+        {"id": "parasitic_tentacle", "name": "Parasitic Tentacle", "first_encounter": "Jabu-Jabu's Belly", "pedestal": "round"},
+        {"id": "biri", "name": "Biri", "first_encounter": "Jabu-Jabu's Belly", "pedestal": "round"},
+        {"id": "bari", "name": "Bari", "first_encounter": "Jabu-Jabu's Belly", "pedestal": "round"},
+        {"id": "bigocto", "name": "Bigocto", "first_encounter": "Jabu-Jabu's Belly", "pedestal": "rectangular", "mini_boss": true},
+        {"id": "stinger", "name": "Stinger", "first_encounter": "Jabu-Jabu's Belly", "pedestal": "round"},
+        {"id": "shellblade", "name": "Shellblade", "first_encounter": "Water Temple", "pedestal": "round"},
+        {"id": "spike", "name": "Spike", "first_encounter": "Water Temple", "pedestal": "round"},
+        {"id": "white_wolfos", "name": "White Wolfos", "first_encounter": "Ice Cavern", "pedestal": "rectangular", "mini_boss": true, "variant": "white"},
+        {"id": "freezard", "name": "Freezard", "first_encounter": "Ice Cavern", "pedestal": "round"},
+        {"id": "ice_keese", "name": "Ice Keese", "first_encounter": "Ice Cavern", "pedestal": "round"},
+        {"id": "dark_link", "name": "Dark Link", "first_encounter": "Water Temple", "pedestal": "rectangular", "mini_boss": true, "unique": true},
+        {"id": "barinade", "name": "Barinade", "first_encounter": "Jabu-Jabu's Belly", "pedestal": "rectangular", "boss": true},
+        {"id": "morpha", "name": "Morpha", "first_encounter": "Water Temple", "pedestal": "rectangular", "boss": true}
+      ]
+    },
+    {
+      "id": "desert",
+      "name": "Desert",
+      "description": "Enemies from Mirage Desert, Evil Desert Colossus, and Spirit Temple",
+      "enemies": [
+        {"id": "flying_pot", "name": "Flying Pot", "first_encounter": "Shadow Temple (also Spirit Temple)", "pedestal": "round"},
+        {"id": "guay", "name": "Guay", "first_encounter": "Hyrule Field", "pedestal": "round", "note": "Purple and green variants, only need one"},
+        {"id": "green_bubble", "name": "Green Bubble", "first_encounter": "Forest Temple (also Spirit Temple)", "pedestal": "round"},
+        {"id": "leever", "name": "Leever", "first_encounter": "Mirage Desert", "pedestal": "round"},
+        {"id": "leever_big", "name": "Leever (Big)", "first_encounter": "Mirage Desert (rare)", "pedestal": "round", "variant": "big", "note": "Purple, appears after defeating ~10 regular Leevers in Desert Colossus or 30 in Mirage Desert"},
+        {"id": "white_bubble", "name": "White Bubble", "first_encounter": "Spirit Temple", "pedestal": "round"},
+        {"id": "like_like", "name": "Like Like", "first_encounter": "Fire Temple (also Water/Spirit)", "pedestal": "round"},
+        {"id": "anubis", "name": "Anubis", "first_encounter": "Spirit Temple", "pedestal": "round"},
+        {"id": "false_door_spirit", "name": "False Door (Spirit Temple)", "first_encounter": "Spirit Temple", "pedestal": "round", "variant": "spirit_temple"},
+        {"id": "gerudo_thief", "name": "Gerudo Thief", "first_encounter": "Gerudo Fortress", "pedestal": "rectangular", "mini_boss": true},
+        {"id": "iron_knuckle", "name": "Iron Knuckle", "first_encounter": "Spirit Temple", "pedestal": "rectangular", "mini_boss": true, "variant": "standard"},
+        {"id": "iron_knuckle_nabooru", "name": "Iron Knuckle (Nabooru)", "first_encounter": "Spirit Temple", "pedestal": "rectangular", "mini_boss": true, "unique": true, "variant": "nabooru"},
+        {"id": "twinrova", "name": "Twinrova", "first_encounter": "Spirit Temple", "pedestal": "rectangular", "boss": true}
+      ]
+    },
+    {
+      "id": "darkness",
+      "name": "Darkness",
+      "description": "Spirits, haunts, graveyard enemies, Shadow Temple, and Bottom of the Well",
+      "enemies": [
+        {"id": "redead", "name": "ReDead", "first_encounter": "Kakariko Graveyard", "pedestal": "round"},
+        {"id": "keese", "name": "Keese", "first_encounter": "Kakariko Graveyard", "pedestal": "round"},
+        {"id": "green_bubble_large", "name": "Green Bubble (Large)", "first_encounter": "Bottom of the Well", "pedestal": "round", "unique": true, "variant": "large"},
+        {"id": "blue_bubble", "name": "Blue Bubble", "first_encounter": "Forest Temple", "pedestal": "round"},
+        {"id": "gibdo", "name": "Gibdo", "first_encounter": "Bottom of the Well", "pedestal": "round"},
+        {"id": "sharp_the_elder", "name": "Sharp the Elder", "first_encounter": "Kakariko Graveyard", "pedestal": "rectangular", "mini_boss": true, "unique": true},
+        {"id": "poe_graveyard", "name": "Poe (Graveyard)", "first_encounter": "Kakariko Graveyard", "pedestal": "round", "variant": "graveyard"},
+        {"id": "big_poe", "name": "Big Poe", "first_encounter": "Hyrule Field (Adult, on Epona)", "pedestal": "round", "note": "10 total in Hyrule Field"},
+        {"id": "poe_field", "name": "Poe (Field)", "first_encounter": "Hyrule Field", "pedestal": "round", "variant": "field"},
+        {"id": "flat_the_younger", "name": "Flat the Younger", "first_encounter": "Kakariko Graveyard", "pedestal": "rectangular", "mini_boss": true, "unique": true},
+        {"id": "stalfos_knight", "name": "Stalfos (Knight)", "first_encounter": "Shadow Temple", "pedestal": "rectangular", "mini_boss": false, "variant": "knight"},
+        {"id": "dead_hand", "name": "Dead Hand", "first_encounter": "Bottom of the Well", "pedestal": "rectangular", "mini_boss": true},
+        {"id": "bongo_bongo", "name": "Bongo Bongo", "first_encounter": "Shadow Temple", "pedestal": "rectangular", "boss": true}
+      ]
+    },
+    {
+      "id": "field_and_castle",
+      "name": "Field and Castle",
+      "description": "Hyrule Field enemies (both ages) and Ganon's Castle",
+      "enemies": [
+        {"id": "peahat_larva", "name": "Peahat Larva", "first_encounter": "Hyrule Field", "pedestal": "round"},
+        {"id": "peahat", "name": "Peahat", "first_encounter": "Hyrule Field", "pedestal": "round"},
+        {"id": "moblin", "name": "Moblin", "first_encounter": "Hyrule Field", "pedestal": "round"},
+        {"id": "great_moblin", "name": "Great Moblin", "first_encounter": "Hyrule Field", "pedestal": "round", "variant": "great"},
+        {"id": "business_scrub", "name": "Business Scrub", "first_encounter": "Hyrule Field", "pedestal": "round"},
+        {"id": "skullwalltula", "name": "Skullwalltula", "first_encounter": "Great Deku Tree", "pedestal": "round"},
+        {"id": "skulltula", "name": "Skulltula", "first_encounter": "Great Deku Tree", "pedestal": "round"},
+        {"id": "gold_skulltula", "name": "Gold Skulltula", "first_encounter": "Great Deku Tree", "pedestal": "round", "note": "100 total in game"},
+        {"id": "stalchild", "name": "Stalchild", "first_encounter": "Hyrule Field (Night Only)", "pedestal": "round", "note": "Multiple sizes, one statue"},
+        {"id": "iron_knuckle_castle", "name": "Iron Knuckle (Castle)", "first_encounter": "Ganon's Castle", "pedestal": "rectangular", "mini_boss": true, "variant": "castle"},
+        {"id": "ganondorf", "name": "Ganondorf", "first_encounter": "Ganon's Castle", "pedestal": "rectangular", "boss": true},
+        {"id": "ganon", "name": "Ganon", "first_encounter": "Ganon's Castle", "pedestal": "rectangular", "boss": true, "final_boss": true}
+      ]
+    }
+  ],
+  "notes": {
+    "pedestal_types": {
+      "round": "Standard foes (cannot rematch)",
+      "rectangular": "Mini-bosses and bosses (can rematch)"
+    },
+    "variants": "Some enemies appear multiple times as distinct variants (e.g., 3 Iron Knuckles, 2 Stalfos, 2 Poe types). Each variant must be defeated for its statue.",
+    "missable": "No enemies are permanently missable",
+    "excluded_from_hall": [
+      "Boobytrapped chests",
+      "Rolling boulders",
+      "Human soldiers guarding Hyrule Castle (not direct combat)"
+    ],
+    "gauntlet_rewards": "Stone, Silver, and Gold Owl Trophies (cosmetic rewards for Trial completions)"
+  }
+}

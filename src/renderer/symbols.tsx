@@ -66,6 +66,11 @@ export const SYMBOLS: Record<string, ReactNode> = {
   ticket: <>{P('M3 7h18v3a2 2 0 0 0 0 4v3H3v-3a2 2 0 0 0 0-4z')}{P('M14 7v10')}</>,
   poe: <>{P('M6 20V10a6 6 0 0 1 12 0v10l-2-2-2 2-2-2-2 2-2-2z')}{<circle cx="10" cy="11" r="1" />}{<circle cx="14" cy="11" r="1" />}</>,
   sprout: <>{P('M12 21v-9')}{P('M12 12c0-4-3-6-7-6 0 4 3 6 7 6z')}{P('M12 14c0-3 2-5 6-5 0 3-2 5-6 5z')}</>,
+  plantedBean: <>{P('M3 20h18')}{P('M6 20c1.2-2.6 3.4-4 6-4s4.8 1.4 6 4')}{P('M12 16V9')}{P('M12 11c0-3-2.4-5-6-5 0 3 2.4 5 6 5z')}{P('M12 9.5c0-2.6 2-4.3 5-4.3 0 2.6-2 4.3-5 4.3z')}</>,
+  // WIP card heads (wip.ts): a medal on a ribbon, a horned statue on a plinth, quests on a thread.
+  medal: <>{P('M8 3h8M8 3l2.7 6.7M16 3l-2.7 6.7')}{<circle cx="12" cy="15" r="5.5" />}{P('M9.6 15.2l1.7 1.7 3.1-3.4')}</>,
+  statue: <>{P('M5 17h14v4H5z')}{P('M8 17v-5.5a4 4 0 0 1 8 0V17')}{P('M9.2 8.7C7.8 7.7 7 6 7 3.8M14.8 8.7c1.4-1 2.2-2.7 2.2-4.9')}{<circle cx="10.2" cy="12.5" r=".6" />}{<circle cx="13.8" cy="12.5" r=".6" />}</>,
+  questThread: <>{<circle cx="6" cy="5" r="2" />}{<circle cx="18" cy="12" r="2" />}{<circle cx="6" cy="19" r="2" />}{P('M8 5c5 0 10 1.5 10 5M18 14c0 3.5-5 5-10 5')}</>,
 };
 
 /** Keyword -> symbol, checked in order against the entry's name. */
@@ -92,13 +97,16 @@ const CATEGORY_FALLBACK: Record<string, string> = {
   bottles: 'bottle', great_fairies: 'fairy', capacity: 'bag', stones_medallions: 'medallion',
   dungeons: 'door', bosses: 'skull', mini_bosses: 'crossedSwords', side_quests: 'quest',
   skulltula_rewards: 'token', child_trade: 'quest', adult_trade: 'quest', amiibo_masks: 'mask',
-  room_keys: 'key', key_items: 'card', masks: 'mask', equipment: 'shield', items: 'bag', magic_beans_planted: 'sprout', big_poes: 'poe',
+  room_keys: 'key', key_items: 'card', masks: 'mask', equipment: 'shield', items: 'bag', magic_beans_planted: 'plantedBean', big_poes: 'poe',
 };
+
+/** The symbol that stands for a whole category (card heads). */
+export const categorySymbol = (categoryId: string): string => CATEGORY_FALLBACK[categoryId] ?? 'quest';
 
 export function symbolFor(categoryId: string, iconId: string, name: string): string {
   if (categoryId === 'dungeon_items') return iconId === 'dungeon_map' ? 'map' : iconId === 'compass' ? 'compass' : 'key';
   // Categories whose rows all share one symbol (the name would mislead the keyword match).
-  if (['heart_pieces', 'heart_containers', 'gold_skulltulas', 'songs', 'dungeons', 'bosses', 'mini_bosses', 'side_quests', 'skulltula_rewards', 'room_keys'].includes(categoryId)) {
+  if (['heart_pieces', 'heart_containers', 'gold_skulltulas', 'songs', 'dungeons', 'bosses', 'mini_bosses', 'side_quests', 'skulltula_rewards', 'room_keys', 'magic_beans_planted'].includes(categoryId)) {
     return CATEGORY_FALLBACK[categoryId];
   }
   if (categoryId === 'bottles') return 'bottle';

@@ -107,6 +107,49 @@
     "MagicBean": {
       "name": "IsGet.Item_MagicBean"
     },
+    "BeanPlanted_ZoraRiver": {
+      "key": "0x5EEA40A6",
+      "eq": true
+    },
+    "BeanPlanted_KokiriForest": {
+      "key": "0xB55ACADD",
+      "eq": true
+    },
+    "BeanPlanted_Graveyard": {
+      "key": "0x274B7E3D",
+      "eq": true
+    },
+    "BeanPlanted_DeathMountainTrail": {
+      "key": "0xF2CEBA92",
+      "eq": true
+    },
+    "BeanPlanted_LostWoodsSkullKid": {
+      "key": "0x610EB13C",
+      "eq": true
+    },
+    "BeanPlanted_LostWoodsTheater": {
+      "key": "0x5EBF7C8B",
+      "eq": true
+    },
+    "BeanPlanted_LakeHylia": {
+      "key": "0xB0377637",
+      "eq": true
+    },
+    "BeanPlanted_GerudoValley": {
+      "key": "0x50A1775E",
+      "eq": true
+    },
+    "BeanPlanted_DeathMountainCrater": {
+      "key": "0x562FAB76",
+      "eq": true
+    },
+    "BeanPlanted_DesertColossus": {
+      "name": "IsGet.Item_MagicBean"
+    },
+    "BeanInPouch": {
+      "name": "PouchData.Item_MagicBean.StockNum",
+      "gte": 1
+    },
     "Bottle": {
       "sum": [
         "PouchData.BottleA.StockNum",
@@ -149,6 +192,81 @@
     },
     "MaskOfTruth": {
       "name": "IsGet.Armor_Child_Mask_Truth"
+    },
+    "KeatonHeld": {
+      "all": [
+        { "name": "IsGet.Armor_Child_Mask_Keaton" },
+        { "name": "PouchData.Armor_Child_Mask_Keaton.StockNum", "eq": 1 }
+      ]
+    },
+    "SkullHeld": {
+      "all": [
+        { "name": "IsGet.Armor_Child_Mask_Skull" },
+        { "name": "PouchData.Armor_Child_Mask_Skull.StockNum", "eq": 1 }
+      ]
+    },
+    "SpookyHeld": {
+      "all": [
+        { "name": "IsGet.Armor_Child_Mask_Spooky" },
+        { "name": "PouchData.Armor_Child_Mask_Spooky.StockNum", "eq": 1 }
+      ]
+    },
+    "BunnyHeld": {
+      "all": [
+        { "name": "IsGet.Armor_Child_Mask_Bunny" },
+        { "name": "PouchData.Armor_Child_Mask_Bunny.StockNum", "eq": 1 }
+      ]
+    },
+    "KeatonSold": {
+      "all": [
+        { "name": "IsGet.Armor_Child_Mask_Keaton" },
+        { "name": "PouchData.Armor_Child_Mask_Keaton.StockNum", "eq": 0 }
+      ]
+    },
+    "SkullSold": {
+      "all": [
+        { "name": "IsGet.Armor_Child_Mask_Skull" },
+        { "name": "PouchData.Armor_Child_Mask_Skull.StockNum", "eq": 0 }
+      ]
+    },
+    "SpookySold": {
+      "all": [
+        { "name": "IsGet.Armor_Child_Mask_Spooky" },
+        { "name": "PouchData.Armor_Child_Mask_Spooky.StockNum", "eq": 0 }
+      ]
+    },
+    "BunnySold": {
+      "all": [
+        { "name": "IsGet.Armor_Child_Mask_Bunny" },
+        { "name": "PouchData.Armor_Child_Mask_Bunny.StockNum", "eq": 0 }
+      ]
+    },
+    "GoronBombBagDone": {
+      "name": "GoronCity_GetBombBag_fromGoron006"
+    },
+    "BowlingPrizeDone": {
+      "name": "MiniGame_BombchuBowling_ClearFirstTime"
+    },
+    "TheaterSkullDone": {
+      "name": "LostWood_ScrubForestStage_SkullMaskEventLaunched"
+    },
+    "TheaterTruthDone": {
+      "name": "LostWood_ScrubForestStage_TrueMaskEventLaunched"
+    },
+    "HorsebackArcheryQuiverDone": {
+      "name": "MiniGame_HorseBackArchery_Get_Quiver"
+    },
+    "LostWoodsStickScrubDone": {
+      "name": "LostWood_Enemy_Scrub_Business_DekuStickPouch_01"
+    },
+    "LostWoodsNutScrubDone": {
+      "name": "Lostwood_Enemy_Scrub_Business_DekuNutsPouch_01"
+    },
+    "MarketGalleryDone": {
+      "name": "MiniGame_HitTarget_HrlCity_Get_BulletBag"
+    },
+    "KakGalleryDone": {
+      "name": "MiniGame_HitTarget_Kakariko_Get_Quiver"
     },
     "Song_ZeldasLullaby": {
       "name": "IsGet.Item_Melody_ZeldaLullaby"
@@ -288,6 +406,36 @@
     "RutosLetter": {
       "name": "IsGet.Item_Bottle_Letter"
     },
+    "RutoLetterHeld": {
+      "name": "Get_StoneOfWater_GetRutoLetter"
+    },
+    "RutosLetterShown": {
+      "any": [
+        { "name": "Get_StoneOfWater_TalkedZoraAboutRutoLetter" },
+        { "name": "HavePlayedEvent.Get_StoneOfWater_JabuJabuEat" }
+      ]
+    },
+    "SevenCuccosReturned": {
+      "any": [
+        { "name": "MiniGame_CatchCucco_IsCompleted" },
+        {
+          "count": [
+            { "name": "MiniGame_CatchCucco_PutsInFence", "index": 0 },
+            { "name": "MiniGame_CatchCucco_PutsInFence", "index": 1 },
+            { "name": "MiniGame_CatchCucco_PutsInFence", "index": 2 },
+            { "name": "MiniGame_CatchCucco_PutsInFence", "index": 3 },
+            { "name": "MiniGame_CatchCucco_PutsInFence", "index": 4 },
+            { "name": "MiniGame_CatchCucco_PutsInFence", "index": 5 },
+            { "name": "MiniGame_CatchCucco_PutsInFence", "index": 6 }
+          ],
+          "gte": 7
+        }
+      ]
+    },
+    "FivePoesSold": {
+      "name": "GhostShop_CouponNum",
+      "gte": 500
+    },
     "AdultWallet": {
       "any": [
         {
@@ -340,7 +488,6 @@
     "ScarecrowSong": "Ocarina and Song_Scarecrow",
     "Epona": "EponaOwned and EponasSong",
     "FrogSongs": "ZeldasLullaby and EponasSong and SariasSong and SunsSong and SongOfTime and SongOfStorms",
-    "BeanRide": "adult and MagicBean",
     "WaterTempleGear": "IronBoots and ZoraTunic and Hookshot",
     "FireTempleGear": "GoronTunic",
     "ShadowTempleGear": "Lens and HoverBoots and Hookshot",
@@ -391,6 +538,17 @@
     "SilverScale": "Silver Scale",
     "GoldenScale": "Golden Scale",
     "MagicBean": "Magic Beans",
+    "BeanPlanted_ZoraRiver": "a Magic Bean planted in Zora's River (as a child)",
+    "BeanPlanted_KokiriForest": "a Magic Bean planted in Kokiri Forest (as a child)",
+    "BeanPlanted_Graveyard": "a Magic Bean planted in the Graveyard (as a child)",
+    "BeanPlanted_DeathMountainTrail": "a Magic Bean planted in Death Mountain Trail (as a child)",
+    "BeanPlanted_LostWoodsSkullKid": "a Magic Bean planted in the Lost Woods (by the Skull Kid) (as a child)",
+    "BeanPlanted_LostWoodsTheater": "a Magic Bean planted in the Lost Woods (by the Deku Theater) (as a child)",
+    "BeanPlanted_LakeHylia": "a Magic Bean planted in Lake Hylia (as a child)",
+    "BeanPlanted_GerudoValley": "a Magic Bean planted in Gerudo Valley (as a child)",
+    "BeanPlanted_DeathMountainCrater": "a Magic Bean planted in Death Mountain Crater (as a child)",
+    "BeanPlanted_DesertColossus": "a Magic Bean planted in Desert Colossus (as a child)",
+    "BeanInPouch": "a Magic Bean in your pouch",
     "Bottle": "a bottle",
     "FairyOcarina": "Fairy Ocarina",
     "OcarinaOfTime": "Ocarina of Time",
@@ -403,6 +561,10 @@
     "SpookyMask": "Spooky Mask",
     "BunnyHood": "Bunny Hood",
     "MaskOfTruth": "Mask of Truth",
+    "KeatonHeld": "Keaton Mask (in hand, can be turned in)",
+    "SkullHeld": "Skull Mask (in hand, can be turned in)",
+    "SpookyHeld": "Spooky Mask (in hand, can be turned in)",
+    "BunnyHeld": "Bunny Hood (in hand, can be sold)",
     "Song_ZeldasLullaby": "Zelda's Lullaby",
     "Song_EponasSong": "Epona's Song",
     "Song_SariasSong": "Saria's Song",
@@ -442,7 +604,24 @@
     "NutBagMedium": "Deku Nut capacity 30",
     "NutBagLarge": "Deku Nut capacity 40",
     "LostWoodsTargetDone": "the Lost Woods target game",
+    "HorsebackArcheryQuiverDone": "the horseback archery quiver",
+    "LostWoodsStickScrubDone": "the Lost Woods stick scrub",
+    "KeatonSold": "Keaton Mask sold",
+    "SkullSold": "Skull Mask sold",
+    "SpookySold": "Spooky Mask sold",
+    "BunnySold": "Bunny Hood sold",
+    "GoronBombBagDone": "the rolling Goron's prize",
+    "BowlingPrizeDone": "the Bombchu Bowling prize",
+    "TheaterSkullDone": "the Deku Theater (Skull Mask)",
+    "TheaterTruthDone": "the Deku Theater (Mask of Truth)",
+    "LostWoodsNutScrubDone": "the Lost Woods grotto scrub",
+    "MarketGalleryDone": "the Market shooting gallery prize",
+    "KakGalleryDone": "the Kakariko shooting gallery prize",
     "RutosLetter": "Ruto's Letter",
+    "RutoLetterHeld": "Ruto's Letter (in hand)",
+    "RutosLetterShown": "Ruto's Letter shown",
+    "SevenCuccosReturned": "All seven Cuccos returned",
+    "FivePoesSold": "Five Big Poes sold",
     "AdultWallet": "Adult's Wallet",
     "Tokens": "{n} Gold Skulltula tokens",
     "Ocarina": "an ocarina",
@@ -480,7 +659,6 @@
     "ScarecrowSong": "Scarecrow's Song",
     "Epona": "Epona",
     "FrogSongs": "the six songs the frogs want",
-    "BeanRide": "Magic Beans (plant one as a child)",
     "WaterTempleGear": "Iron Boots, Zora Tunic and Hookshot",
     "FireTempleGear": "Goron Tunic",
     "ShadowTempleGear": "Lenses of Truth, Hover Boots and Hookshot",
@@ -738,6 +916,57 @@
     }
   ],
   "locations": {
+    "magic_beans_planted#1": {
+      "region": "Zora's River",
+      "age": "child",
+      "needs": "BeanInPouch"
+    },
+    "magic_beans_planted#2": {
+      "region": "Kokiri Forest",
+      "age": "child",
+      "needs": "BeanInPouch"
+    },
+    "magic_beans_planted#3": {
+      "region": "Graveyard",
+      "age": "child",
+      "needs": "BeanInPouch"
+    },
+    "magic_beans_planted#4": {
+      "region": "Death Mountain Trail",
+      "age": "child",
+      "needs": "BeanInPouch and (GoronsBracelet or Explosives)",
+      "note": "The soil is behind the boulder in front of Dodongo's Cavern."
+    },
+    "magic_beans_planted#5": {
+      "region": "Lost Woods",
+      "age": "child",
+      "needs": "BeanInPouch"
+    },
+    "magic_beans_planted#6": {
+      "region": "Lost Woods",
+      "age": "child",
+      "needs": "BeanInPouch"
+    },
+    "magic_beans_planted#7": {
+      "region": "Lake Hylia",
+      "age": "child",
+      "needs": "BeanInPouch"
+    },
+    "magic_beans_planted#8": {
+      "region": "Gerudo Valley",
+      "age": "child",
+      "needs": "BeanInPouch"
+    },
+    "magic_beans_planted#9": {
+      "region": "Death Mountain Crater",
+      "age": "child",
+      "needs": "BeanInPouch and Bolero"
+    },
+    "magic_beans_planted#10": {
+      "region": "Desert Colossus",
+      "age": "child",
+      "needs": "BeanInPouch and Requiem"
+    },
     "heart_pieces#1": {
       "needs": "child or Hookshot"
     },
@@ -797,7 +1026,8 @@
       "needs": "Sticks"
     },
     "heart_pieces#17": {
-      "needs": "BeanRide"
+      "age": "adult",
+      "needs": "BeanPlanted_Graveyard or Longshot"
     },
     "heart_pieces#18": {
       "needs": "(child and Boomerang) or (adult and SongOfTime)",
@@ -811,17 +1041,19 @@
     },
     "heart_pieces#21": {
       "age": "adult",
-      "needs": "MagicBean or (ScarecrowSong and Hookshot)"
+      "needs": "BeanPlanted_LakeHylia or (ScarecrowSong and Hookshot)"
     },
     "heart_pieces#22": {
       "needs": "GoldenScale"
     },
     "heart_pieces#23": {
-      "needs": "BeanRide and GoronsBracelet",
+      "age": "adult",
+      "needs": "BeanPlanted_DeathMountainTrail",
       "note": "The soil is behind the Dodongo's Cavern boulder, which the bracelet's bomb flower opens."
     },
     "heart_pieces#24": {
-      "needs": "Bolero and BeanRide"
+      "age": "adult",
+      "needs": "Bolero and BeanPlanted_DeathMountainCrater"
     },
     "heart_pieces#25": {
       "age": "adult"
@@ -852,7 +1084,10 @@
       "needs": "Epona and Bow and GerudoCard"
     },
     "heart_pieces#32": {
-      "needs": "Requiem and BeanRide"
+      "age": "adult",
+      "needs": "Requiem and BeanPlanted_DesertColossus",
+      "unsure": true,
+      "note": "The Desert Colossus bean's planted flag isn't mapped yet, so this only checks that you own a bean."
     },
     "heart_pieces#33": {
       "needs": "adult or MetZelda",
@@ -917,8 +1152,8 @@
     },
     "gold_skulltulas#4": {
       "age": "child",
-      "needs": "Sticks_or_Fire and Explosives and Boomerang",
-      "note": "Burn the web, bomb the wall, then the Boomerang."
+      "needs": "Sticks_or_Fire",
+      "note": "Burn the web. In the remake no Deku Tree Skulltula needs bombs, and all of them can be collected on the first visit."
     },
     "gold_skulltulas#5": {
       "age": "child"
@@ -985,7 +1220,7 @@
     },
     "gold_skulltulas#20": {
       "age": "child",
-      "needs": "Bugs and Strength1",
+      "needs": "Bugs and (Strength1 or Explosives)",
       "note": "The soil is behind the boulder that the bracelet's bomb flower opens."
     },
     "gold_skulltulas#21": {
@@ -1081,7 +1316,7 @@
     "gold_skulltulas#45": {
       "age": "adult",
       "night": true,
-      "needs": "MagicBean"
+      "needs": "BeanPlanted_LostWoodsTheater"
     },
     "gold_skulltulas#46": {
       "age": "adult",
@@ -1271,7 +1506,9 @@
     "gold_skulltulas#90": {
       "age": "adult",
       "night": true,
-      "needs": "MagicBean or Longshot"
+      "needs": "BeanPlanted_DesertColossus or Longshot",
+      "unsure": true,
+      "note": "The Desert Colossus bean's planted flag isn't mapped yet, so the bean route only checks that you own a bean."
     },
     "gold_skulltulas#91": {
       "age": "child",
@@ -1566,22 +1803,50 @@
     "masks#2": {
       "region": "Lost Woods",
       "age": "child",
-      "needs": "KeatonMask"
+      "needs": "KeatonSold",
+      "note": "Turn in the Keaton Mask to the Kakariko gate guard to get the Skull Mask."
     },
     "masks#3": {
       "region": "Graveyard",
       "age": "child",
-      "needs": "SkullMask"
+      "needs": "SkullSold",
+      "note": "Turn in the Skull Mask to the Skull Kid in the Lost Woods to get the Spooky Mask."
     },
     "masks#4": {
       "region": "Hyrule Field",
       "age": "child",
-      "needs": "SpookyMask"
+      "needs": "SpookySold",
+      "note": "Turn in the Spooky Mask to the Graveyard boy to get the Bunny Hood."
     },
     "masks#5": {
       "region": "Hyrule Castle Town",
       "age": "child",
-      "needs": "BunnyHood"
+      "needs": "BunnySold",
+      "note": "Borrow it once the Bunny Hood is sold; the running man only buys the Bunny Hood after all three child dungeon bosses are beaten (all three Spiritual Stones)."
+    },
+    "masks#6": {
+      "region": "Kakariko Village",
+      "age": "child",
+      "needs": "KeatonHeld",
+      "note": "Sell the Keaton Mask to the guard at Kakariko's gate; the shop lends the Skull Mask after."
+    },
+    "masks#7": {
+      "region": "Lost Woods",
+      "age": "child",
+      "needs": "SkullHeld",
+      "note": "Sell the Skull Mask to the Skull Kid in the Lost Woods; the shop lends the Spooky Mask after."
+    },
+    "masks#8": {
+      "region": "Graveyard",
+      "age": "child",
+      "needs": "SpookyHeld",
+      "note": "Sell the Spooky Mask to the boy in the Graveyard; the shop lends the Bunny Hood after."
+    },
+    "masks#9": {
+      "region": "Hyrule Field",
+      "age": "child",
+      "needs": "BunnyHeld and AllStones",
+      "note": "Sell the Bunny Hood to the running man in Hyrule Field; only after all three Spiritual Stones, and the shop lends the Mask of Truth after."
     },
     "bottles#1": {
       "region": "Hyrule Castle Town",
@@ -1590,7 +1855,9 @@
     },
     "bottles#2": {
       "region": "Kakariko Village",
-      "age": "child"
+      "age": "child",
+      "needs": "SevenCuccosReturned",
+      "note": "The Cucco Lady gives the bottle once all seven Cuccos are back in her pen."
     },
     "bottles#3": {
       "region": "Lon Lon Ranch",
@@ -1601,12 +1868,31 @@
     "bottles#4": {
       "region": "Lake Hylia",
       "age": "child",
-      "needs": "SilverScale"
+      "needs": "SilverScale and RutosLetterShown",
+      "note": "The letter has to be shown to King Zora first (in Zora's Domain)."
     },
     "bottles#5": {
       "region": "Hyrule Castle Town",
       "age": "adult",
-      "needs": "Bottle and Epona and Bow"
+      "needs": "Bottle and Epona and Bow and FivePoesSold",
+      "note": "The Poe Collector gives the bottle once five Big Poes are sold (500 points)."
+    },
+    "bottles#6": {
+      "region": "Zora's Domain",
+      "age": "child",
+      "needs": "RutoLetterHeld",
+      "note": "Show Ruto's Letter to King Zora; he moves his throne to the Fountain."
+    },
+    "bottles#7": {
+      "region": "Kakariko Village",
+      "age": "child",
+      "note": "Bring all seven Cuccos back to the pen at the Cucco Lady's house."
+    },
+    "bottles#8": {
+      "region": "Hyrule Castle Town",
+      "age": "adult",
+      "needs": "Bottle",
+      "note": "Sell five Big Poes to the Poe Collector (500 points); each Poe's soul is bottled and sold in the same action."
     },
     "great_fairies#1": {
       "region": "Death Mountain Trail",
@@ -1705,6 +1991,110 @@
       "region": "Lost Woods",
       "age": "child",
       "needs": "MaskOfTruth"
+    },
+    "dungeon_items#1": {
+      "region": "Great Deku Tree",
+      "age": "child"
+    },
+    "dungeon_items#2": {
+      "region": "Great Deku Tree",
+      "age": "child"
+    },
+    "dungeon_items#3": {
+      "region": "Dodongo's Cavern",
+      "age": "child",
+      "needs": "Explosives"
+    },
+    "dungeon_items#4": {
+      "region": "Dodongo's Cavern",
+      "age": "child",
+      "needs": "Explosives"
+    },
+    "dungeon_items#5": {
+      "region": "Lord Jabu-Jabu's Belly",
+      "age": "child",
+      "needs": "Boomerang"
+    },
+    "dungeon_items#6": {
+      "region": "Lord Jabu-Jabu's Belly",
+      "age": "child",
+      "needs": "Boomerang"
+    },
+    "dungeon_items#7": {
+      "region": "Forest Temple",
+      "age": "adult"
+    },
+    "dungeon_items#8": {
+      "region": "Forest Temple",
+      "age": "adult",
+      "needs": "Bow",
+      "unsure": true
+    },
+    "dungeon_items#9": {
+      "region": "Fire Temple",
+      "age": "adult"
+    },
+    "dungeon_items#10": {
+      "region": "Fire Temple",
+      "age": "adult",
+      "needs": "Bow",
+      "unsure": true
+    },
+    "dungeon_items#11": {
+      "region": "Water Temple",
+      "age": "adult",
+      "needs": "WaterTempleGear and ZeldasLullaby",
+      "unsure": true
+    },
+    "dungeon_items#12": {
+      "region": "Water Temple",
+      "age": "adult",
+      "needs": "Hookshot and Explosives",
+      "unsure": true
+    },
+    "dungeon_items#13": {
+      "region": "Shadow Temple",
+      "age": "adult",
+      "needs": "Hookshot and Lens",
+      "unsure": true
+    },
+    "dungeon_items#14": {
+      "region": "Shadow Temple",
+      "age": "adult",
+      "needs": "Hookshot and Lens and Explosives",
+      "unsure": true
+    },
+    "dungeon_items#15": {
+      "region": "Spirit Temple",
+      "age": "adult",
+      "needs": "Sticks",
+      "unsure": true
+    },
+    "dungeon_items#16": {
+      "region": "Spirit Temple",
+      "age": "adult",
+      "needs": "Strength2 and Explosives and ZeldasLullaby and (Hookshot or Longshot)",
+      "unsure": true
+    },
+    "dungeon_items#17": {
+      "region": "Ice Cavern",
+      "age": "adult",
+      "needs": "Bottle"
+    },
+    "dungeon_items#18": {
+      "region": "Ice Cavern",
+      "age": "adult",
+      "needs": "Bottle"
+    },
+    "dungeon_items#19": {
+      "region": "Bottom of the Well",
+      "age": "child",
+      "needs": "ChildWeapon"
+    },
+    "dungeon_items#20": {
+      "region": "Bottom of the Well",
+      "age": "child",
+      "needs": "ChildWeapon"
     },
     "stones_medallions#1": {
       "region": "Great Deku Tree",
@@ -1916,7 +2306,7 @@
     "side_quests#2": {
       "region": "Hyrule Castle Town",
       "age": "child",
-      "needs": "BunnyHood"
+      "needs": "BunnySold or (BunnyHeld and AllStones)"
     },
     "side_quests#3": {
       "region": "Death Mountain Trail",
@@ -1961,6 +2351,7 @@
         },
         {
           "name": "the Market shooting gallery",
+          "done": "MarketGalleryDone",
           "region": "Hyrule Castle Town",
           "age": "child",
           "needs": "Slingshot"
@@ -1979,12 +2370,14 @@
       "sources": [
         {
           "name": "the rolling Goron in Goron City",
+          "done": "GoronBombBagDone",
           "region": "Goron City",
           "age": "child",
           "needs": "Explosives"
         },
         {
           "name": "Bombchu Bowling",
+          "done": "BowlingPrizeDone",
           "region": "Hyrule Castle Town",
           "age": "child",
           "needs": "Bombs and GoronsRuby"
@@ -2003,12 +2396,14 @@
       "sources": [
         {
           "name": "the Kakariko shooting gallery",
+          "done": "KakGalleryDone",
           "region": "Kakariko Village",
           "age": "adult",
           "needs": "Bow"
         },
         {
           "name": "horseback archery at Gerudo Fortress",
+          "done": "HorsebackArcheryQuiverDone",
           "region": "Gerudo Fortress",
           "age": "adult",
           "needs": "GerudoCard and Epona and Bow"
@@ -2027,12 +2422,14 @@
       "sources": [
         {
           "name": "the Lost Woods scrub",
+          "done": "LostWoodsStickScrubDone",
           "region": "Lost Woods",
           "age": "child",
           "needs": "StunScrub"
         },
         {
           "name": "the Deku Theater (Skull Mask)",
+          "done": "TheaterSkullDone",
           "region": "Lost Woods",
           "age": "child",
           "needs": "SkullMask"
@@ -2050,13 +2447,15 @@
       ],
       "sources": [
         {
-          "name": "the Sacred Forest Meadow storms grotto scrub",
-          "region": "Sacred Forest Meadow",
+          "name": "the Lost Woods grotto scrub",
+          "region": "Lost Woods",
           "age": "child",
-          "needs": "SongOfStorms and StunScrub"
+          "needs": "StunScrub and BlastOrSmash",
+          "done": "LostWoodsNutScrubDone"
         },
         {
           "name": "the Deku Theater (Mask of Truth)",
+          "done": "TheaterTruthDone",
           "region": "Lost Woods",
           "age": "child",
           "needs": "MaskOfTruth"

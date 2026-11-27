@@ -4,6 +4,8 @@ import path from 'node:path';
 import { NO_FILTERS } from '../shared/types.js';
 import type { UiPrefs, IdentifyRequest, OverlayMode, AvailableFilters } from '../shared/types.js';
 import type { LearnedGroup } from '../core/pools.js';
+import { PAD_DEFAULTS, cleanPadToggle, type PadToggleSettings } from './gamepad-logic.js';
+import { sanitizeUpdates, UPDATES_DEFAULTS, type UpdatesSettings } from './update-logic.js';
 
 export interface OverlaySettings {
   bounds?: { x: number; y: number; width: number; height: number };
@@ -23,6 +25,8 @@ export interface Settings {
   mainBounds?: { x: number; y: number; width: number; height: number };
   overlay: OverlaySettings;
   hotkeys: { toggleOverlay: string; lockOverlay: string };
+  /** Show/hide the overlay from a controller button (Windows). binding null = the pad's L3. */
+  padToggle: PadToggleSettings;
   /** Answers to "which one was this?": flags -> checklist rows. Game facts, so not per slot. */
   learned: LearnedGroup[];
   /** Questions not answered yet (kept across restarts) */
@@ -31,19 +35,26 @@ export interface Settings {
   live: { enabled: boolean; hint?: string; hints?: string[] };
   /** Keep a local log of every tracked change (logs/changes-YYYY-MM.jsonl). */
   changeLog: boolean;
+  /** Settings → Developer options: show the WIP 100% sections (not read from the save yet). */
+  wipFeatures: boolean;
+  /** In-app updates: off until the user opts in. */
+  updates: UpdatesSettings;
 }
 
 export const DEFAULTS: Settings = {
   pinnedSlot: null,
   manual: {},
-  ui: { hideCollected: false, hiddenCategories: [], collapsed: [], showParts: { B: true, C: false } },
+  ui: { hideCollected: false, hiddenCategories: [], sidebarHidden: [], collapsed: [], showParts: { B: true, C: false } },
   devPanel: false,
   overlay: { opacity: 0.85, locked: true, mode: 'counters' },
   hotkeys: { toggleOverlay: 'Control+Shift+O', lockOverlay: 'Control+Shift+L' },
+  padToggle: PAD_DEFAULTS,
   learned: [],
   pendingIdentify: [],
   live: { enabled: true },
   changeLog: true,
+  wipFeatures: false,
+  updates: { ...UPDATES_DEFAULTS },
 };
 
 const HEX = /^[0-9a-f]{1,16}$/i;
@@ -83,18 +94,20 @@ export function cleanFilters(raw: unknown): AvailableFilters {
 }
 
 export function cleanUi(raw: unknown): UiPrefs {
-  const { availableHeight, availableFilters, ...rest } = isObj(raw) ? raw : {};
+  const { availableHeight, availableFilters, layout, ...rest } = isObj(raw) ? raw : {};
   const d = DEFAULTS.ui;
   const parts = isObj(rest.showParts) ? rest.showParts : {};
   const out: UiPrefs = {
     ...rest,
     hideCollected: bool(rest.hideCollected, d.hideCollected),
     hiddenCategories: strings(rest.hiddenCategories, d.hiddenCategories),
+    sidebarHidden: strings(rest.sidebarHidden, d.sidebarHidden ?? []),
     collapsed: strings(rest.collapsed, d.collapsed),
     showParts: { ...parts, B: bool(parts.B, d.showParts.B), C: bool(parts.C, d.showParts.C) },
   };
   if (typeof availableHeight === 'number' && Number.isFinite(availableHeight) && availableHeight > 0) out.availableHeight = availableHeight;
   if (isObj(availableFilters)) out.availableFilters = cleanFilters(availableFilters);
+  if (layout === 'fit' || layout === 'masonry' || layout === 'stack') out.layout = layout;
   return out;
 }
 
@@ -142,7 +155,7 @@ export class SettingsStore {
     try {
       const raw: unknown = JSON.parse(fs.readFileSync(file, 'utf8'));
       if (!isObj(raw)) return;
-      this.data = { ...this.data, ...raw, ui: cleanUi(raw.ui), overlay: cleanOverlay(raw.overlay), hotkeys: cleanHotkeys(raw.hotkeys), live: cleanLive(raw.live) };
+      this.data = { ...this.data, ...raw, ui: cleanUi(raw.ui), overlay: cleanOverlay(raw.overlay), hotkeys: cleanHotkeys(raw.hotkeys), padToggle: cleanPadToggle(raw.padToggle), live: cleanLive(raw.live), updates: sanitizeUpdates(raw.updates), wipFeatures: bool(raw.wipFeatures, DEFAULTS.wipFeatures) };
       if (migrateIds(this.data)) this.save();
     } catch { /* first run or unreadable: use defaults */ }
   }
