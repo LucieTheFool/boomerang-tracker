@@ -74,7 +74,7 @@ npm test
 
 | **Categories** | |
 |---|---|
-| Hearts, Gold Skulltulas, Songs, Equipment, Items (with upgrades shown as levels), Great Fairies, Dungeons, Bosses, Side Quests, Big Poes, plus optional quest-progress and extras. | <img src="docs/screenshots/tracker-checklist.png" alt="The category grid: Songs, Equipment and Gold Skulltulas" width="480"> |
+| Hearts, Gold Skulltulas, Songs, Equipment, Items (with upgrades shown as levels), Great Fairies, Dungeons, Bosses, Side Quests, Big Poes, plus optional quest-progress and extras. | <img src="docs/screenshots/tracker-checklist.png" alt="Checklist cards: Songs and Equipment, with an icon for every entry" width="300"> |
 
 - **Can get now:** which 100% entries you can reach with what you have, as child or adult, with
   your current area first. Each entry knows what it still needs (an item, a song, being adult,
@@ -90,7 +90,7 @@ npm test
 - **Overlay:** a compact, always-on-top, see-through window for one-screen play
   (`Ctrl+Shift+O` to show/hide, `Ctrl+Shift+L` to lock/unlock; both changeable). It shows your
   area and the live/saves source, and numbers pulse when they go up.
-  <img src="docs/screenshots/tracker-overlay.png" alt="Overlay mode: totals up top, what's left in your area below" width="320">
+  <img src="docs/screenshots/tracker-overlay.png" alt="Overlay in Can get now mode: totals up top, what you can get next below, grouped by area" width="320">
   Modes:
   - **Counters:** category totals.
   - **Remaining here:** what's left in your current area. What you can get now comes first;
